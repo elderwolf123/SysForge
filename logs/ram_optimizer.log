@@ -1,0 +1,27 @@
+[2025-11-19 21:38:12] [Info] ComprehensiveLogger initialized
+[2025-11-19 21:38:12] [Info] Hardware control initialized successfully
+[2025-11-19 21:38:12] [Info] RAM Optimizer Pro initialized successfully
+[2025-11-19 21:53:15] [Info] ComprehensiveLogger initialized
+[2025-11-19 21:53:15] [Info] Hardware control initialized successfully
+[2025-11-19 21:53:15] [Info] Auto-start enabled for battery limit persistence
+[2025-11-19 21:53:15] [Info] ASUS services detected - stopping to prevent battery limit override
+[2025-11-19 21:53:15] [Warning] Could not stop ASUS services (may require admin): Administrator privileges required to stop services
+[2025-11-19 21:53:15] [Info] RAM Optimizer Pro initialized successfully
+[2025-11-19 22:03:20] [Info] Performance mode set to Silent
+[2025-11-19 22:03:24] [Info] Performance mode set to Turbo
+[2025-11-19 23:05:51] [Info] ComprehensiveLogger initialized
+[2025-11-19 23:05:52] [Info] Hardware control initialized successfully
+[2025-11-19 23:05:52] [Info] RAM Optimizer Pro initialized successfully
+[2025-11-19 23:06:53] [Info] ComprehensiveLogger initialized
+[2025-11-19 23:06:53] [Info] Hardware control initialized successfully
+[2025-11-19 23:06:53] [Info] RAM Optimizer Pro initialized successfully
+[2025-11-19 23:14:43] [Info] ComprehensiveLogger initialized
+[2025-11-19 23:14:43] [Info] Hardware control initialized successfully
+[2025-11-19 23:14:43] [Info] RAM Optimizer Pro initialized successfully
+[2025-11-19 23:27:15] [Info] ComprehensiveLogger initialized
+[2025-11-19 23:27:15] [Info] Hardware control initialized successfully
+[2025-11-19 23:27:15] [Info] ASUS services detected - stopping to prevent battery limit override
+[2025-11-19 23:27:16] [Info] ASUS services stopped successfully
+[2025-11-19 23:27:16] [Info] RAM Optimizer Pro initialized successfully
+[2025-11-19 23:27:45] [Info] Battery charge limit set to 80%
+[2025-11-19 23:27:58] [Info] Battery charge limit set to 80%

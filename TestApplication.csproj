@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="src\ProcessManagement\ProcessManagement.csproj" />
+    <ProjectReference Include="src\Logging\Logging.csproj" />
+    <ProjectReference Include="src\Monitoring\Monitoring.csproj" />
+    <ProjectReference Include="src\SystemTray\SystemTray.csproj" />
+    <ProjectReference Include="src\HardwareControl\HardwareControl.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
