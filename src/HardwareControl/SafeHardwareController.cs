@@ -265,10 +265,11 @@ public class SafeHardwareController : IHardwareController, ICoreController, IBat
 
     bool IPerformanceController.IsSupported => (_inner as IPerformanceController)?.IsSupported ?? false;
 
-    public PerformanceMode GetCurrentMode() => (_inner as IPerformanceController)?.GetCurrentMode() ?? PerformanceMode.Balanced;
-    public PerformanceMode[] GetAvailableModes() => (_inner as IPerformanceController)?.GetAvailableModes() ?? Array.Empty<PerformanceMode>();
+    PerformanceMode IPerformanceController.GetCurrentMode() => (_inner as IPerformanceController)?.GetCurrentMode() ?? PerformanceMode.Balanced;
+    
+    PerformanceMode[] IPerformanceController.GetAvailableModes() => (_inner as IPerformanceController)?.GetAvailableModes() ?? new PerformanceMode[] { PerformanceMode.Balanced };
 
-    public bool SetMode(PerformanceMode mode)
+    bool IPerformanceController.SetMode(PerformanceMode mode)
     {
         return SetPerformanceMode((int)mode, null);
     }
