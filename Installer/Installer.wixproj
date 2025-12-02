@@ -1,0 +1,12 @@
+<Project Sdk="WixToolset.Sdk/4.0.5">
+  <PropertyGroup>
+    <OutputName>RamOptimus_Setup_v2.0.0</OutputName>
+    <OutputType>Package</OutputType>
+    <Platform>x64</Platform>
+    <PublishDir>$(MSBuildProjectDirectory)\..\RamOptimizerUI\bin\Release\net8.0-windows10.0.19041\win-x64\publish\</PublishDir>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="WixToolset.UI.wixlib" Version="4.0.5" />
+  </ItemGroup>
+</Project>

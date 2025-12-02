@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="RamOptimus" 
+           Version="2.0.0" 
+           Manufacturer="JRTWolf" 
+           UpgradeCode="8F9D2E3A-1B4C-4D5E-8F9A-2B3C4D5E6F7A"
+           InstallerVersion="500"
+           Compressed="yes">
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    
+    <MediaTemplate EmbedCab="yes" />
+    
+    <!-- Installation directory structure -->
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="RamOptimus">
+        <Component Id="MainExecutable" Bitness="always64">
+          <File Id="RamOptimizerUIExe" 
+                Source="$(var.PublishDir)\RamOptimizerUI.exe" 
+                KeyPath="yes" />
+          
+          <!-- Registry entries for application -->
+          <RegistryKey Root="HKLM" Key="Software\RamOptimus">
+            <RegistryValue Type="string" Name="InstallPath" Value="[INSTALLFOLDER]" />
+            <RegistryValue Type="string" Name="Version" Value="2.0.0" />
+          </RegistryKey>
+          
+          <!-- File association for .roc files -->
+          <ProgId Id="RamOptimus.CompressedFile" Description="RamOptimus Compressed File">
+            <Extension Id="roc" ContentType="application/x-ramoptimus-compressed">
+              <Verb Id="open" Command="Open" TargetFile="RamOptimizerUIExe" Argument='"%1"' />
+            </Extension>
+          </ProgId>
+        </Component>
+        
+        <!-- PDB files -->
+        <Component Id="DebugSymbols" Bitness="always64">
+          <File Source="$(var.PublishDir)\Configuration.pdb" />
+          <File Source="$(var.PublishDir)\HardwareControl.pdb" />
+          <File Source="$(var.PublishDir)\Logging.pdb" />
+          <File Source="$(var.PublishDir)\Monitoring.pdb" />
+          <File Source="$(var.PublishDir)\ProcessManagement.pdb" />
+          <File Source="$(var.PublishDir)\RamOptimizerUI.pdb" />
+          <File Source="$(var.PublishDir)\SystemTray.pdb" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+    
+    <!-- Start Menu shortcuts -->
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="RamOptimus">
+        <Component Id="ApplicationShortcuts" Bitness="always64">
+          <Shortcut Id="ApplicationStartMenuShortcut"
+                    Name="RamOptimus"
+                    Description="Advanced RAM and System Optimizer"
+                    Target="[INSTALLFOLDER]RamOptimizerUI.exe"
+                    WorkingDirectory="INSTALLFOLDER" />
+          
+          <Shortcut Id="UninstallShortcut"
+                    Name="Uninstall RamOptimus"
+                    Description="Uninstalls RamOptimus"
+                    Target="[SystemFolder]msiexec.exe"
+                    Arguments="/x [ProductCode]" />
+          
+          <RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall" />
+          
+          <RegistryValue Root="HKCU" 
+                        Key="Software\RamOptimus" 
+                        Name="installed" 
+                        Type="integer" 
+                        Value="1" 
+                        KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+    
+    <!-- Desktop shortcut (optional) -->
+    <StandardDirectory Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Bitness="always64">
+        <Shortcut Id="ApplicationDesktopShortcut"
+                  Name="RamOptimus"
+                  Description="Advanced RAM and System Optimizer"
+                  Target="[INSTALLFOLDER]RamOptimizerUI.exe"
+                  WorkingDirectory="INSTALLFOLDER" />
+        
+        <RegistryValue Root="HKCU" 
+                      Key="Software\RamOptimus" 
+                      Name="DesktopShortcut" 
+                      Type="integer" 
+                      Value="1" 
+                      KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+    
+    <!-- Auto-startup registry entry (optional) -->
+    <Component Id="StartupRegistry" Directory="INSTALLFOLDER" Bitness="always64">
+      <RegistryValue Root="HKCU" 
+                    Key="Software\Microsoft\Windows\CurrentVersion\Run" 
+                    Name="RamOptimus" 
+                    Type="string" 
+                    Value='"[INSTALLFOLDER]RamOptimizerUI.exe"' 
+                    KeyPath="yes" />
+    </Component>
+    
+    <!-- Features -->
+    <Feature Id="ProductFeature" Title="RamOptimus" Level="1">
+      <ComponentRef Id="MainExecutable" />
+      <ComponentRef Id="DebugSymbols" />
+      <ComponentRef Id="ApplicationShortcuts" />
+    </Feature>
+    
+    <Feature Id="DesktopShortcutFeature" Title="Desktop Shortcut" Level="1">
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+    
+    <Feature Id="StartupFeature" Title="Run on Windows Startup" Level="1000">
+      <ComponentRef Id="StartupRegistry" />
+    </Feature>
+    
+    <!-- UI -->
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="Banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Dialog.bmp" />
+    
+    <UI>
+      <UIRef Id="WixUI_FeatureTree" />
+      <UIRef Id="WixUI_ErrorProgressText" />
+    </UI>
+    
+    <!-- Launch condition - require Windows 10 or later -->
+    <Launch Condition="VersionNT &gt;= 603" Message="This application requires Windows 10 or later." />
+    
+    <!-- Launch condition - require 64-bit -->
+    <Launch Condition="VersionNT64" Message="This application requires a 64-bit version of Windows." />
+  </Package>
+</Wix>

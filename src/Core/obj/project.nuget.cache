@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "OHNzuCrQkYY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Core\\Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\system.codedom\\10.0.0\\system.codedom.10.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\system.management\\10.0.0\\system.management.10.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -12,10 +12,8 @@ using RamOptimizer.Monitoring;
 using RamOptimizer.Logging;
 using RamOptimizer.Configuration;
 using RamOptimizer.HardwareControl;
-using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
-using Button = System.Windows.Controls.Button;
 
 namespace RamOptimizerUI
 {

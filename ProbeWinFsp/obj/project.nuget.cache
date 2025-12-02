@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "7oDRPx6bQl4=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\ProbeWinFsp\\ProbeWinFsp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\winfsp.net\\2.1.24051\\winfsp.net.2.1.24051.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "ProbeWinFsp depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.",
+      "projectPath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\ProbeWinFsp\\ProbeWinFsp.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\ProbeWinFsp\\ProbeWinFsp.csproj",
+      "libraryId": "winfsp.net",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
+}

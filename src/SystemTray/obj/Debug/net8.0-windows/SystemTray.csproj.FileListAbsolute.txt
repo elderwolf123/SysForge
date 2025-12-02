@@ -9,3 +9,4 @@ C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\SystemTray\obj\Debug\
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\SystemTray\obj\Debug\net8.0-windows\refint\SystemTray.dll
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\SystemTray\obj\Debug\net8.0-windows\SystemTray.pdb
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\SystemTray\obj\Debug\net8.0-windows\ref\SystemTray.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\SystemTray\obj\Debug\net8.0-windows\SystemTray.sourcelink.json

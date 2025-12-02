@@ -10,3 +10,4 @@ C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\D
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\refint\HardwareControl.dll
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.pdb
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\ref\HardwareControl.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.sourcelink.json

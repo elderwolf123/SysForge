@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "DEkhfuEOzwo=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\Installer\\Installer.wixproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1101",
+      "level": "Error",
+      "message": "Unable to find package WixToolset.UI.wixlib. No packages exist with this id in source(s): nuget.org",
+      "projectPath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\Installer\\Installer.wixproj",
+      "filePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\Installer\\Installer.wixproj",
+      "libraryId": "WixToolset.UI.wixlib",
+      "targetGraphs": [
+        "native,Version=v0.0"
+      ]
+    }
+  ]
+}

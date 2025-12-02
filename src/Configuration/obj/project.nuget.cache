@@ -1,13 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8N3tqQfbmis=",
+  "dgSpecHash": "XljpbyU2SeI=",
   "success": true,
   "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Configuration\\Configuration.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jarrod\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+    "C:\\Users\\Jarrod\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

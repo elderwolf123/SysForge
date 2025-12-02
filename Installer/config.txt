@@ -1,0 +1,8 @@
+; RamOptimus Installer Configuration
+; This file configures the self-extracting installer
+
+;!@Install@!UTF-8!
+Title="RamOptimus v2.0.0 Setup"
+BeginPrompt="This will install RamOptimus v2.0.0 on your computer.\n\nRamOptimus is an advanced system optimizer for ASUS ROG laptops.\n\nClick OK to continue."
+RunProgram="powershell.exe -ExecutionPolicy Bypass -File \"%%T\\install.ps1\""
+;!@InstallEnd@!

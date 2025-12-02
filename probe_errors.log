@@ -1,0 +1,21 @@
+  Determining projects to restore...
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj : warning NU1603: ProbeWinFsp depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+  All projects are up-to-date for restore.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj : warning NU1603: ProbeWinFsp depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,55): error CS8076: Missing close delimiter '}' for interpolated expression started with '{'. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,57): error CS8361: A conditional expression cannot be used directly in a string interpolation because the ':' ends the interpolation. Parenthesize the conditional expression. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,87): error CS1003: Syntax error, ',' expected [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,95): error CS1003: Syntax error, ',' expected [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+
+Build FAILED.
+
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj : warning NU1603: ProbeWinFsp depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj : warning NU1603: ProbeWinFsp depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,55): error CS8076: Missing close delimiter '}' for interpolated expression started with '{'. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,57): error CS8361: A conditional expression cannot be used directly in a string interpolation because the ':' ends the interpolation. Parenthesize the conditional expression. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,87): error CS1003: Syntax error, ',' expected [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\Program.cs(17,95): error CS1003: Syntax error, ',' expected [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\ProbeWinFsp\ProbeWinFsp.csproj]
+    2 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:01.01

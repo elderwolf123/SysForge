@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACPI Safety System - Visual Diagrams</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: #f5f5f5;
+            padding: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav button {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        nav button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .diagram-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .diagram-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .diagram-title {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .diagram-description {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .mermaid {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #856404;
+        }
+
+        .info-box li {
+            margin: 5px 0;
+        }
+
+        .info-box p {
+            margin: 10px 0;
+            color: #856404;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .legend {
+            background: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .legend h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .legend-item {
+            display: inline-block;
+            margin: 5px 15px 5px 0;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ ACPI Safety System</h1>
+            <p>Visual Diagrams - ROG Flow Z13 Protection</p>
+        </header>
+
+        <nav>
+            <button onclick="showDiagram('safety-flow')" class="active">Complete Safety Flow</button>
+            <button onclick="showDiagram('snapshot')">Snapshot System</button>
+            <button onclick="showDiagram('test-mode')">Test vs Real Mode</button>
+            <button onclick="showDiagram('architecture')">Class Architecture</button>
+            <button onclick="showDiagram('boot-failure')">Boot Failure</button>
+            <button onclick="showDiagram('values')">Safe vs Forbidden</button>
+        </nav>
+
+        <div class="content">
+            <!-- Safety Flow -->
+            <div id="safety-flow" class="diagram-section active">
+                <h2 class="diagram-title">🎯 Complete Safety Flow</h2>
+                <div class="diagram-description">
+                    This diagram shows all 6 layers of protection that prevent dangerous hardware configurations from
+                    bricking your system.
+                </div>
+
+                <div class="mermaid">
+                    flowchart TD
+                    Start([User Requests Hardware Change]) --> Validate[Layer 1: Pre-Flight Validation]
+
+                    Validate --> CheckValid{Valid Parameters?}
+                    CheckValid -->|No| Reject[Reject and Log Error]
+                    CheckValid -->|Yes| Snapshot[Layer 2: Capture Snapshot]
+
+                    Snapshot --> SaveSnapshot[Save current config to disk]
+                    SaveSnapshot --> RollbackFlag[Layer 3: Set Rollback Flag]
+
+                    RollbackFlag --> SetFlag[Create rollback flag file]
+                    SetFlag --> ApplyChange[Layer 4: Apply ACPI Change]
+
+                    ApplyChange --> WriteACPI[Write to ATKACPI driver]
+                    WriteACPI --> Verify[Layer 5: Read-After-Write Verify]
+
+                    Verify --> CheckVerify{Value Matches?}
+                    CheckVerify -->|No| AutoRollback[Immediate Rollback]
+                    CheckVerify -->|Yes| Reboot[Reboot Required]
+
+                    Reboot --> UserReboots[User Reboots System]
+                    UserReboots --> BootDetect[Layer 6: Boot Detection]
+
+                    BootDetect --> CheckFlag{Rollback flag exists?}
+                    CheckFlag -->|No| Normal[Normal Operation]
+                    CheckFlag -->|Yes| IncrementBoot[Increment boot count]
+
+                    IncrementBoot --> CheckCount{boot count >= 2?}
+                    CheckCount -->|Yes| ClearFlag[Clear Flag - SUCCESS]
+                    CheckCount -->|No| WaitConfirm[Wait for Confirmation]
+
+                    WaitConfirm --> UserConfirm{System Stable?}
+                    UserConfirm -->|Yes| ClearFlag
+                    UserConfirm -->|No| RestoreSnapshot[Restore Snapshot]
+
+                    AutoRollback --> End([Failed])
+                    Reject --> End
+                    RestoreSnapshot --> End
+                    ClearFlag --> Success([Success])
+                    Normal --> Success
+
+                    style Start fill:#4CAF50,stroke:#2E7D32,color:#fff
+                    style Success fill:#4CAF50,stroke:#2E7D32,color:#fff
+                    style End fill:#f44336,stroke:#c62828,color:#fff
+                    style Reject fill:#f44336,stroke:#c62828,color:#fff
+                    style AutoRollback fill:#FF9800,stroke:#E65100,color:#fff
+                    style RestoreSnapshot fill:#FF9800,stroke:#E65100,color:#fff
+                </div>
+
+                <div class="legend">
+                    <h4>Legend:</h4>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background:#4CAF50;"></span>
+                        <span>Success / Start</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background:#f44336;"></span>
+                        <span>Error / Failure</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background:#FF9800;"></span>
+                        <span>Rollback / Warning</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background:#2196F3;"></span>
+                        <span>Processing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Snapshot System -->
+            <div id="snapshot" class="diagram-section">
+                <h2 class="diagram-title">🔄 Snapshot System Flow</h2>
+                <div class="diagram-description">
+                    Shows how snapshots are captured before changes and restored if the system becomes unstable.
+                </div>
+
+                <div class="mermaid">
+                    flowchart TD
+                    AppStart([Application Startup]) --> CheckRollback{Rollback Flag Exists?}
+
+                    CheckRollback -->|No| NormalStart[Normal Startup]
+                    CheckRollback -->|Yes| RollbackDetected[Rollback Detected]
+
+                    RollbackDetected --> LoadSnapshot[Load Latest Snapshot]
+                    LoadSnapshot --> RestoreHW[Restore to Hardware]
+                    RestoreHW --> NotifyUser[Notify User]
+
+                    NormalStart --> UserAction[User Makes Change]
+                    NotifyUser --> UserAction
+
+                    UserAction --> CaptureNow[Capture Current State]
+                    CaptureNow --> CreateSnapshot[Create Snapshot JSON]
+
+                    CreateSnapshot --> SaveFile[Save to Disk]
+                    SaveFile --> ApplyChange[Apply Change with Safety]
+
+                    ApplyChange --> ChangeSuccess{Success?}
+
+                    ChangeSuccess -->|No| AutoRestore[Auto-Restore Snapshot]
+                    ChangeSuccess -->|Yes| WaitReboot[Wait for Reboot]
+
+                    WaitReboot --> AfterReboot[After Reboot]
+                    AfterReboot --> CheckStable{System Stable?}
+
+                    CheckStable -->|No| AutoRestore
+                    CheckStable -->|Yes| ConfirmStable[Save as Baseline]
+
+                    AutoRestore --> End([Change Reverted])
+                    ConfirmStable --> Success([New Config Active])
+
+                    style AppStart fill:#4CAF50,stroke:#2E7D32,color:#fff
+                    style Success fill:#4CAF50,stroke:#2E7D32,color:#fff
+                    style RollbackDetected fill:#f44336,stroke:#c62828,color:#fff
+                    style AutoRestore fill:#FF9800,stroke:#E65100,color:#fff
+                </div>
+            </div>
+
+            <!-- Test Mode -->
+            <div id="test-mode" class="diagram-section">
+                <h2 class="diagram-title">🧪 Test Mode vs Real Mode</h2>
+                <div class="diagram-description">
+                    Test mode allows you to safely test changes without actually writing to hardware.
+                </div>
+
+                <div class="info-box">
+                    <h3>⚠️ Always Test First!</h3>
+                    <ul>
+                        <li>Enable TestMode before any new changes</li>
+                        <li>Review logs to ensure validation passes</li>
+                        <li>Only then disable TestMode and apply for real</li>
+                    </ul>
+                </div>
+
+                <div class="mermaid">
+                    flowchart LR
+                    subgraph TestMode["TEST MODE"]
+                    direction TB
+                    T1[SetCores 4, 6] --> T2[Validation Runs]
+                    T2 --> T3{Valid?}
+                    T3 -->|Yes| T4[LOG: Would set 0x0406]
+                    T3 -->|No| T5[LOG: Would reject]
+                    T4 --> T6[Hardware UNCHANGED]
+                    T5 --> T6
+                    end
+
+                    subgraph RealMode["REAL MODE"]
+                    direction TB
+                    R1[SetCores 4, 6] --> R2[Validation Runs]
+                    R2 --> R3{Valid?}
+                    R3 -->|Yes| R4[Capture Snapshot]
+                    S->>S: Set rollback flag
+                    S->>H: Write to ACPI
+                    H-->>S: Success
+                    S-->>U: Reboot required
+
+                    Note over U,H: === REBOOT ===
+
+                    alt Boots Successfully
+                    H->>H: POST OK
+                    H->>A: Windows starts
+                    A->>S: Check rollback flag
+                    S->>S: boot_count = 1
+                    S-->>U: Confirm stable?
+                    U->>S: Yes
+                    S->>S: Clear flag
+                    S-->>U: Complete!
+                    else POST Fails
+                    H->>H: POST FAIL
+                    Note over U,H: Manual BIOS reset needed
+                    Note over U,H: ASUS service required
+                    H->>A: After fix - boots
+                    A->>S: Check rollback flag
+                    S->>S: Flag still exists
+                    S->>H: Restore old config
+                    S-->>U: Auto-rollback done
+                    end
+                </div>
+            </div>
+
+            <!-- Safe vs Forbidden -->
+            <div id="values" class="diagram-section">
+                <h2 class="diagram-title">📊 Safe vs Forbidden Values</h2>
+                <div class="diagram-description">
+                    Core configuration values and which ones are safe vs dangerous.
+                </div>
+
+                <div class="mermaid">
+                    graph TD
+                    subgraph Forbidden["FORBIDDEN"]
+                    F1["0x0000 - No cores"]
+                    F2["0x0001 - 1 E-core only"]
+                    F3["0x0100 - 1 P-core only"]
+                    F4["0x0101 - 2 cores total"]
+                    end
+
+                    subgraph Safe["SAFE"]
+                    S1["0x0204 - 2P + 4E - Minimum"]
+                    S2["0x0406 - 4P + 6E - Balanced"]
+                    S3["0x0608 - 6P + 8E - Full Power"]
+                    S4["0x0600 - 6P + 0E - P-core focused"]
+                    end
+
+                    Rules["VALIDATION: P-cores >= 2 | Total >= 4 | Not in forbidden list"]
+
+                    Rules -.Blocks.-> Forbidden
+                    Rules -.Allows.-> Safe
+
+                    style Forbidden fill:#ffebee,stroke:#f44336
+                    style Safe fill:#e8f5e9,stroke:#4CAF50
+                    style Rules fill:#e3f2fd,stroke:#2196F3
+                </div>
+
+                <div class="info-box">
+                    <h3>💡 Format Explanation</h3>
+                    <p><strong>Format:</strong> 0x[P-cores][E-cores]</p>
+                    <p><strong>Example:</strong> 0x0406 = 4 P-cores + 6 E-cores</p>
+                    <ul>
+                        <li>Upper byte (04) = P-cores</li>
+                        <li>Lower byte (06) = E-cores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>ACPI Safety System for ASUS ROG Flow Z13</p>
+            <p>Created: 2025-11-29 | Protection against hardware configuration failures</p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+
+        function showDiagram(diagramId) {
+            document.querySelectorAll('.diagram-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            document.querySelectorAll('nav button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(diagramId).classList.add('active');
+            event.target.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>

@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using RamOptimizer.ProcessManagement;
 using Application = System.Windows.Application;
-using MessageBox = System.Windows.MessageBox;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 
 namespace RamOptimizerUI
