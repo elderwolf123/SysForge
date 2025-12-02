@@ -1,0 +1,30 @@
+  Determining projects to restore...
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\Compression.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerUI\RamOptimizerUI.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerUI\RamOptimizerUI.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+  All projects are up-to-date for restore.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerUI\RamOptimizerUI.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\Compression.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+  Core -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Core\bin\Debug\net8.0\Core.dll
+  Configuration -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Configuration\bin\Debug\net8.0\Configuration.dll
+  Logging -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Logging\bin\Debug\net8.0\Logging.dll
+  ServiceTesting -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ServiceTesting\bin\Debug\net8.0\ServiceTesting.dll
+  Monitoring -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Monitoring\bin\Debug\net8.0\Monitoring.dll
+  Compression -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\bin\Debug\net8.0\Compression.dll
+  ProcessManagement -> C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\bin\Debug\net8.0\ProcessManagement.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\SafeHardwareController.cs(10,97): error CS0738: 'SafeHardwareController' does not implement interface member 'IPerformanceController.GetCurrentMode()'. 'SafeHardwareController.GetCurrentMode()' cannot implement 'IPerformanceController.GetCurrentMode()' because it does not have the matching return type of 'PerformanceMode'. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\HardwareControl.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\SafeHardwareController.cs(10,97): error CS0535: 'SafeHardwareController' does not implement interface member 'IPerformanceController.SetMode(PerformanceMode)' [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\HardwareControl.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\SafeHardwareController.cs(10,97): error CS0738: 'SafeHardwareController' does not implement interface member 'IPerformanceController.GetAvailableModes()'. 'SafeHardwareController.GetAvailableModes()' cannot implement 'IPerformanceController.GetAvailableModes()' because it does not have the matching return type of 'PerformanceMode[]'. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\HardwareControl.csproj]
+
+Build FAILED.
+
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\Compression.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerUI\RamOptimizerUI.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerUI\RamOptimizerUI.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerUI\RamOptimizerUI.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\Compression.csproj : warning NU1603: Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\SafeHardwareController.cs(10,97): error CS0738: 'SafeHardwareController' does not implement interface member 'IPerformanceController.GetCurrentMode()'. 'SafeHardwareController.GetCurrentMode()' cannot implement 'IPerformanceController.GetCurrentMode()' because it does not have the matching return type of 'PerformanceMode'. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\HardwareControl.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\SafeHardwareController.cs(10,97): error CS0535: 'SafeHardwareController' does not implement interface member 'IPerformanceController.SetMode(PerformanceMode)' [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\HardwareControl.csproj]
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\SafeHardwareController.cs(10,97): error CS0738: 'SafeHardwareController' does not implement interface member 'IPerformanceController.GetAvailableModes()'. 'SafeHardwareController.GetAvailableModes()' cannot implement 'IPerformanceController.GetAvailableModes()' because it does not have the matching return type of 'PerformanceMode[]'. [C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\HardwareControl.csproj]
+    4 Warning(s)
+    3 Error(s)
+
+Time Elapsed 00:00:01.56
