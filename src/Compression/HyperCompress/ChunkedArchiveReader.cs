@@ -163,7 +163,22 @@ public class ChunkedArchiveReader : IDisposable
         _archiveStream!.Seek(chunkEntry.FileOffset, SeekOrigin.Begin);
         byte[] compressed = _reader!.ReadBytes(chunkEntry.CompressedSize);
         
-        byte[] decompressed = _engine.Decompress(compressed, chunkEntry.Algorithm);
+        // Decompress using the encoder directly (not engine)
+        // Since we know chunks use HyperGeneralEncoder
+        byte[] decompressed;
+        if (chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_Binary ||
+            chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_Text ||
+            chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_HighEntropy ||
+            chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_Repetitive)
+        {
+            var generalEncoder = new Encoders.HyperGeneralEncoder();
+            decompressed = generalEncoder.Decompress(compressed);
+        }
+        else
+        {
+            // Fallback to engine decompression for other algorithms
+            decompressed = _engine.Decompress(compressed, chunkEntry.Algorithm);
+        }
         
         // Verify checksum
         uint actualChecksum = ArchiveFormat.ComputeCRC32(decompressed);

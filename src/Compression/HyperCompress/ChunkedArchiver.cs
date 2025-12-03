@@ -151,9 +151,6 @@ public class ChunkedArchiver
         }
     }
     
-    /// <summary>
-    /// Write a chunk to the archive.
-    /// </summary>
     private async Task WriteChunkAsync(
         BinaryWriter writer,
         List<byte> chunkData,
@@ -166,17 +163,23 @@ public class ChunkedArchiver
         byte[] uncompressed = chunkData.ToArray();
         
         // Compress chunk using HyperCompress engine
-        // For chunk compression, we'll use the general encoder since chunks contain mixed data
-        var compressed = _engine.Compress(uncompressed, "chunk.dat", settings);
+        // The engine will pick the best encoder and we need to track which one it used
+        byte[] compressed;
+        HyperAlgorithm usedAlgorithm;
         
-        // Create chunk entry
+        // Use general encoder directly for chunks (mixed data)
+        var generalEncoder = new HyperGeneralEncoder();
+        compressed = generalEncoder.Compress(uncompressed, settings);
+        usedAlgorithm = HyperAlgorithm.HyperGeneral_Binary;
+        
+        // Create chunk entry with the ACTUAL algorithm used
         var chunkEntry = new ArchiveFormat.ChunkEntry
         {
             ChunkID = chunkId,
             FileOffset = writer.BaseStream.Position,
             CompressedSize = compressed.Length,
             UncompressedSize = uncompressed.Length,
-            Algorithm = HyperAlgorithm.HyperGeneral_Binary, // Chunks use general encoder
+            Algorithm = usedAlgorithm,
             Checksum = ArchiveFormat.ComputeCRC32(uncompressed)
         };
         
@@ -207,14 +210,14 @@ public class ChunkedArchiver
                 OriginalSize = fileSize,
                 ChunkIDs = new[] { chunkId },
                 OffsetInFirstChunk = offset,
-                Algorithm = HyperAlgorithm.HyperGeneral_Binary,
+                Algorithm = usedAlgorithm,
                 LastModified = DateTime.UtcNow
             };
             
             fileEntries.Add(fileEntry);
         }
         
-        _logger?.LogDebug($"Wrote chunk {chunkId}: {uncompressed.Length:N0} → {compressed.Length:N0} bytes");
+        _logger?.LogDebug($"Wrote chunk {chunkId}: {uncompressed.Length:N0} → {compressed.Length:N0} bytes using {usedAlgorithm}");
     }
 }
 
