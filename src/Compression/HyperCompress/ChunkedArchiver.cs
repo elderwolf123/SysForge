@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using RamOptimizer.Compression.HyperCompress.Encoders;
 
 namespace RamOptimizer.Compression.HyperCompress;
 

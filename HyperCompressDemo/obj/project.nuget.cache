@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wp9C7Ild4Wg=",
+  "dgSpecHash": "wXdA9NC+OW4=",
   "success": true,
   "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\HyperCompressDemo\\HyperCompressDemo.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,7 @@
       "filePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\HyperCompressDemo\\HyperCompressDemo.csproj",
       "libraryId": "winfsp.net",
       "targetGraphs": [
-        "net8.0-windows7.0"
+        "net8.0"
       ]
     }
   ]
