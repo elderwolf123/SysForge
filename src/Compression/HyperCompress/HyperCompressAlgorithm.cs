@@ -10,6 +10,8 @@ namespace RamOptimizer.Compression.HyperCompress;
 /// </summary>
 public class HyperCompressAlgorithm : ICompressionAlgorithm
 {
+    public string Name => "HyperCompress";
+    
     private readonly HyperCompressEngine _engine;
     private readonly HyperCompressLearningDatabase _learningDb;
     
@@ -59,31 +61,23 @@ public class HyperCompressAlgorithm : ICompressionAlgorithm
         return result;
     }
     
-    public async Task<CompressionResult> DecompressAsync(Stream input, Stream output)
+    public async Task DecompressAsync(Stream input, Stream output)
     {
-        var result = new CompressionResult();
-        
         try
         {
             // Read compressed data
             byte[] compressed = new byte[input.Length];
             await input.ReadAsync(compressed, 0, compressed.Length);
-            result.CompressedSize = compressed.Length;
             
             // Decompress (default to general binary)
             byte[] decompressed = _engine.Decompress(compressed, HyperAlgorithm.HyperGeneral_Binary);
             
             // Write to output
             await output.WriteAsync(decompressed, 0, decompressed.Length);
-            result.OriginalSize = decompressed.Length;
-            result.Success = true;
         }
         catch (Exception ex)
         {
-            result.Success = false;
-            result.ErrorMessage = ex.Message;
+            throw new InvalidOperationException($"Decompression failed: {ex.Message}", ex);
         }
-        
-        return result;
     }
 }
