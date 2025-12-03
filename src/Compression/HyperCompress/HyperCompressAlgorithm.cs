@@ -55,7 +55,8 @@ public class HyperCompressAlgorithm : ICompressionAlgorithm
         catch (Exception ex)
         {
             result.Success = false;
-            result.ErrorMessage = ex.Message;
+            // CompressionResult doesn't have ErrorMessage, log or throw instead
+            throw new InvalidOperationException($"Compression failed: {ex.Message}", ex);
         }
         
         return result;
