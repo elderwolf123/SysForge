@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ENPEQwPwfks=",
+  "dgSpecHash": "yrnBtwkQnBY=",
   "success": true,
   "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
   "expectedPackageFiles": [
@@ -13,12 +13,13 @@
     "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\mstest.testadapter\\3.1.1\\mstest.testadapter.3.1.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\mstest.testframework\\3.1.1\\mstest.testframework.3.1.1.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\sharpcompress\\0.42.0\\sharpcompress.0.42.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\winfsp.net\\2.1.24051\\winfsp.net.2.1.24051.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp.port\\0.8.1\\zstdsharp.port.0.8.1.nupkg.sha512"
+    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp.port\\0.8.6\\zstdsharp.port.0.8.6.nupkg.sha512"
   ],
   "logs": [
     {

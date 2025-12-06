@@ -1,0 +1,77 @@
+═══════════════════════════════════════════════════════
+   HyperCompress Archive System Test
+═══════════════════════════════════════════════════════
+
+Initializing HyperCompress engine...
+? Engine initialized with 5 encoders
+
+─── Test 1: HyperGeneralEncoder ───
+  Original size:    1,300 bytes
+  Compressed size:  281 bytes
+  Compression:      78.4%
+  Decompressed:     1,300 bytes
+  ? Compress/Decompress verified
+
+─── Test 2: Archive System ───
+Creating test files...
+  Created 3 test files in C:\Users\Jarrod\AppData\Local\Temp\HCTest_615427c9
+
+Creating archive...
+  ? Archive created: test_f917caec.hca
+  Files:            3
+  Original size:    154 bytes
+  Compressed size:  780 bytes
+  Compression:      -406.5%
+
+Extracting archive...
+  Archive contains 3 files:
+    - file1.txt
+    - file2.txt
+    - file3.log
+  ? Extracted to: C:\Users\Jarrod\AppData\Local\Temp\HCExtract_462125bf
+
+Verifying extracted files...
+  ? Verified: file1.txt
+  ? Verified: file2.txt
+  ? Verified: file3.log
+
+  ? All files verified - byte-for-byte match!
+
+  Cleanup complete (archive kept for VFS test)
+
+─── Test 3: QIPRA (Quantum-Inspired) Encoder ───
+Testing QIPRA vs HyperGeneralEncoder baseline...
+
+  Test 1: Repetitive Data
+    Original: 8,192 bytes
+    QIPRA:    3,135 bytes (61.7% compression)
+    General:  30 bytes (99.6% compression)
+    ? QIPRA verified
+
+  Test 2: Text-Like Patterns
+    Original: 4,500 bytes
+    QIPRA:    17,528 bytes (-289.5% compression)
+    General:  69 bytes (98.5% compression)
+    ? QIPRA verified
+
+  Test 3: Random Data (Incompressible)
+    Original: 4,096 bytes
+    QIPRA:    4,120 bytes (100.6% of original)
+    ? QIPRA handles random data correctly
+
+  ? All QIPRA tests passed!
+
+─── Test 4: Virtual File System Mount ───
+Mounting archive as virtual file system...
+  Archive: test_f917caec.hca
+  Mount point: C:\Users\Jarrod\AppData\Local\Temp\HCMount_209160e3
+
+  ?? VFS test skipped: Failed to mount archive
+  (WinFsp may not be installed - archive/extraction tests still passed!)
+
+═══════════════════════════════════════════════════════
+? ALL TESTS PASSED!
+═══════════════════════════════════════════════════════
+
+Press any key to exit...
+

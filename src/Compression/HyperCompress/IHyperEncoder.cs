@@ -95,6 +95,11 @@ public enum HyperAlgorithm : byte
     HyperQuantum_QIPRA = 0x30,
     HyperFractal_FBCA = 0x31,
     
+    // Ultra compression
+    LZMA2 = 0x32,
+    PPMd = 0x33,
+    HybridUltra = 0x34,  // LZMA2+PPMd hybrid
+    
     // Learned/Adaptive
     HyperAdaptive_Learned = 0x40,
     

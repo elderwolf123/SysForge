@@ -1,0 +1,46 @@
+═══════════════════════════════════════════════════════
+   HyperCompress Archive System Test
+═══════════════════════════════════════════════════════
+
+Initializing HyperCompress engine...
+? Engine initialized with 5 encoders
+
+─── Test 1: HyperGeneralEncoder ───
+  Original size:    1,300 bytes
+  Compressed size:  281 bytes
+  Compression:      78.4%
+  Decompressed:     1,300 bytes
+  ? Compress/Decompress verified
+
+─── Test 2: Archive System ───
+Creating test files...
+  Created 3 test files in C:\Users\Jarrod\AppData\Local\Temp\HCTest_f5ad5bdf
+
+Creating archive...
+  ? Archive created: test_f2c1b312.hca
+  Files:            3
+  Original size:    154 bytes
+  Compressed size:  780 bytes
+  Compression:      -406.5%
+
+Extracting archive...
+  Archive contains 3 files:
+    - file1.txt
+    - file2.txt
+    - file3.log
+  ? Extracted to: C:\Users\Jarrod\AppData\Local\Temp\HCExtract_7067b3a9
+
+Verifying extracted files...
+  ? Verified: file1.txt
+  ? Verified: file2.txt
+  ? Verified: file3.log
+
+  ? All files verified - byte-for-byte match!
+
+  Cleanup complete
+
+═══════════════════════════════════════════════════════
+? ALL TESTS PASSED!
+═══════════════════════════════════════════════════════
+
+Press any key to exit...

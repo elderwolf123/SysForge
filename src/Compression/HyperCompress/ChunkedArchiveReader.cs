@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using RamOptimizer.Compression.HyperCompress.Encoders;
 
 namespace RamOptimizer.Compression.HyperCompress;
 
@@ -55,9 +56,12 @@ public class ChunkedArchiveReader : IDisposable
         _logger?.LogInformation($"Opened archive: {Path.GetFileName(_archivePath)} " +
             $"(v{_header.Version:X4}, {_header.TotalChunks} chunks)");
         
-        // Read chunk table (immediately after header)
+        // Read chunk table (stored at LearningDBOffset position)
+        _archiveStream.Seek(_header.LearningDBOffset, SeekOrigin.Begin);
+        int chunkCount = _reader.ReadInt32();
+        
         _chunks = new List<ArchiveFormat.ChunkEntry>();
-        for (int i = 0; i < _header.TotalChunks; i++)
+        for (int i = 0; i < chunkCount; i++)
         {
             _chunks.Add(ArchiveFormat.ChunkEntry.ReadFrom(_reader));
         }
@@ -163,22 +167,10 @@ public class ChunkedArchiveReader : IDisposable
         _archiveStream!.Seek(chunkEntry.FileOffset, SeekOrigin.Begin);
         byte[] compressed = _reader!.ReadBytes(chunkEntry.CompressedSize);
         
-        // Decompress using the encoder directly (not engine)
-        // Since we know chunks use HyperGeneralEncoder
-        byte[] decompressed;
-        if (chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_Binary ||
-            chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_Text ||
-            chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_HighEntropy ||
-            chunkEntry.Algorithm == HyperAlgorithm.HyperGeneral_Repetitive)
-        {
-            var generalEncoder = new Encoders.HyperGeneralEncoder();
-            decompressed = generalEncoder.Decompress(compressed);
-        }
-        else
-        {
-            // Fallback to engine decompression for other algorithms
-            decompressed = _engine.Decompress(compressed, chunkEntry.Algorithm);
-        }
+        // ALWAYS use HyperGeneralEncoder for chunks
+        // This matches what ChunkedArchiver does during compression
+        var encoder = new HyperGeneralEncoder();
+        byte[] decompressed = encoder.Decompress(compressed);
         
         // Verify checksum
         uint actualChecksum = ArchiveFormat.ComputeCRC32(decompressed);

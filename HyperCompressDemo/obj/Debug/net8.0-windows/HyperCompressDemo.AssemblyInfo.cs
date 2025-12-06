@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HyperCompressDemo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4edaf36333e42699a56de9881df12c63cd757fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ba1ae82003b94ddbabb147cb606a84a86489bf0")]
 [assembly: System.Reflection.AssemblyProductAttribute("HyperCompressDemo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HyperCompressDemo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

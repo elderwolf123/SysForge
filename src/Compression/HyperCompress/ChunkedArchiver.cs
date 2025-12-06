@@ -117,7 +117,15 @@ public class ChunkedArchiver
                 await WriteChunkAsync(writer, currentChunk, currentChunkFiles, chunks, fileEntries, settings);
             }
             
-            // 5. Write file index
+            // 5. Write chunk table
+            long chunkTableOffset = archiveStream.Position;
+            writer.Write(chunks.Count);
+            foreach (var chunk in chunks)
+            {
+                chunk.WriteTo(writer);
+            }
+            
+            // 6. Write file index
             long indexOffset = archiveStream.Position;
             writer.Write(fileEntries.Count);
             foreach (var entry in fileEntries)
@@ -125,9 +133,10 @@ public class ChunkedArchiver
                 entry.WriteTo(writer);
             }
             
-            // 6. Update header with final info
+            // 7. Update header with final info
             header.TotalChunks = chunks.Count;
             header.IndexOffset = indexOffset;
+            header.LearningDBOffset = chunkTableOffset; // Repurpose this field for chunk table offset
             
             archiveStream.Seek(headerPos, SeekOrigin.Begin);
             header.WriteTo(writer);

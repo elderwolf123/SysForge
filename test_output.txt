@@ -1,0 +1,42 @@
+═══════════════════════════════════════════════════════
+   HyperCompress Archive System Test
+═══════════════════════════════════════════════════════
+
+Initializing HyperCompress engine...
+? Engine initialized with 5 encoders
+
+─── Test 1: HyperGeneralEncoder ───
+  Original size:    1,300 bytes
+  Compressed size:  281 bytes
+  Compression:      78.4%
+  Decompressed:     1,300 bytes
+  ? Compress/Decompress verified
+
+─── Test 2: Archive System ───
+Creating test files...
+  Created 3 test files in C:\Users\Jarrod\AppData\Local\Temp\HCTest_32aae081
+
+Creating archive...
+  ? Archive created: test_006b0a05.hca
+  Files:            3
+  Original size:    154 bytes
+  Compressed size:  751 bytes
+  Compression:      -387.7%
+
+Extracting archive...
+  Archive contains 3 files:
+    - file1.txt
+    - file2.txt
+    - file3.log
+
+? TEST FAILED: The parameter is incorrect. : 'C:\Users\Jarrod\AppData\Local\Temp\test_006b0a05.hca'
+
+Stack trace:
+   at System.IO.Strategies.FileStreamHelpers.ThrowInvalidArgument(SafeFileHandle handle)
+   at System.IO.Strategies.OSFileStreamStrategy.Seek(Int64 offset, SeekOrigin origin)
+   at System.IO.Strategies.BufferedFileStreamStrategy.Seek(Int64 offset, SeekOrigin origin)
+   at RamOptimizer.Compression.HyperCompress.ChunkedArchiveReader.GetDecompressedChunk(Int32 chunkId) in C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\HyperCompress\ChunkedArchiveReader.cs:line 164
+   at RamOptimizer.Compression.HyperCompress.ChunkedArchiveReader.ExtractFile(String fileName) in C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\HyperCompress\ChunkedArchiveReader.cs:line 104
+   at RamOptimizer.Compression.HyperCompress.ChunkedArchiveReader.ExtractAll(String targetDirectory, IProgress`1 progress) in C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\HyperCompress\ChunkedArchiveReader.cs:line 131
+   at HyperCompressConsoleTest.Program.TestArchiveSystem(HyperCompressEngine engine) in C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\HyperCompressConsoleTest\Program.cs:line 127
+   at HyperCompressConsoleTest.Program.Main(String[] args) in C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\HyperCompressConsoleTest\Program.cs:line 34
