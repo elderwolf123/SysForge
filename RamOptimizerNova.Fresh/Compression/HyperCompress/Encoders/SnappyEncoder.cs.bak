@@ -1,0 +1,117 @@
+using System;
+using System.IO;
+using System.IO.Compression;
+
+namespace RamOptimizer.Compression.HyperCompress.Encoders;
+
+/// <summary>
+/// Snappy compression encoder - fast compression/decompression for general use
+/// Google's Snappy algorithm, optimized for speed rather than maximum compression
+/// </summary>
+public class SnappyEncoder : IHyperEncoder
+{
+    public HyperAlgorithm Algorithm => HyperAlgorithm.HyperGeneral_Fast;
+    
+    public byte[] Compress(byte[] data, CompressionSettings settings)
+    {
+        // Snappy is typically implemented in C++ for maximum performance
+        // For this .NET implementation, we'll use LZ4 as a fast alternative
+        // since pure .NET Snappy implementations are rare
+        
+        using var output = new MemoryStream();
+        using var compressor = new LZ4Stream(output, CompressionMode.Compress, true);
+        
+        compressor.Write(data, 0, data.Length);
+        compressor.Flush();
+        
+        return output.ToArray();
+    }
+    
+    public byte[] Decompress(byte[] compressed)
+    {
+        using var input = new MemoryStream(compressed);
+        using var decompressor = new LZ4Stream(input, CompressionMode.Decompress);
+        using var output = new MemoryStream();
+        
+        decompressor.CopyTo(output);
+        return output.ToArray();
+    }
+    
+    public float EstimateRatio(byte[] sample)
+    {
+        if (IsTextLike(sample))
+            return 0.50f; // Moderate compression for text
+        else if (IsRepetitive(sample))
+            return 0.40f; // Good compression for repetitive data
+        else
+            return 0.65f; // Average compression for binary data
+    }
+    
+    public bool IsSuitable(byte[] data, string fileName)
+    {
+        // Snappy is suitable for most data types except already compressed files
+        return !IsAlreadyCompressed(data);
+    }
+    
+    private bool IsTextLike(byte[] data)
+    {
+        if (data.Length == 0) return false;
+        
+        int printable = 0;
+        int sampleSize = Math.Min(4096, data.Length);
+        
+        for (int i = 0; i < sampleSize; i++)
+        {
+            byte b = data[i];
+            if ((b >= 32 && b <= 126) || b == 9 || b == 10 || b == 13)
+                printable++;
+        }
+        
+        return (float)printable / sampleSize > 0.7f;
+    }
+    
+    private bool IsRepetitive(byte[] data)
+    {
+        if (data.Length < 128) return false;
+        
+        // Look for repeated patterns
+        const int patternSize = 16;
+        var patterns = new Dictionary<string, int>();
+        
+        for (int i = 0; i <= data.Length - patternSize; i += patternSize)
+        {
+            var pattern = System.Text.Encoding.UTF8.GetString(data, i, Math.Min(patternSize, data.Length - i));
+            patterns[pattern] = patterns.GetValueOrDefault(pattern) + 1;
+        }
+        
+        return patterns.Values.Any(count => count > 5); // If any pattern repeats 5+ times
+    }
+    
+    private bool IsAlreadyCompressed(byte[] data)
+    {
+        // Check for common compression headers
+        if (data.Length >= 2)
+        {
+            // Gzip: 1F 8B
+            if (data[0] == 0x1F && data[1] == 0x8B)
+                return true;
+            
+            // ZIP: 50 4B
+            if (data[0] == 0x50 && data[1] == 0x4B)
+                return true;
+        }
+        
+        if (data.Length >= 4)
+        {
+            // BZIP2: BZh
+            if (data[0] == 0x42 && data[1] == 0x5A && data[2] == 0x68)
+                return true;
+            
+            // LZMA: 5D 00 00
+            if (data[0] == 0x5D && data[1] == 0x00 && data[2] == 0x00)
+                return true;
+        }
+        
+        return false;
+    }
+}
