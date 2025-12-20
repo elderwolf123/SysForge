@@ -1,0 +1,345 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace RamOptimizer.Compression.HyperCompress.Encoders;
+
+/// <summary>
+/// Huffman compression encoder - classic lossless compression using variable-length codes
+/// Huffman coding provides good compression ratios with fast decompression
+/// </summary>
+public class HuffmanEncoder : IHyperEncoder
+{
+    public HyperAlgorithm Algorithm => HyperAlgorithm.HyperGeneral_Classic;
+    
+    public byte[] Compress(byte[] data, CompressionSettings settings)
+    {
+        // Build frequency table
+        var frequency = new Dictionary<byte, int>();
+        foreach (byte b in data)
+        {
+            frequency[b] = frequency.GetValueOrDefault(b) + 1;
+        }
+        
+        // Build Huffman tree
+        var tree = BuildHuffmanTree(frequency);
+        
+        // Generate codes
+        var codes = new Dictionary<byte, string>();
+        GenerateCodes(tree, "", codes);
+        
+        // Write header
+        using var output = new MemoryStream();
+        
+        // Write frequency table
+        output.WriteByte((byte)frequency.Count);
+        foreach (var kvp in frequency)
+        {
+            output.WriteByte(kvp.Key);
+            output.Write(BitConverter.GetBytes(kvp.Value), 0, 4);
+        }
+        
+        // Write encoded data
+        var bitBuffer = new BitBuffer();
+        foreach (byte b in data)
+        {
+            bitBuffer.WriteString(codes[b]);
+        }
+        
+        // Write remaining bits
+        bitBuffer.Flush(output);
+        
+        return output.ToArray();
+    }
+    
+    public byte[] Decompress(byte[] compressed)
+    {
+        using var input = new MemoryStream(compressed);
+        using var output = new MemoryStream();
+        
+        // Read frequency table
+        int count = input.ReadByte();
+        var frequency = new Dictionary<byte, int>();
+        
+        for (int i = 0; i < count; i++)
+        {
+            byte key = (byte)input.ReadByte();
+            byte[] valueBytes = new byte[4];
+            input.Read(valueBytes, 0, 4);
+            int value = BitConverter.ToInt32(valueBytes, 0);
+            frequency[key] = value;
+        }
+        
+        // Rebuild Huffman tree
+        var tree = BuildHuffmanTree(frequency);
+        
+        // Read encoded data
+        var bitBuffer = new BitBuffer(input);
+        
+        // Decode data
+        var currentNode = tree;
+        while (bitBuffer.HasMoreBits())
+        {
+            bool bit = bitBuffer.ReadBit();
+            currentNode = bit ? currentNode.Right : currentNode.Left;
+            
+            if (currentNode.IsLeaf)
+            {
+                output.WriteByte(currentNode.Value);
+                currentNode = tree;
+            }
+        }
+        
+        return output.ToArray();
+    }
+    
+    public float EstimateRatio(byte[] sample)
+    {
+        if (IsTextLike(sample))
+            return 0.45f; // Good compression for text
+        else if (IsRepetitive(sample))
+            return 0.35f; // Very good compression for repetitive data
+        else if (IsUniform(sample))
+            return 0.25f; // Excellent compression for uniform data
+        else
+            return 0.60f; // Average compression for binary data
+    }
+    
+    public bool IsSuitable(byte[] data, string fileName)
+    {
+        // Huffman coding is suitable for most data types except already compressed files
+        // Works especially well for text and data with skewed frequency distributions
+        return !IsAlreadyCompressed(data);
+    }
+    
+    private bool IsTextLike(byte[] data)
+    {
+        if (data.Length == 0) return false;
+        
+        int printable = 0;
+        int sampleSize = Math.Min(4096, data.Length);
+        
+        for (int i = 0; i < sampleSize; i++)
+        {
+            byte b = data[i];
+            if ((b >= 32 && b <= 126) || b == 9 || b == 10 || b == 13)
+                printable++;
+        }
+        
+        return (float)printable / sampleSize > 0.7f;
+    }
+    
+    private bool IsRepetitive(byte[] data)
+    {
+        if (data.Length < 128) return false;
+        
+        // Calculate repetition score
+        int repetitions = 0;
+        for (int i = 0; i < data.Length - 1; i++)
+        {
+            if (data[i] == data[i + 1])
+                repetitions++;
+        }
+        
+        return (float)repetitions / data.Length > 0.1f; // More than 10% repetitions
+    }
+    
+    private bool IsUniform(byte[] data)
+    {
+        if (data.Length < 64) return false;
+        
+        // Check if data is mostly uniform (same byte repeated)
+        byte firstByte = data[0];
+        int uniformCount = 0;
+        
+        foreach (byte b in data)
+        {
+            if (b == firstByte)
+                uniformCount++;
+        }
+        
+        return (float)uniformCount / data.Length > 0.8f; // More than 80% uniform
+    }
+    
+    private bool IsAlreadyCompressed(byte[] data)
+    {
+        // Check for common compression headers
+        if (data.Length >= 2)
+        {
+            // Gzip: 1F 8B
+            if (data[0] == 0x1F && data[1] == 0x8B)
+                return true;
+            
+            // ZIP: 50 4B
+            if (data[0] == 0x50 && data[1] == 0x4B)
+                return true;
+        }
+        
+        if (data.Length >= 4)
+        {
+            // BZIP2: BZh
+            if (data[0] == 0x42 && data[1] == 0x5A && data[2] == 0x68)
+                return true;
+            
+            // LZMA: 5D 00 00
+            if (data[0] == 0x5D && data[1] == 0x00 && data[2] == 0x00)
+                return true;
+        }
+        
+        return false;
+    }
+    
+    private HuffmanNode BuildHuffmanTree(Dictionary<byte, int> frequency)
+    {
+        var priorityQueue = new PriorityQueue<HuffmanNode, int>();
+        
+        // Create leaf nodes
+        foreach (var kvp in frequency)
+        {
+            priorityQueue.Enqueue(new HuffmanNode(kvp.Key, kvp.Value), kvp.Value);
+        }
+        
+        // Build tree
+        while (priorityQueue.Count > 1)
+        {
+            var left = priorityQueue.Dequeue();
+            var right = priorityQueue.Dequeue();
+            
+            var parent = new HuffmanNode(left.Frequency + right.Frequency)
+            {
+                Left = left,
+                Right = right
+            };
+            
+            priorityQueue.Enqueue(parent, parent.Frequency);
+        }
+        
+        return priorityQueue.Dequeue();
+    }
+    
+    private void GenerateCodes(HuffmanNode node, string code, Dictionary<byte, string> codes)
+    {
+        if (node.IsLeaf)
+        {
+            codes[node.Value] = code;
+            return;
+        }
+        
+        GenerateCodes(node.Left, code + "0", codes);
+        GenerateCodes(node.Right, code + "1", codes);
+    }
+    
+    private class HuffmanNode
+    {
+        public byte Value { get; }
+        public int Frequency { get; }
+        public HuffmanNode Left { get; set; }
+        public HuffmanNode Right { get; set; }
+        public bool IsLeaf => Left == null && Right == null;
+        
+        public HuffmanNode(int frequency)
+        {
+            Frequency = frequency;
+        }
+        
+        public HuffmanNode(byte value, int frequency) : this(frequency)
+        {
+            Value = value;
+        }
+    }
+    
+    private class PriorityQueue<TElement, TPriority> where TPriority : IComparable<TPriority>
+    {
+        private readonly List<(TElement Element, TPriority Priority)> _elements = new();
+        
+        public int Count => _elements.Count;
+        
+        public void Enqueue(TElement element, TPriority priority)
+        {
+            _elements.Add((element, priority));
+            _elements.Sort((a, b) => a.Priority.CompareTo(b.Priority));
+        }
+        
+        public TElement Dequeue()
+        {
+            var element = _elements[0].Element;
+            _elements.RemoveAt(0);
+            return element;
+        }
+    }
+    
+    private class BitBuffer
+    {
+        private readonly MemoryStream _stream;
+        private byte _currentByte;
+        private int _bitPosition;
+        private int _bytePosition;
+        
+        public BitBuffer(MemoryStream stream)
+        {
+            _stream = stream;
+            _bytePosition = (int)stream.Position;
+        }
+        
+        public BitBuffer()
+        {
+            _stream = new MemoryStream();
+        }
+        
+        public void WriteString(string bits)
+        {
+            foreach (char c in bits)
+            {
+                WriteBit(c == '1');
+            }
+        }
+        
+        public void WriteBit(bool bit)
+        {
+            if (_bitPosition == 8)
+            {
+                _stream.WriteByte(_currentByte);
+                _currentByte = 0;
+                _bitPosition = 0;
+            }
+            
+            if (bit)
+            {
+                _currentByte |= (byte)(1 << (7 - _bitPosition));
+            }
+            
+            _bitPosition++;
+        }
+        
+        public void Flush(Stream output)
+        {
+            if (_bitPosition > 0)
+            {
+                output.WriteByte(_currentByte);
+            }
+        }
+        
+        public bool ReadBit()
+        {
+            if (_bitPosition == 0)
+            {
+                if (_bytePosition >= _stream.Length)
+                    return false;
+                
+                _currentByte = _stream.ReadByte();
+                _bytePosition++;
+                _bitPosition = 8;
+            }
+            
+            bool bit = (_currentByte & (1 << (7 - (_bitPosition - 1)))) != 0;
+            _bitPosition--;
+            return bit;
+        }
+        
+        public bool HasMoreBits()
+        {
+            return _bytePosition < _stream.Length || _bitPosition > 0;
+        }
+    }
+}
