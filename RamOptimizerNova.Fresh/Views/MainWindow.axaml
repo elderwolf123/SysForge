@@ -9,220 +9,382 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="RAM Optimizer Nova"
         Width="1400" Height="900"
-        Background="{DynamicResource SpaceDark}"
-        WindowStartupLocation="CenterScreen">
+        Background="#050816"
+        WindowStartupLocation="CenterScreen"
+        TransparencyLevelHint="AcrylicBlur">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <ScrollViewer>
-        <StackPanel Margin="40" Spacing="32">
+    <!-- Cosmic Background -->
+    <Panel>
+        <!-- Gradient Background -->
+        <Border>
+            <Border.Background>
+                <RadialGradientBrush Center="50%,50%" GradientOrigin="50%,50%" Radius="1">
+                    <GradientStop Color="#0a0e27" Offset="0"/>
+                    <GradientStop Color="#050816" Offset="1"/>
+                </RadialGradientBrush>
+            </Border.Background>
+        </Border>
+        
+        <!-- Nebula Glow Effects -->
+        <Canvas>
+            <Ellipse Width="400" Height="400" 
+                    Canvas.Left="-100" Canvas.Top="-100"
+                    Opacity="0.15">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#6366f1" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
             
-            <!-- Header -->
-            <StackPanel Spacing="8">
-                <TextBlock Text="System Overview" 
-                          FontSize="36" 
-                          FontWeight="Bold"
-                          Foreground="{DynamicResource StarWhite}"/>
-                <TextBlock Text="Real-time performance metrics and system health"
-                          FontSize="14"
-                          Foreground="{DynamicResource StarDim}"/>
-            </StackPanel>
-            
-            <!-- Quick Stats Grid (4 columns) -->
-            <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="16">
+            <Ellipse Width="500" Height="500" 
+                    Canvas.Right="-150" Canvas.Bottom="-150"
+                    Opacity="0.12">
+                <Ellipse.Fill>
+                    <RadialGradientBrush>
+                        <GradientStop Color="#06b6d4" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Canvas>
+        
+        <!-- Main Content -->
+        <ScrollViewer>
+            <StackPanel Margin="40" Spacing="32">
                 
-                <!-- CPU Card -->
-                <Border Grid.Column="0" 
-                       Background="#99000000" 
-                       BorderBrush="#19FFFFFF"
-                       BorderThickness="1"
-                       CornerRadius="16"
-                       Padding="20">
-                    <StackPanel Spacing="12">
-                        <Border Width="40" Height="40"
-                               HorizontalAlignment="Left"
-                               Background="{DynamicResource PurpleGradient}"
-                               CornerRadius="12">
-                            <TextBlock Text="🖥️" FontSize="20" 
-                                      HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="CPU USAGE" 
-                                  Foreground="{DynamicResource StarDim}"
-                                  FontSize="12"
-                                  FontWeight="Medium"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="42" 
-                                      Foreground="{DynamicResource StarWhite}"
-                                      FontSize="32" 
-                                      FontWeight="Bold"/>
-                            <TextBlock Text="%" 
-                                      Foreground="{DynamicResource StarDim}"
-                                      FontSize="14" 
-                                      Margin="4,0,0,0"
-                                      VerticalAlignment="Bottom"/>
-                        </StackPanel>
-                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
-                            <Border Width="120" HorizontalAlignment="Left" 
-                                   Background="{DynamicResource PurpleGradient}"
-                                   CornerRadius="3"/>
-                        </Border>
-                        <TextBlock Text="42% utilized" 
-                                  FontSize="11" 
-                                  Foreground="{DynamicResource NebulaPurple}"/>
-                    </StackPanel>
-                </Border>
-                
-                <!-- GPU Card -->
-                <Border Grid.Column="1" 
-                       Background="#99000000" 
-                       BorderBrush="#19FFFFFF"
-                       BorderThickness="1"
-                       CornerRadius="16"
-                       Padding="20">
-                    <StackPanel Spacing="12">
-                        <Border Width="40" Height="40"
-                               HorizontalAlignment="Left"
-                               Background="{DynamicResource CyanGradient}"
-                               CornerRadius="12">
-                            <TextBlock Text="📺" FontSize="20" 
-                                      HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="GPU USAGE" 
-                                  Foreground="{DynamicResource StarDim}"
-                                  FontSize="12"
-                                  FontWeight="Medium"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="67" 
-                                      Foreground="{DynamicResource StarWhite}"
-                                      FontSize="32" 
-                                      FontWeight="Bold"/>
-                            <TextBlock Text="%" 
-                                      Foreground="{DynamicResource StarDim}"
-                                      FontSize="14" 
-                                      Margin="4,0,0,0"
-                                      VerticalAlignment="Bottom"/>
-                        </StackPanel>
-                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
-                            <Border Width="180" HorizontalAlignment="Left" 
-                                   Background="{DynamicResource CyanGradient}"
-                                   CornerRadius="3"/>
-                        </Border>
-                        <TextBlock Text="67% utilized" 
-                                  FontSize="11" 
-                                  Foreground="{DynamicResource NebulaCyan}"/>
-                    </StackPanel>
-                </Border>
-                
-                <!-- Memory Card -->
-                <Border Grid.Column="2" 
-                       Background="#99000000" 
-                       BorderBrush="#19FFFFFF"
-                       BorderThickness="1"
-                       CornerRadius="16"
-                       Padding="20">
-                    <StackPanel Spacing="12">
-                        <Border Width="40" Height="40"
-                               HorizontalAlignment="Left"
-                               Background="{DynamicResource PinkGradient}"
-                               CornerRadius="12">
-                            <TextBlock Text="💾" FontSize="20" 
-                                      HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="MEMORY" 
-                                  Foreground="{DynamicResource StarDim}"
-                                  FontSize="12"
-                                  FontWeight="Medium"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="8.2" 
-                                      Foreground="{DynamicResource StarWhite}"
-                                      FontSize="32" 
-                                      FontWeight="Bold"/>
-                            <TextBlock Text="GB" 
-                                      Foreground="{DynamicResource StarDim}"
-                                      FontSize="14" 
-                                      Margin="4,0,0,0"
-                                      VerticalAlignment="Bottom"/>
-                        </StackPanel>
-                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
-                            <Border Width="140" HorizontalAlignment="Left" 
-                                   Background="{DynamicResource PinkGradient}"
-                                   CornerRadius="3"/>
-                        </Border>
-                        <TextBlock Text="51% utilized" 
-                                  FontSize="11" 
-                                  Foreground="{DynamicResource NebulaPink}"/>
-                    </StackPanel>
-                </Border>
-                
-                <!-- Storage Card -->
-                <Border Grid.Column="3" 
-                       Background="#99000000" 
-                       BorderBrush="#19FFFFFF"
-                       BorderThickness="1"
-                       CornerRadius="16"
-                       Padding="20">
-                    <StackPanel Spacing="12">
-                        <Border Width="40" Height="40"
-                               HorizontalAlignment="Left"
-                               Background="LimeGreen"
-                               CornerRadius="12">
-                            <TextBlock Text="💿" FontSize="20" 
-                                      HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center"/>
-                        </Border>
-                        <TextBlock Text="STORAGE" 
-                                  Foreground="{DynamicResource StarDim}"
-                                  FontSize="12"
-                                  FontWeight="Medium"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="234" 
-                                      Foreground="{DynamicResource StarWhite}"
-                                      FontSize="32" 
-                                      FontWeight="Bold"/>
-                            <TextBlock Text="GB free" 
-                                      Foreground="{DynamicResource StarDim}"
-                                      FontSize="14" 
-                                      Margin="4,0,0,0"
-                                      VerticalAlignment="Bottom"/>
-                        </StackPanel>
-                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
-                            <Border Width="60" HorizontalAlignment="Left" 
-                                   Background="LimeGreen"
-                                   CornerRadius="3"/>
-                        </Border>
-                        <TextBlock Text="23% utilized" 
-                                  FontSize="11" 
-                                  Foreground="LimeGreen"/>
-                    </StackPanel>
-                </Border>
-                
-            </Grid>
-            
-            <!-- Success Message -->
-            <Border Background="#19FFFFFF" 
-                   BorderBrush="LimeGreen"
-                   BorderThickness="2"
-                   CornerRadius="12"
-                   Padding="20">
-                <StackPanel Orientation="Horizontal" Spacing="12">
-                    <TextBlock Text="✅" FontSize="24"/>
-                    <StackPanel>
-                        <TextBlock Text="Application Running Successfully!" 
-                                  FontSize="18"
-                                  FontWeight="Bold"
-                                  Foreground="LimeGreen"/>
-                        <TextBlock Text="React UI design converted to Avalonia" 
-                                  Foreground="{DynamicResource StarDim}"/>
-                    </StackPanel>
+                <!-- Header with Glow -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="System Overview" 
+                              FontSize="42" 
+                              FontWeight="Black"
+                              Foreground="White"
+                              Effect="effect">
+                        <TextBlock.Effect>
+                            <DropShadowEffect Color="#6366f1" BlurRadius="20" Opacity="0.6"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                    <TextBlock Text="Real-time performance metrics and system health"
+                              FontSize="15"
+                              Foreground="#94a3b8"/>
                 </StackPanel>
-            </Border>
-            
-        </StackPanel>
-    </ScrollViewer>
+                
+                <!-- Quick Stats Grid with Enhanced Glassmorphism -->
+                <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="20">
+                    
+                    <!-- CPU Card - Enhanced -->
+                    <Border Grid.Column="0" 
+                           Background="#CC0a0e27"
+                           BorderThickness="1"
+                           CornerRadius="20"
+                           Padding="24"
+                           BoxShadow="0 8 32 0 #40000000">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                <GradientStop Color="#336366f1" Offset="0"/>
+                                <GradientStop Color="#33FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        
+                        <StackPanel Spacing="16">
+                            <!-- Icon with Gradient Glow -->
+                            <Border Width="48" Height="48"
+                                   HorizontalAlignment="Left"
+                                   CornerRadius="14"
+                                   BoxShadow="0 4 16 0 #606366f1">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                        <GradientStop Color="#6366f1" Offset="0"/>
+                                        <GradientStop Color="#8b5cf6" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="🖥️" FontSize="24" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <TextBlock Text="CPU USAGE" 
+                                      Foreground="#64748b"
+                                      FontSize="11"
+                                      LetterSpacing="2"
+                                      FontWeight="SemiBold"/>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="42" 
+                                          Foreground="White"
+                                          FontSize="40" 
+                                          FontWeight="ExtraBold"/>
+                                <TextBlock Text="%" 
+                                          Foreground="#94a3b8"
+                                          FontSize="18" 
+                                          Margin="0,0,0,4"
+                                          VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            
+                            <!-- Animated Progress Bar -->
+                            <StackPanel Spacing="6">
+                                <Border Height="6" CornerRadius="3" Background="#1AFFFFFF">
+                                    <Border HorizontalAlignment="Left" 
+                                           CornerRadius="3">
+                                        <Border.Width>168</Border.Width>
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                                                <GradientStop Color="#6366f1" Offset="0"/>
+                                                <GradientStop Color="#8b5cf6" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="42% utilized" 
+                                          FontSize="11" 
+                                          Foreground="#8b5cf6"
+                                          FontWeight="Medium"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- GPU Card - Enhanced -->
+                    <Border Grid.Column="1" 
+                           Background="#CC0a0e27"
+                           BorderThickness="1"
+                           CornerRadius="20"
+                           Padding="24"
+                           BoxShadow="0 8 32 0 #40000000">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                <GradientStop Color="#3306b6d4" Offset="0"/>
+                                <GradientStop Color="#33FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        
+                        <StackPanel Spacing="16">
+                            <Border Width="48" Height="48"
+                                   HorizontalAlignment="Left"
+                                   CornerRadius="14"
+                                   BoxShadow="0 4 16 0 #6006b6d4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                        <GradientStop Color="#06b6d4" Offset="0"/>
+                                        <GradientStop Color="#0ea5e9" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="📺" FontSize="24" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <TextBlock Text="GPU USAGE" 
+                                      Foreground="#64748b"
+                                      FontSize="11"
+                                      LetterSpacing="2"
+                                      FontWeight="SemiBold"/>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="67" 
+                                          Foreground="White"
+                                          FontSize="40" 
+                                          FontWeight="ExtraBold"/>
+                                <TextBlock Text="%" 
+                                          Foreground="#94a3b8"
+                                          FontSize="18" 
+                                          Margin="0,0,0,4"
+                                          VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="6">
+                                <Border Height="6" CornerRadius="3" Background="#1AFFFFFF">
+                                    <Border HorizontalAlignment="Left" 
+                                           CornerRadius="3">
+                                        <Border.Width>220</Border.Width>
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                                                <GradientStop Color="#06b6d4" Offset="0"/>
+                                                <GradientStop Color="#0ea5e9" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="67% utilized" 
+                                          FontSize="11" 
+                                          Foreground="#06b6d4"
+                                          FontWeight="Medium"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Memory Card - Enhanced -->
+                    <Border Grid.Column="2" 
+                           Background="#CC0a0e27"
+                           BorderThickness="1"
+                           CornerRadius="20"
+                           Padding="24"
+                           BoxShadow="0 8 32 0 #40000000">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                <GradientStop Color="#33ec4899" Offset="0"/>
+                                <GradientStop Color="#33FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        
+                        <StackPanel Spacing="16">
+                            <Border Width="48" Height="48"
+                                   HorizontalAlignment="Left"
+                                   CornerRadius="14"
+                                   BoxShadow="0 4 16 0 #60ec4899">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                        <GradientStop Color="#ec4899" Offset="0"/>
+                                        <GradientStop Color="#fb7185" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="💾" FontSize="24" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <TextBlock Text="MEMORY" 
+                                      Foreground="#64748b"
+                                      FontSize="11"
+                                      LetterSpacing="2"
+                                      FontWeight="SemiBold"/>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="8.2" 
+                                          Foreground="White"
+                                          FontSize="40" 
+                                          FontWeight="ExtraBold"/>
+                                <TextBlock Text="GB" 
+                                          Foreground="#94a3b8"
+                                          FontSize="18" 
+                                          Margin="0,0,0,4"
+                                          VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="6">
+                                <Border Height="6" CornerRadius="3" Background="#1AFFFFFF">
+                                    <Border HorizontalAlignment="Left" 
+                                           CornerRadius="3">
+                                        <Border.Width>165</Border.Width>
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                                                <GradientStop Color="#ec4899" Offset="0"/>
+                                                <GradientStop Color="#fb7185" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="51% utilized" 
+                                          FontSize="11" 
+                                          Foreground="#ec4899"
+                                          FontWeight="Medium"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <!-- Storage Card - Enhanced -->
+                    <Border Grid.Column="3" 
+                           Background="#CC0a0e27"
+                           BorderThickness="1"
+                           CornerRadius="20"
+                           Padding="24"
+                           BoxShadow="0 8 32 0 #40000000">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                <GradientStop Color="#3310b981" Offset="0"/>
+                                <GradientStop Color="#33FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        
+                        <StackPanel Spacing="16">
+                            <Border Width="48" Height="48"
+                                   HorizontalAlignment="Left"
+                                   CornerRadius="14"
+                                   BoxShadow="0 4 16 0 #6010b981">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                                        <GradientStop Color="#10b981" Offset="0"/>
+                                        <GradientStop Color="#22c55e" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock Text="💿" FontSize="24" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <TextBlock Text="STORAGE" 
+                                      Foreground="#64748b"
+                                      FontSize="11"
+                                      LetterSpacing="2"
+                                      FontWeight="SemiBold"/>
+                            
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock Text="234" 
+                                          Foreground="White"
+                                          FontSize="40" 
+                                          FontWeight="ExtraBold"/>
+                                <TextBlock Text="GB" 
+                                          Foreground="#94a3b8"
+                                          FontSize="14" 
+                                          Margin="0,0,0,4"
+                                          VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            
+                            <StackPanel Spacing="6">
+                                <Border Height="6" CornerRadius="3" Background="#1AFFFFFF">
+                                    <Border HorizontalAlignment="Left" 
+                                           CornerRadius="3">
+                                        <Border.Width>75</Border.Width>
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                                                <GradientStop Color="#10b981" Offset="0"/>
+                                                <GradientStop Color="#22c55e" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                </Border>
+                                <TextBlock Text="23% utilized" 
+                                          FontSize="11" 
+                                          Foreground="#10b981"
+                                          FontWeight="Medium"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                </Grid>
+                
+                <!-- Success Message with Glow -->
+                <Border Background="#1A0a0e27" 
+                       BorderThickness="2"
+                       CornerRadius="16"
+                       Padding="24"
+                       BoxShadow="0 4 24 0 #4010b981">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                            <GradientStop Color="#10b981" Offset="0"/>
+                            <GradientStop Color="#22c55e" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <TextBlock Text="✅" FontSize="28"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="🚀 Space Theme Active!" 
+                                      FontSize="20"
+                                      FontWeight="Bold"
+                                      Foreground="#10b981"/>
+                            <TextBlock Text="React UI design successfully converted to Avalonia with cosmic aesthetics" 
+                                      Foreground="#94a3b8"
+                                      FontSize="13"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Panel>
 
 </Window>
