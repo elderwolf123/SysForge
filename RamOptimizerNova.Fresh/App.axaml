@@ -1,15 +1,35 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="RamOptimizerNova.App"
-             xmlns:local="using:RamOptimizerNova"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
-  
+             RequestedThemeVariant="Dark">
     <Application.Styles>
         <FluentTheme />
+        
+        <!-- Space Theme Colors from React Design -->
+        <Style>
+            <Style.Resources>
+                <SolidColorBrush x:Key="SpaceDark">#0a0e27</SolidColorBrush>
+                <SolidColorBrush x:Key="StarWhite">#f8fafc</SolidColorBrush>
+                <SolidColorBrush x:Key="StarDim">#94a3b8</SolidColorBrush>
+                <SolidColorBrush x:Key="NebulaPurple">#6366f1</SolidColorBrush>
+                <SolidColorBrush x:Key="NebulaCyan">#06b6d4</SolidColorBrush>
+                <SolidColorBrush x:Key="NebulaPink">#ec4899</SolidColorBrush>
+                
+                <LinearGradientBrush x:Key="PurpleGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+                    <GradientStop Color="#6366f1" Offset="0"/>
+                    <GradientStop Color="#8b5cf6" Offset="1"/>
+                </LinearGradientBrush>
+                
+                <LinearGradientBrush x:Key="CyanGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+                    <GradientStop Color="#06b6d4" Offset="0"/>
+                    <GradientStop Color="#0ea5e9" Offset="1"/>
+                </LinearGradientBrush>
+                
+                <LinearGradientBrush x:Key="PinkGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+                    <GradientStop Color="#ec4899" Offset="0"/>
+                    <GradientStop Color="#fb7185" Offset="1"/>
+                </LinearGradientBrush>
+            </Style.Resources>
+        </Style>
     </Application.Styles>
 </Application>
