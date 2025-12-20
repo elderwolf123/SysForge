@@ -1,0 +1,43 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Metric Card Style (Glassmorphic design from React) -->
+    <Style Selector="Border.MetricCard">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource SpaceDark}" Opacity="0.6"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush" Value="#0Dffffff"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="ClipToBounds" Value="True"/>
+    </Style>
+    
+    <!-- Metric Title Style -->
+    <Style Selector="TextBlock.MetricTitle">
+        <Setter Property="Foreground" Value="{StaticResource StarDimBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="TextTransform" Value="Uppercase"/>
+        <Setter Property="LetterSpacing" Value="1"/>
+        <Setter Property="Margin" Value="0,0,0,8"/>
+    </Style>
+    
+    <!-- Metric Value Style -->
+    <Style Selector="TextBlock.MetricValue">
+        <Setter Property="Foreground" Value="{StaticResource StarWhiteBrush}"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    
+    <!-- Metric Unit Style -->
+    <Style Selector="TextBlock.MetricUnit">
+        <Setter Property="Foreground" Value="{StaticResource StarDimBrush}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Margin" Value="4,0,0,0"/>
+    </Style>
+    
+</Styles>

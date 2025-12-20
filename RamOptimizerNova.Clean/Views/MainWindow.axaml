@@ -1,20 +1,367 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:RamOptimizerNova.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RamOptimizerNova.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="RamOptimizerNova">
+        Title="RAM Optimizer Nova"
+        Width="1400" Height="900"
+        Background="{StaticResource SpaceDarkBrush}"
+        WindowStartupLocation="CenterScreen">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid>
+        <!-- Main Content -->
+        <ScrollViewer>
+            <StackPanel Margin="40" Spacing="32">
+                
+                <!-- Header -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="System Overview" 
+                              FontSize="36" 
+                              FontWeight="Bold"
+                              Foreground="{StaticResource StarWhiteBrush}"/>
+                    <TextBlock Text="Real-time performance metrics and system health"
+                              FontSize="14"
+                              Foreground="{StaticResource StarDimBrush}"/>
+                </StackPanel>
+                
+                <!-- Quick Stats Grid (4 columns) -->
+                <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="16">
+                    
+                    <!-- CPU Card -->
+                    <Border Grid.Column="0" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+                            <!-- Icon Header -->
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource PurpleGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="🖥️" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            
+                            <!-- Title -->
+                            <TextBlock Grid.Row="1" 
+                                      Text="CPU USAGE" 
+                                      Classes="MetricTitle"/>
+                            
+                            <!-- Value -->
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="42" Classes="MetricValue"/>
+                                <TextBlock Text="%" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            
+                            <!-- Progress Bar -->
+                            <StackPanel Grid.Row="3" Margin="0,16,0,0">
+                                <Border Height="6" CornerRadius="3" Background="#0Dffffff">
+                                    <Border Width="168" HorizontalAlignment="Left" 
+                                           Background="{StaticResource PurpleGradient}"
+                                           CornerRadius="3"/>
+                                </Border>
+                                <TextBlock Text="42% utilized" 
+                                          FontSize="11" 
+                                          Foreground="{StaticResource NebulaPurpleBrush}"
+                                          Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- GPU Card -->
+                    <Border Grid.Column="1" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource CyanGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="📺" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="GPU USAGE" Classes="MetricTitle"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="67" Classes="MetricValue"/>
+                                <TextBlock Text="%" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Margin="0,16,0,0">
+                                <Border Height="6" CornerRadius="3" Background="#0Dffffff">
+                                    <Border Width="268" HorizontalAlignment="Left" 
+                                           Background="{StaticResource CyanGradient}"
+                                           CornerRadius="3"/>
+                                </Border>
+                                <TextBlock Text="67% utilized" 
+                                          FontSize="11" 
+                                          Foreground="{StaticResource NebulaCyanBrush}"
+                                          Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Memory Card -->
+                    <Border Grid.Column="2" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource PinkGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="💾" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="MEMORY" Classes="MetricTitle"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="8.2" Classes="MetricValue"/>
+                                <TextBlock Text="GB" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Margin="0,16,0,0">
+                                <Border Height="6" CornerRadius="3" Background="#0Dffffff">
+                                    <Border Width="204" HorizontalAlignment="Left" 
+                                           Background="{StaticResource PinkGradient}"
+                                           CornerRadius="3"/>
+                                </Border>
+                                <TextBlock Text="51% utilized" 
+                                          FontSize="11" 
+                                          Foreground="{StaticResource NebulaPinkBrush}"
+                                          Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Storage Card -->
+                    <Border Grid.Column="3" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto">
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource GreenGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="💿" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="STORAGE" Classes="MetricTitle"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="234" Classes="MetricValue"/>
+                                <TextBlock Text="GB free" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3" Margin="0,16,0,0">
+                                <Border Height="6" CornerRadius="3" Background="#0Dffffff">
+                                    <Border Width="92" HorizontalAlignment="Left" 
+                                           Background="{StaticResource GreenGradient}"
+                                           CornerRadius="3"/>
+                                </Border>
+                                <TextBlock Text="23% utilized" 
+                                          FontSize="11" 
+                                          Foreground="#10b981"
+                                          Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                </Grid>
+                
+                <!-- Secondary Stats (3 columns) -->
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" ColumnSpacing="16">
+                    
+                    <!-- Network Card -->
+                    <Border Grid.Column="0" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto">
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource CyanGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="📡" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="NETWORK" Classes="MetricTitle"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="125" Classes="MetricValue"/>
+                                <TextBlock Text="Mbps" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- CPU Temp Card -->
+                    <Border Grid.Column="1" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto">
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource PurpleGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="🌡️" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="CPU TEMP" Classes="MetricTitle"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="58" Classes="MetricValue"/>
+                                <TextBlock Text="°C" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Power Draw Card -->
+                    <Border Grid.Column="2" Classes="MetricCard">
+                        <Grid RowDefinitions="Auto,Auto,Auto">
+                            <Border Grid.Row="0" 
+                                   Width="40" Height="40"
+                                   HorizontalAlignment="Left"
+                                   Background="{StaticResource GreenGradient}"
+                                   CornerRadius="12"
+                                   Margin="0,0,0,16">
+                                <TextBlock Text="⚡" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Grid.Row="1" Text="POWER DRAW" Classes="MetricTitle"/>
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <TextBlock Text="145" Classes="MetricValue"/>
+                                <TextBlock Text="W" Classes="MetricUnit" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    
+                </Grid>
+                
+                <!-- Active Optimizations Section -->
+                <Border Classes="MetricCard" Padding="24">
+                    <StackPanel Spacing="24">
+                        <!-- Section Header -->
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Border Width="40" Height="40"
+                                   Background="{StaticResource PurpleGradient}"
+                                   CornerRadius="12">
+                                <TextBlock Text="📊" FontSize="20" 
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="Active Optimizations" 
+                                      FontSize="20" 
+                                      FontWeight="SemiBold"
+                                      Foreground="{StaticResource StarWhiteBrush}"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                        
+                        <!-- Optimization Items Grid -->
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" 
+                             ColumnSpacing="16" RowSpacing="16">
+                            
+                            <!-- Optimization 1 -->
+                            <Border Grid.Row="0" Grid.Column="0" 
+                                   Padding="16" 
+                                   Background="#0Dffffff" 
+                                   BorderBrush="#0Dffffff" 
+                                   BorderThickness="1"
+                                   CornerRadius="12">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Ellipse Grid.Column="0" Width="8" Height="8" Fill="#10b981"/>
+                                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                        <TextBlock Text="CPU Priority Boost" 
+                                                  Foreground="{StaticResource StarWhiteBrush}"
+                                                  FontWeight="Medium"/>
+                                        <TextBlock Text="Active" 
+                                                  FontSize="11"
+                                                  Foreground="{StaticResource StarDimBrush}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="+12% performance" 
+                                              FontSize="13"
+                                              Foreground="#10b981"
+                                              FontWeight="Medium"/>
+                                </Grid>
+                            </Border>
+                            
+                            <!-- Optimization 2 -->
+                            <Border Grid.Row="0" Grid.Column="1" 
+                                   Padding="16" 
+                                   Background="#0Dffffff" 
+                                   BorderBrush="#0Dffffff" 
+                                   BorderThickness="1"
+                                   CornerRadius="12">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Ellipse Grid.Column="0" Width="8" Height="8" Fill="#10b981"/>
+                                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                        <TextBlock Text="Memory Compression" 
+                                                  Foreground="{StaticResource StarWhiteBrush}"
+                                                  FontWeight="Medium"/>
+                                        <TextBlock Text="Active" 
+                                                  FontSize="11"
+                                                  Foreground="{StaticResource StarDimBrush}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="-2.1 GB usage" 
+                                              FontSize="13"
+                                              Foreground="#10b981"
+                                              FontWeight="Medium"/>
+                                </Grid>
+                            </Border>
+                            
+                            <!-- Optimization 3 -->
+                            <Border Grid.Row="1" Grid.Column="0" 
+                                   Padding="16" 
+                                   Background="#0Dffffff" 
+                                   BorderBrush="#0Dffffff" 
+                                   BorderThickness="1"
+                                   CornerRadius="12">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Ellipse Grid.Column="0" Width="8" Height="8" Fill="#10b981"/>
+                                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                        <TextBlock Text="Network Latency Reducer" 
+                                                  Foreground="{StaticResource StarWhiteBrush}"
+                                                  FontWeight="Medium"/>
+                                        <TextBlock Text="Active" 
+                                                  FontSize="11"
+                                                  Foreground="{StaticResource StarDimBrush}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="-8ms ping" 
+                                              FontSize="13"
+                                              Foreground="#10b981"
+                                              FontWeight="Medium"/>
+                                </Grid>
+                            </Border>
+                            
+                            <!-- Optimization 4 -->
+                            <Border Grid.Row="1" Grid.Column="1" 
+                                   Padding="16" 
+                                   Background="#0Dffffff" 
+                                   BorderBrush="#0Dffffff" 
+                                   BorderThickness="1"
+                                   CornerRadius="12">
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <Ellipse Grid.Column="0" Width="8" Height="8" Fill="#10b981"/>
+                                    <StackPanel Grid.Column="1" Margin="12,0,0,0">
+                                        <TextBlock Text="Background Process Limiter" 
+                                                  Foreground="{StaticResource StarWhiteBrush}"
+                                                  FontWeight="Medium"/>
+                                        <TextBlock Text="Active" 
+                                                  FontSize="11"
+                                                  Foreground="{StaticResource StarDimBrush}"/>
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="2" 
+                                              Text="+15% CPU freed" 
+                                              FontSize="13"
+                                              Foreground="#10b981"
+                                              FontWeight="Medium"/>
+                                </Grid>
+                            </Border>
+                            
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 
 </Window>

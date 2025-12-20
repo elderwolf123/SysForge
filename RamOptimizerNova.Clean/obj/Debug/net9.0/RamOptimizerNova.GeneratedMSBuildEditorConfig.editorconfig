@@ -24,5 +24,11 @@ build_property.EnableCodeStyleSeverity =
 [C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/RamOptimizerNova.Clean/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/RamOptimizerNova.Clean/Styles/Colors.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/RamOptimizerNova.Clean/Styles/MetricCard.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/RamOptimizerNova.Clean/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

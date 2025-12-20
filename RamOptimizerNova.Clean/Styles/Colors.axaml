@@ -1,0 +1,46 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Color Resources (from React design) -->
+    <Color x:Key="SpaceDark">#0a0e27</Color>
+    <Color x:Key="SpaceDarker">#050816</Color>
+    <Color x:Key="NebulaPurple">#6366f1</Color>
+    <Color x:Key="NebulaViolet">#8b5cf6</Color>
+    <Color x:Key="NebulaCyan">#06b6d4</Color>
+    <Color x:Key="NebulaPink">#ec4899</Color>
+    <Color x:Key="StarWhite">#f8fafc</Color>
+    <Color x:Key="StarDim">#94a3b8</Color>
+    <Color x:Key="GlassBorder">#336366f1</Color>
+    
+    <!-- Solid Color Brushes -->
+    <SolidColorBrush x:Key="SpaceDarkBrush" Color="{StaticResource SpaceDark}"/>
+    <SolidColorBrush x:Key="SpaceDarkerBrush" Color="{StaticResource SpaceDarker}"/>
+    <SolidColorBrush x:Key="NebulaPurpleBrush" Color="{StaticResource NebulaPurple}"/>
+    <SolidColorBrush x:Key="NebulaVioletBrush" Color="{StaticResource NebulaViolet}"/>
+    <SolidColorBrush x:Key="NebulaCyanBrush" Color="{StaticResource NebulaCyan}"/>
+    <SolidColorBrush x:Key="NebulaPinkBrush" Color="{StaticResource NebulaPink}"/>
+    <SolidColorBrush x:Key="StarWhiteBrush" Color="{StaticResource StarWhite}"/>
+    <SolidColorBrush x:Key="StarDimBrush" Color="{StaticResource StarDim}"/>
+    
+    <!-- Gradient Brushes -->
+    <LinearGradientBrush x:Key="PurpleGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="{StaticResource NebulaPurple}" Offset="0"/>
+        <GradientStop Color="{StaticResource NebulaViolet}" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="CyanGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="{StaticResource NebulaCyan}" Offset="0"/>
+        <GradientStop Color="#0ea5e9" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="PinkGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="{StaticResource NebulaPink}" Offset="0"/>
+        <GradientStop Color="#fb7185" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="GreenGradient" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Color="#10b981" Offset="0"/>
+        <GradientStop Color="#22c55e" Offset="1"/>
+    </LinearGradientBrush>
+    
+</Styles>
