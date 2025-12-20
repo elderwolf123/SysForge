@@ -32,3 +32,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/RamOptimizerNova.Clean/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/RamOptimizerNova.Clean/Views/TestWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

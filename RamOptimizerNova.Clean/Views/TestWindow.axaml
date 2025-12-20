@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="RamOptimizerNova.Views.TestWindow"
+        Title="RAM Optimizer Nova" 
+        Width="800" Height="600">
+    
+    <StackPanel Margin="40" Spacing="20">
+        <TextBlock Text="RAM Optimizer Nova" FontSize="32" FontWeight="Bold"/>
+        <TextBlock Text="System Dashboard" FontSize="18"/>
+        
+        <Border Background="LightGray" Padding="20" CornerRadius="8" Margin="0,20,0,0">
+            <StackPanel Spacing="10">
+                <TextBlock Text="CPU Usage: 42%" FontSize="16"/>
+                <TextBlock Text="Memory: 8.2 GB" FontSize="16"/>
+                <TextBlock Text="GPU: 67%" FontSize="16"/>
+            </StackPanel>
+        </Border>
+        
+        <TextBlock Text="✅ Application is running!" Foreground="Green" FontSize="14"/>
+    </StackPanel>
+    
+</Window>
