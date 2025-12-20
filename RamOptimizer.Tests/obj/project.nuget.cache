@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5gCdl4xw0XI=",
+  "dgSpecHash": "qmvMhKvusm0=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests\\RamOptimizer.Tests.csproj",
+  "projectFilePath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests\\RamOptimizer.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jarrod\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\hardware.info\\101.1.0.1\\hardware.info.101.1.0.1.nupkg.sha512",
@@ -64,9 +64,6 @@
     "C:\\Users\\Jarrod\\.nuget\\packages\\xunit.extensibility.core\\2.9.3\\xunit.extensibility.core.2.9.3.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\xunit.extensibility.execution\\2.9.3\\xunit.extensibility.execution.2.9.3.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\xunit.runner.visualstudio\\2.8.2\\xunit.runner.visualstudio.2.8.2.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.57\\microsoft.windows.sdk.net.ref.10.0.19041.57.nupkg.sha512"
   ],
   "logs": [
@@ -74,9 +71,9 @@
       "code": "NU1701",
       "level": "Warning",
       "message": "Package 'OpenHardwareMonitor 0.9.6' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows10.0.19041'. This package may not be fully compatible with your project.",
-      "projectPath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests\\RamOptimizer.Tests.csproj",
+      "projectPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests\\RamOptimizer.Tests.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests\\RamOptimizer.Tests.csproj",
+      "filePath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests\\RamOptimizer.Tests.csproj",
       "libraryId": "OpenHardwareMonitor",
       "targetGraphs": [
         "net8.0-windows10.0.19041"

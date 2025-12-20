@@ -1,0 +1,574 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:RamOptimizerNova.Controls"
+        xmlns:views="clr-namespace:RamOptimizerNova.Views"
+        xmlns:vm="clr-namespace:RamOptimizerNova.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+        x:Class="RamOptimizerNova.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="RAM Optimizer Nova"
+        Width="1200"
+        Height="800"
+        MinWidth="800"
+        MinHeight="600"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource BackgroundBrush}"
+        Foreground="{DynamicResource TextBrushPrimary}">
+
+    <Window.Styles>
+        <!-- Window Styles -->
+        <Style Selector="Window">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushPrimary}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI, Arial, sans-serif"/>
+            <Setter Property="ExtendClientAreaToDecorationsHint" Value="True"/>
+            <Setter Property="ExtendClientAreaChromeHints" Value="NoChrome"/>
+            <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="0"/>
+            <Setter Property="TitleBarHeight" Value="0"/>
+            <Setter Property="WindowStartupLocation" Value="CenterScreen"/>
+            <Setter Property="Width" Value="1200"/>
+            <Setter Property="Height" Value="800"/>
+            <Setter Property="MinWidth" Value="800"/>
+            <Setter Property="MinHeight" Value="600"/>
+        </Style>
+
+        <!-- Title Bar Styles -->
+        <Style Selector="Border.titleBar">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Padding" Value="16,0"/>
+        </Style>
+
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="600"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushPrimary}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.windowButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="4,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="Button.windowButton:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrushHover}"/>
+        </Style>
+
+        <Style Selector="Button.windowButton:pressed">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrushPressed}"/>
+        </Style>
+
+        <Style Selector="Button.windowButton:disabled">
+            <Setter Property="Opacity" Value="0.5"/>
+            <Setter Property="Cursor" Value="Default"/>
+        </Style>
+
+        <!-- Navigation Sidebar Styles -->
+        <Style Selector="Border.navigationSidebar">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="Width" Value="280"/>
+            <Setter Property="MinWidth" Value="280"/>
+            <Setter Property="MaxWidth" Value="280"/>
+        </Style>
+
+        <Style Selector="TextBlock.appTitle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="700"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushPrimary}"/>
+            <Setter Property="Margin" Value="0,0,0,32"/>
+        </style>
+
+        <Style Selector="TextBlock.appSubtitle">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="400"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushSecondary}"/>
+            <Setter Property="Margin" Value="0,0,0,40"/>
+        </style>
+
+        <Style Selector="TextBlock.navSection">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="600"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushTertiary}"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="TextTransform" Value="Uppercase"/>
+            <Setter Property="LetterSpacing" Value="1"/>
+        </style>
+
+        <Style Selector="controls:NavigationItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16,12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
+        </Style>
+
+        <Style Selector="controls:NavigationItem:pointerover">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrushHover}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushHover}"/>
+        </Style>
+
+        <Style Selector="controls:NavigationItem:pressed">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrushPressed}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrushPressed}"/>
+        </Style>
+
+        <Style Selector="controls:NavigationItem:selected">
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="BorderThickness" Value="0,0,0,3"/>
+        </Style>
+
+        <Style Selector="controls:NavigationItem:selected:pointerover">
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrushLight}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+        </Style>
+
+        <Style Selector="StackPanel.navItemContent">
+            <Setter Property="Spacing" Value="8"/>
+        </Style>
+
+        <Style Selector="Image.navIcon">
+            <Setter Property="Width" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Margin" Value="0,0,12,0"/>
+        </Style>
+
+        <Style Selector="TextBlock.navText">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushPrimary}"/>
+        </Style>
+
+        <Style Selector="TextBlock.navText.selected">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style Selector="TextBlock.navText.secondary">
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushSecondary}"/>
+        </Style>
+
+        <Style Selector="TextBlock.navText.secondary.selected">
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrushLight}"/>
+        </Style>
+
+        <Style Selector="TextBlock.navBadge">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="600"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{DynamicResource ErrorBrush}"/>
+            <Setter Property="Padding" Value="6,2"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+            <Setter Property="MinWidth" Value="20"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+
+        <Style Selector="TextBlock.navBadge.info">
+            <Setter Property="Background" Value="{DynamicResource InfoBrush}"/>
+        </Style>
+
+        <Style Selector="TextBlock.navBadge.success">
+            <Setter Property="Background" Value="{DynamicResource SuccessBrush}"/>
+        </Style>
+
+        <Style Selector="TextBlock.navBadge.warning">
+            <Setter Property="Background" Value="{DynamicResource WarningBrush}"/>
+        </Style>
+
+        <!-- Main Content Area Styles -->
+        <Style Selector="Grid.mainContent">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        </Style>
+
+        <Style Selector="Border.contentArea">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <!-- Status Bar Styles -->
+        <Style Selector="Border.statusBar">
+            <Setter Property="Background" Value="{DynamicResource SurfaceBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1,0,0,0"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Padding" Value="16,0"/>
+        </Style>
+
+        <Style Selector="TextBlock.statusText">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="400"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushSecondary}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="TextBlock.statusValue">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushPrimary}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+        </Style>
+
+        <Style Selector="ProgressBar.statusProgress">
+            <Setter Property="Height" Value="3"/>
+            <Setter Property="Background" Value="{DynamicResource BorderBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="8,0,0,0"/>
+        </Style>
+
+        <!-- Loading Overlay Styles -->
+        <Style Selector="Border.loadingOverlay">
+            <Setter Property="Background" Value="#00000080"/>
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+
+        <Style Selector="Grid.loadingContent">
+            <Setter Property="Background" Value="{DynamicSurfaceBrush DialogBackground, 0.95}"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="BoxShadow" Value="0 4 20 0 #00000040"/>
+        </Style>
+
+        <Style Selector="ProgressRing.loadingRing">
+            <Setter Property="Width" Value="48"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Stroke" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="StrokeThickness" Value="3"/>
+            <Setter Property="IsActive" Value="True"/>
+        </Style>
+
+        <Style Selector="TextBlock.loadingText">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="500"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrushPrimary}"/>
+            <Setter Property="Margin" Value="0,16,0,0"/>
+        </Style>
+
+        <!-- Responsive Design Styles -->
+        <Style Selector="Grid.mainContent">
+            <Style.Animations>
+                <Animation Duration="0:0:0.3"
+                           Easing="CubicOut"
+                           FillMode="Both">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="0"/>
+                        <Setter Property="TranslateTransform.Y" Value="20"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1"/>
+                        <Setter Property="TranslateTransform.Y" Value="0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <!-- Navigation Sidebar Responsive Styles -->
+        <Style Selector="Border.navigationSidebar">
+            <Style.Animations>
+                <Animation Duration="0:0:0.3"
+                           Easing="CubicOut"
+                           FillMode="Both">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="0"/>
+                        <Setter Property="TranslateTransform.X" Value="-20"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1"/>
+                        <Setter Property="TranslateTransform.X" Value="0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+
+        <!-- Content Area Responsive Styles -->
+        <Style Selector="Border.contentArea">
+            <Style.Animations>
+                <Animation Duration="0:0:0.3"
+                           Easing="CubicOut"
+                           FillMode="Both">
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="0"/>
+                        <Setter Property="TranslateTransform.X" Value="20"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="1"/>
+                        <Setter Property="TranslateTransform.X" Value="0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </Window.Styles>
+
+    <!-- Main Window Layout -->
+    <Grid>
+        <!-- Title Bar -->
+        <Border Classes="titleBar">
+            <Grid>
+                <!-- Window Controls -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Classes="windowButton" Command="{Binding MinimizeCommand}">
+                        <Path Data="M0,0 L1,0 L0.5,0 Z" Fill="{DynamicResource TextBrushSecondary}" Stretch="Uniform"/>
+                    </Button>
+                    <Button Classes="windowButton" Command="{Binding MaximizeCommand}">
+                        <Path Data="M0,0 L1,0 L1,1 L0,1 Z M0.2,0.2 L0.8,0.2 L0.8,0.8 L0.2,0.8 Z" 
+                              Fill="{DynamicResource TextBrushSecondary}" Stretch="Uniform"/>
+                    </Button>
+                    <Button Classes="windowButton" Command="{Binding CloseCommand}">
+                        <Path Data="M0,0 L1,1 M1,0 L0,1" Stroke="{DynamicResource TextBrushSecondary}" 
+                              StrokeThickness="1" Stretch="Uniform"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Title -->
+                <TextBlock Classes="title" Text="{Binding Title}" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Classes="mainContent" Grid.Row="1">
+            <!-- Navigation Sidebar -->
+            <Border Classes="navigationSidebar">
+                <Grid>
+                    <!-- App Header -->
+                    <StackPanel Margin="0,0,0,32">
+                        <TextBlock Classes="appTitle" Text="RAM Optimizer"/>
+                        <TextBlock Classes="appSubtitle" Text="Nova Edition"/>
+                    </StackPanel>
+
+                    <!-- Navigation Menu -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Spacing="24">
+                            <!-- Main Navigation -->
+                            <StackPanel Spacing="4">
+                                <TextBlock Classes="navSection" Text="Main"/>
+                                
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Dashboard"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Dashboard}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/dashboard.png"/>
+                                        <TextBlock Classes="navText" Text="Dashboard"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="SystemInfo"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=SystemInfo}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/system.png"/>
+                                        <TextBlock Classes="navText" Text="System Info"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+                            </StackPanel>
+
+                            <!-- Optimization Navigation -->
+                            <StackPanel Spacing="4">
+                                <TextBlock Classes="navSection" Text="Optimization"/>
+                                
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Memory"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Memory}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/memory.png"/>
+                                        <TextBlock Classes="navText" Text="Memory"/>
+                                        <TextBlock Classes="navBadge" Text="{Binding MemoryOptimizationCount}"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="CPU"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=CPU}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/cpu.png"/>
+                                        <TextBlock Classes="navText" Text="CPU"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Storage"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Storage}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/storage.png"/>
+                                        <TextBlock Classes="navText" Text="Storage"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Network"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Network}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/network.png"/>
+                                        <TextBlock Classes="navText" Text="Network"/>
+                                        <TextBlock Classes="navBadge info" Text="{Binding NetworkOptimizationCount}"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+                            </StackPanel>
+
+                            <!-- Advanced Navigation -->
+                            <StackPanel Spacing="4">
+                                <TextBlock Classes="navSection" Text="Advanced"/>
+                                
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Compression"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Compression}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/compression.png"/>
+                                        <TextBlock Classes="navText" Text="Compression"/>
+                                        <TextBlock Classes="navBadge success" Text="{Binding CompressionCount}"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Hardware"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Hardware}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/hardware.png"/>
+                                        <TextBlock Classes="navText" Text="Hardware"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Settings"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Settings}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/settings.png"/>
+                                        <TextBlock Classes="navText" Text="Settings"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+                            </StackPanel>
+
+                            <!-- Bottom Navigation -->
+                            <StackPanel VerticalAlignment="Bottom" Spacing="4">
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="Logs"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=Logs}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/logs.png"/>
+                                        <TextBlock Classes="navText secondary" Text="Logs"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+
+                                <controls:NavigationItem 
+                                    Command="{Binding NavigateCommand}"
+                                    CommandParameter="About"
+                                    IsSelected="{Binding CurrentPage, Converter={x:Static ObjectConverters.EqualsConverter}, ConverterParameter=About}">
+                                    <StackPanel Classes="navItemContent" Orientation="Horizontal">
+                                        <Image Classes="navIcon" Source="/Assets/Icons/about.png"/>
+                                        <TextBlock Classes="navText secondary" Text="About"/>
+                                    </StackPanel>
+                                </controls:NavigationItem>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Content Area -->
+            <Border Classes="contentArea">
+                <Grid>
+                    <!-- Page Content -->
+                    <ContentControl Content="{Binding CurrentPageContent}">
+                        <ContentControl.DataTemplates>
+                            <DataTemplate DataType="vm:DashboardViewModel">
+                                <views:DashboardView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:SystemInfoViewModel">
+                                <views:SystemInfoView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:MemoryViewModel">
+                                <views:MemoryView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:CPUViewModel">
+                                <views:CPUView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:StorageViewModel">
+                                <views:StorageView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:NetworkViewModel">
+                                <views:NetworkView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:CompressionViewModel">
+                                <views:CompressionView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:HardwareViewModel">
+                                <views:HardwareView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:SettingsViewModel">
+                                <views:SettingsView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:LogsViewModel">
+                                <views:LogsView/>
+                            </DataTemplate>
+                            <DataTemplate DataType="vm:AboutViewModel">
+                                <views:AboutView/>
+                            </DataTemplate>
+                        </ContentControl.DataTemplates>
+                    </ContentControl>
+
+                    <!-- Loading Overlay -->
+                    <Border Classes="loadingOverlay" IsVisible="{Binding IsLoading}">
+                        <Grid>
+                            <Border Classes="loadingContent">
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <ProgressRing Classes="loadingRing"/>
+                                    <TextBlock Classes="loadingText" Text="{Binding LoadingText}"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Classes="statusBar" Grid.Row="2">
+            <Grid>
+                <!-- Status Information -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Classes="statusText" Text="Status:"/>
+                    <TextBlock Classes="statusValue" Text="{Binding Status}"/>
+                    <TextBlock Classes="statusText" Text="•"/>
+                    <TextBlock Classes="statusText" Text="Memory:"/>
+                    <TextBlock Classes="statusValue" Text="{Binding MemoryUsage}"/>
+                    <TextBlock Classes="statusText" Text="•"/>
+                    <TextBlock Classes="statusText" Text="CPU:"/>
+                    <TextBlock Classes="statusValue" Text="{Binding CPUUsage}"/>
+                </StackPanel>
+
+                <!-- Progress Indicator -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Classes="statusText" Text="Progress:"/>
+                    <ProgressBar Classes="statusProgress" Value="{Binding Progress}" Maximum="100"/>
+                    <TextBlock Classes="statusValue" Text="{Binding Progress, StringFormat={}{0:F0}%}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

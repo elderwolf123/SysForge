@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="40" d:DesignHeight="40"
+             x:Class="RamOptimizerNova.Controls.ProgressRing"
+             x:DataType="RamOptimizerNova.Controls.ProgressRing">
+    
+    <UserControl.Styles>
+        <Style Selector="ProgressRing">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Stroke" Value="#6366F1"/>
+            <Setter Property="StrokeThickness" Value="3"/>
+            <Setter Property="StrokeDashArray" Value="126"/>
+            <Setter Property="StrokeDashOffset" Value="0"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <Ellipse Stroke="{TemplateBinding Stroke}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}"
+                                 StrokeDashArray="{TemplateBinding StrokeDashArray}"
+                                 StrokeDashOffset="{TemplateBinding StrokeDashOffset}"
+                                 Opacity="0.3"/>
+                        <Ellipse Stroke="{TemplateBinding Stroke}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}"
+                                 StrokeDashArray="{TemplateBinding StrokeDashArray}"
+                                 StrokeDashOffset="{TemplateBinding StrokeDashOffset}">
+                            <Ellipse.Styles>
+                                <Style Selector="Ellipse">
+                                    <Setter Property="Opacity" Value="1"/>
+                                </Style>
+                            </Ellipse.Styles>
+                        </Ellipse>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        
+        <Style Selector="ProgressRing.active">
+            <Setter Property="IsVisible" Value="True"/>
+        </Style>
+        
+        <Style Selector="ProgressRing.inactive">
+            <Setter Property="IsVisible" Value="False"/>
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid>
+        <Ellipse Stroke="{Binding Stroke}"
+                 StrokeThickness="{Binding StrokeThickness}"
+                 StrokeDashArray="{Binding StrokeDashArray}"
+                 StrokeDashOffset="{Binding StrokeDashOffset}"
+                 Opacity="0.3"/>
+        <Ellipse Stroke="{Binding Stroke}"
+                 StrokeThickness="{Binding StrokeThickness}"
+                 StrokeDashArray="{Binding StrokeDashArray}"
+                 StrokeDashOffset="{Binding StrokeDashOffset}">
+            <Ellipse.Styles>
+                <Style Selector="Ellipse">
+                    <Setter Property="Opacity" Value="1"/>
+                </Style>
+            </Ellipse.Styles>
+        </Ellipse>
+    </Grid>
+</UserControl>

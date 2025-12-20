@@ -1,0 +1,523 @@
+<UserControl x:Class="RamOptimizerNova.Views.Pages.CompressionView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RamOptimizerNova.Views.Pages"
+             xmlns:controls="clr-namespace:RamOptimizerNova.Controls"
+             xmlns:vm="clr-namespace:RamOptimizerNova.ViewModels.Pages"
+             mc:Ignorable="d" 
+             d:DesignWidth="1200" d:DesignHeight="800"
+             x:DataType="vm:CompressionViewModel">
+    
+    <UserControl.Resources>
+        <!-- Compression Ratio Color Converter -->
+        <local:CompressionRatioColorConverter x:Key="CompressionRatioColorConverter"/>
+        
+        <!-- Compression Speed Color Converter -->
+        <local:CompressionSpeedColorConverter x:Key="CompressionSpeedColorConverter"/>
+        
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDBDBD"/>
+                    <Setter Property="Foreground" Value="#757575"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Glass Card Style -->
+        <Style x:Key="GlassCard" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF20"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF40"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Padding" Value="16"/>
+        </Style>
+        
+        <!-- File Item Style -->
+        <Style x:Key="FileItem" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF10"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF30"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Padding" Value="12"/>
+        </Style>
+        
+        <!-- Progress Bar Style -->
+        <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+        
+        <!-- ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock Text="Compression" 
+                           FontSize="28" 
+                           FontWeight="Light"
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                <TextBlock Text="Compress and optimize files with advanced algorithms"
+                           FontSize="14" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"
+                           Opacity="0.8"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+                <Button Content="Refresh" 
+                        Command="{Binding RefreshCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Quick Compress" 
+                        Command="{Binding QuickCompressCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Batch Compress" 
+                        Command="{Binding BatchCompressCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Settings" 
+                        Command="{Binding SettingsCommand}"
+                        Style="{StaticResource ModernButton}"/>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="20,0,20,20">
+            <StackPanel Spacing="20">
+                <!-- Compression Overview -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Compression Overview" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Total Files -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Total Files" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding TotalFiles}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                <TextBlock Text="Files processed"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Compression Ratio -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Compression Ratio" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding AverageCompressionRatio, StringFormat='{}{0:F1}%'}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{Binding AverageCompressionRatio, Converter={StaticResource CompressionRatioColorConverter}}"/>
+                                <TextBlock Text="Average ratio"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Compression Speed -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Compression Speed" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding AverageCompressionSpeed, StringFormat='{}{0:F1} MB/s'}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{Binding AverageCompressionSpeed, Converter={StaticResource CompressionSpeedColorConverter}}"/>
+                                <TextBlock Text="Average speed"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Compression Stats -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="4">
+                                <TextBlock Text="{Binding CompressionStats}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding TotalSpaceSaved, StringFormat='Space Saved: {0} GB'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Compression Controls -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Compression Controls" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Compression Level -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Compression Level" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedCompressionLevel}"
+                                          ItemsSource="{Binding CompressionLevels}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedCompressionLevel, StringFormat='Level: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Compression Algorithm -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Compression Algorithm" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedAlgorithm}"
+                                          ItemsSource="{Binding Algorithms}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedAlgorithm, StringFormat='Algorithm: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Compression Mode -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Compression Mode" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedMode}"
+                                          ItemsSource="{Binding CompressionModes}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedMode, StringFormat='Mode: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Compression Presets -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="8">
+                                <TextBlock Text="Compression Presets" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <WrapPanel Spacing="8">
+                                    <Button Content="Maximum" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Maximum"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="High" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="High"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Normal" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Normal"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Fast" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Fast"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Ultra Fast" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="UltraFast"
+                                            Style="{StaticResource ModernButton}"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- File Management -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="File Management" 
+                                       FontSize="18" 
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" 
+                                        Orientation="Horizontal" 
+                                        Spacing="8">
+                                <Button Content="Add Files" 
+                                        Command="{Binding AddFilesCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                                <Button Content="Add Folder" 
+                                        Command="{Binding AddFolderCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                                <Button Content="Clear All" 
+                                        Command="{Binding ClearAllCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- File List -->
+                        <DataGrid ItemsSource="{Binding FileItems}"
+                                  SelectedItem="{Binding SelectedFile}"
+                                  CanUserResizeColumns="True"
+                                  AutoGenerateColumns="False"
+                                  Margin="0,8">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" 
+                                                    Binding="{Binding Name}" 
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="Size" 
+                                                    Binding="{Binding Size}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Compressed Size" 
+                                                    Binding="{Binding CompressedSize}" 
+                                                    Width="120"/>
+                                <DataGridTextColumn Header="Ratio" 
+                                                    Binding="{Binding CompressionRatio, StringFormat='{}{0:F1}%'}" 
+                                                    Width="80"/>
+                                <DataGridTextColumn Header="Algorithm" 
+                                                    Binding="{Binding Algorithm}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Status" 
+                                                    Binding="{Binding Status}" 
+                                                    Width="100"/>
+                                <DataGridTemplateColumn Header="Actions" Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Button Content="Compress" 
+                                                        Command="{Binding DataContext.CompressFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="60"/>
+                                                <Button Content="Remove" 
+                                                        Command="{Binding DataContext.RemoveFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="60"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Compression Progress -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Compression Progress" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Current Progress -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Current Progress" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding CurrentProgress}" 
+                                            Maximum="100"
+                                            Style="{StaticResource ModernProgressBar}"/>
+                                <TextBlock Text="{Binding CurrentProgress, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Queue Progress -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Queue Progress" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding QueueProgress}" 
+                                            Maximum="100"
+                                            Style="{StaticResource ModernProgressBar}"/>
+                                <TextBlock Text="{Binding QueueProgress, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Progress Details -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
+                                <TextBlock Text="{Binding ProgressDetails}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding EstimatedTimeRemaining, StringFormat='Estimated Time: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Compression History -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Compression History" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Recent Compressions -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="Recent Compressions" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                       Text="Compression Statistics" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            
+                            <ContentControl Grid.Row="1" Grid.Column="0" 
+                                            Content="{Binding RecentCompressions}"/>
+                            <ContentControl Grid.Row="1" Grid.Column="1" 
+                                            Content="{Binding CompressionStatistics}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Advanced Settings -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Advanced Settings" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Compression Options -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Compression Options" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Delete original files after compression"
+                                          IsChecked="{Binding DeleteOriginalFiles}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Create backup copies"
+                                          IsChecked="{Binding CreateBackups}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Verify compressed files"
+                                          IsChecked="{Binding VerifyCompressedFiles}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Compress hidden files"
+                                          IsChecked="{Binding CompressHiddenFiles}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- System Integration -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="System Integration" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Enable automatic compression"
+                                          IsChecked="{Binding EnableAutomaticCompression}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Integrate with file explorer"
+                                          IsChecked="{Binding IntegrateWithFileExplorer}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable compression notifications"
+                                          IsChecked="{Binding EnableNotifications}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable compression logging"
+                                          IsChecked="{Binding EnableLogging}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- Apply Button -->
+                            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Content="Apply Advanced Settings"
+                                    Command="{Binding ApplyAdvancedSettingsCommand}"
+                                    Style="{StaticResource ModernButton}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Status Bar -->
+        <Grid Grid.Row="2" Margin="20,0,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" 
+                       Text="{Binding StatusMessage}"
+                       FontSize="12" 
+                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+            
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        Spacing="16">
+                <TextBlock Text="Last Updated: " 
+                           FontSize="12" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                <TextBlock Text="{Binding LastUpdateTime, StringFormat='{0:HH:mm:ss}'}" 
+                           FontSize="12" 
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

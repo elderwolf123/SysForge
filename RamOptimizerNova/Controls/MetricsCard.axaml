@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="150"
+             x:Class="RamOptimizerNova.Controls.MetricsCard"
+             x:DataType="RamOptimizerNova.Controls.MetricsCard">
+    
+    <UserControl.Styles>
+        <Style Selector="MetricsCard">
+            <Setter Property="Background" Value="#1E293B"/>
+            <Setter Property="BorderBrush" Value="#334155"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}">
+                        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="{TemplateBinding Title}"
+                                       FontSize="14"
+                                       FontWeight="600"
+                                       Foreground="#94A3B8"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="{TemplateBinding Value}"
+                                       FontSize="32"
+                                       FontWeight="700"
+                                       Foreground="{TemplateBinding ValueColor}"
+                                       Margin="0,0,0,4"/>
+                            
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="{TemplateBinding Unit}"
+                                       FontSize="12"
+                                       FontWeight="500"
+                                       Foreground="#64748B"
+                                       Margin="0,0,0,0"/>
+                            
+                            <ContentPresenter Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
+                                              Content="{TemplateBinding Icon}"
+                                              Width="24"
+                                              Height="24"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"
+                                              Margin="0,0,0,0"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        
+        <Style Selector="MetricsCard:pointerover">
+            <Setter Property="Background" Value="#334155"/>
+            <Setter Property="BorderBrush" Value="#475569"/>
+        </Style>
+        
+        <Style Selector="MetricsCard:pressed">
+            <Setter Property="Background" Value="#475569"/>
+            <Setter Property="BorderBrush" Value="#64748B"/>
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+        <TextBlock Grid.Row="0" Grid.Column="0"
+                   Text="{Binding Title}"
+                   FontSize="14"
+                   FontWeight="600"
+                   Foreground="#94A3B8"
+                   Margin="0,0,0,8"/>
+        
+        <TextBlock Grid.Row="1" Grid.Column="0"
+                   Text="{Binding Value}"
+                   FontSize="32"
+                   FontWeight="700"
+                   Foreground="{Binding ValueColor}"
+                   Margin="0,0,0,4"/>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0"
+                   Text="{Binding Unit}"
+                   FontSize="12"
+                   FontWeight="500"
+                   Foreground="#64748B"
+                   Margin="0,0,0,0"/>
+        
+        <ContentPresenter Grid.Row="0" Grid.RowSpan="3" Grid.Column="1"
+                          Content="{Binding Icon}"
+                          Width="24"
+                          Height="24"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,0"/>
+    </Grid>
+</UserControl>

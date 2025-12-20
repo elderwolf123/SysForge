@@ -135,7 +135,9 @@ public class HardwareSnapshot
     {
         return JsonSerializer.Serialize(this, new JsonSerializerOptions
         {
-            WriteIndented = true
+            WriteIndented = true,
+            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         });
     }
 
@@ -144,7 +146,11 @@ public class HardwareSnapshot
     /// </summary>
     public static HardwareSnapshot? FromJson(string json)
     {
-        return JsonSerializer.Deserialize<HardwareSnapshot>(json);
+        return JsonSerializer.Deserialize<HardwareSnapshot>(json, new JsonSerializerOptions
+        {
+            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        });
     }
 
     public override string ToString()

@@ -12,13 +12,17 @@ namespace RamOptimizer.Compression.HyperCompress;
 /// </summary>
 public class RecompressionEngine
 {
-    private readonly HyperCompressEngine _engine;
+private readonly HyperCompressEngine _engine;
     private readonly FileCompressionAnalyzer _analyzer;
+    private readonly DRMDetectionEngine _drmDetector;
+    private readonly FileReparseManager _reparseManager;
 
-    public RecompressionEngine(HyperCompressEngine engine)
+    public RecompressionEngine(HyperCompressEngine engine, string compressedStoragePath = null)
     {
         _engine = engine;
         _analyzer = new FileCompressionAnalyzer();
+        _drmDetector = new DRMDetectionEngine();
+        _reparseManager = new FileReparseManager(compressedStoragePath ?? Path.Combine(Path.GetTempPath(), "RamOptimizer_Compressed"), null);
     }
 
     /// <summary>
@@ -45,6 +49,42 @@ public class RecompressionEngine
                 Console.WriteLine($"  - {Path.GetFileName(file.FilePath)}: {FormatBytes(file.PotentialSavings)} savings");
             }
         }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Comprehensive analysis including file analysis and DRM assessment for safe compression.
+    /// </summary>
+    public GameCompressionAnalysis AnalyzeGameForCompression(string gamePath)
+    {
+        if (!Directory.Exists(gamePath))
+            throw new DirectoryNotFoundException($"Game directory not found: {gamePath}");
+
+        Console.WriteLine($"=== Comprehensive Game Analysis for {Path.GetFileName(gamePath)} ===\n");
+
+        var result = new GameCompressionAnalysis
+        {
+            GamePath = gamePath,
+            GameName = Path.GetFileName(gamePath.TrimEnd(Path.DirectorySeparatorChar))
+        };
+
+        // Step 1: DRM Analysis
+        Console.WriteLine("1️⃣ DRM ANALYSIS:");
+        result.DrmAnalysis = _drmDetector.AnalyzeForDRM(gamePath);
+        Console.WriteLine();
+
+        // Step 2: File Analysis
+        Console.WriteLine("2️⃣ FILE ANALYSIS:");
+        result.FileAnalysis = AnalyzeGameDirectory(gamePath);
+        Console.WriteLine();
+
+        // Step 3: Overall Recommendations
+        Console.WriteLine("3️⃣ COMPRESSION RECOMMENDATIONS:");
+        result.Recommendations = GenerateCompressionRecommendations(result);
+
+        Console.WriteLine($"\n=== Analysis Complete ===");
+        Console.WriteLine($"Overall Assessment: {result.Recommendations.FirstOrDefault() ?? "Analysis incomplete"}");
 
         return result;
     }
@@ -107,28 +147,47 @@ public class RecompressionEngine
     }
 
     /// <summary>
-    /// Recompresses individual poorly-compressed files within a directory.
-    /// Useful for games with mixed compression quality.
+    /// Intelligent selective recompression based on file analysis, DRM safety, and usage patterns.
+    /// Enhanced version with smart filtering and safety considerations.
     /// </summary>
-    public SelectiveRecompressionResult RecompressSelectively(string gamePath, string outputPath, RecompressionOptions? options = null)
+    public SmartRecompressionResult RecompressIntelligently(string gamePath, string outputPath, GameCompressionAnalysis analysis, RecompressionOptions? options = null)
     {
         options ??= new RecompressionOptions();
-        
-        var result = new SelectiveRecompressionResult
+
+        var result = new SmartRecompressionResult
         {
             SourcePath = gamePath,
-            OutputPath = outputPath
+            OutputPath = outputPath,
+            DrmRiskLevel = analysis.DrmAnalysis.RiskLevel,
+            PotentialSavings = analysis.FileAnalysis.TotalPotentialSavings
         };
 
-        // Analyze to find poorly-compressed files
-        var analysis = _analyzer.AnalyzeDirectory(gamePath);
-        var targetFiles = analysis.PoorlyCompressedFiles
+        // Filter files based on DRM safety
+        var safeFileMasks = GetSafeFileMasksForRiskLevel(analysis.DrmAnalysis.RiskLevel);
+
+        Console.WriteLine($"Smart Selective Recompression - DRM Risk: {analysis.DrmAnalysis.RiskLevel}");
+
+        // Get candidates based on both compression potential and DRM safety
+        var fileAnalysis = _analyzer.AnalyzeDirectory(gamePath);
+        var candidateFiles = fileAnalysis.PoorlyCompressedFiles
             .Where(f => f.PotentialSavings >= options.MinimumSavingsThresholdMB * 1024 * 1024)
             .ToList();
 
-        Console.WriteLine($"Found {targetFiles.Count} files worth recompressing");
+        // Apply DRM-safe filtering
+        candidateFiles = candidateFiles.Where(f =>
+        {
+            var fileName = Path.GetFileName(f.FilePath);
+            var extension = Path.GetExtension(f.FilePath).ToLower();
 
-        // Copy directory structure
+            return safeFileMasks.Any(mask =>
+                mask.WildcardMatch(fileName) &&
+                (f.PotentialSavings >= mask.MinimumSizeThreshold) &&
+                IsFileTypeSafeForCompression(extension, analysis.DrmAnalysis.RiskLevel));
+        }).ToList();
+
+        Console.WriteLine($"Found {candidateFiles.Count} candidate files after DRM filtering");
+
+        // Create output directory
         Directory.CreateDirectory(outputPath);
 
         foreach (var file in Directory.GetFiles(gamePath, "*.*", SearchOption.AllDirectories))
@@ -137,17 +196,30 @@ public class RecompressionEngine
             var outputFile = Path.Combine(outputPath, relativePath);
             Directory.CreateDirectory(Path.GetDirectoryName(outputFile)!);
 
-            var fileAnalysis = targetFiles.FirstOrDefault(f => f.FilePath == file);
-            
-            if (fileAnalysis != null && fileAnalysis.RecommendRecompression)
+            var candidate = candidateFiles.FirstOrDefault(f => f.FilePath == file);
+
+            if (candidate != null)
             {
-                // Recompress this file
-                Console.WriteLine($"Recompressing: {relativePath}");
+                // Recompress this file with metadata preservation
+                Console.WriteLine($"🔧 Compressing: {relativePath} ({FormatBytes(candidate.PotentialSavings)} savings)");
                 var data = File.ReadAllBytes(file);
                 var compressed = _engine.Compress(data, Path.GetFileName(file));
-                File.WriteAllBytes(outputFile + ".hcc", compressed); // HyperCompress Compressed
+
+                // Store compression metadata for future access
+                var metadata = new FileCompressionMetadata
+                {
+                    OriginalSize = data.Length,
+                    CompressedSize = compressed.Length,
+                    Ratio = (double)compressed.Length / data.Length,
+                    Timestamp = DateTime.Now
+                };
+
+                File.WriteAllBytes(outputFile + ".hcc", compressed);
+                File.WriteAllText(outputFile + ".meta", SerializeMetadata(metadata));
+
                 result.RecompressedFiles++;
                 result.SpaceSaved += data.Length - compressed.Length;
+                result.Metadata.Add(metadata);
             }
             else
             {
@@ -157,12 +229,99 @@ public class RecompressionEngine
             }
         }
 
-        Console.WriteLine($"\n✅ Selective Recompression Complete!");
+        Console.WriteLine($"\n✅ Smart Recompression Complete!");
         Console.WriteLine($"  Recompressed: {result.RecompressedFiles} files");
         Console.WriteLine($"  Copied: {result.CopiedFiles} files");
         Console.WriteLine($"  Space Saved: {FormatBytes(result.SpaceSaved)}");
+        Console.WriteLine($"  DRM Safety: Assessed as {analysis.DrmAnalysis.RiskLevel}");
 
         return result;
+    }
+
+    /// <summary>
+    /// Legacy selective recompression method - kept for compatibility.
+    /// Use RecompressIntelligently for better results.
+    /// </summary>
+    public SelectiveRecompressionResult RecompressSelectively(string gamePath, string outputPath, RecompressionOptions? options = null)
+    {
+        // Fallback to basic analysis for legacy compatibility
+        var analysis = new GameCompressionAnalysis
+        {
+            GamePath = gamePath,
+            FileAnalysis = AnalyzeGameDirectory(gamePath),
+            DrmAnalysis = new DRMAnalysisResult { RiskLevel = DrmRiskLevel.Medium } // Conservative default
+        };
+
+        var smartResult = RecompressIntelligently(gamePath, outputPath, analysis, options);
+
+        // Convert SmartRecompressionResult to SelectiveRecompressionResult
+        return new SelectiveRecompressionResult
+        {
+            SourcePath = smartResult.SourcePath,
+            OutputPath = smartResult.OutputPath,
+            RecompressedFiles = smartResult.RecompressedFiles,
+            CopiedFiles = smartResult.CopiedFiles,
+            SpaceSaved = smartResult.SpaceSaved
+        };
+    }
+
+    private List<string> GenerateCompressionRecommendations(GameCompressionAnalysis analysis)
+    {
+        var recommendations = new List<string>();
+
+        var drmRisk = analysis.DrmAnalysis.RiskLevel;
+        var fileSavings = analysis.FileAnalysis.TotalPotentialSavings;
+        var totalSize = analysis.FileAnalysis.TotalOriginalSize;
+
+        // Base recommendation on DRM risk
+        if (drmRisk == DrmRiskLevel.None)
+        {
+            recommendations.Add("🟢 SAFE: Full folder compression recommended - no DRM detected");
+            recommendations.Add($"💾 Potential savings: {FormatBytes(fileSavings)} ({(fileSavings / (double)totalSize * 100):F1}% of {FormatBytes(totalSize)})");
+            recommendations.Add("🚀 Use: Folder-level VFS mounting + junction relocation");
+        }
+        else if (drmRisk <= DrmRiskLevel.Low)
+        {
+            recommendations.Add("🟡 LOW RISK: Selective compression viable - low-impact DRM detected");
+            recommendations.Add($"💾 Selective savings: {FormatBytes(fileSavings)} available");
+            recommendations.Add("🛡️ Use: Selective file extraction + VFS mounting");
+            recommendations.Add("⚠️ Test thoroughly before full deployment");
+        }
+        else if (drmRisk <= DrmRiskLevel.Medium)
+        {
+            recommendations.Add("🟠 MEDIUM RISK: Limited compression possible - significant DRM detected");
+            recommendations.Add("📁 Only compress loose assets/media files, avoid exe/pak files");
+            recommendations.Add("🔍 Manual review required - only compress user-created content");
+            recommendations.Add("❌ DO NOT use file-level stubs or kernel hooking");
+        }
+        else
+        {
+            recommendations.Add("🔴 HIGH RISK: Compression NOT recommended - invasive DRM detected");
+            recommendations.Add("🚫 Game contains anti-cheat or tamper protection");
+            recommendations.Add("💡️ Consider: Alternative storage solutions or DRM-free games");
+            recommendations.Add("⚖️ Risk assessment: " + string.Join(", ", analysis.DrmAnalysis.DetectedMarkers.Select(m => m.Name)));
+        }
+
+        // Add specific DRM warnings
+        if (analysis.DrmAnalysis.HasAntiCheat)
+        {
+            recommendations.Add("🎮 ANTI-CHEAT SYSTEM DETECTED - compression may trigger false positives");
+            recommendations.Add("🛑 Avoid any techniques that modify file access patterns");
+        }
+
+        if (analysis.DrmAnalysis.HasVerifiedLauncher)
+        {
+            recommendations.Add("🚀 VERIFIED LAUNCHER PRESENT - online verification of game files");
+            recommendations.Add("🔍 Launcher may detect size/timestamp changes");
+        }
+
+        // Add technical recommendations
+        if (drmRisk <= DrmRiskLevel.Low && fileSavings > 1024 * 1024 * 1024) // 1GB+
+        {
+            recommendations.Add("💪 LARGE SAVINGS POTENTIAL - prioritize this game for compression");
+        }
+
+        return recommendations;
     }
 
     private string FormatBytes(long bytes)
@@ -176,6 +335,53 @@ public class RecompressionEngine
             len /= 1024;
         }
         return $"{len:0.##} {sizes[order]}";
+    }
+
+    private List<SafetyFileMask> GetSafeFileMasksForRiskLevel(DrmRiskLevel riskLevel)
+    {
+        return riskLevel switch
+        {
+            DrmRiskLevel.None or DrmRiskLevel.Minimal => new List<SafetyFileMask>
+            {
+                new() { Pattern = "*.pak", MinimumSizeThreshold = 10 * 1024 * 1024 }, // 10MB
+                new() { Pattern = "*.assets", MinimumSizeThreshold = 50 * 1024 * 1024 }, // 50MB
+                new() { Pattern = "*.bundle", MinimumSizeThreshold = 20 * 1024 * 1024 }, // 20MB
+                new() { Pattern = "*.cache", MinimumSizeThreshold = 100 * 1024 * 1024 }, // 100MB
+                new() { Pattern = "*.temp", MinimumSizeThreshold = 500 * 1024 * 1024 }, // 500MB
+            },
+            DrmRiskLevel.Low => new List<SafetyFileMask>
+            {
+                new() { Pattern = "*.cache", MinimumSizeThreshold = 100 * 1024 * 1024 },
+                new() { Pattern = "*.temp", MinimumSizeThreshold = 200 * 1024 * 1024 },
+                new() { Pattern = "*.log", MinimumSizeThreshold = 50 * 1024 * 1024 },
+                new() { Pattern = "*.tmp", MinimumSizeThreshold = 50 * 1024 * 1024 },
+            },
+            _ => new List<SafetyFileMask>
+            {
+                new() { Pattern = "*.cache", MinimumSizeThreshold = 500 * 1024 * 1024 }, // Very large cache files
+                new() { Pattern = "*.temp", MinimumSizeThreshold = 1 * 1024 * 1024 * 1024 }, // 1GB+ temp files
+            }
+        };
+    }
+
+    private bool IsFileTypeSafeForCompression(string extension, DrmRiskLevel riskLevel)
+    {
+        // Dangerous extensions that should never be touched for higher risk levels
+        var dangerousExtensions = new[] { ".exe", ".dll", ".pak", ".assets", ".uasset", ".umap" };
+
+        if (riskLevel > DrmRiskLevel.Low)
+        {
+            return !dangerousExtensions.Contains(extension);
+        }
+
+        // For low/med risk, allow some but be cautious
+        return !dangerousExtensions.Where(ext => !ext.StartsWith(".temp") && !ext.StartsWith(".cache")).Contains(extension);
+    }
+
+    private string SerializeMetadata(FileCompressionMetadata metadata)
+    {
+        // Simple JSON-like serialization
+        return $"{metadata.OriginalSize},{metadata.CompressedSize},{metadata.Ratio},{metadata.Timestamp:O}";
     }
 }
 
@@ -220,4 +426,73 @@ public class SelectiveRecompressionResult
     public int RecompressedFiles { get; set; }
     public int CopiedFiles { get; set; }
     public long SpaceSaved { get; set; }
+}
+
+/// <summary>
+/// Complete analysis result combining DRM assessment and file analysis for compression planning.
+/// </summary>
+public class GameCompressionAnalysis
+{
+    public string GamePath { get; set; } = "";
+    public string GameName { get; set; } = "";
+    public DRMAnalysisResult DrmAnalysis { get; set; } = new();
+    public DirectoryAnalysisResult FileAnalysis { get; set; } = new();
+    public List<string> Recommendations { get; set; } = new();
+
+    /// <summary>
+    /// Quick assessment if compression is safe for this game.
+    /// </summary>
+    public bool IsCompressionSafe => DrmAnalysis.RiskLevel <= DrmRiskLevel.Low;
+
+    /// <summary>
+    /// Expected space savings from compression.
+    /// </summary>
+    public long PotentialSavings => FileAnalysis.TotalPotentialSavings;
+}
+
+/// <summary>
+/// Enhanced selective recompression result with DRM awareness and metadata.
+/// </summary>
+public class SmartRecompressionResult
+{
+    public string SourcePath { get; set; } = "";
+    public string OutputPath { get; set; } = "";
+    public int RecompressedFiles { get; set; }
+    public int CopiedFiles { get; set; }
+    public long SpaceSaved { get; set; }
+    public DrmRiskLevel DrmRiskLevel { get; set; }
+    public long PotentialSavings { get; set; }
+    public List<FileCompressionMetadata> Metadata { get; set; } = new();
+}
+
+/// <summary>
+/// Metadata for compressed files to enable future access patterns.
+/// </summary>
+public class FileCompressionMetadata
+{
+    public long OriginalSize { get; set; }
+    public long CompressedSize { get; set; }
+    public double Ratio { get; set; }
+    public DateTime Timestamp { get; set; }
+    public string EncoderUsed { get; set; } = ""; // Future: track which encoder
+}
+
+/// <summary>
+/// Safety mask for file filtering based on DRM risk.
+/// </summary>
+public class SafetyFileMask
+{
+    public string Pattern { get; set; } = "";
+    public long MinimumSizeThreshold { get; set; }
+
+    public bool WildcardMatch(string fileName)
+    {
+        // Simple wildcard matching - could be enhanced
+        if (Pattern.Contains("*"))
+        {
+            var regexPattern = "^" + Pattern.Replace("*", ".*") + "$";
+            return System.Text.RegularExpressions.Regex.IsMatch(fileName, regexPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        }
+        return fileName.EndsWith(Pattern, StringComparison.OrdinalIgnoreCase);
+    }
 }

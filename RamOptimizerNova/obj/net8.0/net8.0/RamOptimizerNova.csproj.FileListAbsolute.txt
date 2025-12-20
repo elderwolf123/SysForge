@@ -1,0 +1,2 @@
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerNova\obj\net8.0\net8.0\RamOptimizerNova.csproj.AssemblyReference.cache
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\RamOptimizerNova\obj\net8.0\net8.0\Avalonia\Resources.Inputs.cache

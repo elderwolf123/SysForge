@@ -1,0 +1,93 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             x:Class="RamOptimizerNova.Controls.NavigationFrame"
+             x:DataType="RamOptimizerNova.Controls.NavigationFrame">
+    
+    <UserControl.Styles>
+        <Style Selector="NavigationFrame">
+            <Setter Property="Background" Value="#0F172A"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid>
+                        <!-- Content area with transition animation -->
+                        <ContentPresenter Content="{TemplateBinding CurrentContent}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch">
+                            <ContentPresenter.Styles>
+                                <Style Selector="ContentPresenter">
+                                    <Setter Property="Opacity" Value="0"/>
+                                    <Setter Property="TranslateTransform" Value="0,20"/>
+                                </Style>
+                                <Style Selector="ContentPresenter#transitioning">
+                                    <Setter Property="Opacity" Value="1"/>
+                                    <Setter Property="TranslateTransform" Value="0,0"/>
+                                </Style>
+                            </ContentPresenter.Styles>
+                        </ContentPresenter>
+                        
+                        <!-- Loading overlay -->
+                        <Border Background="#0F172A"
+                                IsVisible="{TemplateBinding IsLoading}"
+                                Opacity="0.8">
+                            <Grid>
+                                <ProgressRing IsActive="{TemplateBinding IsLoading}"
+                                             Width="60"
+                                             Height="60"
+                                             StrokeThickness="4"/>
+                                <TextBlock Text="{TemplateBinding LoadingText}"
+                                           FontSize="14"
+                                           FontWeight="500"
+                                           Foreground="#94A3B8"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Margin="0,80,0,0"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+    
+    <Grid>
+        <!-- Content area with transition animation -->
+        <ContentPresenter Content="{Binding CurrentContent}"
+                          Margin="{Binding Padding}"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch">
+            <ContentPresenter.Styles>
+                <Style Selector="ContentPresenter">
+                    <Setter Property="Opacity" Value="0"/>
+                    <Setter Property="TranslateTransform" Value="0,20"/>
+                </Style>
+                <Style Selector="ContentPresenter#transitioning">
+                    <Setter Property="Opacity" Value="1"/>
+                    <Setter Property="TranslateTransform" Value="0,0"/>
+                </Style>
+            </ContentPresenter.Styles>
+        </ContentPresenter>
+        
+        <!-- Loading overlay -->
+        <Border Background="#0F172A"
+                IsVisible="{Binding IsLoading}"
+                Opacity="0.8">
+            <Grid>
+                <ProgressRing IsActive="{Binding IsLoading}"
+                             Width="60"
+                             Height="60"
+                             StrokeThickness="4"/>
+                <TextBlock Text="{Binding LoadingText}"
+                           FontSize="14"
+                           FontWeight="500"
+                           Foreground="#94A3B8"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0,80,0,0"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

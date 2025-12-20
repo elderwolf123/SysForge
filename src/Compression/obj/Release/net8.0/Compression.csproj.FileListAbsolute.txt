@@ -17,3 +17,9 @@ C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\obj\Relea
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\obj\Release\net8.0\refint\Compression.dll
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\obj\Release\net8.0\Compression.pdb
 C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\Compression\obj\Release\net8.0\ref\Compression.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\CompressionBenchmark\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\CompressionBenchmark\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\CompressionBenchmark\bin\Release\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\CompressionBenchmark\bin\Release\Compression.deps.json
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\CompressionBenchmark\bin\Release\Compression.dll
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\CompressionBenchmark\bin\Release\Compression.pdb

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yrnBtwkQnBY=",
+  "dgSpecHash": "w5ym6Jv5TI4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
+  "projectFilePath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jarrod\\.nuget\\packages\\k4os.compression.lz4\\1.3.8\\k4os.compression.lz4.1.3.8.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.8\\k4os.compression.lz4.streams.1.3.8.nupkg.sha512",
@@ -19,19 +19,23 @@
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\winfsp.net\\2.1.24051\\winfsp.net.2.1.24051.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp.port\\0.8.6\\zstdsharp.port.0.8.6.nupkg.sha512"
+    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp.port\\0.8.6\\zstdsharp.port.0.8.6.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.22\\microsoft.netcore.app.runtime.win-x64.8.0.22.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.22\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.22.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.22\\microsoft.aspnetcore.app.runtime.win-x64.8.0.22.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1603",
       "level": "Warning",
       "message": "Compression depends on winfsp.net (>= 2.0.23365) but winfsp.net 2.0.23365 was not found. winfsp.net 2.1.24051 was resolved instead.",
-      "projectPath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
+      "projectPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
+      "filePath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\Compression\\Compression.csproj",
       "libraryId": "winfsp.net",
       "targetGraphs": [
-        "net8.0"
+        "net8.0",
+        "net8.0/win-x64"
       ]
     }
   ]

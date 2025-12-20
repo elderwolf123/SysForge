@@ -1,0 +1,249 @@
+<Project>
+  <!-- Build configuration for RamOptimizer Nova -->
+  
+  <!-- Build Properties -->
+  <PropertyGroup>
+    <!-- Build Configuration -->
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+    
+    <!-- Platform Configuration -->
+    <Platform Condition="'$(Platform)'==''">AnyCPU</Platform>
+    
+    <!-- Output Configuration -->
+    <OutputPath>bin\$(Configuration)\$(Platform)\$(TargetFramework)</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\$(Platform)\$(TargetFramework)</IntermediateOutputPath>
+    
+    <!-- Package Configuration -->
+    <PackageOutputPath>$(OutputPath)\packages</PackageOutputPath>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    
+    <!-- Publish Configuration -->
+    <PublishDir>$(OutputPath)\publish</PublishDir>
+    <PublishSingleFile>true</PublishSingleFile>
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>partial</TrimMode>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+    
+    <!-- Self-contained Configuration -->
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    
+    <!-- File Configuration -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    
+    <!-- Code Analysis Configuration -->
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+    
+    <!-- Testing Configuration -->
+    <IsTestProject>false</IsTestProject>
+    <IsPackable>true</IsPackable>
+    
+    <!-- Code Coverage Configuration -->
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutput>$(OutputPath)\TestResults\coverage.xml</CoverletOutput>
+    <ExcludeByFile>**/obj/**/*</ExcludeByFile>
+    <ExcludeByAttribute>Obsolete</ExcludeByAttribute>
+  </PropertyGroup>
+
+  <!-- Debug Configuration -->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <EnableSourceLink>true</EnableSourceLink>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <!-- Release Configuration -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <EnableSourceLink>true</EnableSourceLink>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+  </PropertyGroup>
+
+  <!-- Test Configuration -->
+  <PropertyGroup Condition="'$(Configuration)'=='Test'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE;TEST</DefineConstants>
+    <EnableSourceLink>true</EnableSourceLink>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <!-- Platform-specific Configuration -->
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)'=='x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <!-- Target Framework Configuration -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks Condition="'$(TargetFrameworks)'==''">net8.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TargetFrameworks)'=='net8.0'">net8.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TargetFrameworks)'=='net8.0;net7.0'">net8.0;net7.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TargetFrameworks)'=='net8.0;net7.0;net6.0'">net8.0;net7.0;net6.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Runtime Configuration -->
+  <PropertyGroup>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)'==''">win-x64;win-x86;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)'=='win-x64'">win-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)'=='win-x86'">win-x86</RuntimeIdentifiers>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)'=='linux-x64'">linux-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)'=='osx-x64'">osx-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)'=='osx-arm64'">osx-arm64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <!-- Build Targets -->
+  <Target Name="Clean" BeforeTargets="Build">
+    <RemoveDir Directories="$(OutputPath)" />
+    <RemoveDir Directories="$(IntermediateOutputPath)" />
+    <RemoveDir Directories="$(PackageOutputPath)" />
+    <RemoveDir Directories="$(PublishDir)" />
+  </Target>
+
+  <Target Name="PrepareBuild" BeforeTargets="Build">
+    <MakeDir Directories="$(OutputPath)" />
+    <MakeDir Directories="$(IntermediateOutputPath)" />
+    <MakeDir Directories="$(PackageOutputPath)" />
+    <MakeDir Directories="$(PublishDir)" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="Build">
+    <Message Importance="high" Text="Build completed successfully!" />
+    <Message Importance="high" Text="Output: $(OutputPath)" />
+    <Message Importance="high" Text="Publish: $(PublishDir)" />
+  </Target>
+
+  <!-- Package Targets -->
+  <Target Name="Package" AfterTargets="Build">
+    <Message Importance="high" Text="Packaging..." />
+    <Exec Command="dotnet pack --configuration $(Configuration) --output $(PackageOutputPath)" />
+    <Message Importance="high" Text="Package created: $(PackageOutputPath)" />
+  </Target>
+
+  <!-- Publish Targets -->
+  <Target Name="Publish" AfterTargets="Build">
+    <Message Importance="high" Text="Publishing..." />
+    <Exec Command="dotnet publish --configuration $(Configuration) --output $(PublishDir) --self-contained $(SelfContained) --runtime $(RuntimeIdentifier)" />
+    <Message Importance="high" Text="Published: $(PublishDir)" />
+  </Target>
+
+  <!-- Test Targets -->
+  <Target Name="Test" AfterTargets="Build">
+    <Message Importance="high" Text="Running tests..." />
+    <Exec Command="dotnet test --configuration $(Configuration) --collect:'XPlat Code Coverage' --results-directory $(OutputPath)\TestResults" />
+    <Message Importance="high" Text="Tests completed!" />
+  </Target>
+
+  <!-- Code Analysis Targets -->
+  <Target Name="CodeAnalysis" AfterTargets="Build">
+    <Message Importance="high" Text="Running code analysis..." />
+    <Exec Command="dotnet build --configuration $(Configuration) --no-restore --verbosity quiet" />
+    <Message Importance="high" Text="Code analysis completed!" />
+  </Target>
+
+  <!-- Documentation Targets -->
+  <Target Name="GenerateDocumentation" AfterTargets="Build">
+    <Message Importance="high" Text="Generating documentation..." />
+    <Exec Command="dotnet docfx build $(DocumentationFile)" />
+    <Message Importance="high" Text="Documentation generated!" />
+  </Target>
+
+  <!-- Cross-platform Build Targets -->
+  <Target Name="CrossPlatformBuild" AfterTargets="Build">
+    <Message Importance="high" Text="Building for multiple platforms..." />
+    <Exec Command="dotnet publish --configuration $(Configuration) --runtime win-x64 --output $(PublishDir)\win-x64" />
+    <Exec Command="dotnet publish --configuration $(Configuration) --runtime linux-x64 --output $(PublishDir)\linux-x64" />
+    <Exec Command="dotnet publish --configuration $(Configuration) --runtime osx-x64 --output $(PublishDir)\osx-x64" />
+    <Exec Command="dotnet publish --configuration $(Configuration) --runtime osx-arm64 --output $(PublishDir)\osx-arm64" />
+    <Message Importance="high" Text="Cross-platform build completed!" />
+  </Target>
+
+  <!-- Installer Targets -->
+  <Target Name="CreateInstaller" AfterTargets="Build">
+    <Message Importance="high" Text="Creating installer..." />
+    <Exec Command="dotnet msbuild -p:Configuration=$(Configuration) -p:Platform=$(Platform) -p:TargetFramework=$(TargetFramework) -p:RuntimeIdentifier=$(RuntimeIdentifier) -p:SelfContained=$(SelfContained) -p:PublishDir=$(PublishDir)" />
+    <Message Importance="high" Text="Installer created!" />
+  </Target>
+
+  <!-- Validation Targets -->
+  <Target Name="ValidateBuild" AfterTargets="Build">
+    <Message Importance="high" Text="Validating build..." />
+    <Exec Command="dotnet build --configuration $(Configuration) --no-restore --verbosity quiet" />
+    <Exec Command="dotnet test --configuration $(Configuration) --no-build --verbosity quiet" />
+    <Message Importance="high" Text="Build validation completed!" />
+  </Target>
+
+  <!-- Final Validation Targets -->
+  <Target Name="FinalValidation" AfterTargets="Build">
+    <Message Importance="high" Text="Final validation..." />
+    <Exec Command="dotnet build --configuration $(Configuration) --no-restore --verbosity quiet" />
+    <Exec Command="dotnet test --configuration $(Configuration) --no-build --verbosity quiet" />
+    <Exec Command="dotnet pack --configuration $(Configuration) --no-build --verbosity quiet" />
+    <Exec Command="dotnet publish --configuration $(Configuration) --no-build --verbosity quiet" />
+    <Message Importance="high" Text="Final validation completed!" />
+  </Target>
+
+  <!-- Clean Targets -->
+  <Target Name="CleanAll" BeforeTargets="Clean">
+    <Message Importance="high" Text="Cleaning all..." />
+    <Exec Command="dotnet clean --configuration $(Configuration) --verbosity quiet" />
+    <Exec Command="dotnet clean --configuration Debug --verbosity quiet" />
+    <Exec Command="dotnet clean --configuration Release --verbosity quiet" />
+    <Exec Command="dotnet clean --configuration Test --verbosity quiet" />
+    <Message Importance="high" Text="Clean completed!" />
+  </Target>
+
+  <!-- Build All Targets -->
+  <Target Name="BuildAll" DependsOnTargets="Clean;PrepareBuild;Build;Test;Package;Publish">
+    <Message Importance="high" Text="Build all completed!" />
+  </Target>
+
+  <!-- Release Targets -->
+  <Target Name="Release" DependsOnTargets="Clean;PrepareBuild;Build;Test;Package;Publish;CrossPlatformBuild;CreateInstaller;FinalValidation">
+    <Message Importance="high" Text="Release completed!" />
+  </Target>
+
+  <!-- Development Targets -->
+  <Target Name="Dev" DependsOnTargets="Clean;PrepareBuild;Build;Test">
+    <Message Importance="high" Text="Development build completed!" />
+  </Target>
+
+  <!-- Continuous Integration Targets -->
+  <Target Name="CI" DependsOnTargets="Clean;PrepareBuild;Build;Test;CodeAnalysis">
+    <Message Importance="high" Text="CI build completed!" />
+  </Target>
+
+  <!-- Continuous Deployment Targets -->
+  <Target Name="CD" DependsOnTargets="Clean;PrepareBuild;Build;Test;CodeAnalysis;Package;Publish;CrossPlatformBuild;CreateInstaller;FinalValidation">
+    <Message Importance="high" Text="CD build completed!" />
+  </Target>
+
+</Project>

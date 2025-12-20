@@ -1,0 +1,102 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="120" d:DesignHeight="40"
+             x:Class="RamOptimizerNova.Controls.ModernButton"
+             x:DataType="RamOptimizerNova.Controls.ModernButton">
+    
+    <UserControl.Styles>
+        <Style Selector="ModernButton">
+            <Setter Property="Background" Value="#6366F1"/>
+            <Setter Property="BorderBrush" Value="#8B5CF6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="600"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Cursor="Hand">
+                        <ContentPresenter Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        
+        <Style Selector="ModernButton:pointerover">
+            <Setter Property="Background" Value="#8B5CF6"/>
+            <Setter Property="BorderBrush" Value="#A78BFA"/>
+            <Setter Property="Shadow" Value="0 4 12 0 #6366F120"/>
+        </Style>
+        
+        <Style Selector="ModernButton:pressed">
+            <Setter Property="Background" Value="#4F46E5"/>
+            <Setter Property="BorderBrush" Value="#6366F1"/>
+            <Setter Property="Shadow" Value="0 2 8 0 #6366F140"/>
+        </Style>
+        
+        <Style Selector="ModernButton:disabled">
+            <Setter Property="Background" Value="#64748B"/>
+            <Setter Property="Foreground" Value="#94A3B8"/>
+            <Setter Property="Cursor" Value="Default"/>
+        </Style>
+        
+        <Style Selector="ModernButton.secondary">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="#6366F1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#6366F1"/>
+        </Style>
+        
+        <Style Selector="ModernButton.secondary:pointerover">
+            <Setter Property="Background" Value="#6366F120"/>
+            <Setter Property="BorderBrush" Value="#8B5CF6"/>
+        </Style>
+        
+        <Style Selector="ModernButton.secondary:pressed">
+            <Setter Property="Background" Value="#6366F140"/>
+            <Setter Property="BorderBrush" Value="#4F46E5"/>
+        </Style>
+        
+        <Style Selector="ModernButton.danger">
+            <Setter Property="Background" Value="#EF4444"/>
+            <Setter Property="BorderBrush" Value="#DC2626"/>
+        </Style>
+        
+        <Style Selector="ModernButton.danger:pointerover">
+            <Setter Property="Background" Value="#DC2626"/>
+            <Setter Property="BorderBrush" Value="#B91C1C"/>
+        </Style>
+        
+        <Style Selector="ModernButton.danger:pressed">
+            <Setter Property="Background" Value="#B91C1C"/>
+            <Setter Property="BorderBrush" Value="#991B1B"/>
+        </Style>
+        
+        <Style Selector="ModernButton.success">
+            <Setter Property="Background" Value="#10B981"/>
+            <Setter Property="BorderBrush" Value="#059669"/>
+        </Style>
+        
+        <Style Selector="ModernButton.success:pointerover">
+            <Setter Property="Background" Value="#059669"/>
+            <Setter Property="BorderBrush" Value="#047857"/>
+        </Style>
+        
+        <Style Selector="ModernButton.success:pressed">
+            <Setter Property="Background" Value="#047857"/>
+            <Setter Property="BorderBrush" Value="#065F46"/>
+        </Style>
+    </UserControl.Styles>
+    
+    <ContentPresenter Content="{Binding Content}"/>
+</UserControl>

@@ -21,14 +21,15 @@ public class SafeAcpiInterface : IDisposable
     {
         _logger = logger;
         _acpi = new AsusAcpiInterface();
-        _snapshotManager = new SnapshotManager(logger: logger);
+        _snapshotManager = new SnapshotManager(logger);
         _rollback = new SafeModeRollback(logger: logger);
 
         // Check for pending rollback on initialization
         if (_rollback.IsRollbackPending())
         {
             _logger?.LogWarning("Pending rollback detected on initialization");
-            bool rolledBack = _rollback.CheckAndRollback(_acpi, _snapshotManager);
+            var controller = new AsusHardwareController(_acpi, _logger);
+            bool rolledBack = _rollback.CheckAndRollback(controller, _snapshotManager);
             if (rolledBack)
             {
                 _logger?.LogWarning("System was rolled back to previous configuration");
@@ -57,7 +58,8 @@ public class SafeAcpiInterface : IDisposable
             // Capture snapshot before change
             var description = changeDescription ?? $"Core change: P={pCores}, E={eCores}";
             _logger?.LogInformation($"Capturing snapshot before change: {description}");
-            _snapshotManager.CaptureAndSave(_acpi, "before_core_change", description);
+            var controller = new AsusHardwareController(_acpi, _logger);
+            _snapshotManager.CaptureAndSave(controller, "before_core_change", description);
 
             // Set rollback flag
             _rollback.SetRollbackFlag(description);
@@ -128,7 +130,8 @@ public class SafeAcpiInterface : IDisposable
 
             // Capture snapshot
             var description = changeDescription ?? $"Battery limit change: {limit}%";
-            _snapshotManager.CaptureAndSave(_acpi, "before_battery_change", description);
+            var controller = new AsusHardwareController(_acpi, _logger);
+            _snapshotManager.CaptureAndSave(controller, "before_battery_change", description);
 
             // Set rollback flag (less critical than core changes, but still protected)
             _rollback.SetRollbackFlag(description);
@@ -192,7 +195,8 @@ public class SafeAcpiInterface : IDisposable
 
             // Capture snapshot
             var description = changeDescription ?? $"Performance mode change: {mode}";
-            _snapshotManager.CaptureAndSave(_acpi, "before_perf_change", description);
+            var controller = new AsusHardwareController(_acpi, _logger);
+            _snapshotManager.CaptureAndSave(controller, "before_perf_change", description);
 
             // Performance mode changes are low risk, no rollback flag needed
             _logger?.LogInformation($"Setting performance mode to {mode}");
@@ -213,7 +217,8 @@ public class SafeAcpiInterface : IDisposable
     public void ConfirmStable()
     {
         _rollback.ClearRollbackFlag();
-        _snapshotManager.CaptureAndSave(_acpi, "stable", "User confirmed stable");
+        var controller = new AsusHardwareController(_acpi, _logger);
+        _snapshotManager.CaptureAndSave(controller, "stable", "User confirmed stable");
         _logger?.LogInformation("Configuration confirmed stable");
     }
 
@@ -223,7 +228,8 @@ public class SafeAcpiInterface : IDisposable
     public bool ManualRollback()
     {
         _logger?.LogWarning("Manual rollback requested");
-        return _rollback.CheckAndRollback(_acpi, _snapshotManager);
+        var controller = new AsusHardwareController(_acpi, _logger);
+        return _rollback.CheckAndRollback(controller, _snapshotManager);
     }
 
     /// <summary>
@@ -231,7 +237,8 @@ public class SafeAcpiInterface : IDisposable
     /// </summary>
     public HardwareSnapshot GetCurrentSnapshot()
     {
-        return HardwareSnapshot.Capture(_acpi, "current");
+        var controller = new AsusHardwareController(_acpi, _logger);
+        return HardwareSnapshot.Capture(controller, "current");
     }
 
     /// <summary>

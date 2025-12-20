@@ -30,6 +30,17 @@ public class ChunkedArchiver
         _logger = logger;
         _chunkSize = chunkSize;
     }
+
+    /// <summary>
+    /// Compress an entire directory into a .hca archive file.
+    /// This is a synchronous wrapper around CreateArchiveAsync for backwards compatibility.
+    /// </summary>
+    public void CompressDirectory(string sourceDirectory, string outputArchivePath)
+    {
+        // Run the async version synchronously
+        var task = CreateArchiveAsync(sourceDirectory, outputArchivePath);
+        task.Wait();
+    }
     
     /// <summary>
     /// Compress a directory into a .hca archive.

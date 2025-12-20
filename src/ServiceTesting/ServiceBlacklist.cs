@@ -83,7 +83,11 @@ public class ServiceBlacklist
                 if (File.Exists(BlacklistPath))
                 {
                     var json = File.ReadAllText(BlacklistPath);
-                    var entries = System.Text.Json.JsonSerializer.Deserialize<List<ServiceBlacklistEntry>>(json);
+                    var entries = System.Text.Json.JsonSerializer.Deserialize<List<ServiceBlacklistEntry>>(json, new System.Text.Json.JsonSerializerOptions
+                    {
+                        NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    });
                     
                     _entries = entries?.ToDictionary(e => e.ServiceName, e => e) 
                         ?? new Dictionary<string, ServiceBlacklistEntry>();
@@ -104,7 +108,12 @@ public class ServiceBlacklist
             {
                 var json = System.Text.Json.JsonSerializer.Serialize(
                     _entries.Values.ToList(),
-                    new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
+                    new System.Text.Json.JsonSerializerOptions 
+                    { 
+                        WriteIndented = true,
+                        NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    }
                 );
                 
                 File.WriteAllText(BlacklistPath, json);

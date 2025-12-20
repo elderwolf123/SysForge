@@ -99,10 +99,5 @@ public class PerformanceModeManager
     }
 }
 
-public enum PerformanceMode
-{
-    Balanced = 0,
-    Silent = 1,
-    Turbo = 3,
-    Manual = 4  // Custom performance profile
-}
+// Use the enum from Core.Interfaces to avoid conflicts
+// This enum is already defined in RamOptimizer.Core.Interfaces.PerformanceMode

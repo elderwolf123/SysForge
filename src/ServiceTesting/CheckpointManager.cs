@@ -153,7 +153,11 @@ public class CheckpointManager
                 if (File.Exists(CheckpointPath))
                 {
                     var json = File.ReadAllText(CheckpointPath);
-                    var loaded = System.Text.Json.JsonSerializer.Deserialize<TestCheckpoint>(json);
+                    var loaded = System.Text.Json.JsonSerializer.Deserialize<TestCheckpoint>(json, new System.Text.Json.JsonSerializerOptions
+                    {
+                        NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    });
                     if (loaded != null)
                     {
                         _checkpoint = loaded;
@@ -179,7 +183,12 @@ public class CheckpointManager
             {
                 var json = System.Text.Json.JsonSerializer.Serialize(
                     _checkpoint,
-                    new System.Text.Json.JsonSerializerOptions { WriteIndented = true }
+                    new System.Text.Json.JsonSerializerOptions 
+                    { 
+                        WriteIndented = true,
+                        NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    }
                 );
                 
                 File.WriteAllText(CheckpointPath, json);

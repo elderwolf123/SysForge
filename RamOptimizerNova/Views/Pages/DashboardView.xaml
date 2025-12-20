@@ -1,0 +1,848 @@
+<UserControl x:Class="RamOptimizerNova.Views.Pages.DashboardView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RamOptimizerNova.Views.Pages"
+             xmlns:controls="clr-namespace:RamOptimizerNova.Controls"
+             xmlns:converters="clr-namespace:RamOptimizerNova.Converters"
+             xmlns:vm="clr-namespace:RamOptimizerNova.ViewModels.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800"
+             x:DataType="vm:DashboardViewModel">
+
+    <UserControl.Resources>
+        <!-- Converters -->
+        <converters:TrendToColorConverter x:Key="TrendToColorConverter"/>
+        <converters:TrendToIconConverter x:Key="TrendToIconConverter"/>
+        <converters:AlertTypeToColorConverter x:Key="AlertTypeToColorConverter"/>
+        <converters:AlertTypeToIconConverter x:Key="AlertTypeToIconConverter"/>
+        <converters:AlertSeverityToBorderConverter x:Key="AlertSeverityToBorderConverter"/>
+        <converters:DoubleToColorConverter x:Key="DoubleToColorConverter"/>
+        
+        <!-- Styles -->
+        <Style x:Key="MetricCardStyle" TargetType="controls:GlassCard">
+            <Setter Property="Margin" Value="0,0,12,12"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="ShadowDepth" Value="2"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="ProcessItemStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,4,0,4"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="AlertItemStyle" TargetType="Border">
+            <Setter Property="Margin" Value="0,4,0,4"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="QuickActionStyle" TargetType="Button">
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="16,12"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource CardBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicTextPrimaryColor}"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- Animations -->
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                           From="0" To="1" Duration="0:0:0.3"/>
+        </Storyboard>
+
+        <Storyboard x:Key="SlideIn">
+            <DoubleAnimation Storyboard.TargetProperty="TranslateY"
+                           From="20" To="0" Duration="0:0:0.3"/>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource HeaderBackground}"
+                Padding="24,16,24,20"
+                CornerRadius="0,0,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Title and Description -->
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="Dashboard"
+                               FontSize="28"
+                               FontWeight="Light"
+                               Foreground="{DynamicTextPrimaryColor}"/>
+                    <TextBlock Text="Real-time system monitoring and optimization"
+                               FontSize="14"
+                               Foreground="{DynamicTextSecondaryColor}"
+                               Opacity="0.8"/>
+                </StackPanel>
+
+                <!-- Actions -->
+                <StackPanel Grid.Column="1" 
+                            Orientation="Horizontal" 
+                            HorizontalAlignment="Right"
+                            Spacing="8">
+                    
+                    <!-- View Mode Toggle -->
+                    <Button Classes="icon-button"
+                            Command="{Binding ChangeViewModeCommand}"
+                            ToolTip="Toggle View Mode">
+                        <Path Data="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"
+                              Fill="{DynamicTextSecondaryColor}"
+                              Stretch="Uniform"/>
+                    </Button>
+
+                    <!-- Refresh Button -->
+                    <Button Classes="icon-button"
+                            Command="{Binding RefreshCommand}"
+                            IsEnabled="{Binding IsRefreshing, Converter={StaticResource InverseBooleanConverter}}"
+                            ToolTip="Refresh Dashboard">
+                        <Path Data="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                              Fill="{DynamicTextSecondaryColor}"
+                              Stretch="Uniform">
+                            <Path.Style>
+                                <Style TargetType="Path">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsRefreshing}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Angle"
+                                                                       From="0" To="360" Duration="0:0:1"
+                                                                       RepeatBehavior="Forever"
+                                                                       To="360"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Path.Style>
+                        </Path>
+                    </Button>
+
+                    <!-- Optimize Now Button -->
+                    <Button Content="Optimize Now"
+                            Command="{Binding OptimizeNowCommand}"
+                            Background="{DynamicResource AccentColor}"
+                            Foreground="White"
+                            Padding="16,8"
+                            CornerRadius="6"
+                            FontWeight="Medium">
+                        <Button.Styles>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource AccentColorHover}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource AccentColorActive}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1"
+                      Padding="24,0,24,24"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            
+            <Grid RowSpacing="24">
+                <!-- Metrics Row -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Metric Cards -->
+                <StackPanel Grid.Row="0"
+                            Orientation="Horizontal"
+                            Spacing="12"
+                            HorizontalAlignment="Stretch">
+                    
+                    <!-- Memory Card -->
+                    <controls:GlassCard Style="{StaticResource MetricCardStyle}"
+                                        Command="{Binding NavigateToPageCommand}"
+                                        CommandParameter="Memory">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0"
+                                       Text="💾"
+                                       FontSize="24"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding MemoryUsagePercentage, StringFormat={}{0:F1}%}"
+                                       FontSize="32"
+                                       FontWeight="Light"
+                                       Foreground="{Binding MemoryUsagePercentage, Converter={StaticResource DoubleToColorConverter}, ConverterParameters='80,90'}"/>
+                            
+                            <TextBlock Grid.Row="2"
+                                       Text="Memory Usage"
+                                       FontSize="14"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       Margin="0,4,0,8"/>
+                            
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding CurrentMetrics.MemoryMetrics.Details}"
+                                       FontSize="12"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.8"/>
+                        </Grid>
+                    </controls:GlassCard>
+
+                    <!-- CPU Card -->
+                    <controls:GlassCard Style="{StaticResource MetricCardStyle}"
+                                        Command="{Binding NavigateToPageCommand}"
+                                        CommandParameter="CPU">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0"
+                                       Text="🖥️"
+                                       FontSize="24"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding CpuUsagePercentage, StringFormat={}{0:F1}%}"
+                                       FontSize="32"
+                                       FontWeight="Light"
+                                       Foreground="{Binding CpuUsagePercentage, Converter={StaticResource DoubleToColorConverter}, ConverterParameters='70,85'}"/>
+                            
+                            <TextBlock Grid.Row="2"
+                                       Text="CPU Usage"
+                                       FontSize="14"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       Margin="0,4,0,8"/>
+                            
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding CurrentMetrics.CpuMetrics.Details}"
+                                       FontSize="12"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.8"/>
+                        </Grid>
+                    </controls:GlassCard>
+
+                    <!-- Network Card -->
+                    <controls:GlassCard Style="{StaticResource MetricCardStyle}"
+                                        Command="{Binding NavigateToPageCommand}"
+                                        CommandParameter="Network">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0"
+                                       Text="🌐"
+                                       FontSize="24"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding NetworkUsagePercentage, StringFormat={}{0:F1}%}"
+                                       FontSize="32"
+                                       FontWeight="Light"
+                                       Foreground="{Binding NetworkUsagePercentage, Converter={StaticResource DoubleToColorConverter}, ConverterParameters='60,80'}"/>
+                            
+                            <TextBlock Grid.Row="2"
+                                       Text="Network"
+                                       FontSize="14"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       Margin="0,4,0,8"/>
+                            
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding CurrentMetrics.NetworkMetrics.Details}"
+                                       FontSize="12"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.8"/>
+                        </Grid>
+                    </controls:GlassCard>
+
+                    <!-- Hardware Card -->
+                    <controls:GlassCard Style="{StaticResource MetricCardStyle}"
+                                        Command="{Binding NavigateToPageCommand}"
+                                        CommandParameter="Hardware">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0"
+                                       Text="🔧"
+                                       FontSize="24"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding Temperature, StringFormat={}{0:F1}°C}"
+                                       FontSize="32"
+                                       FontWeight="Light"
+                                       Foreground="{Binding Temperature, Converter={StaticResource DoubleToColorConverter}, ConverterParameters='70,85'}"/>
+                            
+                            <TextBlock Grid.Row="2"
+                                       Text="Hardware"
+                                       FontSize="14"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       Margin="0,4,0,8"/>
+                            
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding CurrentMetrics.HardwareMetrics.Details}"
+                                       FontSize="12"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.8"/>
+                        </Grid>
+                    </controls:GlassCard>
+
+                    <!-- Optimization Card -->
+                    <controls:GlassCard Style="{StaticResource MetricCardStyle}"
+                                        Command="{Binding NavigateToPageCommand}"
+                                        CommandParameter="Optimization">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0"
+                                       Text="⚡"
+                                       FontSize="24"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding CurrentMetrics.OptimizationMetrics.OptimizationProgress, StringFormat={}{0:F1}%}"
+                                       FontSize="32"
+                                       FontWeight="Light"
+                                       Foreground="{Binding CurrentMetrics.OptimizationMetrics.OptimizationProgress, Converter={StaticResource DoubleToColorConverter}, ConverterParameters='90,95'}"/>
+                            
+                            <TextBlock Grid.Row="2"
+                                       Text="Optimization"
+                                       FontSize="14"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       Margin="0,4,0,8"/>
+                            
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding CurrentMetrics.OptimizationMetrics.Details}"
+                                       FontSize="12"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.8"/>
+                        </Grid>
+                    </controls:GlassCard>
+
+                    <!-- Compression Card -->
+                    <controls:GlassCard Style="{StaticResource MetricCardStyle}"
+                                        Command="{Binding NavigateToPageCommand}"
+                                        CommandParameter="Compression">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                            <TextBlock Grid.Row="0"
+                                       Text="🗜️"
+                                       FontSize="24"
+                                       Margin="0,0,0,8"/>
+                            
+                            <TextBlock Grid.Row="1"
+                                       Text="{Binding CurrentMetrics.CompressionMetrics.CompressionRatio, StringFormat={}{0:P1}}"
+                                       FontSize="32"
+                                       FontWeight="Light"
+                                       Foreground="{Binding CurrentMetrics.CompressionMetrics.CompressionRatio, Converter={StaticResource DoubleToColorConverter}, ConverterParameters='0.7,0.9'}"/>
+                            
+                            <TextBlock Grid.Row="2"
+                                       Text="Compression"
+                                       FontSize="14"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       Margin="0,4,0,8"/>
+                            
+                            <TextBlock Grid.Row="3"
+                                       Text="{Binding CurrentMetrics.CompressionMetrics.Details}"
+                                       FontSize="12"
+                                       Foreground="{DynamicTextSecondaryColor}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.8"/>
+                        </Grid>
+                    </controls:GlassCard>
+                </StackPanel>
+
+                <!-- Content Grid -->
+                <Grid Grid.Row="1"
+                      ColumnSpacing="24"
+                      RowSpacing="24">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Left Column -->
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="0"
+                                Spacing="24">
+                        
+                        <!-- Chart Section -->
+                        <Border Background="{DynamicResource CardBackground}"
+                                BorderBrush="{DynamicResource CardBorder}"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- Chart Header -->
+                                <StackPanel Grid.Row="0"
+                                            Orientation="Horizontal"
+                                            Spacing="12"
+                                            HorizontalAlignment="Stretch">
+                                    
+                                    <TextBlock Text="Performance Chart"
+                                               FontSize="18"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicTextPrimaryColor}"/>
+                                    
+                                    <ComboBox SelectedItem="{Binding SelectedChartType}"
+                                              Width="120"
+                                              Margin="16,0,0,0"
+                                              HorizontalAlignment="Right">
+                                        <ComboBoxItem Content="Memory"/>
+                                        <ComboBoxItem Content="CPU"/>
+                                        <ComboBoxItem Content="Network"/>
+                                        <ComboBoxItem Content="Temperature"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                
+                                <!-- Chart Area -->
+                                <Grid Grid.Row="1"
+                                      Margin="0,16,0,0">
+                                    <!-- Chart will be implemented here -->
+                                    <Border Background="{DynamicResource ChartBackground}"
+                                            CornerRadius="8"
+                                            BorderBrush="{DynamicResource ChartBorder}"
+                                            BorderThickness="1">
+                                        <TextBlock Text="Chart Implementation"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{DynamicTextSecondaryColor}"
+                                                   Opacity="0.5"/>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <!-- Processes Section -->
+                        <Border Background="{DynamicResource CardBackground}"
+                                BorderBrush="{DynamicResource CardBorder}"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                Padding="20"
+                                Visibility="{Binding ShowProcesses, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- Processes Header -->
+                                <StackPanel Grid.Row="0"
+                                            Orientation="Horizontal"
+                                            Spacing="12"
+                                            HorizontalAlignment="Stretch">
+                                    
+                                    <TextBlock Text="Top Processes"
+                                               FontSize="18"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicTextPrimaryColor}"/>
+                                    
+                                    <TextBlock Text="{Binding ActiveProcesses, StringFormat='({} processes)'}"
+                                               FontSize="14"
+                                               Foreground="{DynamicTextSecondaryColor}"
+                                               Margin="8,0,0,0"/>
+                                    
+                                    <Button Content="Hide"
+                                            Command="{Binding ToggleProcessesCommand}"
+                                            Margin="16,0,0,0"
+                                            Padding="8,4"
+                                            FontSize="12"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Foreground="{DynamicTextSecondaryColor}"
+                                            Cursor="Hand"/>
+                                </StackPanel>
+                                
+                                <!-- Processes List -->
+                                <ScrollViewer Grid.Row="1"
+                                              Margin="0,16,0,0"
+                                              VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Disabled">
+                                    
+                                    <ItemsControl ItemsSource="{Binding ProcessItems}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource ProcessItemStyle}"
+                                                        Cursor="Hand"
+                                                        ToolTip="{Binding Path}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        
+                                                        <TextBlock Grid.Column="0"
+                                                                   Text="{Binding Name}"
+                                                                   FontSize="14"
+                                                                   FontWeight="Medium"
+                                                                   Foreground="{Binding IsSystemProcess, Converter={StaticResource BooleanToBrushConverter}, ConverterParameters={StaticResource SystemProcessBrush}, ConverterParameter={StaticResource TextPrimaryColor}}"
+                                                                   VerticalAlignment="Center"/>
+                                                        
+                                                        <TextBlock Grid.Column="1"
+                                                                   Text="{Binding MemoryUsage, StringFormat='{}{0:F0} MB'}"
+                                                                   FontSize="12"
+                                                                   Foreground="{DynamicTextSecondaryColor}"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="16,0,0,0"/>
+                                                        
+                                                        <TextBlock Grid.Column="2"
+                                                                   Text="{Binding CpuUsage, StringFormat='{}{0:F1}%'}"
+                                                                   FontSize="12"
+                                                                   Foreground="{DynamicTextSecondaryColor}"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="16,0,0,0"/>
+                                                        
+                                                        <TextBlock Grid.Column="3"
+                                                                   Text="{Binding Priority}"
+                                                                   FontSize="12"
+                                                                   Foreground="{DynamicTextSecondaryColor}"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="16,0,0,0"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Right Column -->
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="24">
+                        
+                        <!-- Alerts Section -->
+                        <Border Background="{DynamicResource CardBackground}"
+                                BorderBrush="{DynamicResource CardBorder}"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                Padding="20"
+                                Visibility="{Binding ShowAlerts, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- Alerts Header -->
+                                <StackPanel Grid.Row="0"
+                                            Orientation="Horizontal"
+                                            Spacing="12"
+                                            HorizontalAlignment="Stretch">
+                                    
+                                    <TextBlock Text="System Alerts"
+                                               FontSize="18"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicTextPrimaryColor}"/>
+                                    
+                                    <TextBlock Text="{Binding AlertItems.Count, StringFormat='({} alerts)'}"
+                                               FontSize="14"
+                                               Foreground="{DynamicTextSecondaryColor}"
+                                               Margin="8,0,0,0"/>
+                                    
+                                    <Button Content="Hide"
+                                            Command="{Binding ToggleAlertsCommand}"
+                                            Margin="16,0,0,0"
+                                            Padding="8,4"
+                                            FontSize="12"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Foreground="{DynamicTextSecondaryColor}"
+                                            Cursor="Hand"/>
+                                </StackPanel>
+                                
+                                <!-- Alerts List -->
+                                <ScrollViewer Grid.Row="1"
+                                              Margin="0,16,0,0"
+                                              VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Disabled">
+                                    
+                                    <ItemsControl ItemsSource="{Binding AlertItems}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource AlertItemStyle}"
+                                                        BorderBrush="{Binding Severity, Converter={StaticResource AlertSeverityToBorderConverter}}"
+                                                        Cursor="Hand"
+                                                        ToolTip="{Binding Message}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        
+                                                        <TextBlock Grid.Column="0"
+                                                                   Text="{Binding Type, Converter={StaticResource AlertTypeToIconConverter}}"
+                                                                   FontSize="16"
+                                                                   Margin="0,0,12,0"
+                                                                   VerticalAlignment="Center"/>
+                                                        
+                                                        <StackPanel Grid.Column="1"
+                                                                    VerticalAlignment="Center"
+                                                                    Spacing="2">
+                                                            <TextBlock Text="{Binding Title}"
+                                                                       FontSize="14"
+                                                                       FontWeight="Medium"
+                                                                       Foreground="{Binding Type, Converter={StaticResource AlertTypeToColorConverter}}"/>
+                                                            <TextBlock Text="{Binding Message}"
+                                                                       FontSize="12"
+                                                                       Foreground="{DynamicTextSecondaryColor}"
+                                                                       TextWrapping="Wrap"
+                                                                       Opacity="0.8"/>
+                                                        </StackPanel>
+                                                        
+                                                        <Button Grid.Column="2"
+                                                                Content="→"
+                                                                Command="{Binding DataContext.ViewAlertDetailsCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding Title}"
+                                                                Padding="4,2"
+                                                                FontSize="10"
+                                                                Background="Transparent"
+                                                                BorderBrush="Transparent"
+                                                                Foreground="{DynamicTextSecondaryColor}"
+                                                                Cursor="Hand"
+                                                                Margin="8,0,0,0"/>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                            </Grid>
+                        </Border>
+
+                        <!-- Quick Actions Section -->
+                        <Border Background="{DynamicResource CardBackground}"
+                                BorderBrush="{DynamicResource CardBorder}"
+                                BorderThickness="1"
+                                CornerRadius="12"
+                                Padding="20"
+                                Visibility="{Binding ShowQuickActions, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- Quick Actions Header -->
+                                <StackPanel Grid.Row="0"
+                                            Orientation="Horizontal"
+                                            Spacing="12"
+                                            HorizontalAlignment="Stretch">
+                                    
+                                    <TextBlock Text="Quick Actions"
+                                               FontSize="18"
+                                               FontWeight="Light"
+                                               Foreground="{DynamicTextPrimaryColor}"/>
+                                    
+                                    <Button Content="Hide"
+                                            Command="{Binding ToggleQuickActionsCommand}"
+                                            Margin="16,0,0,0"
+                                            Padding="8,4"
+                                            FontSize="12"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Foreground="{DynamicTextSecondaryColor}"
+                                            Cursor="Hand"/>
+                                </StackPanel>
+                                
+                                <!-- Quick Actions Grid -->
+                                <Grid Grid.Row="1"
+                                      Margin="0,16,0,0"
+                                      ColumnSpacing="8">
+                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <ItemsControl Grid.Column="0"
+                                                  Grid.ColumnSpan="2"
+                                                  ItemsSource="{Binding QuickActions}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{StaticResource QuickActionStyle}"
+                                                        Command="{Binding DataContext.QuickActionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding Action}"
+                                                        Content="{Binding Title}"
+                                                        Tag="{Binding Description}"
+                                                        IsEnabled="{Binding IsEnabled}">
+                                                    <Button.Icon>
+                                                        <TextBlock Text="{Binding Icon}"
+                                                                   FontSize="16"
+                                                                   Margin="0,0,8,0"/>
+                                                    </Button.Icon>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Bottom Row - System Info -->
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Background="{DynamicResource CardBackground}"
+                            BorderBrush="{DynamicResource CardBorder}"
+                            BorderThickness="1"
+                            CornerRadius="12"
+                            Padding="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- System Info Column -->
+                            <StackPanel Grid.Column="0" Spacing="4">
+                                <TextBlock Text="System Information"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicTextPrimaryColor}"/>
+                                <TextBlock Text="{Binding SystemInfo.OperatingSystem}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                                <TextBlock Text="{Binding SystemInfo.Architecture}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                                <TextBlock Text="{Binding SystemInfo.ProcessorCount, StringFormat='{}Processors: {0}'}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                            </StackPanel>
+                            
+                            <!-- Memory Info Column -->
+                            <StackPanel Grid.Column="1" Spacing="4">
+                                <TextBlock Text="Memory Status"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicTextPrimaryColor}"/>
+                                <TextBlock Text="{Binding TotalMemoryMB, StringFormat='{}Total: {0} MB'}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                                <TextBlock Text="{Binding UsedMemoryMB, StringFormat='{}Used: {0} MB'}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                                <TextBlock Text="{Binding AvailableMemoryMB, StringFormat='{}Available: {0} MB'}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                            </StackPanel>
+                            
+                            <!-- Last Update Column -->
+                            <StackPanel Grid.Column="2" Spacing="4">
+                                <TextBlock Text="Last Update"
+                                           FontSize="14"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicTextPrimaryColor}"/>
+                                <TextBlock Text="{Binding LastUpdateTime, StringFormat='{}{0:HH:mm:ss}'}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                                <TextBlock Text="{Binding LastUpdateTime, StringFormat='{}{0:yyyy-MM-dd}'}"
+                                           FontSize="12"
+                                           Foreground="{DynamicTextSecondaryColor}"
+                                           Opacity="0.8"/>
+                                <TextBlock Text="Real-time monitoring active"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource AccentColor}"
+                                           Opacity="0.8"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

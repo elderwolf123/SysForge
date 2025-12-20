@@ -1,12 +1,12 @@
 ; RamOptimus Installer Script for Inno Setup
 ; Version 2.0.0
 
-#define MyAppName "RamOptimus"
+#define MyAppName "RAM OPTIMIZER NOVA"
 #define MyAppVersion "2.0.0"
-#define MyAppPublisher "JRTWolf"
+#define MyAppPublisher "Professional RAM Optimization"
 #define MyAppExeName "RamOptimizerUI.exe"
-#define MyAppAssocName MyAppName + " Compressed File"
-#define MyAppAssocExt ".roc"
+#define MyAppAssocName MyAppName + " File"
+#define MyAppAssocExt ".nov"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
@@ -37,8 +37,8 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 Name: "startup"; Description: "Run RamOptimus on Windows startup"; GroupDescription: "Startup Options:"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\Jarrod\Desktop\RamOptimus_Installer\RamOptimizerUI.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\Jarrod\Desktop\RamOptimus_Installer\*.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\Releases\RAM_OPTIMIZER_NOVA_Portable_v2.0.0\App\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\Releases\RAM_OPTIMIZER_NOVA_Portable_v2.0.0\Data\*"; DestDir: "{app}\Data"; Flags: ignoreversion recursesubdirs
 
 [Registry]
 ; File association for .roc files

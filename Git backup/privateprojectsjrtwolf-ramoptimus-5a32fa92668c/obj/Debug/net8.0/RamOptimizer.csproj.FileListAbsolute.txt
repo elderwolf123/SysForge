@@ -1,0 +1,5 @@
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Debug\net8.0\RamOptimizer.csproj.AssemblyReference.cache
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Debug\net8.0\RamOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Debug\net8.0\RamOptimizer.AssemblyInfoInputs.cache
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Debug\net8.0\RamOptimizer.AssemblyInfo.cs
+C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Debug\net8.0\RamOptimizer.csproj.CoreCompileInputs.cache

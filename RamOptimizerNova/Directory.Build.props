@@ -1,0 +1,153 @@
+<Project>
+  <!-- Global build properties for RamOptimizer Nova -->
+  
+  <!-- Common properties -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- Versioning -->
+  <PropertyGroup>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <InformationalVersion>1.0.0-NOVA</InformationalVersion>
+  </PropertyGroup>
+
+  <!-- Assembly Information -->
+  <PropertyGroup>
+    <AssemblyTitle>RamOptimizer Nova</AssemblyTitle>
+    <AssemblyDescription>Professional RAM Optimization Suite with Modern UI</AssemblyDescription>
+    <AssemblyCompany>RamOptimizer Technologies</AssemblyCompany>
+    <AssemblyProduct>RamOptimizer Nova</AssemblyProduct>
+    <AssemblyCopyright>Copyright © 2024 RamOptimizer Technologies</AssemblyCopyright>
+    <AssemblyTrademark>RamOptimizer Nova</AssemblyTrademark>
+    <AssemblyConfiguration>$(Configuration)</AssemblyConfiguration>
+  </PropertyGroup>
+
+  <!-- Package Information -->
+  <PropertyGroup>
+    <PackageId>RamOptimizerNova</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/ramoptimizer/nova</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>Initial release of RamOptimizer Nova with modern Avalonia UI</PackageReleaseNotes>
+    <PackageTags>ram optimization system performance monitoring</PackageTags>
+    <RepositoryUrl>https://github.com/ramoptimizer/nova</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <!-- Source Link -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <!-- File Encoding -->
+  <PropertyGroup>
+    <Encoding>UTF-8</Encoding>
+  </PropertyGroup>
+
+  <!-- Output Path -->
+  <PropertyGroup>
+    <OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\$(TargetFramework)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <!-- Debugging -->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Release -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+  </PropertyGroup>
+
+  <!-- Testing -->
+  <PropertyGroup Condition="'$(Configuration)'=='Test'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE;TEST</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Code Analysis -->
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Rules.ruleset</CodeAnalysisRuleSet>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+  </PropertyGroup>
+
+  <!-- NuGet Package Validation -->
+  <PropertyGroup>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+
+  <!-- Global using directives -->
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Text" />
+    <Using Include="System.Threading.Tasks" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.IO" />
+    <Using Include="System.Net" />
+    <Using Include="System.Net.Http" />
+    <Using Include="System.Runtime.InteropServices" />
+    <Using Include="System.Security" />
+    <Using Include="System.Security.Cryptography" />
+    <Using Include="System.Text.Json" />
+    <Using Include="System.Text.RegularExpressions" />
+    <Using Include="System.Windows.Input" />
+    <Using Include="Avalonia" />
+    <Using Include="Avalonia.Controls" />
+    <Using Include="Avalonia.Controls.ApplicationLifetimes" />
+    <Using Include="Avalonia.Controls.Primitives" />
+    <Using Include="Avalonia.Data" />
+    <Using Include="Avalonia.Data.Converters" />
+    <Using Include="Avalonia.Input" />
+    <Using Include="Avalonia.Interactivity" />
+    <Using Include="Avalonia.Layout" />
+    <Using Include="Avalonia.Media" />
+    <Using Include="Avalonia.Media.Imaging" />
+    <Using Include="Avalonia.Platform" />
+    <Using Include="Avalonia.Threading" />
+    <Using Include="Avalonia.VisualTree" />
+    <Using Include="FluentAssertions" />
+    <Using Include="Moq" />
+    <Using Include="Xunit" />
+    <Using Include="RamOptimizerNova.ViewModels" />
+    <Using Include="RamOptimizerNova.Views" />
+    <Using Include="RamOptimizerNova.Services.Interfaces" />
+    <Using Include="RamOptimizerNova.Models" />
+    <Using Include="RamOptimizerNova.Services" />
+    <Using Include="RamOptimizerNova.Converters" />
+    <Using Include="RamOptimizerNova.Extensions" />
+    <Using Include="RamOptimizerNova.Helpers" />
+  </ItemGroup>
+
+</Project>

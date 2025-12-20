@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2X23oi1uM9A=",
+  "dgSpecHash": "eQbVP3GxRoM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\HardwareControl\\HardwareControl.csproj",
+  "projectFilePath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\HardwareControl\\HardwareControl.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jarrod\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\hardware.info\\101.1.0.1\\hardware.info.101.1.0.1.nupkg.sha512",

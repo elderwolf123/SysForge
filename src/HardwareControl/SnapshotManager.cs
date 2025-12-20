@@ -11,6 +11,9 @@ public class SnapshotManager
     private readonly string _backupPath;
     private readonly ILogger? _logger;
 
+    /// <summary>
+    /// Create a SnapshotManager with optional custom backup path and logger
+    /// </summary>
     public SnapshotManager(string? backupPath = null, ILogger? logger = null)
     {
         _backupPath = backupPath ?? Path.Combine(
@@ -20,6 +23,13 @@ public class SnapshotManager
 
         // Ensure backup directory exists
         Directory.CreateDirectory(_backupPath);
+    }
+
+    /// <summary>
+    /// Create a SnapshotManager with logger only (uses default backup path)
+    /// </summary>
+    public SnapshotManager(ILogger? logger) : this(null, logger)
+    {
     }
 
     /// <summary>

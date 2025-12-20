@@ -1,0 +1,309 @@
+<Project>
+  <!-- Cross-platform testing configuration for RamOptimizer Nova -->
+  
+  <!-- Testing Properties -->
+  <PropertyGroup>
+    <!-- Test Configuration -->
+    <TestConfiguration>Release</TestConfiguration>
+    <TestPlatform>AnyCPU</TestPlatform>
+    <TestRuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64</TestRuntimeIdentifiers>
+    
+    <!-- Test Output Configuration -->
+    <TestOutputPath>$(OutputPath)\TestResults</TestOutputPath>
+    <TestCoveragePath>$(TestOutputPath)\Coverage</TestCoveragePath>
+    <TestReportPath>$(TestOutputPath)\Reports</TestReportPath>
+    
+    <!-- Test Framework Configuration -->
+    <TestFramework>xunit</TestFramework>
+    <TestRunner>dotnet test</TestRunner>
+    
+    <!-- Test Coverage Configuration -->
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutput>$(TestCoveragePath)\coverage.xml</CoverletOutput>
+    <ExcludeByFile>**/obj/**/*</ExcludeByFile>
+    <ExcludeByAttribute>Obsolete</ExcludeByAttribute>
+    <ExcludeByTest>Test*</ExcludeByTest>
+    
+    <!-- Test Parallelization -->
+    <MaxParallelTestThreads>4</MaxParallelTestThreads>
+    <ParallelizeTestCollections>true</ParallelizeTestCollections>
+    
+    <!-- Test Timeout -->
+    <TestTimeout>300000</TestTimeout> <!-- 5 minutes -->
+    
+    <!-- Test Retry -->
+    <TestRetryCount>3</TestRetryCount>
+    <TestRetryDelay>5000</TestRetryDelay> <!-- 5 seconds -->
+    
+    <!-- Test Categories -->
+    <TestCategory>Unit</TestCategory>
+    <TestCategory>Integration</TestCategory>
+    <TestCategory>Performance</TestCategory>
+    <TestCategory>Security</TestCategory>
+    <TestCategory>Accessibility</TestCategory>
+    
+    <!-- Test Filtering -->
+    <TestFilter>TestCategory!=Integration</TestFilter>
+    <TestFilter>TestCategory!=Performance</TestFilter>
+    
+    <!-- Test Logging -->
+    <TestVerbosity>normal</TestVerbosity>
+    <TestLoggers>console;trx</TestLoggers>
+    
+    <!-- Test Artifacts -->
+    <TestArtifactsPath>$(TestOutputPath)\Artifacts</TestArtifactsPath>
+    <TestScreenshotsPath>$(TestArtifactsPath)\Screenshots</TestScreenshotsPath>
+    <TestLogsPath>$(TestArtifactsPath)\Logs</TestLogsPath>
+    
+    <!-- Test Environment -->
+    <TestEnvironment>CI</TestEnvironment>
+    <TestEnvironmentVariables>TEST_ENVIRONMENT=CI;TEST_PLATFORM=$(TestPlatform)</TestEnvironmentVariables>
+    
+    <!-- Test Dependencies -->
+    <TestDependencies>$(TestFramework);$(TestRunner);coverlet.collector</TestDependencies>
+    
+    <!-- Test Cleanup -->
+    <TestCleanup>true</TestCleanup>
+    <TestCleanupTimeout>30000</TestCleanupTimeout> <!-- 30 seconds -->
+  </PropertyGroup>
+
+  <!-- Windows Testing Configuration -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'=='win-x64'">
+    <TestPlatform>Windows</TestPlatform>
+    <TestEnvironmentVariables>$(TestEnvironmentVariables);TEST_PLATFORM=Windows</TestEnvironmentVariables>
+    <TestDependencies>$(TestDependencies);Microsoft.NET.Test.Sdk;coverlet.collector;xunit.runner.visualstudio</TestDependencies>
+  </PropertyGroup>
+
+  <!-- Linux Testing Configuration -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'=='linux-x64'">
+    <TestPlatform>Linux</TestPlatform>
+    <TestEnvironmentVariables>$(TestEnvironmentVariables);TEST_PLATFORM=Linux</TestEnvironmentVariables>
+    <TestDependencies>$(TestDependencies);Microsoft.NET.Test.Sdk;coverlet.collector;xunit.runner.console</TestDependencies>
+  </PropertyGroup>
+
+  <!-- macOS Testing Configuration -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'=='osx-x64'">
+    <TestPlatform>macOS</TestPlatform>
+    <TestEnvironmentVariables>$(TestEnvironmentVariables);TEST_PLATFORM=macOS</TestEnvironmentVariables>
+    <TestDependencies>$(TestDependencies);Microsoft.NET.Test.Sdk;coverlet.collector;xunit.runner.console</TestDependencies>
+  </PropertyGroup>
+
+  <!-- macOS ARM64 Testing Configuration -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)'=='osx-arm64'">
+    <TestPlatform>macOS ARM64</TestPlatform>
+    <TestEnvironmentVariables>$(TestEnvironmentVariables);TEST_PLATFORM=macOS_ARM64</TestEnvironmentVariables>
+    <TestDependencies>$(TestDependencies);Microsoft.NET.Test.Sdk;coverlet.collector;xunit.runner.console</TestDependencies>
+  </PropertyGroup>
+
+  <!-- Test Targets -->
+  <Target Name="PrepareTestEnvironment" BeforeTargets="Test">
+    <Message Importance="high" Text="Preparing test environment..." />
+    
+    <!-- Create test directories -->
+    <MakeDir Directories="$(TestOutputPath)" />
+    <MakeDir Directories="$(TestCoveragePath)" />
+    <MakeDir Directories="$(TestReportPath)" />
+    <MakeDir Directories="$(TestArtifactsPath)" />
+    <MakeDir Directories="$(TestScreenshotsPath)" />
+    <MakeDir Directories="$(TestLogsPath)" />
+    
+    <!-- Set test environment variables -->
+    <PropertyGroup>
+      <TestEnvironmentVariables>$(TestEnvironmentVariables);TEST_OUTPUT_PATH=$(TestOutputPath);TEST_COVERAGE_PATH=$(TestCoveragePath);TEST_REPORT_PATH=$(TestReportPath)</TestEnvironmentVariables>
+    </PropertyGroup>
+    
+    <!-- Display test configuration -->
+    <Message Importance="high" Text="Test Configuration: $(TestConfiguration)" />
+    <Message Importance="high" Text="Test Platform: $(TestPlatform)" />
+    <Message Importance="high" Text="Test Runtime: $(RuntimeIdentifier)" />
+    <Message Importance="high" Text="Test Framework: $(TestFramework)" />
+    <Message Importance="high" Text="Test Output: $(TestOutputPath)" />
+    
+    <Message Importance="high" Text="Test environment prepared!" />
+  </Target>
+
+  <!-- Unit Testing Target -->
+  <Target Name="RunUnitTests" AfterTargets="Test">
+    <Message Importance="high" Text="Running unit tests..." />
+    
+    <Exec Command="$(TestRunner) --configuration $(TestConfiguration) --collect:'XPlat Code Coverage' --results-directory $(TestOutputPath) --logger 'console;verbosity=minimal' --logger 'trx;LogFileName=TestResults.trx' --filter 'TestCategory==Unit'" />
+    
+    <Message Importance="high" Text="Unit tests completed!" />
+  </Target>
+
+  <!-- Integration Testing Target -->
+  <Target Name="RunIntegrationTests" AfterTargets="Test">
+    <Message Importance="high" Text="Running integration tests..." />
+    
+    <Exec Command="$(TestRunner) --configuration $(TestConfiguration) --collect:'XPlat Code Coverage' --results-directory $(TestOutputPath) --logger 'console;verbosity=minimal' --logger 'trx;LogFileName=IntegrationResults.trx' --filter 'TestCategory==Integration'" />
+    
+    <Message Importance="high" Text="Integration tests completed!" />
+  </Target>
+
+  <!-- Performance Testing Target -->
+  <Target Name="RunPerformanceTests" AfterTargets="Test">
+    <Message Importance="high" Text="Running performance tests..." />
+    
+    <Exec Command="$(TestRunner) --configuration $(TestConfiguration) --collect:'XPlat Code Coverage' --results-directory $(TestOutputPath) --logger 'console;verbosity=minimal' --logger 'trx;LogFileName=PerformanceResults.trx' --filter 'TestCategory==Performance'" />
+    
+    <Message Importance="high" Text="Performance tests completed!" />
+  </Target>
+
+  <!-- Security Testing Target -->
+  <Target Name="RunSecurityTests" AfterTargets="Test">
+    <Message Importance="high" Text="Running security tests..." />
+    
+    <Exec Command="$(TestRunner) --configuration $(TestConfiguration) --collect:'XPlat Code Coverage' --results-directory $(TestOutputPath) --logger 'console;verbosity=minimal' --logger 'trx;LogFileName=SecurityResults.trx' --filter 'TestCategory==Security'" />
+    
+    <Message Importance="high" Text="Security tests completed!" />
+  </Target>
+
+  <!-- Accessibility Testing Target -->
+  <Target Name="RunAccessibilityTests" AfterTargets="Test">
+    <Message Importance="high" Text="Running accessibility tests..." />
+    
+    <Exec Command="$(TestRunner) --configuration $(TestConfiguration) --collect:'XPlat Code Coverage' --results-directory $(TestOutputPath) --logger 'console;verbosity=minimal' --logger 'trx;LogFileName=AccessibilityResults.trx' --filter 'TestCategory==Accessibility'" />
+    
+    <Message Importance="high" Text="Accessibility tests completed!" />
+  </Target>
+
+  <!-- Cross-Platform Testing Target -->
+  <Target Name="RunCrossPlatformTests" DependsOnTargets="RunUnitTests;RunIntegrationTests;RunPerformanceTests;RunSecurityTests;RunAccessibilityTests">
+    <Message Importance="high" Text="Cross-platform testing completed!" />
+  </Target>
+
+  <!-- Test Coverage Analysis Target -->
+  <Target Name="AnalyzeTestCoverage" AfterTargets="Test">
+    <Message Importance="high" Text="Analyzing test coverage..." />
+    
+    <!-- Generate coverage report -->
+    <Exec Command="dotnet tool install -g dotnet-reportgenerator-globaltool" Condition="!Exists('$(DOTNET_ROOT)\tools\dotnet-reportgenerator.exe')" />
+    <Exec Command="reportgenerator -reports:$(TestCoveragePath)\coverage.xml -targetdir:$(TestCoveragePath)\Report -reporttypes:Html;Xml;TextSummary" />
+    
+    <!-- Display coverage summary -->
+    <Exec Command="type $(TestCoveragePath)\Report\Summary.txt" />
+    
+    <Message Importance="high" Text="Test coverage analysis completed!" />
+  </Target>
+
+  <!-- Test Report Generation Target -->
+  <Target Name="GenerateTestReports" AfterTargets="Test">
+    <Message Importance="high" Text="Generating test reports..." />
+    
+    <!-- Generate HTML report -->
+    <Exec Command="dotnet tool install -g dotnet-reportgenerator-globaltool" Condition="!Exists('$(DOTNET_ROOT)\tools\dotnet-reportgenerator.exe')" />
+    <Exec Command="reportgenerator -reports:$(TestCoveragePath)\coverage.xml -targetdir:$(TestCoveragePath)\Report -reporttypes:Html;Xml;TextSummary" />
+    
+    <!-- Generate JUnit XML report -->
+    <Exec Command="dotnet tool install -g dotnet-xml-report-tool" Condition="!Exists('$(DOTNET_ROOT)\tools\dotnet-xml-report-tool.exe')" />
+    <Exec Command="dotnet-xml-report-tool -transform trx -output $(TestReportPath)\TestResults.xml $(TestOutputPath)\*.trx" />
+    
+    <!-- Generate NUnit XML report -->
+    <Exec Command="dotnet tool install -g dotnet-nunit3-console" Condition="!Exists('$(DOTNET_ROOT)\tools\dotnet-nunit3-console.exe')" />
+    <Exec Command="dotnet-nunit3-console --result=$(TestReportPath)\TestResults.xml $(TestOutputPath)\*.trx" />
+    
+    <Message Importance="high" Text="Test reports generated!" />
+  </Target>
+
+  <!-- Test Artifact Collection Target -->
+  <Target Name="CollectTestArtifacts" AfterTargets="Test">
+    <Message Importance="high" Text="Collecting test artifacts..." />
+    
+    <!-- Collect screenshots -->
+    <ItemGroup>
+      <ScreenshotFiles Include="$(TestScreenshotsPath)\**\*.png" />
+      <ScreenshotFiles Include="$(TestScreenshotsPath)\**\*.jpg" />
+      <ScreenshotFiles Include="$(TestScreenshotsPath)\**\*.jpeg" />
+    </ItemGroup>
+    
+    <!-- Collect logs -->
+    <ItemGroup>
+      <LogFileFiles Include="$(TestLogsPath)\**\*.log" />
+      <LogFileFiles Include="$(TestLogsPath)\**\*.txt" />
+    </ItemGroup>
+    
+    <!-- Collect coverage reports -->
+    <ItemGroup>
+      <CoverageReportFiles Include="$(TestCoveragePath)\**\*.xml" />
+      <CoverageReportFiles Include="$(TestCoveragePath)\**\*.html" />
+      <CoverageReportFiles Include="$(TestCoveragePath)\**\*.txt" />
+    </ItemGroup>
+    
+    <!-- Collect test results -->
+    <ItemGroup>
+      <TestResultFiles Include="$(TestOutputPath)\**\*.trx" />
+      <TestResultFiles Include="$(TestOutputPath)\**\*.xml" />
+    </ItemGroup>
+    
+    <!-- Create artifact package -->
+    <Exec Command="dotnet tool install -g dotnet-pack" Condition="!Exists('$(DOTNET_ROOT)\tools\dotnet-pack.exe')" />
+    <Exec Command="dotnet pack -o $(TestArtifactsPath) -p:Configuration=$(TestConfiguration)" />
+    
+    <Message Importance="high" Text="Test artifacts collected!" />
+  </Target>
+
+  <!-- Test Cleanup Target -->
+  <Target Name="CleanupTestEnvironment" AfterTargets="Test">
+    <Message Importance="high" Text="Cleaning up test environment..." />
+    
+    <!-- Clean up temporary files -->
+    <RemoveDir Directories="$(TestOutputPath)\Temp" />
+    <RemoveDir Directories="$(TestArtifactsPath)\Temp" />
+    
+    <!-- Clean up old files -->
+    <Exec Command="del /Q $(TestOutputPath)\*.tmp" />
+    <Exec Command="del /Q $(TestArtifactsPath)\*.tmp" />
+    
+    <!-- Clean up old logs -->
+    <Exec Command="del /Q $(TestLogsPath)\*.log" />
+    <Exec Command="del /Q $(TestLogsPath)\*.txt" />
+    
+    <!-- Clean up old screenshots -->
+    <Exec Command="del /Q $(TestScreenshotsPath)\*.png" />
+    <Exec Command="del /Q $(TestScreenshotsPath)\*.jpg" />
+    <Exec Command="del /Q $(TestScreenshotsPath)\*.jpeg" />
+    
+    <!-- Clean up old coverage reports -->
+    <Exec Command="del /Q $(TestCoveragePath)\*.xml" />
+    <Exec Command="del /Q $(TestCoveragePath)\*.html" />
+    <Exec Command="del /Q $(TestCoveragePath)\*.txt" />
+    
+    <!-- Clean up old test results -->
+    <Exec Command="del /Q $(TestOutputPath)\*.trx" />
+    <Exec Command="del /Q $(TestOutputPath)\*.xml" />
+    
+    <Message Importance="high" Text="Test environment cleaned up!" />
+  </Target>
+
+  <!-- Cross-Platform Build and Test Target -->
+  <Target Name="CrossPlatformBuildAndTest" DependsOnTargets="Clean;PrepareBuild;Build;PrepareTestEnvironment;RunCrossPlatformTests;AnalyzeTestCoverage;GenerateTestReports;CollectTestArtifacts;CleanupTestEnvironment">
+    <Message Importance="high" Text="Cross-platform build and test completed!" />
+  </Target>
+
+  <!-- Continuous Integration Testing Target -->
+  <Target Name="CITesting" DependsOnTargets="Clean;PrepareBuild;Build;PrepareTestEnvironment;RunCrossPlatformTests;AnalyzeTestCoverage;GenerateTestReports;CollectTestArtifacts;CleanupTestEnvironment">
+    <Message Importance="high" Text="CI testing completed!" />
+  </Target>
+
+  <!-- Continuous Deployment Testing Target -->
+  <Target Name="CDTesting" DependsOnTargets="Clean;PrepareBuild;Build;PrepareTestEnvironment;RunCrossPlatformTests;AnalyzeTestCoverage;GenerateTestReports;CollectTestArtifacts;CleanupTestEnvironment">
+    <Message Importance="high" Text="CD testing completed!" />
+  </Target>
+
+  <!-- Development Testing Target -->
+  <Target Name="DevTesting" DependsOnTargets="Clean;PrepareBuild;Build;PrepareTestEnvironment;RunUnitTests;RunIntegrationTests;AnalyzeTestCoverage;GenerateTestReports;CollectTestArtifacts;CleanupTestEnvironment">
+    <Message Importance="high" Text="Development testing completed!" />
+  </Target>
+
+  <!-- Release Testing Target -->
+  <Target Name="ReleaseTesting" DependsOnTargets="Clean;PrepareBuild;Build;PrepareTestEnvironment;RunCrossPlatformTests;AnalyzeTestCoverage;GenerateTestReports;CollectTestArtifacts;CleanupTestEnvironment">
+    <Message Importance="high" Text="Release testing completed!" />
+  </Target>
+
+  <!-- Validation Testing Target -->
+  <Target Name="ValidationTesting" DependsOnTargets="Clean;PrepareBuild;Build;PrepareTestEnvironment;RunCrossPlatformTests;AnalyzeTestCoverage;GenerateTestReports;CollectTestArtifacts;CleanupTestEnvironment">
+    <Message Importance="high" Text="Validation testing completed!" />
+  </Target>
+
+</Project>

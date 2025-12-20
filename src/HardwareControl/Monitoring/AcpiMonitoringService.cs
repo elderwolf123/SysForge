@@ -253,7 +253,9 @@ namespace RamOptimizer.HardwareControl.Monitoring
                 var json = JsonSerializer.Serialize(_capturedTransactions, new JsonSerializerOptions
                 {
                     WriteIndented = true,
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 });
 
                 File.WriteAllText(_captureFilePath, json);
@@ -282,7 +284,9 @@ namespace RamOptimizer.HardwareControl.Monitoring
                 var json = File.ReadAllText(_captureFilePath);
                 var loaded = JsonSerializer.Deserialize<List<AcpiTransaction>>(json, new JsonSerializerOptions
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 });
 
                 if (loaded != null)

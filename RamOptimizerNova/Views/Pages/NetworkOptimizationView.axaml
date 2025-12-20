@@ -1,0 +1,569 @@
+<UserControl x:Class="RamOptimizerNova.Views.Pages.NetworkOptimizationView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RamOptimizerNova.Views.Pages"
+             xmlns:controls="clr-namespace:RamOptimizerNova.Controls"
+             xmlns:vm="clr-namespace:RamOptimizerNova.ViewModels.Pages"
+             mc:Ignorable="d" 
+             d:DesignWidth="1200" d:DesignHeight="800"
+             x:DataType="vm:NetworkOptimizationViewModel">
+    
+    <UserControl.Resources>
+        <!-- Network Usage Color Converter -->
+        <local:NetworkUsageColorConverter x:Key="NetworkUsageColorConverter"/>
+        
+        <!-- Connection Status Color Converter -->
+        <local:ConnectionStatusColorConverter x:Key="ConnectionStatusColorConverter"/>
+        
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDBDBD"/>
+                    <Setter Property="Foreground" Value="#757575"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Glass Card Style -->
+        <Style x:Key="GlassCard" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF20"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF40"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Padding" Value="16"/>
+        </Style>
+        
+        <!-- Process Item Style -->
+        <Style x:Key="ProcessItem" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF10"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF30"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Padding" Value="12"/>
+        </Style>
+        
+        <!-- Progress Bar Style -->
+        <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+        
+        <!-- ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock Text="Network Optimization" 
+                           FontSize="28" 
+                           FontWeight="Light"
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                <TextBlock Text="Optimize network performance and manage bandwidth usage"
+                           FontSize="14" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"
+                           Opacity="0.8"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+                <Button Content="Refresh" 
+                        Command="{Binding RefreshCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Quick Optimize" 
+                        Command="{Binding QuickOptimizeCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Advanced Optimize" 
+                        Command="{Binding AdvancedOptimizeCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Settings" 
+                        Command="{Binding SettingsCommand}"
+                        Style="{StaticResource ModernButton}"/>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="20,0,20,20">
+            <StackPanel Spacing="20">
+                <!-- Network Overview -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Network Overview" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Network Status -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Network Status" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding NetworkStatus}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{Binding NetworkStatus, Converter={StaticResource ConnectionStatusColorConverter}}"/>
+                                <TextBlock Text="Connection status"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Download Speed -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Download Speed" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding DownloadSpeed}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                <TextBlock Text="Current download rate"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Upload Speed -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Upload Speed" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding UploadSpeed}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                <TextBlock Text="Current upload rate"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Network Stats -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="4">
+                                <TextBlock Text="{Binding NetworkStats}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding ActiveConnections, StringFormat='Active Connections: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding NetworkLoad, StringFormat='Network Load: {0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Network Analysis -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Network Analysis" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Bandwidth Usage -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Bandwidth Usage" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding BandwidthUsage}"/>
+                            </StackPanel>
+                            
+                            <!-- Connection Quality -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Connection Quality" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding ConnectionQuality}"/>
+                            </StackPanel>
+                            
+                            <!-- Network History -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="8">
+                                <TextBlock Text="Network History" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding NetworkHistory}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Network Controls -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Network Controls" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Optimization Level -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Optimization Level" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedOptimizationLevel}"
+                                          ItemsSource="{Binding OptimizationLevels}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedOptimizationLevel, StringFormat='Level: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Optimization Mode -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Optimization Mode" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedOptimizationMode}"
+                                          ItemsSource="{Binding OptimizationModes}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedOptimizationMode, StringFormat='Mode: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Optimization Presets -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Optimization Presets" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <WrapPanel Spacing="8">
+                                    <Button Content="Gaming" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Gaming"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Streaming" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Streaming"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Download" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Download"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Balanced" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Balanced"
+                                            Style="{StaticResource ModernButton}"/>
+                                </WrapPanel>
+                            </StackPanel>
+                            
+                            <!-- Optimization Options -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="8">
+                                <TextBlock Text="Optimization Options" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <WrapPanel Spacing="8">
+                                    <CheckBox Content="Enable QoS"
+                                              IsChecked="{Binding EnableQoS}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Prioritize gaming"
+                                              IsChecked="{Binding PrioritizeGaming}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Prioritize streaming"
+                                              IsChecked="{Binding PrioritizeStreaming}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Throttle background"
+                                              IsChecked="{Binding ThrottleBackground}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Auto-optimization"
+                                              IsChecked="{Binding AutoOptimization}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Network monitoring"
+                                              IsChecked="{Binding NetworkMonitoring}"
+                                              Margin="0,4"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Process Management -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="Process Management" 
+                                       FontSize="18" 
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" 
+                                        Orientation="Horizontal" 
+                                        Spacing="8">
+                                <Button Content="Add Process" 
+                                        Command="{Binding AddProcessCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                                <Button Content="Clear All" 
+                                        Command="{Binding ClearAllCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Process List -->
+                        <DataGrid ItemsSource="{Binding ProcessItems}"
+                                  SelectedItem="{Binding SelectedProcess}"
+                                  CanUserResizeColumns="True"
+                                  AutoGenerateColumns="False"
+                                  Margin="0,8">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Process Name" 
+                                                    Binding="{Binding ProcessName}" 
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="PID" 
+                                                    Binding="{Binding ProcessId}" 
+                                                    Width="80"/>
+                                <DataGridTextColumn Header="Download" 
+                                                    Binding="{Binding DownloadSpeed}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Upload" 
+                                                    Binding="{Binding UploadSpeed}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Priority" 
+                                                    Binding="{Binding Priority}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Status" 
+                                                    Binding="{Binding Status}" 
+                                                    Width="100"/>
+                                <DataGridTemplateColumn Header="Actions" Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Button Content="Prioritize" 
+                                                        Command="{Binding DataContext.PrioritizeProcessCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="60"/>
+                                                <Button Content="Throttle" 
+                                                        Command="{BindingDataContext.ThrottleProcessCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="60"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Optimization Progress -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Optimization Progress" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Current Progress -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Current Progress" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding CurrentProgress}" 
+                                            Maximum="100"
+                                            Style="{StaticResource ModernProgressBar}"/>
+                                <TextBlock Text="{Binding CurrentProgress, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Queue Progress -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Queue Progress" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding QueueProgress}" 
+                                            Maximum="100"
+                                            Style="{StaticResource ModernProgressBar}"/>
+                                <TextBlock Text="{Binding QueueProgress, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Progress Details -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
+                                <TextBlock Text="{Binding ProgressDetails}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding EstimatedTimeRemaining, StringFormat='Estimated Time: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Network History -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Network History" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Recent Optimizations -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="Recent Optimizations" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                       Text="Network Statistics" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            
+                            <ContentControl Grid.Row="1" Grid.Column="0" 
+                                            Content="{Binding RecentOptimizations}"/>
+                            <ContentControl Grid.Row="1" Grid.Column="1" 
+                                            Content="{Binding NetworkStatistics}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Advanced Settings -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Advanced Settings" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Network Options -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Network Options" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Enable QoS"
+                                          IsChecked="{Binding EnableQoS}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Auto-optimization"
+                                          IsChecked="{Binding AutoOptimization}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Network monitoring"
+                                          IsChecked="{Binding NetworkMonitoring}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Bandwidth limiting"
+                                          IsChecked="{Binding BandwidthLimiting}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- System Integration -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="System Integration" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Integrate with system"
+                                          IsChecked="{Binding IntegrateWithSystem}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable notifications"
+                                          IsChecked="{Binding EnableNotifications}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable logging"
+                                          IsChecked="{Binding EnableLogging}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable backup"
+                                          IsChecked="{Binding EnableBackup}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- Apply Button -->
+                            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Content="Apply Advanced Settings"
+                                    Command="{Binding ApplyAdvancedSettingsCommand}"
+                                    Style="{StaticResource ModernButton}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Status Bar -->
+        <Grid Grid.Row="2" Margin="20,0,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" 
+                       Text="{Binding StatusMessage}"
+                       FontSize="12" 
+                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+            
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        Spacing="16">
+                <TextBlock Text="Last Updated: " 
+                           FontSize="12" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                <TextBlock Text="{Binding LastUpdateTime, StringFormat='{0:HH:mm:ss}'}" 
+                           FontSize="12" 
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SystemTray")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a32fa92668c734c3cdf04a4c74ce98350da8c28")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b027f36480175f45d2fe26c366a6cd9a743f796")]
 [assembly: System.Reflection.AssemblyProductAttribute("SystemTray")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SystemTray")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

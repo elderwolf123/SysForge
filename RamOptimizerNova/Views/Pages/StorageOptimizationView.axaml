@@ -1,0 +1,577 @@
+<UserControl x:Class="RamOptimizerNova.Views.Pages.StorageOptimizationView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RamOptimizerNova.Views.Pages"
+             xmlns:controls="clr-namespace:RamOptimizerNova.Controls"
+             xmlns:vm="clr-namespace:RamOptimizerNova.ViewModels.Pages"
+             mc:Ignorable="d" 
+             d:DesignWidth="1200" d:DesignHeight="800"
+             x:DataType="vm:StorageOptimizationViewModel">
+    
+    <UserControl.Resources>
+        <!-- Storage Usage Color Converter -->
+        <local:StorageUsageColorConverter x:Key="StorageUsageColorConverter"/>
+        
+        <!-- File Type Color Converter -->
+        <local:FileTypeColorConverter x:Key="FileTypeColorConverter"/>
+        
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDBDBD"/>
+                    <Setter Property="Foreground" Value="#757575"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Glass Card Style -->
+        <Style x:Key="GlassCard" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF20"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF40"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Padding" Value="16"/>
+        </Style>
+        
+        <!-- File Item Style -->
+        <Style x:Key="FileItem" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF10"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF30"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Padding" Value="12"/>
+        </Style>
+        
+        <!-- Progress Bar Style -->
+        <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+        
+        <!-- ComboBox Style -->
+        <Style x:Key="ModernComboBox" TargetType="ComboBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock Text="Storage Optimization" 
+                           FontSize="28" 
+                           FontWeight="Light"
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                <TextBlock Text="Optimize storage space and manage disk usage"
+                           FontSize="14" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"
+                           Opacity="0.8"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+                <Button Content="Refresh" 
+                        Command="{Binding RefreshCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Quick Clean" 
+                        Command="{Binding QuickCleanCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Deep Clean" 
+                        Command="{Binding DeepCleanCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Settings" 
+                        Command="{Binding SettingsCommand}"
+                        Style="{StaticResource ModernButton}"/>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="20,0,20,20">
+            <StackPanel Spacing="20">
+                <!-- Storage Overview -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Storage Overview" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Total Storage -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Total Storage" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding TotalStorage}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                <TextBlock Text="Disk capacity"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Used Storage -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Used Storage" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding UsedStorage}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{Binding UsedStoragePercentage, Converter={StaticResource StorageUsageColorConverter}}"/>
+                                <TextBlock Text="{Binding UsedStoragePercentage, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Free Storage -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Free Storage" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding FreeStorage}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                <TextBlock Text="Available space"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Storage Stats -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="4">
+                                <TextBlock Text="{Binding StorageStats}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding FilesCleaned, StringFormat='Files Cleaned: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding SpaceReclaimed, StringFormat='Space Reclaimed: {0} GB'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Storage Analysis -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Storage Analysis" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- File Type Distribution -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="File Type Distribution" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding FileTypeDistribution}"/>
+                            </StackPanel>
+                            
+                            <!-- Large Files -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Large Files (>100MB)" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding LargeFiles}"/>
+                            </StackPanel>
+                            
+                            <!-- Duplicate Files -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Duplicate Files" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding DuplicateFiles}"/>
+                            </StackPanel>
+                            
+                            <!-- Temporary Files -->
+                            <StackPanel Grid.Row="1" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Temporary Files" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ContentControl Content="{Binding TemporaryFiles}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Storage Controls -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Storage Controls" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Clean Level -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Clean Level" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedCleanLevel}"
+                                          ItemsSource="{Binding CleanLevels}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedCleanLevel, StringFormat='Level: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Clean Mode -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Clean Mode" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ComboBox SelectedItem="{Binding SelectedCleanMode}"
+                                          ItemsSource="{Binding CleanModes}"
+                                          Style="{StaticResource ModernComboBox}"/>
+                                <TextBlock Text="{Binding SelectedCleanMode, StringFormat='Mode: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Clean Presets -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Clean Presets" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <WrapPanel Spacing="8">
+                                    <Button Content="Quick" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Quick"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Standard" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Standard"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Aggressive" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Aggressive"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Custom" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Custom"
+                                            Style="{StaticResource ModernButton}"/>
+                                </WrapPanel>
+                            </StackPanel>
+                            
+                            <!-- Clean Options -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="8">
+                                <TextBlock Text="Clean Options" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <WrapPanel Spacing="8">
+                                    <CheckBox Content="Clean temporary files"
+                                              IsChecked="{Binding CleanTemporaryFiles}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Clean browser cache"
+                                              IsChecked="{Binding CleanBrowserCache}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Clean download history"
+                                              IsChecked="{Binding CleanDownloadHistory}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Clean recycle bin"
+                                              IsChecked="{Binding CleanRecycleBin}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Clean system logs"
+                                              IsChecked="{Binding CleanSystemLogs}"
+                                              Margin="0,4"/>
+                                    <CheckBox Content="Clean application data"
+                                              IsChecked="{Binding CleanApplicationData}"
+                                              Margin="0,4"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- File Management -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="File Management" 
+                                       FontSize="18" 
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" 
+                                        Orientation="Horizontal" 
+                                        Spacing="8">
+                                <Button Content="Add Files" 
+                                        Command="{Binding AddFilesCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                                <Button Content="Add Folder" 
+                                        Command="{Binding AddFolderCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                                <Button Content="Clear All" 
+                                        Command="{Binding ClearAllCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- File List -->
+                        <DataGrid ItemsSource="{Binding FileItems}"
+                                  SelectedItem="{Binding SelectedFile}"
+                                  CanUserResizeColumns="True"
+                                  AutoGenerateColumns="False"
+                                  Margin="0,8">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" 
+                                                    Binding="{Binding Name}" 
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="Size" 
+                                                    Binding="{Binding Size}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Type" 
+                                                    Binding="{Binding Type}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Last Modified" 
+                                                    Binding="{Binding LastModified}" 
+                                                    Width="120"/>
+                                <DataGridTextColumn Header="Status" 
+                                                    Binding="{Binding Status}" 
+                                                    Width="100"/>
+                                <DataGridTemplateColumn Header="Actions" Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Button Content="Clean" 
+                                                        Command="{Binding DataContext.CleanFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="60"/>
+                                                <Button Content="Remove" 
+                                                        Command="{Binding DataContext.RemoveFileCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="60"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Clean Progress -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Clean Progress" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Current Progress -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Current Progress" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding CurrentProgress}" 
+                                            Maximum="100"
+                                            Style="{StaticResource ModernProgressBar}"/>
+                                <TextBlock Text="{Binding CurrentProgress, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Queue Progress -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Queue Progress" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding QueueProgress}" 
+                                            Maximum="100"
+                                            Style="{StaticResource ModernProgressBar}"/>
+                                <TextBlock Text="{Binding QueueProgress, StringFormat='{}{0:F1}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Progress Details -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Spacing="4">
+                                <TextBlock Text="{Binding ProgressDetails}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding EstimatedTimeRemaining, StringFormat='Estimated Time: {0}'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Storage History -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Storage History" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <!-- Recent Cleans -->
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="Recent Cleans" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                       Text="Storage Statistics" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            
+                            <ContentControl Grid.Row="1" Grid.Column="0" 
+                                            Content="{Binding RecentCleans}"/>
+                            <ContentControl Grid.Row="1" Grid.Column="1" 
+                                            Content="{Binding StorageStatistics}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Advanced Settings -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Advanced Settings" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Storage Options -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Storage Options" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Enable automatic cleaning"
+                                          IsChecked="{Binding EnableAutomaticCleaning}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Clean on low disk space"
+                                          IsChecked="{Binding CleanOnLowDiskSpace}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Clean scheduled tasks"
+                                          IsChecked="{Binding CleanScheduledTasks}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Clean system restore points"
+                                          IsChecked="{Binding CleanSystemRestorePoints}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- System Integration -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="System Integration" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Integrate with file explorer"
+                                          IsChecked="{Binding IntegrateWithFileExplorer}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable cleaning notifications"
+                                          IsChecked="{Binding EnableNotifications}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable cleaning logging"
+                                          IsChecked="{Binding EnableLogging}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable backup before cleaning"
+                                          IsChecked="{Binding EnableBackup}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- Apply Button -->
+                            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Content="Apply Advanced Settings"
+                                    Command="{Binding ApplyAdvancedSettingsCommand}"
+                                    Style="{StaticResource ModernButton}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Status Bar -->
+        <Grid Grid.Row="2" Margin="20,0,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" 
+                       Text="{Binding StatusMessage}"
+                       FontSize="12" 
+                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+            
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        Spacing="16">
+                <TextBlock Text="Last Updated: " 
+                           FontSize="12" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                <TextBlock Text="{Binding LastUpdateTime, StringFormat='{0:HH:mm:ss}'}" 
+                           FontSize="12" 
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

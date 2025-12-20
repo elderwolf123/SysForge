@@ -180,7 +180,11 @@ namespace RamOptimizer.HardwareControl
                     try
                     {
                         string json = File.ReadAllText(file);
-                        var profile = JsonSerializer.Deserialize<PowerProfile>(json);
+                        var profile = JsonSerializer.Deserialize<PowerProfile>(json, new JsonSerializerOptions
+                        {
+                            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                        });
                         if (profile != null)
                         {
                             profile.IsPreset = false;
@@ -225,7 +229,12 @@ namespace RamOptimizer.HardwareControl
                 string fileName = SanitizeFileName(profile.Name) + ".json";
                 string filePath = Path.Combine(_profilesPath, fileName);
 
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions 
+                { 
+                    WriteIndented = true,
+                    NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
                 string json = JsonSerializer.Serialize(profile, options);
                 File.WriteAllText(filePath, json);
 

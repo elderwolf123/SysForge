@@ -30,7 +30,9 @@ namespace RamOptimizer.Configuration
                         var options = new JsonSerializerOptions
                         {
                             ReadCommentHandling = JsonCommentHandling.Skip,
-                            AllowTrailingCommas = true
+                            AllowTrailingCommas = true,
+                            NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                         };
                         return JsonSerializer.Deserialize<Dictionary<string, object>>(json, options) ?? new Dictionary<string, object>();
                     }
@@ -134,7 +136,11 @@ namespace RamOptimizer.Configuration
                 if (value is JsonElement jsonElement)
                 {
                     var json = jsonElement.GetRawText();
-                    return JsonSerializer.Deserialize<T>(json);
+                    return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
+                    {
+                        NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    });
                 }
 
                 // Handle string to other type conversions
@@ -213,7 +219,9 @@ namespace RamOptimizer.Configuration
 
                 var options = new JsonSerializerOptions
                 {
-                    WriteIndented = true
+                    WriteIndented = true,
+                    NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 };
                 var json = JsonSerializer.Serialize(_configuration, options);
                 File.WriteAllText(_configFilePath, json);

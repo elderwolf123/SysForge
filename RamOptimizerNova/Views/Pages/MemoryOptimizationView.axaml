@@ -1,0 +1,460 @@
+<UserControl x:Class="RamOptimizerNova.Views.Pages.MemoryOptimizationView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RamOptimizerNova.Views.Pages"
+             xmlns:controls="clr-namespace:RamOptimizerNova.Controls"
+             xmlns:vm="clr-namespace:RamOptimizerNova.ViewModels.Pages"
+             mc:Ignorable="d" 
+             d:DesignWidth="1200" d:DesignHeight="800"
+             x:DataType="vm:MemoryOptimizationViewModel">
+    
+    <UserControl.Resources>
+        <!-- Memory Usage Color Converter -->
+        <local:MemoryUsageColorConverter x:Key="MemoryUsageColorConverter"/>
+        
+        <!-- Memory Usage Progress Bar Style -->
+        <Style x:Key="MemoryUsageProgressBar" TargetType="ProgressBar">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="#4CAF50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+        
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDBDBD"/>
+                    <Setter Property="Foreground" Value="#757575"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Glass Card Style -->
+        <Style x:Key="GlassCard" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF20"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF40"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Padding" Value="16"/>
+        </Style>
+        
+        <!-- Process Item Style -->
+        <Style x:Key="ProcessItem" TargetType="Border">
+            <Setter Property="Background" Value="#FFFFFF10"/>
+            <Setter Property="BorderBrush" Value="#FFFFFF30"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="Padding" Value="12"/>
+        </Style>
+        
+        <!-- Slider Style -->
+        <Style x:Key="ModernSlider" TargetType="Slider">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Background="{DynamicResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Spacing="8">
+                <TextBlock Text="Memory Optimization" 
+                           FontSize="28" 
+                           FontWeight="Light"
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                <TextBlock Text="Optimize memory usage and manage system resources"
+                           FontSize="14" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"
+                           Opacity="0.8"/>
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12">
+                <Button Content="Refresh" 
+                        Command="{Binding RefreshCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Quick Clean" 
+                        Command="{Binding QuickCleanCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Deep Clean" 
+                        Command="{Binding DeepCleanCommand}"
+                        Style="{StaticResource ModernButton}"/>
+                <Button Content="Auto Optimize" 
+                        Command="{Binding AutoOptimizeCommand}"
+                        Style="{StaticResource ModernButton}"/>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Main Content -->
+        <ScrollViewer Grid.Row="1" Margin="20,0,20,20">
+            <StackPanel Spacing="20">
+                <!-- Memory Overview Section -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Memory Overview" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Memory Usage -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Memory Usage" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding CurrentMemoryUsage}" 
+                                             Maximum="100"
+                                             Style="{StaticResource MemoryUsageProgressBar}"/>
+                                <TextBlock Text="{Binding CurrentMemoryUsage, StringFormat='{}{0:F1}%'}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{Binding CurrentMemoryUsage, Converter={StaticResource MemoryUsageColorConverter}}"/>
+                            </StackPanel>
+                            
+                            <!-- Available Memory -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Available Memory" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <TextBlock Text="{Binding AvailableMemory, StringFormat='{}{0:F1} GB'}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+                                <TextBlock Text="Total Memory"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Page File -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Page File Usage" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <ProgressBar Value="{Binding PageFileUsage}" 
+                                             Maximum="100"
+                                             Style="{StaticResource MemoryUsageProgressBar}"/>
+                                <TextBlock Text="{Binding PageFileUsage, StringFormat='{}{0:F1}%'}"
+                                           FontSize="24" 
+                                           FontWeight="Light"
+                                           Foreground="{Binding PageFileUsage, Converter={StaticResource MemoryUsageColorConverter}}"/>
+                            </StackPanel>
+                            
+                            <!-- Memory Info -->
+                            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Spacing="4">
+                                <TextBlock Text="{Binding MemoryInfo}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"
+                                           TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding MemorySpeed, StringFormat='Memory Speed: {0} MHz'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Optimization Controls -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Optimization Controls" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="Auto,Auto,Auto">
+                            <!-- Memory Cleaner -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Memory Cleaner" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <Slider Value="{Binding MemoryCleanerLevel}" 
+                                        Minimum="0" 
+                                        Maximum="100"
+                                        TickFrequency="10"
+                                        IsSnapToTickEnabled="True"
+                                        Style="{StaticResource ModernSlider}"/>
+                                <TextBlock Text="{Binding MemoryCleanerLevel, StringFormat='Level: {0}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Cache Cleaner -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="Cache Cleaner" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <Slider Value="{Binding CacheCleanerLevel}" 
+                                        Minimum="0" 
+                                        Maximum="100"
+                                        TickFrequency="10"
+                                        IsSnapToTickEnabled="True"
+                                        Style="{StaticResource ModernSlider}"/>
+                                <TextBlock Text="{Binding CacheCleanerLevel, StringFormat='Level: {0}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Standby List -->
+                            <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
+                                <TextBlock Text="Standby List" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <Slider Value="{Binding StandbyListLevel}" 
+                                        Minimum="0" 
+                                        Maximum="100"
+                                        TickFrequency="10"
+                                        IsSnapToTickEnabled="True"
+                                        Style="{StaticResource ModernSlider}"/>
+                                <TextBlock Text="{Binding StandbyListLevel, StringFormat='Level: {0}%'}"
+                                           FontSize="12" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            </StackPanel>
+                            
+                            <!-- Apply Button -->
+                            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+                                    Content="Apply Settings"
+                                    Command="{Binding ApplySettingsCommand}"
+                                    Style="{StaticResource ModernButton}"/>
+                            
+                            <!-- Optimization Presets -->
+                            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Spacing="8">
+                                <TextBlock Text="Optimization Presets" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <WrapPanel Spacing="8">
+                                    <Button Content="Aggressive" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Aggressive"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Balanced" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Balanced"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Conservative" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Conservative"
+                                            Style="{StaticResource ModernButton}"/>
+                                    <Button Content="Custom" 
+                                            Command="{Binding ApplyPresetCommand}"
+                                            CommandParameter="Custom"
+                                            Style="{StaticResource ModernButton}"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Process Management -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto">
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="Process Management" 
+                                       FontSize="18" 
+                                       FontWeight="Medium"
+                                       Foreground="{DynamicResource PrimaryTextBrush}"/>
+                            <StackPanel Grid.Row="0" Grid.Column="1" 
+                                        Orientation="Horizontal" 
+                                        Spacing="8">
+                                <Button Content="Add Process" 
+                                        Command="{Binding AddProcessCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                                <Button Content="Remove Selected" 
+                                        Command="{Binding RemoveSelectedCommand}"
+                                        Style="{StaticResource ModernButton}"/>
+                            </StackPanel>
+                        </Grid>
+                        
+                        <!-- Process List -->
+                        <DataGrid ItemsSource="{Binding ProcessItems}"
+                                  SelectedItem="{Binding SelectedProcess}"
+                                  CanUserResizeColumns="True"
+                                  AutoGenerateColumns="False"
+                                  Margin="0,8">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Name" 
+                                                    Binding="{Binding Name}" 
+                                                    Width="2*"/>
+                                <DataGridTextColumn Header="PID" 
+                                                    Binding="{Binding Id}" 
+                                                    Width="80"/>
+                                <DataGridTextColumn Header="Memory %" 
+                                                    Binding="{Binding MemoryUsage}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Memory (MB)" 
+                                                    Binding="{Binding MemoryUsageMB}" 
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Handles" 
+                                                    Binding="{Binding Handles}" 
+                                                    Width="80"/>
+                                <DataGridTextColumn Header="Status" 
+                                                    Binding="{Binding Status}" 
+                                                    Width="100"/>
+                                <DataGridTemplateColumn Header="Actions" Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Button Content="Freeze" 
+                                                        Command="{Binding DataContext.FreezeProcessCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="50"/>
+                                                <Button Content="Terminate" 
+                                                        Command="{BindingDataContext.TerminateProcessCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}"
+                                                        Style="{StaticResource ModernButton}"
+                                                        Width="50"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Memory Analysis -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Memory Analysis" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,*">
+                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                       Text="Memory Usage Distribution" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                       Text="Memory History" 
+                                       FontSize="14" 
+                                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+                            
+                            <ContentControl Grid.Row="1" Grid.Column="0" 
+                                            Content="{Binding MemoryDistributionChart}"/>
+                            <ContentControl Grid.Row="1" Grid.Column="1" 
+                                            Content="{Binding MemoryHistoryChart}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Advanced Settings -->
+                <Border Style="{StaticResource GlassCard}">
+                    <StackPanel Spacing="16">
+                        <TextBlock Text="Advanced Settings" 
+                                   FontSize="18" 
+                                   FontWeight="Medium"
+                                   Foreground="{DynamicResource PrimaryTextBrush}"/>
+                        
+                        <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto,Auto">
+                            <!-- Memory Management -->
+                            <StackPanel Grid.Row="0" Grid.Column="0" Spacing="8">
+                                <TextBlock Text="Memory Management" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Enable Memory Compression"
+                                          IsChecked="{Binding EnableMemoryCompression}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable Standby List Trimming"
+                                          IsChecked="{Binding EnableStandbyListTrimming}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable Working Set Optimization"
+                                          IsChecked="{Binding EnableWorkingSetOptimization}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- System Settings -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Spacing="8">
+                                <TextBlock Text="System Settings" 
+                                           FontSize="14" 
+                                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                                <CheckBox Content="Enable SuperFetch"
+                                          IsChecked="{Binding EnableSuperFetch}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable Prefetch"
+                                          IsChecked="{Binding EnablePrefetch}"
+                                          Margin="0,4"/>
+                                <CheckBox Content="Enable Memory Management Optimization"
+                                          IsChecked="{Binding EnableMemoryManagementOptimization}"
+                                          Margin="0,4"/>
+                            </StackPanel>
+                            
+                            <!-- Apply Button -->
+                            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Content="Apply Advanced Settings"
+                                    Command="{Binding ApplyAdvancedSettingsCommand}"
+                                    Style="{StaticResource ModernButton}"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Status Bar -->
+        <Grid Grid.Row="2" Margin="20,0,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Column="0" 
+                       Text="{Binding StatusMessage}"
+                       FontSize="12" 
+                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+            
+            <StackPanel Grid.Column="1" 
+                        Orientation="Horizontal" 
+                        Spacing="16">
+                <TextBlock Text="Last Updated: " 
+                           FontSize="12" 
+                           Foreground="{DynamicResource SecondaryTextBrush}"/>
+                <TextBlock Text="{Binding LastUpdateTime, StringFormat='{0:HH:mm:ss}'}" 
+                           FontSize="12" 
+                           Foreground="{DynamicResource PrimaryTextBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
