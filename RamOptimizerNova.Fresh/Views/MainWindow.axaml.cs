@@ -269,6 +269,48 @@ public partial class MainWindow : Window
 
     private void UpdateMetrics()
     {
+        var cpu = _metricsService.GetCpuUsage();
+        var memory = _metricsService.GetMemoryUsage();
+        var storage = _metricsService.GetStorageInfo();
+        
+        if (_cpuText != null) _cpuText.Text = cpu.ToString("F0");
+        if (_cpuPercentText != null) _cpuPercentText.Text = $"{cpu:F0}%";
+        
+        // GPU placeholder (we don't have real GPU service yet)
+        if (_gpuText != null) _gpuText.Text = "35";
+        if (_gpuPercentText != null) _gpuPercentText.Text = "35%";
+        
+        if (_memoryText != null) _memoryText.Text = memory.usedGB.ToString("F1");
+        if (_memoryPercentText != null) _memoryPercentText.Text = $"{memory.percentUsed:F0}%";
+        
+        if (_storageText != null) _storageText.Text = storage.freeGB.ToString("F0");
+        if (_storagePercentText != null) _storagePercentText.Text = $"{storage.percentUsed:F0}%";
+    }
+
+    private long GetDirectorySize(string path)
+    {
+        try
+        {
+            var dirInfo = new DirectoryInfo(path);
+            return dirInfo.EnumerateFiles("*", SearchOption.AllDirectories)
+                .Sum(file => file.Length);
         }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    private string FormatBytes(long bytes)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+        double len = bytes;
+        int order = 0;
+        while (len >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            len /= 1024;
+        }
+        return $"{len:0.##} {sizes[order]}";
     }
 }
