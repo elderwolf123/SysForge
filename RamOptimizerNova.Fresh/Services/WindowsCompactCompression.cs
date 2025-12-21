@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -37,6 +38,16 @@ namespace RamOptimizerNova.Services;
     }
 
     /// <summary>
+    /// Progress information for compression operations
+    /// </summary>
+    public class CompactProgress
+    {
+        public long FilesProcessed { get; set; }
+        public string CurrentFile { get; set; } = "";
+        public double ElapsedSeconds { get; set; }
+    }
+
+    /// <summary>
     /// Windows Compact transparent compression integration
     /// Uses built-in Windows compression for transparent, instant-access compression
     /// </summary>
@@ -57,7 +68,8 @@ namespace RamOptimizerNova.Services;
         public async Task<CompactResult> CompressAsync(
             string path,
             CompactAlgorithm algorithm = CompactAlgorithm.LZX,
-            bool recursive = true)
+            bool recursive = true,
+            IProgress<CompactProgress>? progress = null)
         {
             if (!File.Exists(path) && !Directory.Exists(path))
             {
@@ -68,6 +80,9 @@ namespace RamOptimizerNova.Services;
             _logger?.LogInformation($"Algorithm: {algorithm}");
 
             var stopwatch = Stopwatch.StartNew();
+            var outputLines = new List<string>();
+            long filesProcessed = 0;
+            var startTime = DateTime.Now;
 
             try
             {
@@ -113,19 +128,58 @@ namespace RamOptimizerNova.Services;
                     throw new InvalidOperationException("Failed to start compact.exe");
                 }
 
-                string output = await process.StandardOutput.ReadToEndAsync();
+                // Read output line by line for real-time progress
+                string? line;
+                while ((line = await process.StandardOutput.ReadLineAsync()) != null)
+                {
+                    outputLines.Add(line);
+                    
+                    // Check if this line indicates a file being compressed
+                    // Format: "  [size ratio]  filename"
+                    // Or: "Compressing files in [directory]"
+                    if (line.Contains("Compressing files in"))
+                    {
+                        filesProcessed++;
+                        
+                        // Report progress every file (or fewer for huge folders)
+                        if (progress != null && filesProcessed % 10 == 0)
+                        {
+                            var elapsed = (DateTime.Now - startTime).TotalSeconds;
+                            progress.Report(new CompactProgress
+                            {
+                                FilesProcessed = filesProcessed,
+                                CurrentFile = line.Trim(),
+                                ElapsedSeconds = elapsed
+                            });
+                        }
+                    }
+                }
+
             string error = await process.StandardError.ReadToEndAsync();
             await process.WaitForExitAsync();
 
             stopwatch.Stop();
             
+            // Final progress report
+            if (progress != null)
+            {
+                progress.Report(new CompactProgress
+                {
+                    FilesProcessed = filesProcessed,
+                    CurrentFile = "Complete",
+                    ElapsedSeconds = stopwatch.Elapsed.TotalSeconds
+                });
+            }
+            
+            string output = string.Join("\n", outputLines);
+            
             // Log compact.exe output for debugging
             _fileLogger.Log($"[COMPACT] Exit code: {process.ExitCode}");
             _fileLogger.Log($"[COMPACT] Duration: {stopwatch.Elapsed.TotalSeconds:F2}s");
             _fileLogger.Log($"[COMPACT] STDOUT ({output.Length} chars):");
-            foreach (var line in output.Split('\n').Take(20))
+            foreach (var l in outputLines.Take(20))
             {
-                _fileLogger.Log($"  {line.TrimEnd()}");
+                _fileLogger.Log($"  {l.TrimEnd()}");
             }
             if (!string.IsNullOrEmpty(error))
             {

@@ -290,26 +290,26 @@ public partial class MainWindow : Window
         {
             _logger.Log("=== Compress_Click triggered ===");
             
-            if (string.IsNullOrEmpty(_selectedPath))
+            string? pathToCompress = _selectedPath ?? _selectedProgram?.InstallPath;
+            
+            if (string.IsNullOrEmpty(pathToCompress))
             {
                 _logger.Log("⚠ No path selected");
+                UpdateStatusText("❌ Please select a folder or program first");
                 return;
             }
             
-            _logger.Log($"Compressing: {_selectedPath}");
+            _logger.Log($"Compressing: {pathToCompress}");
             
             var compressButton = this.FindControl<Button>("CompressButton");
-            var statusText = this.FindControl<TextBlock>("StatusText");
-            var progressBar = this.FindControl<ProgressBar>("CompressionProgress");
-            var resultsText = this.FindControl<TextBlock>("ResultsText");
             var algorithmCombo = this.FindControl<ComboBox>("AlgorithmComboBox");
             
             if (compressButton != null)
                 compressButton.IsEnabled = false;
-            if (statusText != null)
-                statusText.Text = "Compressing...";
-            if (progressBar != null)
-                progressBar.Value = 50;
+           
+            // Reset progress
+            UpdateProgress(0, "Starting compression...");
+            UpdateStatusText("Compressing...");
             
             var algorithm = algorithmCombo?.SelectedIndex switch
             {
@@ -322,7 +322,28 @@ public partial class MainWindow : Window
             _logger.Log($"Using algorithm: {algorithm}");
             _logger.Log("Starting compression...");
             
-            var result = await _compressor.CompressAsync(_selectedPath, algorithm);
+            // Create progress reporter with ETA calculation
+            var startTime = DateTime.Now;
+            var progress = new Progress<CompactProgress>(p =>
+            {
+                if (p.FilesProcessed > 0)
+                {
+                    // Calculate rough ETA
+                    // We don't know total files ahead of time, so we'll estimate based on rate
+                    var filesPerSecond = p.FilesProcessed / p.ElapsedSeconds;
+                    var eta = filesPerSecond > 0 ? $"~{filesPerSecond:F0} dirs/sec" : "calculating...";
+                    
+                    // Update progress bar (can't calculate exact % without knowing total, so use activity indicator)
+                    var percent = Math.Min(95, (int)(p.FilesProcessed / 10)); // Rough progress
+                    
+                    UpdateProgress(percent, $"Compressing: {p.FilesProcessed} directories processed... ({eta})");
+                }
+            });
+            
+            var result = await _compressor.CompressAsync(pathToCompress, algorithm, true, progress);
+            
+            // Set to 100% when complete
+            UpdateProgress(100, "Compression complete!");
             
             _logger.Log($"Compression result - Success: {result.Success}");
             if (result.Success)
@@ -332,36 +353,26 @@ public partial class MainWindow : Window
                 _logger.Log($"✓ Compressed: {FormatBytes(result.CompressedSize)}");
                 _logger.Log($"✓ Saved: {FormatBytes(result.OriginalSize - result.CompressedSize)} ({result.SpaceSaved:P1})");
                 
-                if (statusText != null)
-                    statusText.Text = "✅ Compression complete!";
-                if (resultsText != null)
-                    resultsText.Text = $"Compressed {result.CompressedFiles} files\nSpace saved: {FormatBytes(result.OriginalSize - result.CompressedSize)} ({result.SpaceSaved:P1})";
+                UpdateStatusText($"✅ Compressed {result.CompressedFiles:N0} files - Saved {FormatBytes(result.OriginalSize - result.CompressedSize)} ({result.SpaceSaved:P1})");
             }
             else
             {
                 _logger.Log($"❌ Compression failed: {result.Error}");
-                if (statusText != null)
-                    statusText.Text = "❌ Compression failed";
-                if (resultsText != null)
-                    resultsText.Text = result.Error;
+                UpdateStatusText($"❌ Compression failed: {result.Error}");
             }
             
-            if (progressBar != null)
-                progressBar.Value = 100;
-                
             _logger.Log("=== Compression complete ===");
+            
+            // Reset progress after delay
+            await Task.Delay(3000);
+            UpdateProgress(0, "Ready");
         }
         catch (Exception ex)
         {
             _logger.Log($"❌ ERROR in Compress_Click: {ex.Message}");
             _logger.Log($"Stack trace: {ex.StackTrace}");
             
-            var statusText = this.FindControl<TextBlock>("StatusText");
-            var resultsText = this.FindControl<TextBlock>("ResultsText");
-            if (statusText != null)
-                statusText.Text = "❌ Compression error";
-            if (resultsText != null)
-                resultsText.Text = ex.Message;
+            UpdateStatusText($"❌ Compression error: {ex.Message}");
         }
         finally
         {
