@@ -15,6 +15,7 @@ public partial class MainWindow : Window
     private readonly WindowsCompactCompression _compressor;
     private readonly ProgramScanner _scanner;
     private readonly DispatcherTimer _timer;
+    private readonly FileLogger _logger = FileLogger.Instance;
     
     private string? _selectedPath;
     private InstalledProgram? _selectedProgram;
@@ -31,35 +32,35 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine("=== MainWindow Initializing ===");
+            _logger.Log("=== MainWindow Initializing ===");
             InitializeComponent();
             
-            Console.WriteLine("Creating services...");
+            _logger.Log("Creating services...");
             _metricsService = new SystemMetricsService();
             _compressor = new WindowsCompactCompression();
             _scanner = new ProgramScanner();
             
-            Console.WriteLine("Finding UI elements...");
+            _logger.Log("Finding UI elements...");
             FindUIElements();
             
-            Console.WriteLine("Setting up metrics timer...");
+            _logger.Log("Setting up metrics timer...");
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
             _timer.Tick += Timer_Tick;
             _timer.Start();
             
-            Console.WriteLine("Initial metrics update...");
+            _logger.Log("Initial metrics update...");
             UpdateMetrics();
             UpdateAllDrives();
             
-            Console.WriteLine("Wiring compression UI...");
+            _logger.Log("Wiring compression UI...");
             WireCompressionUI();
             
-            Console.WriteLine("=== MainWindow Initialized Successfully ===");
+            _logger.Log("=== MainWindow Initialized Successfully ===");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ CRITICAL ERROR in MainWindow constructor: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            _logger.Log($"❌ CRITICAL ERROR in MainWindow constructor: {ex.Message}");
+            _logger.Log($"Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -74,11 +75,11 @@ public partial class MainWindow : Window
             _gpuPercentText = this.FindControl<TextBlock>("GpuPercentText");
             _memoryPercentText = this.FindControl<TextBlock>("MemoryPercentText");
             
-            Console.WriteLine($"✓ Found UI elements - CPU: {_cpuText != null}, GPU: {_gpuText != null}, Memory: {_memoryText != null}");
+            _logger.Log($"✓ Found UI elements - CPU: {_cpuText != null}, GPU: {_gpuText != null}, Memory: {_memoryText != null}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Error finding UI elements: {ex.Message}");
+            _logger.Log($"❌ Error finding UI elements: {ex.Message}");
         }
     }
 
@@ -86,7 +87,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine("Wiring compression buttons...");
+            _logger.Log("Wiring compression buttons...");
             
             var fileModeRadio = this.FindControl<RadioButton>("FileModeRadio");
             var programModeRadio = this.FindControl<RadioButton>("ProgramModeRadio");
@@ -98,45 +99,45 @@ public partial class MainWindow : Window
             if (fileModeRadio != null)
             {
                 fileModeRadio.Checked += (s, e) => SwitchMode(true);
-                Console.WriteLine("✓ FileModeRadio wired");
+                _logger.Log("✓ FileModeRadio wired");
             }
             
             if (programModeRadio != null)
             {
                 programModeRadio.Checked += (s, e) => SwitchMode(false);
-                Console.WriteLine("✓ ProgramModeRadio wired");
+                _logger.Log("✓ ProgramModeRadio wired");
             }
             
             if (selectFolderButton != null)
             {
                 selectFolderButton.Click += SelectFolder_Click;
-                Console.WriteLine("✓ SelectFolderButton wired");
+                _logger.Log("✓ SelectFolderButton wired");
             }
             
             if (scanProgramsButton != null)
             {
                 scanProgramsButton.Click += ScanPrograms_Click;
-                Console.WriteLine("✓ ScanProgramsButton wired");
+                _logger.Log("✓ ScanProgramsButton wired");
             }
             
             if (compressButton != null)
             {
                 compressButton.Click += Compress_Click;
-                Console.WriteLine("✓ CompressButton wired");
+                _logger.Log("✓ CompressButton wired");
             }
             
             if (decompressButton != null)
             {
                 decompressButton.Click += Decompress_Click;
-                Console.WriteLine("✓ DecompressButton wired");
+                _logger.Log("✓ DecompressButton wired");
             }
             
-            Console.WriteLine("=== All compression handlers wired successfully ===");
+            _logger.Log("=== All compression handlers wired successfully ===");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Error wiring compression UI: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            _logger.Log($"❌ Error wiring compression UI: {ex.Message}");
+            _logger.Log($"Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -144,7 +145,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine($"Switching mode to: {(fileMode ? "File" : "Program")}");
+            _logger.Log($"Switching mode to: {(fileMode ? "File" : "Program")}");
             
             var fileModePanel = this.FindControl<StackPanel>("FileModePanel");
             var programModePanel = this.FindControl<StackPanel>("ProgramModePanel");
@@ -154,11 +155,11 @@ public partial class MainWindow : Window
             if (programModePanel != null)
                 programModePanel.IsVisible = !fileMode;
                 
-            Console.WriteLine($"✓ Mode switched successfully");
+            _logger.Log($"✓ Mode switched successfully");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Error switching mode: {ex.Message}");
+            _logger.Log($"❌ Error switching mode: {ex.Message}");
         }
     }
 
@@ -166,40 +167,40 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine("=== SelectFolder_Click triggered ===");
+            _logger.Log("=== SelectFolder_Click triggered ===");
             
             var dialog = new OpenFolderDialog
             {
                 Title = "Select Folder to Compress"
             };
             
-            Console.WriteLine("Opening folder dialog...");
+            _logger.Log("Opening folder dialog...");
             var result = await dialog.ShowAsync(this);
             
             if (!string.IsNullOrEmpty(result))
             {
-                Console.WriteLine($"✓ Folder selected: {result}");
+                _logger.Log($"✓ Folder selected: {result}");
                 _selectedPath = result;
                 
                 var selectedPathText = this.FindControl<TextBlock>("SelectedPathText");
                 if (selectedPathText != null)
                 {
-                    Console.WriteLine("Calculating folder size...");
+                    _logger.Log("Calculating folder size...");
                     var size = GetDirectorySize(result);
-                    Console.WriteLine($"✓ Folder size: {FormatBytes(size)}");
+                    _logger.Log($"✓ Folder size: {FormatBytes(size)}");
                     
                     selectedPathText.Text = $"Selected: {result}\nSize: {FormatBytes(size)}";
                 }
             }
             else
             {
-                Console.WriteLine("⚠ No folder selected (user cancelled)");
+                _logger.Log("⚠ No folder selected (user cancelled)");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ ERROR in SelectFolder_Click: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            _logger.Log($"❌ ERROR in SelectFolder_Click: {ex.Message}");
+            _logger.Log($"Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -207,7 +208,7 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine("=== ScanPrograms_Click triggered ===");
+            _logger.Log("=== ScanPrograms_Click triggered ===");
             
             var statusText = this.FindControl<TextBlock>("StatusText");
             var scanButton = this.FindControl<Button>("ScanProgramsButton");
@@ -218,9 +219,9 @@ public partial class MainWindow : Window
             if (scanButton != null)
                 scanButton.IsEnabled = false;
             
-            Console.WriteLine("Starting program scan...");
+            _logger.Log("Starting program scan...");
             var programs = await _scanner.ScanInstalledProgramsAsync();
-            Console.WriteLine($"✓ Found {programs.Count} programs");
+            _logger.Log($"✓ Found {programs.Count} programs");
             
             if (programListBox != null)
             {
@@ -236,7 +237,7 @@ public partial class MainWindow : Window
                     programListBox.Items.Add(item);
                     count++;
                 }
-                Console.WriteLine($"✓ Added {count} programs to list");
+                _logger.Log($"✓ Added {count} programs to list");
                 
                 programListBox.SelectionChanged += (s, e) =>
                 {
@@ -244,7 +245,7 @@ public partial class MainWindow : Window
                     {
                         _selectedProgram = selected.Tag as InstalledProgram;
                         _selectedPath = _selectedProgram?.InstallPath;
-                        Console.WriteLine($"✓ Program selected: {_selectedProgram?.Name}");
+                        _logger.Log($"✓ Program selected: {_selectedProgram?.Name}");
                     }
                 };
             }
@@ -254,12 +255,12 @@ public partial class MainWindow : Window
             if (scanButton != null)
                 scanButton.IsEnabled = true;
                 
-            Console.WriteLine("=== Program scan complete ===");
+            _logger.Log("=== Program scan complete ===");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ ERROR in ScanPrograms_Click: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            _logger.Log($"❌ ERROR in ScanPrograms_Click: {ex.Message}");
+            _logger.Log($"Stack trace: {ex.StackTrace}");
             
             var statusText = this.FindControl<TextBlock>("StatusText");
             if (statusText != null)
@@ -277,15 +278,15 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine("=== Compress_Click triggered ===");
+            _logger.Log("=== Compress_Click triggered ===");
             
             if (string.IsNullOrEmpty(_selectedPath))
             {
-                Console.WriteLine("⚠ No path selected");
+                _logger.Log("⚠ No path selected");
                 return;
             }
             
-            Console.WriteLine($"Compressing: {_selectedPath}");
+            _logger.Log($"Compressing: {_selectedPath}");
             
             var compressButton = this.FindControl<Button>("CompressButton");
             var statusText = this.FindControl<TextBlock>("StatusText");
@@ -308,18 +309,18 @@ public partial class MainWindow : Window
                 _ => CompactAlgorithm.LZX
             };
             
-            Console.WriteLine($"Using algorithm: {algorithm}");
-            Console.WriteLine("Starting compression...");
+            _logger.Log($"Using algorithm: {algorithm}");
+            _logger.Log("Starting compression...");
             
             var result = await _compressor.CompressAsync(_selectedPath, algorithm);
             
-            Console.WriteLine($"Compression result - Success: {result.Success}");
+            _logger.Log($"Compression result - Success: {result.Success}");
             if (result.Success)
             {
-                Console.WriteLine($"✓ Compressed {result.CompressedFiles} files");
-                Console.WriteLine($"✓ Original: {FormatBytes(result.OriginalSize)}");
-                Console.WriteLine($"✓ Compressed: {FormatBytes(result.CompressedSize)}");
-                Console.WriteLine($"✓ Saved: {FormatBytes(result.OriginalSize - result.CompressedSize)} ({result.SpaceSaved:P1})");
+                _logger.Log($"✓ Compressed {result.CompressedFiles} files");
+                _logger.Log($"✓ Original: {FormatBytes(result.OriginalSize)}");
+                _logger.Log($"✓ Compressed: {FormatBytes(result.CompressedSize)}");
+                _logger.Log($"✓ Saved: {FormatBytes(result.OriginalSize - result.CompressedSize)} ({result.SpaceSaved:P1})");
                 
                 if (statusText != null)
                     statusText.Text = "✅ Compression complete!";
@@ -328,7 +329,7 @@ public partial class MainWindow : Window
             }
             else
             {
-                Console.WriteLine($"❌ Compression failed: {result.Error}");
+                _logger.Log($"❌ Compression failed: {result.Error}");
                 if (statusText != null)
                     statusText.Text = "❌ Compression failed";
                 if (resultsText != null)
@@ -338,12 +339,12 @@ public partial class MainWindow : Window
             if (progressBar != null)
                 progressBar.Value = 100;
                 
-            Console.WriteLine("=== Compression complete ===");
+            _logger.Log("=== Compression complete ===");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ ERROR in Compress_Click: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            _logger.Log($"❌ ERROR in Compress_Click: {ex.Message}");
+            _logger.Log($"Stack trace: {ex.StackTrace}");
             
             var statusText = this.FindControl<TextBlock>("StatusText");
             var resultsText = this.FindControl<TextBlock>("ResultsText");
@@ -364,15 +365,15 @@ public partial class MainWindow : Window
     {
         try
         {
-            Console.WriteLine("=== Decompress_Click triggered ===");
+            _logger.Log("=== Decompress_Click triggered ===");
             
             if (string.IsNullOrEmpty(_selectedPath))
             {
-                Console.WriteLine("⚠ No path selected");
+                _logger.Log("⚠ No path selected");
                 return;
             }
             
-            Console.WriteLine($"Decompressing: {_selectedPath}");
+            _logger.Log($"Decompressing: {_selectedPath}");
             
             var decompressButton = this.FindControl<Button>("DecompressButton");
             var statusText = this.FindControl<TextBlock>("StatusText");
@@ -386,13 +387,13 @@ public partial class MainWindow : Window
             if (progressBar != null)
                 progressBar.Value = 50;
             
-            Console.WriteLine("Starting decompression...");
+            _logger.Log("Starting decompression...");
             var result = await _compressor.DecompressAsync(_selectedPath);
             
-            Console.WriteLine($"Decompression result - Success: {result.Success}");
+            _logger.Log($"Decompression result - Success: {result.Success}");
             if (result.Success)
             {
-                Console.WriteLine($"✓ Decompressed {result.TotalFiles} files");
+                _logger.Log($"✓ Decompressed {result.TotalFiles} files");
                 
                 if (statusText != null)
                     statusText.Text = "✅ Decompression complete!";
@@ -401,7 +402,7 @@ public partial class MainWindow : Window
             }
             else
             {
-                Console.WriteLine($"❌ Decompression failed: {result.Error}");
+                _logger.Log($"❌ Decompression failed: {result.Error}");
                 if (statusText != null)
                     statusText.Text = "❌ Decompression failed";
                 if (resultsText != null)
@@ -411,12 +412,12 @@ public partial class MainWindow : Window
             if (progressBar != null)
                 progressBar.Value = 100;
                 
-            Console.WriteLine("=== Decompression complete ===");
+            _logger.Log("=== Decompression complete ===");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ ERROR in Decompress_Click: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
+            _logger.Log($"❌ ERROR in Decompress_Click: {ex.Message}");
+            _logger.Log($"Stack trace: {ex.StackTrace}");
             
             var statusText = this.FindControl<TextBlock>("StatusText");
             var resultsText = this.FindControl<TextBlock>("ResultsText");
@@ -458,7 +459,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Error updating metrics: {ex.Message}");
+            _logger.Log($"❌ Error updating metrics: {ex.Message}");
         }
     }
 
@@ -474,15 +475,15 @@ public partial class MainWindow : Window
                 .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
                 .ToList();
             
-            Console.WriteLine($"Found {drives.Count} drives:");
+            _logger.Log($"Found {drives.Count} drives:");
             foreach (var d in drives)
             {
-                Console.WriteLine($"  {d.Name} ({d.VolumeLabel}) - {FormatBytes(d.AvailableFreeSpace)} free of {FormatBytes(d.TotalSize)}");
+                _logger.Log($"  {d.Name} ({d.VolumeLabel}) - {FormatBytes(d.AvailableFreeSpace)} free of {FormatBytes(d.TotalSize)}");
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Error updating drives: {ex.Message}");
+            _logger.Log($"❌ Error updating drives: {ex.Message}");
         }
     }
 
@@ -496,7 +497,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"⚠ Error getting directory size for {path}: {ex.Message}");
+            _logger.Log($"⚠ Error getting directory size for {path}: {ex.Message}");
             return 0;
         }
     }
