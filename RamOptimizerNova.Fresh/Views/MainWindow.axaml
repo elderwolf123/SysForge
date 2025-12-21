@@ -12,10 +12,6 @@
         Background="{DynamicResource SpaceDark}"
         WindowStartupLocation="CenterScreen">
 
-    <Design.DataContext>
-        <vm:DashboardViewModel/>
-    </Design.DataContext>
-
     <ScrollViewer>
         <StackPanel Margin="40" Spacing="32">
             
@@ -58,7 +54,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding CpuUsage, StringFormat='{}{0:F0}'}" 
+                            <TextBlock x:Name="CpuText" Text="--" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -73,7 +69,7 @@
                                    Background="{DynamicResource PurpleGradient}"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="{Binding CpuUsage, StringFormat='{}{0:F0}% utilized'}" 
+                        <TextBlock x:Name="CpuPercentText" Text="--% utilized" 
                                   FontSize="11" 
                                   Foreground="{DynamicResource NebulaPurple}"/>
                     </StackPanel>
