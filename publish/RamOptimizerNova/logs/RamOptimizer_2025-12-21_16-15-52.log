@@ -1,0 +1,844 @@
+[2025-12-21 16:15:52.834] === RamOptimizer Nova - Session Started ===
+[2025-12-21 16:15:52.843] Log file: C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\publish\RamOptimizerNova\logs\RamOptimizer_2025-12-21_16-15-52.log
+[2025-12-21 16:15:53.190] === MainWindow Initializing ===
+[2025-12-21 16:15:53.861] Creating services...
+[2025-12-21 16:16:02.584] Finding UI elements...
+[2025-12-21 16:16:02.585] ✓ Found UI elements - CPU: True, GPU: True, Memory: True
+[2025-12-21 16:16:02.585] Setting up metrics timer...
+[2025-12-21 16:16:02.586] Initial metrics update...
+[2025-12-21 16:16:02.640] Found 2 drives:
+[2025-12-21 16:16:02.645]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:02.646]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:02.646] Wiring compression UI...
+[2025-12-21 16:16:02.647] Wiring compression buttons...
+[2025-12-21 16:16:02.648] ✓ FileModeRadio wired
+[2025-12-21 16:16:02.648] ✓ ProgramModeRadio wired
+[2025-12-21 16:16:02.649] ✓ SelectFolderButton wired
+[2025-12-21 16:16:02.649] ✓ ScanProgramsButton wired
+[2025-12-21 16:16:02.649] ✓ CompressButton wired
+[2025-12-21 16:16:02.649] ✓ DecompressButton wired
+[2025-12-21 16:16:02.649] === All compression handlers wired successfully ===
+[2025-12-21 16:16:02.649] === MainWindow Initialized Successfully ===
+[2025-12-21 16:16:04.596] Found 2 drives:
+[2025-12-21 16:16:04.597]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:04.597]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:06.609] Found 2 drives:
+[2025-12-21 16:16:06.609]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:06.609]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:08.600] Switching mode to: Program
+[2025-12-21 16:16:08.601] ✓ Mode switched successfully
+[2025-12-21 16:16:08.621] Found 2 drives:
+[2025-12-21 16:16:08.622]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:08.622]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:09.626] === ScanPrograms_Click triggered ===
+[2025-12-21 16:16:09.629] Starting program scan...
+[2025-12-21 16:16:10.626] Found 2 drives:
+[2025-12-21 16:16:10.627]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:10.627]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:12.640] Found 2 drives:
+[2025-12-21 16:16:12.640]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:12.640]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:14.644] Found 2 drives:
+[2025-12-21 16:16:14.644]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:14.644]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:16.657] Found 2 drives:
+[2025-12-21 16:16:16.658]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:16.658]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:18.673] Found 2 drives:
+[2025-12-21 16:16:18.674]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:18.674]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:20.688] Found 2 drives:
+[2025-12-21 16:16:20.688]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:20.688]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:22.691] Found 2 drives:
+[2025-12-21 16:16:22.691]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:22.691]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:24.704] Found 2 drives:
+[2025-12-21 16:16:24.704]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:24.704]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:26.722] Found 2 drives:
+[2025-12-21 16:16:26.722]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:26.723]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:28.734] Found 2 drives:
+[2025-12-21 16:16:28.734]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:28.734]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:30.749] Found 2 drives:
+[2025-12-21 16:16:30.750]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:30.750]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:32.754] Found 2 drives:
+[2025-12-21 16:16:32.754]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:32.755]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:34.772] Found 2 drives:
+[2025-12-21 16:16:34.773]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:34.773]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:36.780] Found 2 drives:
+[2025-12-21 16:16:36.781]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:36.781]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:38.786] Found 2 drives:
+[2025-12-21 16:16:38.787]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:38.787]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:38.945] ✓ Found 168 programs
+[2025-12-21 16:16:38.950] ✓ Added 50 programs to list
+[2025-12-21 16:16:38.951] === Program scan complete ===
+[2025-12-21 16:16:40.796] Found 2 drives:
+[2025-12-21 16:16:40.797]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:40.797]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:42.798] Found 2 drives:
+[2025-12-21 16:16:42.799]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:42.799]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:44.812] Found 2 drives:
+[2025-12-21 16:16:44.813]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:44.813]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:46.831] Found 2 drives:
+[2025-12-21 16:16:46.832]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:46.832]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:48.847] Found 2 drives:
+[2025-12-21 16:16:48.848]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:48.848]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:50.865] Found 2 drives:
+[2025-12-21 16:16:50.866]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:50.866]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:52.876] Found 2 drives:
+[2025-12-21 16:16:52.876]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:52.877]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:54.897] Found 2 drives:
+[2025-12-21 16:16:54.897]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:54.897]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:56.606] ✓ Program selected: Starfield
+[2025-12-21 16:16:56.908] Found 2 drives:
+[2025-12-21 16:16:56.909]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:56.909]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:58.914] Found 2 drives:
+[2025-12-21 16:16:58.915]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:16:58.915]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:16:59.032] === Compress_Click triggered ===
+[2025-12-21 16:16:59.033] Compressing: C:\Program Files (x86)\Steam\steamapps\common\Starfield
+[2025-12-21 16:16:59.036] Using algorithm: LZX
+[2025-12-21 16:16:59.036] Starting compression...
+[2025-12-21 16:17:00.923] Found 2 drives:
+[2025-12-21 16:17:00.924]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:00.924]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:02.614] Compression result - Success: True
+[2025-12-21 16:17:02.616] ✓ Compressed 0 files
+[2025-12-21 16:17:02.616] ✓ Original: 0 B
+[2025-12-21 16:17:02.616] ✓ Compressed: 0 B
+[2025-12-21 16:17:02.616] ✓ Saved: 0 B (NaN)
+[2025-12-21 16:17:02.617] === Compression complete ===
+[2025-12-21 16:17:02.940] Found 2 drives:
+[2025-12-21 16:17:02.941]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:02.941]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:04.956] Found 2 drives:
+[2025-12-21 16:17:04.957]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:04.957]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:06.973] Found 2 drives:
+[2025-12-21 16:17:06.974]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:06.974]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:08.987] Found 2 drives:
+[2025-12-21 16:17:08.987]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:08.988]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:11.002] Found 2 drives:
+[2025-12-21 16:17:11.003]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:11.003]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:13.020] Found 2 drives:
+[2025-12-21 16:17:13.021]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:13.021]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:15.032] Found 2 drives:
+[2025-12-21 16:17:15.033]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:15.033]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:17.050] Found 2 drives:
+[2025-12-21 16:17:17.050]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:17.051]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:19.068] Found 2 drives:
+[2025-12-21 16:17:19.069]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:19.069]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:21.081] Found 2 drives:
+[2025-12-21 16:17:21.081]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:21.082]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:21.850] Switching mode to: File
+[2025-12-21 16:17:21.851] ✓ Mode switched successfully
+[2025-12-21 16:17:23.097] Found 2 drives:
+[2025-12-21 16:17:23.097]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:23.098]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:25.111] Found 2 drives:
+[2025-12-21 16:17:25.111]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:25.111]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:26.923] === SelectFolder_Click triggered ===
+[2025-12-21 16:17:26.924] Opening folder dialog...
+[2025-12-21 16:17:27.115] Found 2 drives:
+[2025-12-21 16:17:27.115]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:27.116]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:29.129] Found 2 drives:
+[2025-12-21 16:17:29.129]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:29.130]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:31.148] Found 2 drives:
+[2025-12-21 16:17:31.148]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:31.148]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:33.158] Found 2 drives:
+[2025-12-21 16:17:33.159]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:33.159]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:34.963] ✓ Folder selected: C:\Users\Jarrod\Desktop\Dragon of Icespire peak N&B&M&J
+[2025-12-21 16:17:34.963] Calculating folder size...
+[2025-12-21 16:17:34.964] ✓ Folder size: 44.02 MB
+[2025-12-21 16:17:35.174] Found 2 drives:
+[2025-12-21 16:17:35.175]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:35.175]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:37.193] Found 2 drives:
+[2025-12-21 16:17:37.194]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:37.194]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:38.884] === SelectFolder_Click triggered ===
+[2025-12-21 16:17:38.884] Opening folder dialog...
+[2025-12-21 16:17:39.283] Found 2 drives:
+[2025-12-21 16:17:39.283]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:39.283]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:41.297] Found 2 drives:
+[2025-12-21 16:17:41.297]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:41.298]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:43.314] Found 2 drives:
+[2025-12-21 16:17:43.314]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:43.314]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:45.331] Found 2 drives:
+[2025-12-21 16:17:45.331]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:45.332]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:47.350] Found 2 drives:
+[2025-12-21 16:17:47.350]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:47.350]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:49.365] Found 2 drives:
+[2025-12-21 16:17:49.366]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:49.367]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:51.381] Found 2 drives:
+[2025-12-21 16:17:51.382]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:51.382]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:53.393] Found 2 drives:
+[2025-12-21 16:17:53.394]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:53.394]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:55.397] Found 2 drives:
+[2025-12-21 16:17:55.398]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:55.399]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:17:58.067] Found 2 drives:
+[2025-12-21 16:17:58.069]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:17:58.070]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:00.082] Found 2 drives:
+[2025-12-21 16:18:00.083]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:00.083]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:02.099] Found 2 drives:
+[2025-12-21 16:18:02.100]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:02.101]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:04.115] Found 2 drives:
+[2025-12-21 16:18:04.115]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:04.116]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:06.129] Found 2 drives:
+[2025-12-21 16:18:06.130]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:06.131]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:08.149] Found 2 drives:
+[2025-12-21 16:18:08.150]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:08.151]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:10.161] Found 2 drives:
+[2025-12-21 16:18:10.162]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:10.163]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:12.177] Found 2 drives:
+[2025-12-21 16:18:12.178]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:12.179]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:14.190] Found 2 drives:
+[2025-12-21 16:18:14.191]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:14.191]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:16.207] Found 2 drives:
+[2025-12-21 16:18:16.208]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:16.208]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:18.220] Found 2 drives:
+[2025-12-21 16:18:18.221]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:18.221]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:20.237] Found 2 drives:
+[2025-12-21 16:18:20.237]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:20.237]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:22.256] Found 2 drives:
+[2025-12-21 16:18:22.257]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:22.257]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:24.267] Found 2 drives:
+[2025-12-21 16:18:24.267]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:24.267]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:26.285] Found 2 drives:
+[2025-12-21 16:18:26.285]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:26.286]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:28.070] ✓ Folder selected: C:\Users\Jarrod\Downloads\Alan Wake 2 [FitGirl Repack]
+[2025-12-21 16:18:28.070] Calculating folder size...
+[2025-12-21 16:18:28.072] ✓ Folder size: 77.01 GB
+[2025-12-21 16:18:28.303] Found 2 drives:
+[2025-12-21 16:18:28.304]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:28.304]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:30.314] Found 2 drives:
+[2025-12-21 16:18:30.314]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:30.314]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:31.412] === Compress_Click triggered ===
+[2025-12-21 16:18:31.412] Compressing: C:\Users\Jarrod\Downloads\Alan Wake 2 [FitGirl Repack]
+[2025-12-21 16:18:31.413] Using algorithm: LZX
+[2025-12-21 16:18:31.413] Starting compression...
+[2025-12-21 16:18:31.599] Compression result - Success: True
+[2025-12-21 16:18:31.599] ✓ Compressed 0 files
+[2025-12-21 16:18:31.599] ✓ Original: 0 B
+[2025-12-21 16:18:31.599] ✓ Compressed: 0 B
+[2025-12-21 16:18:31.599] ✓ Saved: 0 B (NaN)
+[2025-12-21 16:18:31.599] === Compression complete ===
+[2025-12-21 16:18:32.319] Found 2 drives:
+[2025-12-21 16:18:32.320]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:32.320]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:34.331] Found 2 drives:
+[2025-12-21 16:18:34.332]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:34.333]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:36.346] Found 2 drives:
+[2025-12-21 16:18:36.346]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:36.347]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:38.367] Found 2 drives:
+[2025-12-21 16:18:38.368]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:38.369]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:40.380] Found 2 drives:
+[2025-12-21 16:18:40.380]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:40.381]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:42.392] Found 2 drives:
+[2025-12-21 16:18:42.392]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:42.393]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:44.411] Found 2 drives:
+[2025-12-21 16:18:44.412]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:44.412]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:46.427] Found 2 drives:
+[2025-12-21 16:18:46.428]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:46.429]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:48.440] Found 2 drives:
+[2025-12-21 16:18:48.441]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:48.441]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:50.457] Found 2 drives:
+[2025-12-21 16:18:50.458]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:50.458]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:52.483] Found 2 drives:
+[2025-12-21 16:18:52.484]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:52.485]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:54.487] Found 2 drives:
+[2025-12-21 16:18:54.488]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:54.488]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:56.506] Found 2 drives:
+[2025-12-21 16:18:56.507]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:56.508]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:18:58.522] Found 2 drives:
+[2025-12-21 16:18:58.523]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:18:58.523]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:00.534] Found 2 drives:
+[2025-12-21 16:19:00.535]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:00.536]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:02.554] Found 2 drives:
+[2025-12-21 16:19:02.555]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:02.555]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:04.567] Found 2 drives:
+[2025-12-21 16:19:04.568]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:04.569]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:06.586] Found 2 drives:
+[2025-12-21 16:19:06.588]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:06.589]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:08.601] Found 2 drives:
+[2025-12-21 16:19:08.602]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:08.602]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:10.613] Found 2 drives:
+[2025-12-21 16:19:10.614]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:10.614]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:12.635] Found 2 drives:
+[2025-12-21 16:19:12.635]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:12.636]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:14.645] Found 2 drives:
+[2025-12-21 16:19:14.646]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:14.646]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:16.662] Found 2 drives:
+[2025-12-21 16:19:16.663]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:16.664]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:18.681] Found 2 drives:
+[2025-12-21 16:19:18.681]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:18.682]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:20.696] Found 2 drives:
+[2025-12-21 16:19:20.697]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:20.698]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:22.708] Found 2 drives:
+[2025-12-21 16:19:22.709]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:22.709]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:24.721] Found 2 drives:
+[2025-12-21 16:19:24.722]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:24.722]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:26.738] Found 2 drives:
+[2025-12-21 16:19:26.739]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:26.739]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:28.754] Found 2 drives:
+[2025-12-21 16:19:28.755]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:28.755]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:30.769] Found 2 drives:
+[2025-12-21 16:19:30.769]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:30.770]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:32.786] Found 2 drives:
+[2025-12-21 16:19:32.786]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:32.787]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:34.806] Found 2 drives:
+[2025-12-21 16:19:34.807]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:34.807]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:36.824] Found 2 drives:
+[2025-12-21 16:19:36.825]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:36.826]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:38.835] Found 2 drives:
+[2025-12-21 16:19:38.836]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:38.842]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:40.846] Found 2 drives:
+[2025-12-21 16:19:40.847]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:40.848]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:42.863] Found 2 drives:
+[2025-12-21 16:19:42.864]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:42.864]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:44.881] Found 2 drives:
+[2025-12-21 16:19:44.882]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:44.882]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:46.894] Found 2 drives:
+[2025-12-21 16:19:46.895]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:46.897]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:48.913] Found 2 drives:
+[2025-12-21 16:19:48.913]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:48.913]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:50.932] Found 2 drives:
+[2025-12-21 16:19:50.932]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:50.933]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:52.941] Found 2 drives:
+[2025-12-21 16:19:52.941]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:52.941]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:54.961] Found 2 drives:
+[2025-12-21 16:19:54.961]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:54.962]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:56.971] Found 2 drives:
+[2025-12-21 16:19:56.971]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:56.972]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:19:58.989] Found 2 drives:
+[2025-12-21 16:19:58.990]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:19:58.990]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:01.007] Found 2 drives:
+[2025-12-21 16:20:01.008]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:01.008]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:03.029] Found 2 drives:
+[2025-12-21 16:20:03.030]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:03.031]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:05.037] Found 2 drives:
+[2025-12-21 16:20:05.037]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:05.037]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:07.054] Found 2 drives:
+[2025-12-21 16:20:07.054]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:07.054]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:09.066] Found 2 drives:
+[2025-12-21 16:20:09.066]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:09.066]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:11.085] Found 2 drives:
+[2025-12-21 16:20:11.086]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:11.086]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:13.096] Found 2 drives:
+[2025-12-21 16:20:13.097]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:13.097]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:15.114] Found 2 drives:
+[2025-12-21 16:20:15.115]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:15.115]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:17.133] Found 2 drives:
+[2025-12-21 16:20:17.133]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:17.133]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:19.145] Found 2 drives:
+[2025-12-21 16:20:19.146]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:19.146]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:21.161] Found 2 drives:
+[2025-12-21 16:20:21.161]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:21.161]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:23.175] Found 2 drives:
+[2025-12-21 16:20:23.176]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:23.176]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:25.180] Found 2 drives:
+[2025-12-21 16:20:25.180]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:25.180]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:27.192] Found 2 drives:
+[2025-12-21 16:20:27.192]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:27.192]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:29.206] Found 2 drives:
+[2025-12-21 16:20:29.206]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:29.207]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:31.209] Found 2 drives:
+[2025-12-21 16:20:31.209]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:31.210]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:33.224] Found 2 drives:
+[2025-12-21 16:20:33.224]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:33.224]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:35.240] Found 2 drives:
+[2025-12-21 16:20:35.241]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:35.241]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:37.259] Found 2 drives:
+[2025-12-21 16:20:37.260]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:37.260]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:39.269] Found 2 drives:
+[2025-12-21 16:20:39.270]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:39.270]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:41.287] Found 2 drives:
+[2025-12-21 16:20:41.287]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:41.287]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:43.307] Found 2 drives:
+[2025-12-21 16:20:43.307]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:43.308]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:45.317] Found 2 drives:
+[2025-12-21 16:20:45.317]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:45.317]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:47.335] Found 2 drives:
+[2025-12-21 16:20:47.335]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:47.336]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:49.353] Found 2 drives:
+[2025-12-21 16:20:49.354]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:49.354]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:51.366] Found 2 drives:
+[2025-12-21 16:20:51.367]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:51.367]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:53.383] Found 2 drives:
+[2025-12-21 16:20:53.384]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:53.384]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:55.395] Found 2 drives:
+[2025-12-21 16:20:55.395]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:55.396]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:57.412] Found 2 drives:
+[2025-12-21 16:20:57.413]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:57.413]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:20:59.432] Found 2 drives:
+[2025-12-21 16:20:59.432]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:20:59.432]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:01.442] Found 2 drives:
+[2025-12-21 16:21:01.443]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:01.443]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:03.463] Found 2 drives:
+[2025-12-21 16:21:03.463]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:03.463]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:05.478] Found 2 drives:
+[2025-12-21 16:21:05.478]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:05.479]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:07.491] Found 2 drives:
+[2025-12-21 16:21:07.492]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:07.492]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:09.508] Found 2 drives:
+[2025-12-21 16:21:09.508]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:09.509]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:11.522] Found 2 drives:
+[2025-12-21 16:21:11.522]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:11.522]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:13.537] Found 2 drives:
+[2025-12-21 16:21:13.538]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:13.538]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:15.557] Found 2 drives:
+[2025-12-21 16:21:15.557]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:15.558]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:17.568] Found 2 drives:
+[2025-12-21 16:21:17.569]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:17.569]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:19.587] Found 2 drives:
+[2025-12-21 16:21:19.587]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:19.587]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:21.598] Found 2 drives:
+[2025-12-21 16:21:21.598]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:21.598]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:23.605] Found 2 drives:
+[2025-12-21 16:21:23.605]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:23.606]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:25.616] Found 2 drives:
+[2025-12-21 16:21:25.616]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:25.616]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:27.633] Found 2 drives:
+[2025-12-21 16:21:27.633]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:27.633]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:29.647] Found 2 drives:
+[2025-12-21 16:21:29.647]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:29.648]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:31.648] Found 2 drives:
+[2025-12-21 16:21:31.648]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:31.648]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:33.661] Found 2 drives:
+[2025-12-21 16:21:33.662]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:33.662]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:35.664] Found 2 drives:
+[2025-12-21 16:21:35.664]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:35.664]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:37.680] Found 2 drives:
+[2025-12-21 16:21:37.681]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:37.681]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:39.693] Found 2 drives:
+[2025-12-21 16:21:39.694]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:39.694]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:41.709] Found 2 drives:
+[2025-12-21 16:21:41.710]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:41.710]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:43.727] Found 2 drives:
+[2025-12-21 16:21:43.728]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:43.728]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:45.740] Found 2 drives:
+[2025-12-21 16:21:45.740]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:45.741]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:47.741] Found 2 drives:
+[2025-12-21 16:21:47.741]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:47.742]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:49.758] Found 2 drives:
+[2025-12-21 16:21:49.759]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:49.759]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:51.774] Found 2 drives:
+[2025-12-21 16:21:51.775]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:51.775]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:53.788] Found 2 drives:
+[2025-12-21 16:21:53.789]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:53.789]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:55.803] Found 2 drives:
+[2025-12-21 16:21:55.803]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:55.804]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:57.806] Found 2 drives:
+[2025-12-21 16:21:57.807]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:57.807]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:21:59.820] Found 2 drives:
+[2025-12-21 16:21:59.820]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:21:59.821]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:01.837] Found 2 drives:
+[2025-12-21 16:22:01.837]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:01.838]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:03.853] Found 2 drives:
+[2025-12-21 16:22:03.853]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:03.853]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:05.864] Found 2 drives:
+[2025-12-21 16:22:05.864]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:05.865]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:07.883] Found 2 drives:
+[2025-12-21 16:22:07.883]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:07.883]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:09.901] Found 2 drives:
+[2025-12-21 16:22:09.901]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:09.902]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:11.914] Found 2 drives:
+[2025-12-21 16:22:11.915]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:11.915]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:13.932] Found 2 drives:
+[2025-12-21 16:22:13.932]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:13.932]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:15.942] Found 2 drives:
+[2025-12-21 16:22:15.943]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:15.943]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:17.961] Found 2 drives:
+[2025-12-21 16:22:17.961]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:17.961]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:19.963] Found 2 drives:
+[2025-12-21 16:22:19.964]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:19.964]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:21.980] Found 2 drives:
+[2025-12-21 16:22:21.981]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:21.981]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:23.991] Found 2 drives:
+[2025-12-21 16:22:23.991]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:23.992]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:26.009] Found 2 drives:
+[2025-12-21 16:22:26.010]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:26.010]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:28.023] Found 2 drives:
+[2025-12-21 16:22:28.024]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:28.024]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:30.040] Found 2 drives:
+[2025-12-21 16:22:30.041]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:30.041]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:32.058] Found 2 drives:
+[2025-12-21 16:22:32.058]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:32.058]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:34.070] Found 2 drives:
+[2025-12-21 16:22:34.070]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:34.071]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:36.087] Found 2 drives:
+[2025-12-21 16:22:36.088]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:36.088]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:38.104] Found 2 drives:
+[2025-12-21 16:22:38.104]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:38.105]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:40.119] Found 2 drives:
+[2025-12-21 16:22:40.120]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:40.120]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:42.134] Found 2 drives:
+[2025-12-21 16:22:42.134]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:42.134]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:44.151] Found 2 drives:
+[2025-12-21 16:22:44.152]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:44.152]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:46.165] Found 2 drives:
+[2025-12-21 16:22:46.165]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:46.165]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:48.182] Found 2 drives:
+[2025-12-21 16:22:48.182]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:48.182]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:50.195] Found 2 drives:
+[2025-12-21 16:22:50.195]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:50.196]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:52.214] Found 2 drives:
+[2025-12-21 16:22:52.214]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:52.214]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:54.229] Found 2 drives:
+[2025-12-21 16:22:54.229]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:54.230]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:56.240] Found 2 drives:
+[2025-12-21 16:22:56.240]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:56.241]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:22:58.259] Found 2 drives:
+[2025-12-21 16:22:58.260]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:22:58.260]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:00.273] Found 2 drives:
+[2025-12-21 16:23:00.273]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:00.274]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:02.277] Found 2 drives:
+[2025-12-21 16:23:02.278]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:02.278]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:04.287] Found 2 drives:
+[2025-12-21 16:23:04.287]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:04.287]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:06.289] Found 2 drives:
+[2025-12-21 16:23:06.289]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:06.290]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:08.307] Found 2 drives:
+[2025-12-21 16:23:08.307]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:08.307]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:10.324] Found 2 drives:
+[2025-12-21 16:23:10.325]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:10.325]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:12.333] Found 2 drives:
+[2025-12-21 16:23:12.334]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:12.334]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:14.336] Found 2 drives:
+[2025-12-21 16:23:14.337]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:14.337]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:16.351] Found 2 drives:
+[2025-12-21 16:23:16.352]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:16.352]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:18.370] Found 2 drives:
+[2025-12-21 16:23:18.370]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:18.371]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:20.384] Found 2 drives:
+[2025-12-21 16:23:20.384]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:20.384]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:22.403] Found 2 drives:
+[2025-12-21 16:23:22.403]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:22.404]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:24.417] Found 2 drives:
+[2025-12-21 16:23:24.418]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:24.418]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:26.434] Found 2 drives:
+[2025-12-21 16:23:26.434]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:26.435]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:28.446] Found 2 drives:
+[2025-12-21 16:23:28.447]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:28.448]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:30.465] Found 2 drives:
+[2025-12-21 16:23:30.466]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:30.466]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:32.475] Found 2 drives:
+[2025-12-21 16:23:32.475]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:32.475]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:34.481] Found 2 drives:
+[2025-12-21 16:23:34.482]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:34.482]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:36.491] Found 2 drives:
+[2025-12-21 16:23:36.491]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:36.492]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:38.494] Found 2 drives:
+[2025-12-21 16:23:38.494]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:38.494]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:40.511] Found 2 drives:
+[2025-12-21 16:23:40.512]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:40.512]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:42.528] Found 2 drives:
+[2025-12-21 16:23:42.528]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:42.528]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:44.539] Found 2 drives:
+[2025-12-21 16:23:44.539]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:44.539]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:46.553] Found 2 drives:
+[2025-12-21 16:23:46.553]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:46.554]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:48.557] Found 2 drives:
+[2025-12-21 16:23:48.557]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:48.557]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:50.568] Found 2 drives:
+[2025-12-21 16:23:50.569]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:50.569]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:52.575] Found 2 drives:
+[2025-12-21 16:23:52.575]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:52.575]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:54.586] Found 2 drives:
+[2025-12-21 16:23:54.586]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:54.586]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:56.605] Found 2 drives:
+[2025-12-21 16:23:56.606]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:56.606]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:23:58.616] Found 2 drives:
+[2025-12-21 16:23:58.616]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:23:58.616]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:00.622] Found 2 drives:
+[2025-12-21 16:24:00.622]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:00.622]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:02.633] Found 2 drives:
+[2025-12-21 16:24:02.633]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:02.634]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:04.653] Found 2 drives:
+[2025-12-21 16:24:04.654]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:04.654]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:06.664] Found 2 drives:
+[2025-12-21 16:24:06.665]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:06.665]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:08.684] Found 2 drives:
+[2025-12-21 16:24:08.685]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:08.685]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:10.697] Found 2 drives:
+[2025-12-21 16:24:10.698]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:10.698]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:12.711] Found 2 drives:
+[2025-12-21 16:24:12.711]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:12.711]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:14.729] Found 2 drives:
+[2025-12-21 16:24:14.729]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:14.729]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:16.743] Found 2 drives:
+[2025-12-21 16:24:16.743]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:16.744]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:18.761] Found 2 drives:
+[2025-12-21 16:24:18.762]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:18.762]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:20.774] Found 2 drives:
+[2025-12-21 16:24:20.774]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:20.775]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:22.789] Found 2 drives:
+[2025-12-21 16:24:22.789]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:22.790]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:24.806] Found 2 drives:
+[2025-12-21 16:24:24.807]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:24.807]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:26.821] Found 2 drives:
+[2025-12-21 16:24:26.822]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:26.822]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:28.836] Found 2 drives:
+[2025-12-21 16:24:28.837]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:28.837]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:30.854] Found 2 drives:
+[2025-12-21 16:24:30.854]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:30.854]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:32.869] Found 2 drives:
+[2025-12-21 16:24:32.870]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:32.870]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:34.885] Found 2 drives:
+[2025-12-21 16:24:34.885]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:34.885]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:36.905] Found 2 drives:
+[2025-12-21 16:24:36.905]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:36.905]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:38.915] Found 2 drives:
+[2025-12-21 16:24:38.916]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:38.916]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:40.931] Found 2 drives:
+[2025-12-21 16:24:40.932]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:40.932]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:42.933] Found 2 drives:
+[2025-12-21 16:24:42.934]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:42.934]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:44.950] Found 2 drives:
+[2025-12-21 16:24:44.950]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:44.950]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:46.966] Found 2 drives:
+[2025-12-21 16:24:46.966]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:46.967]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:24:48.981] Found 2 drives:
+[2025-12-21 16:24:48.981]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:24:48.982]   D:\ (Games) - 1.31 TB free of 3.27 TB

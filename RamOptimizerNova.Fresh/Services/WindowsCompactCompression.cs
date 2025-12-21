@@ -1,9 +1,11 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using RamOptimizerNova.Services;
 
 namespace RamOptimizerNova.Services;
     /// <summary>
@@ -42,6 +44,8 @@ namespace RamOptimizerNova.Services;
     {
         private readonly ILogger? _logger;
 
+        private readonly FileLogger _fileLogger = FileLogger.Instance;
+
         public WindowsCompactCompression(ILogger? logger = null)
         {
             _logger = logger;
@@ -77,8 +81,15 @@ namespace RamOptimizerNova.Services;
                     _ => "LZX"
                 };
 
-                string recursiveArg = recursive ? "/s" : "";
-                string arguments = $"/c /exe:{algorithmArg} {recursiveArg} \"{path}\"";
+                string recursiveArg = recursive ? "/S" : "";
+            // Escape paths properly - escape quotes in path
+            string escapedPath = path.Replace("\"", "\"\"");
+            string arguments = $"/C /EXE:{algorithmArg} {recursiveArg} \"{escapedPath}\"";
+            
+            _fileLogger.Log($"[COMPACT] Target path: {path}");
+            _fileLogger.Log($"[COMPACT] Escaped path: {escapedPath}");
+            _fileLogger.Log($"[COMPACT] Algorithm: {algorithmArg}");
+            _fileLogger.Log($"[COMPACT] Full arguments: compact.exe {arguments}");
 
                 // Execute compact.exe
                 var processInfo = new ProcessStartInfo
@@ -99,10 +110,23 @@ namespace RamOptimizerNova.Services;
                 }
 
                 string output = await process.StandardOutput.ReadToEndAsync();
-                string error = await process.StandardError.ReadToEndAsync();
-                await process.WaitForExitAsync();
+            string error = await process.StandardError.ReadToEndAsync();
+            await process.WaitForExitAsync();
 
-                stopwatch.Stop();
+            stopwatch.Stop();
+            
+            // Log compact.exe output for debugging
+            _fileLogger.Log($"[COMPACT] Exit code: {process.ExitCode}");
+            _fileLogger.Log($"[COMPACT] Duration: {stopwatch.Elapsed.TotalSeconds:F2}s");
+            _fileLogger.Log($"[COMPACT] STDOUT ({output.Length} chars):");
+            foreach (var line in output.Split('\n').Take(20))
+            {
+                _fileLogger.Log($"  {line.TrimEnd()}");
+            }
+            if (!string.IsNullOrEmpty(error))
+            {
+                _fileLogger.Log($"[COMPACT] STDERR: {error}");
+            }
 
                 // Parse output
                 var result = ParseCompactOutput(output, stopwatch.Elapsed);
@@ -220,7 +244,15 @@ namespace RamOptimizerNova.Services;
                 await process.WaitForExitAsync();
 
                 // Check if output contains compression indicators
-                return output.Contains("C ") || output.Contains("are compressed");
+                // Look for "C" attribute in compact.exe output (proper format: "C" flag)
+                bool isCompressed = System.Text.RegularExpressions.Regex.IsMatch(
+                    output, 
+                    @"^\s*C\s+",  // Line starting with C (compressed attribute)
+                    System.Text.RegularExpressions.RegexOptions.Multiline
+                ) || output.Contains("are compressed");
+                
+                _fileLogger.Log($"[COMPACT] IsCompressed check for {path}: {isCompressed}");
+                return isCompressed;
             }
             catch
             {
