@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fmsXSJNGc6k=",
+  "dgSpecHash": "f9W9Rp1HkAI=",
   "success": true,
   "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizerNova.Fresh\\RamOptimizerNova.csproj",
   "expectedPackageFiles": [
@@ -33,7 +33,6 @@
     "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.1\\microsoft.extensions.logging.abstractions.10.0.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.extensions.options\\10.0.1\\microsoft.extensions.options.10.0.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.1\\microsoft.extensions.primitives.10.0.1.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.11\\microsoft.net.illink.tasks.9.0.11.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\skiasharp\\2.88.9\\skiasharp.2.88.9.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.9\\skiasharp.nativeassets.linux.2.88.9.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.9\\skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
@@ -49,10 +48,7 @@
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.1\\system.security.cryptography.protecteddata.10.0.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.threading.accesscontrol\\10.0.1\\system.threading.accesscontrol.10.0.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\tmds.dbus.protocol\\0.21.2\\tmds.dbus.protocol.0.21.2.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp\\0.7.2\\zstdsharp.0.7.2.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\9.0.11\\microsoft.netcore.app.runtime.win-x64.9.0.11.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\9.0.11\\microsoft.windowsdesktop.app.runtime.win-x64.9.0.11.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\9.0.11\\microsoft.aspnetcore.app.runtime.win-x64.9.0.11.nupkg.sha512"
+    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp\\0.7.2\\zstdsharp.0.7.2.nupkg.sha512"
   ],
   "logs": []
 }
