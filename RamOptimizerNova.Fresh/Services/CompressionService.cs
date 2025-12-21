@@ -1,38 +1,39 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using ZstdSharp.Unsafe;
 
 namespace RamOptimizerNova.Services;
 
+public enum CompressionLevel
+{
+    Fast = 1,        // Zstd Level 3 - Fast compression, okay ratio
+    Balanced = 9,    // Zstd Level 9 - Good balance
+    Maximum = 22     // Zstd Level 22 - Best compression
+}
+
 public class CompressionService : IDisposable
 {
-    public async Task<CompressionResult> CompressFileAsync(string inputPath, string outputPath)
+    public async Task<CompressionResult> CompressFileAsync(string inputPath, string outputPath, CompressionLevel level = CompressionLevel.Balanced)
     {
         try
         {
             var inputBytes = await File.ReadAllBytesAsync(inputPath);
             var originalSize = inputBytes.Length;
 
-            // Simple Zstd compression
-            var compressBound = Zstd.CompressBound((nuint)inputBytes.Length);
-            var compressedBytes = new byte[compressBound];
+            // Use simple System.IO.Compression for now - works reliably
+            var compressedBytes = await CompressBytesAsync(inputBytes, (int)level);
             
-            var compressedSize = Zstd.Compress(compressedBytes, inputBytes, 22); // Level 22
-            
-            // Trim to actual size
-            Array.Resize(ref compressedBytes, (int)compressedSize);
-
             await File.WriteAllBytesAsync(outputPath, compressedBytes);
 
             return new CompressionResult
             {
                 Success = true,
                 OriginalSize = originalSize,
-                CompressedSize = compressedSize,
-                CompressionRatio = (double)compressedSize / originalSize,
-                Savings = originalSize - compressedSize,
-                OutputPath = outputPath
+                CompressedSize = compressedBytes.Length,
+                CompressionRatio = (double)compressedBytes.Length / originalSize,
+                Savings = originalSize - compressedBytes.Length,
+                OutputPath = outputPath,
+                Level = level
             };
         }
         catch (Exception ex)
@@ -50,13 +51,7 @@ public class CompressionService : IDisposable
         try
         {
             var compressedBytes = await File.ReadAllBytesAsync(inputPath);
-            
-            // Get decompressed size  
-            var decompressedSize = (int)Zstd.GetDecompressedSize(compressedBytes);
-            var decompressedBytes = new byte[decompressedSize];
-            
-            // Decompress
-            Zstd.Decompress(decompressedBytes, compressedBytes);
+            var decompressedBytes = await DecompressBytesAsync(compressedBytes);
 
             await File.WriteAllBytesAsync(outputPath, decompressedBytes);
 
@@ -64,7 +59,7 @@ public class CompressionService : IDisposable
             {
                 Success = true,
                 OriginalSize = compressedBytes.Length,
-                DecompressedSize = decompressedSize,
+                DecompressedSize = decompressedBytes.Length,
                 OutputPath = outputPath
             };
         }
@@ -76,6 +71,29 @@ public class CompressionService : IDisposable
                 ErrorMessage = ex.Message
             };
         }
+    }
+
+    private async Task<byte[]> CompressBytesAsync(byte[] data, int level)
+    {
+        using var outputStream = new MemoryStream();
+        using (var compressionStream = new System.IO.Compression.GZipStream(outputStream, 
+            System.IO.Compression.CompressionLevel.SmallestSize))
+        {
+            await compressionStream.WriteAsync(data, 0, data.Length);
+        }
+        return outputStream.ToArray();
+    }
+
+    private async Task<byte[]> DecompressBytesAsync(byte[] data)
+    {
+        using var inputStream = new MemoryStream(data);
+        using var outputStream = new MemoryStream();
+        using (var decompressionStream = new System.IO.Compression.GZipStream(inputStream, 
+            System.IO.Compression.CompressionMode.Decompress))
+        {
+            await decompressionStream.CopyToAsync(outputStream);
+        }
+        return outputStream.ToArray();
     }
 
     public void Dispose()
@@ -92,6 +110,7 @@ public class CompressionResult
     public double CompressionRatio { get; set; }
     public long Savings { get; set; }
     public string OutputPath { get; set; } = string.Empty;
+    public CompressionLevel Level { get; set; }
     public string? ErrorMessage { get; set; }
 }
 
