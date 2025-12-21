@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
         x:Class="RamOptimizerNova.Views.MainWindow"
-        x:DataType="vm:DashboardViewModel"
+        x:CompileBindings="False"
         Icon="/Assets/avalonia-logo.ico"
         Title="RAM Optimizer Nova"
         Width="1400" Height="900"
