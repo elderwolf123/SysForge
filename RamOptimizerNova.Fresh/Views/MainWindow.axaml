@@ -25,6 +25,10 @@
                           FontSize="36" 
                           FontWeight="Bold"
                           Foreground="{DynamicResource StarWhite}"/>
+                <TextBlock Text="{Binding TestMessage}"
+                          FontSize="20"
+                          FontWeight="Bold"
+                          Foreground="LimeGreen"/>
                 <TextBlock Text="Real-time performance metrics and system health"
                           FontSize="14"
                           Foreground="{DynamicResource StarDim}"/>
