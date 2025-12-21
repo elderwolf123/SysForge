@@ -454,7 +454,7 @@ public partial class MainWindow : Window
             if (_gpuPercentText != null) _gpuPercentText.Text = "35% utilized";
             
             if (_memoryText != null) _memoryText.Text = memory.usedGB.ToString("F1");
-            if (_memoryPercentText != null) _memoryPercentText.Text = $"{memory.percentUsed:F0}% utilized";
+            if (_memoryPercentText != null) _memoryPercentText.Text = $"{memory.percentage:F0}% utilized";
         }
         catch (Exception ex)
         {
