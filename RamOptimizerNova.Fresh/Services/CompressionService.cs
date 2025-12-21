@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using ZstdSharp;
+using ZstdSharp.Unsafe;
 
 namespace RamOptimizerNova.Services;
 
@@ -14,10 +14,12 @@ public class CompressionService : IDisposable
             var inputBytes = await File.ReadAllBytesAsync(inputPath);
             var originalSize = inputBytes.Length;
 
-            // Use ZstdSharp static methods
-            var compressedBytes = new byte[Compressor.GetCompressBoundLong((ulong)inputBytes.Length)];
-            var compressedSize = Compressor.Compress(compressedBytes, inputBytes, 22); // Level 22
-
+            // Simple Zstd compression
+            var compressBound = Zstd.CompressBound((nuint)inputBytes.Length);
+            var compressedBytes = new byte[compressBound];
+            
+            var compressedSize = Zstd.Compress(compressedBytes, inputBytes, 22); // Level 22
+            
             // Trim to actual size
             Array.Resize(ref compressedBytes, (int)compressedSize);
 
@@ -49,12 +51,12 @@ public class CompressionService : IDisposable
         {
             var compressedBytes = await File.ReadAllBytesAsync(inputPath);
             
-            // Get decompressed size
-            var decompressedSize = Decompressor.GetDecompressedSize(compressedBytes);
+            // Get decompressed size  
+            var decompressedSize = (int)Zstd.GetDecompressedSize(compressedBytes);
             var decompressedBytes = new byte[decompressedSize];
             
             // Decompress
-            Decompressor.Decompress(decompressedBytes, compressedBytes);
+            Zstd.Decompress(decompressedBytes, compressedBytes);
 
             await File.WriteAllBytesAsync(outputPath, decompressedBytes);
 
@@ -76,25 +78,9 @@ public class CompressionService : IDisposable
         }
     }
 
-    public byte[] CompressBytes(byte[] data, int level = 22)
-    {
-        var compressedBytes = new byte[Compressor.GetCompressBoundLong((ulong)data.Length)];
-        var size = Compressor.Compress(compressedBytes, data, level);
-        Array.Resize(ref compressedBytes, (int)size);
-        return compressedBytes;
-    }
-
-    public byte[] DecompressBytes(byte[] data)
-    {
-        var size = Decompressor.GetDecompressedSize(data);
-        var decompressedBytes = new byte[size];
-        Decompressor.Decompress(decompressedBytes, data);
-        return decompressedBytes;
-    }
-
     public void Dispose()
     {
-        // No resources to dispose with static methods
+        // No resources to dispose
     }
 }
 
@@ -106,7 +92,7 @@ public class CompressionResult
     public double CompressionRatio { get; set; }
     public long Savings { get; set; }
     public string OutputPath { get; set; } = string.Empty;
-    public string? ErrorMessage {get; set; }
+    public string? ErrorMessage { get; set; }
 }
 
 public class DecompressionResult
