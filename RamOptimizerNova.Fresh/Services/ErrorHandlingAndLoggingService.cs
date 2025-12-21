@@ -816,7 +816,7 @@ public class ErrorHandlingAndLoggingService : IErrorHandlingAndLoggingService, I
                 {
                     try
                     {
-                        await Task.FromHours(_cleanupIntervalHours);
+                        await Task.Delay(TimeSpan.FromHours(_cleanupIntervalHours));
                         await CleanupOldLogsAsync();
                     }
                     catch (Exception ex)
@@ -964,7 +964,7 @@ public class ErrorHandlingAndLoggingService : IErrorHandlingAndLoggingService, I
                 lines.Add("    " + FormatLogEntryAsJson(entries[i]));
                 if (i < entries.Count - 1)
                 {
-                    lines.Last();
+                    lines[lines.Count - 1] += ",";
                 }
             }
 
