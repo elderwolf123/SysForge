@@ -1,0 +1,339 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RamOptimizerNova.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
+        x:Class="RamOptimizerNova.Views.MainWindow"
+        x:CompileBindings="False"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="RAM Optimizer Nova"
+        Width="1400" Height="900"
+        Background="{DynamicResource SpaceDark}"
+        WindowStartupLocation="CenterScreen">
+
+    <TabControl Background="{DynamicResource SpaceDark}"
+                Padding="0">
+        
+        <!-- Dashboard Tab -->
+        <TabItem Header="📊 Dashboard">
+            <ScrollViewer>
+        <StackPanel Margin="40" Spacing="32">
+            
+            <!-- Header -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="System Overview" 
+                          FontSize="36" 
+                          FontWeight="Bold"
+                          Foreground="{DynamicResource StarWhite}"/>
+                <TextBlock Text="{Binding TestMessage}"
+                          FontSize="20"
+                          FontWeight="Bold"
+                          Foreground="LimeGreen"/>
+                <TextBlock Text="Real-time performance metrics and system health"
+                          FontSize="14"
+                          Foreground="{DynamicResource StarDim}"/>
+            </StackPanel>
+            
+            <!-- Quick Stats Grid (4 columns) -->
+            <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto" ColumnSpacing="16">
+                
+                <!-- CPU Card -->
+                <Border Grid.Column="0" 
+                       Background="#99000000" 
+                       BorderBrush="#19FFFFFF"
+                       BorderThickness="1"
+                       CornerRadius="16"
+                       Padding="20">
+                    <StackPanel Spacing="12">
+                        <Border Width="40" Height="40"
+                               HorizontalAlignment="Left"
+                               Background="{DynamicResource PurpleGradient}"
+                               CornerRadius="12">
+                            <TextBlock Text="🖥️" FontSize="20" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="CPU USAGE" 
+                                  Foreground="{DynamicResource StarDim}"
+                                  FontSize="12"
+                                  FontWeight="Medium"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="CpuText" Text="--" 
+                                      Foreground="{DynamicResource StarWhite}"
+                                      FontSize="32" 
+                                      FontWeight="Bold"/>
+                            <TextBlock Text="%" 
+                                      Foreground="{DynamicResource StarDim}"
+                                      FontSize="14" 
+                                      Margin="4,0,0,0"
+                                      VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
+                            <Border Width="120" HorizontalAlignment="Left" 
+                                   Background="{DynamicResource PurpleGradient}"
+                                   CornerRadius="3"/>
+                        </Border>
+                        <TextBlock x:Name="CpuPercentText" Text="--% utilized" 
+                                  FontSize="11" 
+                                  Foreground="{DynamicResource NebulaPurple}"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- GPU Card -->
+                <Border Grid.Column="1" 
+                       Background="#99000000" 
+                       BorderBrush="#19FFFFFF"
+                       BorderThickness="1"
+                       CornerRadius="16"
+                       Padding="20">
+                    <StackPanel Spacing="12">
+                        <Border Width="40" Height="40"
+                               HorizontalAlignment="Left"
+                               Background="{DynamicResource CyanGradient}"
+                               CornerRadius="12">
+                            <TextBlock Text="📺" FontSize="20" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="GPU USAGE" 
+                                  Foreground="{DynamicResource StarDim}"
+                                  FontSize="12"
+                                  FontWeight="Medium"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="GpuText" Text="--" 
+                                      Foreground="{DynamicResource StarWhite}"
+                                      FontSize="32" 
+                                      FontWeight="Bold"/>
+                            <TextBlock Text="%" 
+                                      Foreground="{DynamicResource StarDim}"
+                                      FontSize="14" 
+                                      Margin="4,0,0,0"
+                                      VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
+                            <Border Width="180" HorizontalAlignment="Left" 
+                                   Background="{DynamicResource CyanGradient}"
+                                   CornerRadius="3"/>
+                        </Border>
+                        <TextBlock x:Name="GpuPercentText" Text="--% utilized" 
+                                  FontSize="11" 
+                                  Foreground="{DynamicResource NebulaCyan}"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Memory Card -->
+                <Border Grid.Column="2" 
+                       Background="#99000000" 
+                       BorderBrush="#19FFFFFF"
+                       BorderThickness="1"
+                       CornerRadius="16"
+                       Padding="20">
+                    <StackPanel Spacing="12">
+                        <Border Width="40" Height="40"
+                               HorizontalAlignment="Left"
+                               Background="{DynamicResource PinkGradient}"
+                               CornerRadius="12">
+                            <TextBlock Text="💾" FontSize="20" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="MEMORY" 
+                                  Foreground="{DynamicResource StarDim}"
+                                  FontSize="12"
+                                  FontWeight="Medium"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="MemoryText" Text="--" 
+                                      Foreground="{DynamicResource StarWhite}"
+                                      FontSize="32" 
+                                      FontWeight="Bold"/>
+                            <TextBlock Text="GB" 
+                                      Foreground="{DynamicResource StarDim}"
+                                      FontSize="14" 
+                                      Margin="4,0,0,0"
+                                      VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
+                            <Border Width="140" HorizontalAlignment="Left" 
+                                   Background="{DynamicResource PinkGradient}"
+                                   CornerRadius="3"/>
+                        </Border>
+                        <TextBlock x:Name="MemoryPercentText" Text="--% utilized" 
+                                  FontSize="11" 
+                                  Foreground="{DynamicResource NebulaPink}"/>
+                    </StackPanel>
+                </Border>
+                
+                <!-- Storage Card -->
+                <Border Grid.Column="3" 
+                       Background="#99000000" 
+                       BorderBrush="#19FFFFFF"
+                       BorderThickness="1"
+                       CornerRadius="16"
+                       Padding="20">
+                    <StackPanel Spacing="12">
+                        <Border Width="40" Height="40"
+                               HorizontalAlignment="Left"
+                               Background="LimeGreen"
+                               CornerRadius="12">
+                            <TextBlock Text="💿" FontSize="20" 
+                                      HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                        </Border>
+                        <TextBlock Text="STORAGE" 
+                                  Foreground="{DynamicResource StarDim}"
+                                  FontSize="12"
+                                  FontWeight="Medium"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="StorageText" Text="--" 
+                                      Foreground="{DynamicResource StarWhite}"
+                                      FontSize="32" 
+                                      FontWeight="Bold"/>
+                            <TextBlock Text="GB free" 
+                                      Foreground="{DynamicResource StarDim}"
+                                      FontSize="14" 
+                                      Margin="4,0,0,0"
+                                      VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <Border Height="6" CornerRadius="3" Background="#19FFFFFF">
+                            <Border Width="60" HorizontalAlignment="Left" 
+                                   Background="LimeGreen"
+                                   CornerRadius="3"/>
+                        </Border>
+                        <TextBlock x:Name="StoragePercentText" Text="--% utilized" 
+                                  FontSize="11" 
+                                  Foreground="LimeGreen"/>
+                    </StackPanel>
+                </Border>
+                
+            </Grid>
+            
+            <!-- Success Message -->
+            <Border Background="#19FFFFFF" 
+                   BorderBrush="LimeGreen"
+                   BorderThickness="2"
+                   CornerRadius="12"
+                   Padding="20">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="✅" FontSize="24"/>
+                    <StackPanel>
+                        <TextBlock Text="Application Running Successfully!" 
+                                  FontSize="18"
+                                  FontWeight="Bold"
+                                  Foreground="LimeGreen"/>
+                        <TextBlock Text="Space theme active - Ready for testing!" 
+                                  Foreground="{DynamicResource StarDim}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#99000000" 
+                    BorderBrush="#19FFFFFF"
+                    BorderThickness="1"
+                    CornerRadius="16"
+                    Padding="24"
+                    Margin="0,16,0,0">
+                
+                <StackPanel Spacing="16">
+                    <!-- Header -->
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="🗜️" FontSize="24"/>
+                        <TextBlock Text="TRANSPARENT COMPRESSION"
+                                  FontSize="18"
+                                  FontWeight="Bold"
+                                  Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- Mode Selection -->
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <RadioButton x:Name="FileModeRadio" 
+                                    Content="Files/Folders" 
+                                    IsChecked="True"
+                                    Foreground="{DynamicResource StarWhite}"/>
+                        <RadioButton x:Name="ProgramModeRadio" 
+                                    Content="Programs/Games"
+                                    Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- File Mode Controls -->
+                    <StackPanel x:Name="FileModePanel" Spacing="12">
+                        <StackPanel Orientation="Horizontal" Spacing="12">
+                            <Button x:Name="SelectFolderButton" 
+                                   Content="📁 Select Folder..." 
+                                   Padding="12,8"
+                                   Background="#33FFFFFF"
+                                   Foreground="{DynamicResource StarWhite}"/>
+                            <ComboBox x:Name="AlgorithmComboBox" 
+                                     Width="180"
+                                     SelectedIndex="3"
+                                     Foreground="{DynamicResource StarWhite}">
+                                <ComboBoxItem>XPRESS4K (Fast)</ComboBoxItem>
+                                <ComboBoxItem>XPRESS8K (Balanced)</ComboBoxItem>
+                                <ComboBoxItem>XPRESS16K (Better)</ComboBoxItem>
+                                <ComboBoxItem>LZX (Best)</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+                        
+                        <TextBlock x:Name="SelectedPathText"
+                                  Text="No folder selected"
+                                  FontSize="12"
+                                  Foreground="{DynamicResource StarDim}"/>
+                    </StackPanel>
+                    
+                    <!-- Program Mode Controls -->
+                    <StackPanel x:Name="ProgramModePanel" IsVisible="False" Spacing="12">
+                        <Button x:Name="ScanProgramsButton" 
+                               Content="🔍 Scan for Programs/Games" 
+                               Padding="12,8"
+                               Background="#33FFFFFF"
+                               Foreground="{DynamicResource StarWhite}"/>
+                               
+                        <ListBox x:Name="ProgramListBox"
+                                Height="200"
+                                Background="#19FFFFFF"
+                                Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- Action Buttons -->
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button x:Name="CompressButton" 
+                               Content="🗜️ Compress" 
+                               Padding="16,10"
+                               Background="{DynamicResource PurpleGradient}"
+                               Foreground="{DynamicResource StarWhite}"/>
+                        <Button x:Name="DecompressButton" 
+                               Content="📦 Decompress" 
+                               Padding="16,10"
+                               Background="#33FFFFFF"
+                               Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- Status -->
+                    <StackPanel Spacing="8">
+                        <TextBlock x:Name="StatusText"
+                                  Text="Ready"
+                                  FontSize="14"
+                                  Foreground="{DynamicResource StarWhite}"/>
+                        <ProgressBar x:Name="CompressionProgress"
+                                    Height="8"
+                                    Maximum="100"
+                                    Value="0"
+                                    Background="#19FFFFFF"
+                                    Foreground="{DynamicResource PurpleGradient}"/>
+                        <TextBlock x:Name="ResultsText"
+                                  FontSize="12"
+                                  Foreground="{DynamicResource NebulaCyan}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        
+            </StackPanel>
+        </ScrollViewer>
+        </TabItem>
+        
+        <!-- Compression Tab -->
+        <TabItem Header="🗜️ Compression">
+            <ScrollViewer>
+                <StackPanel Margin="40" Spacing="32">
+
+</Window>
