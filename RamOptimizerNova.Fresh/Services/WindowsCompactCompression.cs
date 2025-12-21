@@ -84,13 +84,16 @@ namespace RamOptimizerNova.Services;
                 string recursiveArg = recursive ? "/S" : "";
             // Escape paths properly - escape quotes in path
             string escapedPath = path.Replace("\"", "\"\"");
-            // For NTFS compression, use /C without /EXE: to compress ALL file types
-            // NOTE: /EXE: flag ONLY compresses executables (.exe, .dll) - skips game data!
-            string arguments = $"/C {recursiveArg} \"{escapedPath}\"";
+            // Use CompactGUI approach: /C /EXE:algorithm /I /Q /S
+            // /EXE:algorithm = Use specified compression algorithm (works on ALL files, not just .exe!)
+            // /I = Continue on errors (don't stop if one file fails)
+            // /Q = Quiet mode (reduces output verbosity)
+            // /S = Recursive (compress subdirectories)
+            string arguments = $"/C /EXE:{algorithmArg} {recursiveArg} /I /Q \"{escapedPath}\"";
             
             _fileLogger.Log($"[COMPACT] Target path: {path}");
             _fileLogger.Log($"[COMPACT] Escaped path: {escapedPath}");
-            _fileLogger.Log($"[COMPACT] Using NTFS transparent compression (all file types)");
+            _fileLogger.Log($"[COMPACT] Algorithm: {algorithmArg}");
             _fileLogger.Log($"[COMPACT] Full arguments: compact.exe {arguments}");
 
                 // Execute compact.exe
