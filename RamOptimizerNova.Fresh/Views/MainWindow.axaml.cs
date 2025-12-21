@@ -469,41 +469,15 @@ public partial class MainWindow : Window
             var drivesPanel = this.FindControl<ItemsControl>("DrivesPanel");
             if (drivesPanel == null) return;
             
+            // For now, just log the drives - we'll implement UI in next iteration
             var drives = DriveInfo.GetDrives()
                 .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
-                .Select(d => new
-                {
-                    Name = $"{d.Name.TrimEnd('\\')} ({d.VolumeLabel})",
-                    Free = FormatBytes(d.AvailableFreeSpace),
-                    Total = FormatBytes(d.TotalSize),
-                    PercentUsed = $"{(1 - (double)d.AvailableFreeSpace / d.TotalSize) * 100:F0}%"
-                })
                 .ToList();
             
-            if (drivesPanel.Items == null || ((IList<object>)drivesPanel.Items).Count != drives.Count)
+            Console.WriteLine($"Found {drives.Count} drives:");
+            foreach (var d in drives)
             {
-                drivesPanel.Items = drives.Select(d => new Border
-                {
-                    Background = Avalonia.Media.Brush.Parse("#99000000"),
-                    BorderBrush = Avalonia.Media.Brush.Parse("#19FFFFFF"),
-                    BorderThickness = new Avalonia.Thickness(1),
-                    CornerRadius = new Avalonia.CornerRadius(16),
-                    Padding = new Avalonia.Thickness(24),
-                    Margin = new Avalonia.Thickness(8),
-                    Width = 250,
-                    Height = 180,
-                    Child = new StackPanel
-                    {
-                        Spacing = 12,
-                        Children =
-                        {
-                            new TextBlock { Text = d.Name, FontSize = 18, FontWeight = Avalonia.Media.FontWeight.Bold },
-                            new TextBlock { Text = $"{d.Free} free", FontSize = 14 },
-                            new TextBlock { Text = $"{d.Total} total", FontSize = 12 },
-                            new TextBlock { Text = d.PercentUsed, FontSize = 14 }
-                        }
-                    }
-                }).ToList();
+                Console.WriteLine($"  {d.Name} ({d.VolumeLabel}) - {FormatBytes(d.AvailableFreeSpace)} free of {FormatBytes(d.TotalSize)}");
             }
         }
         catch (Exception ex)
