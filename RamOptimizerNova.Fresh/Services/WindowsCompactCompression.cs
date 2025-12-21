@@ -287,20 +287,18 @@ public async Task<bool> IsCompressedAsync(string path)
 
     try
     {
-        // Parse compact.exe output - look at the END for summary
-        // Example summary (at END of output):
-        // "123 files within 456 directories were compressed.
-        //  789,012 total bytes of data are stored in 345,678 bytes.
-        //  The compression ratio is 2.3 to 1."
+        // Parse compact.exe output - summary can be ANYWHERE in the output
+        // For large outputs (20k+ lines), the summary lines are scattered throughout
+        // Example summary lines:
+        // "123 files within 456 directories  were compressed."
+        // "789,012 total bytes of data are stored in 345,678 bytes."
+        // "The compression ratio is 2.3 to 1."
 
-        // Get last 50 lines where summary usually appears
         var lines = output.Split('\n');
-        var lastLines = string.Join("\n", lines.Skip(Math.Max(0, lines.Length - 50)));
+        _fileLogger.Log($"[COMPACT] Parsing output ({lines.Length} total lines, {output.Length} chars)");
 
-        _fileLogger.Log($"[COMPACT] Parsing output (last 50 lines of {lines.Length} total)");
-
-        // Extract file counts from summary
-        var filesMatch = Regex.Match(lastLines, @"(\d+(?:,\d+)*)\s+files?\s+within\s+\d+\s+directories\s+were\s+compressed");
+        // Extract file counts from summary - search ENTIRE output
+        var filesMatch = Regex.Match(output, @"(\d+(?:,\d+)*)\s+files?\s+within\s+\d+\s+directories\s+were\s+compressed", RegexOptions.IgnoreCase);
         if (filesMatch.Success)
         {
             var filesStr = filesMatch.Groups[1].Value.Replace(",", "");
@@ -310,11 +308,23 @@ public async Task<bool> IsCompressedAsync(string path)
         }
         else
         {
-            _fileLogger.Log($"[COMPACT] No 'files were compressed' summary found");
+            // Try alternative format: "X files were compressed"
+            var altMatch = Regex.Match(output, @"(\d+(?:,\d+)*)\s+files?\s+were\s+compressed", RegexOptions.IgnoreCase);
+            if (altMatch.Success)
+            {
+                var filesStr = altMatch.Groups[1].Value.Replace(",", "");
+                result.TotalFiles = long.Parse(filesStr);
+               result.CompressedFiles = result.TotalFiles;
+                _fileLogger.Log($"[COMPACT] Found (alt format): {result.TotalFiles} files compressed");
+            }
+            else
+            {
+                _fileLogger.Log($"[COMPACT] No 'files were compressed' summary found - files may already be compressed or skipped");
+            }
         }
 
-        // Extract sizes
-        var sizesMatch = Regex.Match(lastLines, @"(\d+(?:,\d+)*)\s+total bytes.*?stored in\s+(\d+(?:,\d+)*)\s+bytes");
+        // Extract sizes - search entire output
+        var sizesMatch = Regex.Match(output, @"(\d+(?:,\d+)*)\s+total bytes.*?stored in\s+(\d+(?:,\d+)*)\s+bytes", RegexOptions.IgnoreCase);
         if (sizesMatch.Success)
         {
             result.OriginalSize = long.Parse(sizesMatch.Groups[1].Value.Replace(",", ""));
@@ -323,10 +333,11 @@ public async Task<bool> IsCompressedAsync(string path)
         }
 
         // Calculate skipped files
-        var skippedMatch = Regex.Match(lastLines, @"(\d+(?:,\d+)*)\s+files?\s+(?:are|were)\s+skipped");
+        var skippedMatch = Regex.Match(output, @"(\d+(?:,\d+)*)\s+files?\s+(?:are|were)\s+skipped", RegexOptions.IgnoreCase);
         if (skippedMatch.Success)
         {
             result.SkippedFiles = long.Parse(skippedMatch.Groups[1].Value.Replace(",", ""));
+            _fileLogger.Log($"[COMPACT] Found: {result.SkippedFiles} files skipped (already compressed or excluded)");
         }
     }
     catch (Exception ex)
