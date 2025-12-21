@@ -69,7 +69,7 @@
                                    Background="{DynamicResource PurpleGradient}"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="42% utilized" 
+                        <TextBlock Text="{Binding CpuUsage, StringFormat='{}{0:F0}% utilized'}" 
                                   FontSize="11" 
                                   Foreground="{DynamicResource NebulaPurple}"/>
                     </StackPanel>
@@ -111,7 +111,7 @@
                                    Background="{DynamicResource CyanGradient}"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="67% utilized" 
+                        <TextBlock Text="{Binding GpuUsage, StringFormat='{}{0:F0}% utilized'}" 
                                   FontSize="11" 
                                   Foreground="{DynamicResource NebulaCyan}"/>
                     </StackPanel>
@@ -153,7 +153,7 @@
                                    Background="{DynamicResource PinkGradient}"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="51% utilized" 
+                        <TextBlock Text="{Binding MemoryPercentage, StringFormat='{}{0:F0}% utilized'}" 
                                   FontSize="11" 
                                   Foreground="{DynamicResource NebulaPink}"/>
                     </StackPanel>
@@ -195,7 +195,7 @@
                                    Background="LimeGreen"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="23% utilized" 
+                        <TextBlock Text="{Binding StoragePercentage, StringFormat='{}{0:F0}% utilized'}" 
                                   FontSize="11" 
                                   Foreground="LimeGreen"/>
                     </StackPanel>
