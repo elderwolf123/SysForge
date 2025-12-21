@@ -24,8 +24,15 @@ C:\Users\Jarrod\.nuget\packages\avalonia.win32\11.3.9\lib\net8.0\Avalonia.Win32.
 C:\Users\Jarrod\.nuget\packages\avalonia.x11\11.3.9\lib\net8.0\Avalonia.X11.dll
 C:\Users\Jarrod\.nuget\packages\communitytoolkit.mvvm\8.2.1\lib\net6.0\CommunityToolkit.Mvvm.dll
 C:\Users\Jarrod\.nuget\packages\harfbuzzsharp\8.3.1.1\lib\net8.0\HarfBuzzSharp.dll
+C:\Users\Jarrod\.nuget\packages\k4os.compression.lz4\1.3.8\lib\net6.0\K4os.Compression.LZ4.dll
 C:\Users\Jarrod\.nuget\packages\microcom.runtime\0.11.0\lib\net5.0\MicroCom.Runtime.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.CSharp.dll
+C:\Users\Jarrod\.nuget\packages\microsoft.extensions.dependencyinjection.abstractions\10.0.1\lib\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Jarrod\.nuget\packages\microsoft.extensions.dependencyinjection\10.0.1\lib\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Jarrod\.nuget\packages\microsoft.extensions.logging.abstractions\10.0.1\lib\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Jarrod\.nuget\packages\microsoft.extensions.logging\10.0.1\lib\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\Jarrod\.nuget\packages\microsoft.extensions.options\10.0.1\lib\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\Jarrod\.nuget\packages\microsoft.extensions.primitives\10.0.1\lib\net9.0\Microsoft.Extensions.Primitives.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.VisualBasic.Core.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.VisualBasic.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\Microsoft.Win32.Primitives.dll
@@ -35,6 +42,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\netsta
 C:\Users\Jarrod\.nuget\packages\skiasharp\2.88.9\lib\net6.0\SkiaSharp.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.AppContext.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Buffers.dll
+C:\Users\Jarrod\.nuget\packages\system.codedom\10.0.1\lib\net9.0\System.CodeDom.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Concurrent.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Collections.Immutable.dll
@@ -46,6 +54,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.EventBasedAsync.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.Primitives.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.ComponentModel.TypeConverter.dll
+C:\Users\Jarrod\.nuget\packages\system.configuration.configurationmanager\10.0.1\lib\net9.0\System.Configuration.ConfigurationManager.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Configuration.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Console.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Core.dll
@@ -54,8 +63,10 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Data.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Contracts.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Debug.dll
-C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Jarrod\.nuget\packages\system.diagnostics.diagnosticsource\10.0.1\lib\net9.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Jarrod\.nuget\packages\system.diagnostics.eventlog\10.0.1\lib\net9.0\System.Diagnostics.EventLog.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Jarrod\.nuget\packages\system.diagnostics.performancecounter\10.0.1\lib\net9.0\System.Diagnostics.PerformanceCounter.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.Process.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.StackTrace.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Diagnostics.TextWriterTraceListener.dll
@@ -91,6 +102,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Expressions.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Parallel.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Linq.Queryable.dll
+C:\Users\Jarrod\.nuget\packages\system.management\10.0.1\lib\net9.0\System.Management.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Memory.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Net.Http.dll
@@ -151,6 +163,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Encoding.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.OpenSsl.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.Primitives.dll
+C:\Users\Jarrod\.nuget\packages\system.security.cryptography.protecteddata\10.0.1\lib\net9.0\System.Security.Cryptography.ProtectedData.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Cryptography.X509Certificates.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Security.Principal.dll
@@ -164,6 +177,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Encodings.Web.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.Json.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Text.RegularExpressions.dll
+C:\Users\Jarrod\.nuget\packages\system.threading.accesscontrol\10.0.1\lib\net9.0\System.Threading.AccessControl.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Channels.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Threading.Overlapped.dll
@@ -191,3 +205,4 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\System.Xml.XPath.XDocument.dll
 C:\Users\Jarrod\.nuget\packages\tmds.dbus.protocol\0.21.2\lib\net8.0\Tmds.DBus.Protocol.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\9.0.11\ref\net9.0\WindowsBase.dll
+C:\Users\Jarrod\.nuget\packages\zstdsharp\0.7.2\lib\netstandard2.1\ZstdSharp.dll

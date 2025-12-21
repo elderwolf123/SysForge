@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RamOptimizerNova")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8fb3e923f44455b1bebd48839e47baa6c15c692e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da5c4eb95f8cae112114941536fb5167e6d85c24")]
 [assembly: System.Reflection.AssemblyProductAttribute("RamOptimizerNova")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RamOptimizerNova")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

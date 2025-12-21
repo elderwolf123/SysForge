@@ -1,5 +1,0 @@
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net10.0-windows\ProcessManagement.csproj.AssemblyReference.cache
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net10.0-windows\ProcessManagement.GeneratedMSBuildEditorConfig.editorconfig
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net10.0-windows\ProcessManagement.AssemblyInfoInputs.cache
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net10.0-windows\ProcessManagement.AssemblyInfo.cs
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net10.0-windows\ProcessManagement.csproj.CoreCompileInputs.cache
