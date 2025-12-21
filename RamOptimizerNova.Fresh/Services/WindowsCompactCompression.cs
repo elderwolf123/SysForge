@@ -84,12 +84,12 @@ namespace RamOptimizerNova.Services;
                 string recursiveArg = recursive ? "/S" : "";
             // Escape paths properly - escape quotes in path
             string escapedPath = path.Replace("\"", "\"\"");
-            // Use CompactGUI approach: /C /EXE:algorithm /I /Q /S
-            // /EXE:algorithm = Use specified compression algorithm (works on ALL files, not just .exe!)
+            // Use /C /EXE:algorithm /I /S approach
+            // /EXE:algorithm = Use specified compression algorithm (works on ALL files!)
             // /I = Continue on errors (don't stop if one file fails)
-            // /Q = Quiet mode (reduces output verbosity)
             // /S = Recursive (compress subdirectories)
-            string arguments = $"/C /EXE:{algorithmArg} {recursiveArg} /I /Q \"{escapedPath}\"";
+            // NOTE: Removed /Q because it suppresses the summary we need to parse!
+            string arguments = $"/C /EXE:{algorithmArg} {recursiveArg} /I \"{escapedPath}\"";
             
             _fileLogger.Log($"[COMPACT] Target path: {path}");
             _fileLogger.Log($"[COMPACT] Escaped path: {escapedPath}");
