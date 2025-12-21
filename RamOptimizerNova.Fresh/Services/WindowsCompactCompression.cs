@@ -251,10 +251,23 @@ public async Task<bool> IsCompressedAsync(string path)
             _fileLogger.Log($"  {line.Trim()}");
         }
 
-        // Check if output contains "are compressed" (definitive indicator)
-        // OR check for file listing with "C" attribute
-        bool isCompressed = output.Contains("are compressed") ||
-                           output.Contains("Of the files listed");
+        // Check if output says "N are compressed" where N > 0
+        // Example: "5 are compressed and 0 are not compressed" = True
+        // Example: "0 are compressed and 1 are not compressed" = False
+        var compressedMatch = Regex.Match(output, @"(\d+)\s+(?:are|is)\s+compressed");
+        bool isCompressed = false;
+        
+        if (compressedMatch.Success)
+        {
+            var count = int.Parse(compressedMatch.Groups[1].Value);
+            isCompressed = count > 0;
+            _fileLogger.Log($"[COMPACT] Compressed count: {count}");
+        }
+        else if (output.Contains("Of the files listed"))
+        {
+            // Fallback for directory listing format
+            isCompressed = true;
+        }
         
         _fileLogger.Log($"[COMPACT] Result: {isCompressed}");
         return isCompressed;

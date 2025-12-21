@@ -1,0 +1,1326 @@
+[2025-12-21 16:41:46.220] === RamOptimizer Nova - Session Started ===
+[2025-12-21 16:41:46.228] Log file: C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\publish\RamOptimizerNova\logs\RamOptimizer_2025-12-21_16-41-46.log
+[2025-12-21 16:41:46.559] === MainWindow Initializing ===
+[2025-12-21 16:41:47.213] Creating services...
+[2025-12-21 16:41:55.672] Finding UI elements...
+[2025-12-21 16:41:55.674] ✓ Found UI elements - CPU: True, GPU: True, Memory: True
+[2025-12-21 16:41:55.674] Setting up metrics timer...
+[2025-12-21 16:41:55.674] Initial metrics update...
+[2025-12-21 16:41:55.724] Found 2 drives:
+[2025-12-21 16:41:55.734]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:41:55.735]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:41:55.735] Wiring compression UI...
+[2025-12-21 16:41:55.735] Wiring compression buttons...
+[2025-12-21 16:41:55.736] ✓ FileModeRadio wired
+[2025-12-21 16:41:55.736] ✓ ProgramModeRadio wired
+[2025-12-21 16:41:55.737] ✓ SelectFolderButton wired
+[2025-12-21 16:41:55.737] ✓ ScanProgramsButton wired
+[2025-12-21 16:41:55.737] ✓ CompressButton wired
+[2025-12-21 16:41:55.737] ✓ DecompressButton wired
+[2025-12-21 16:41:55.737] === All compression handlers wired successfully ===
+[2025-12-21 16:41:55.737] === MainWindow Initialized Successfully ===
+[2025-12-21 16:41:57.689] Found 2 drives:
+[2025-12-21 16:41:57.700]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:41:57.700]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:41:59.717] Found 2 drives:
+[2025-12-21 16:41:59.719]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:41:59.719]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:01.734] Found 2 drives:
+[2025-12-21 16:42:01.734]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:01.735]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:02.298] Switching mode to: Program
+[2025-12-21 16:42:02.298] ✓ Mode switched successfully
+[2025-12-21 16:42:03.124] === ScanPrograms_Click triggered ===
+[2025-12-21 16:42:03.126] Starting program scan...
+[2025-12-21 16:42:03.746] Found 2 drives:
+[2025-12-21 16:42:03.747]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:03.747]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:05.765] Found 2 drives:
+[2025-12-21 16:42:05.767]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:05.767]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:07.776] Found 2 drives:
+[2025-12-21 16:42:07.777]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:07.777]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:09.794] Found 2 drives:
+[2025-12-21 16:42:09.795]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:09.796]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:10.467] [COMPACT] IsCompressed output for ASUS:
+[2025-12-21 16:42:10.467]   Listing C:\Program Files\
+[2025-12-21 16:42:10.467]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.467]   0 :         0 = 1.0 to 1   ASUS
+[2025-12-21 16:42:10.467]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.467]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.467] [COMPACT] Result: True
+[2025-12-21 16:42:10.557] [COMPACT] IsCompressed output for Bitdefender:
+[2025-12-21 16:42:10.557]   Listing C:\Program Files\
+[2025-12-21 16:42:10.558]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.558]   0 :         0 = 1.0 to 1   Bitdefender
+[2025-12-21 16:42:10.558]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.558]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.558] [COMPACT] Result: True
+[2025-12-21 16:42:10.628] [COMPACT] IsCompressed output for BraveSoftware:
+[2025-12-21 16:42:10.628]   Listing C:\Program Files\
+[2025-12-21 16:42:10.628]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.628]   0 :         0 = 1.0 to 1   BraveSoftware
+[2025-12-21 16:42:10.628]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.628]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.628] [COMPACT] Result: True
+[2025-12-21 16:42:10.692] [COMPACT] IsCompressed output for Common Files:
+[2025-12-21 16:42:10.692]   Listing C:\Program Files\
+[2025-12-21 16:42:10.692]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.692]   0 :         0 = 1.0 to 1   Common Files
+[2025-12-21 16:42:10.692]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.692]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.692] [COMPACT] Result: True
+[2025-12-21 16:42:10.762] [COMPACT] IsCompressed output for cursor:
+[2025-12-21 16:42:10.762]   Listing C:\Program Files\
+[2025-12-21 16:42:10.762]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.762]   0 :         0 = 1.0 to 1   cursor
+[2025-12-21 16:42:10.762]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.762]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.762] [COMPACT] Result: True
+[2025-12-21 16:42:10.821] [COMPACT] IsCompressed output for Docker:
+[2025-12-21 16:42:10.821]   Listing C:\Program Files\
+[2025-12-21 16:42:10.821]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.822]   0 :         0 = 1.0 to 1   Docker
+[2025-12-21 16:42:10.822]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.822]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.822] [COMPACT] Result: True
+[2025-12-21 16:42:10.896] [COMPACT] IsCompressed output for dotnet:
+[2025-12-21 16:42:10.896]   Listing C:\Program Files\
+[2025-12-21 16:42:10.897]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.897]   0 :         0 = 1.0 to 1   dotnet
+[2025-12-21 16:42:10.897]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.897]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.897] [COMPACT] Result: True
+[2025-12-21 16:42:10.989] [COMPACT] IsCompressed output for EA Games:
+[2025-12-21 16:42:10.989]   Listing C:\Program Files\
+[2025-12-21 16:42:10.989]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:10.989]   0 :         0 = 1.0 to 1   EA Games
+[2025-12-21 16:42:10.989]   Of 1 files within 1 directories
+[2025-12-21 16:42:10.989]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:10.989] [COMPACT] Result: True
+[2025-12-21 16:42:11.048] [COMPACT] IsCompressed output for Electronic Arts:
+[2025-12-21 16:42:11.048]   Listing C:\Program Files\
+[2025-12-21 16:42:11.048]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.048]   0 :         0 = 1.0 to 1   Electronic Arts
+[2025-12-21 16:42:11.048]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.048]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.048] [COMPACT] Result: True
+[2025-12-21 16:42:11.119] [COMPACT] IsCompressed output for Epic Games:
+[2025-12-21 16:42:11.119]   Listing C:\Program Files\
+[2025-12-21 16:42:11.119]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.119]   0 :         0 = 1.0 to 1   Epic Games
+[2025-12-21 16:42:11.119]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.119]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.119] [COMPACT] Result: True
+[2025-12-21 16:42:11.184] [COMPACT] IsCompressed output for FastFlix:
+[2025-12-21 16:42:11.184]   Listing C:\Program Files\
+[2025-12-21 16:42:11.184]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.184]   0 :         0 = 1.0 to 1   FastFlix
+[2025-12-21 16:42:11.184]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.184]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.184] [COMPACT] Result: True
+[2025-12-21 16:42:11.258] [COMPACT] IsCompressed output for Git:
+[2025-12-21 16:42:11.258]   Listing C:\Program Files\
+[2025-12-21 16:42:11.258]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.258]   0 :         0 = 1.0 to 1   Git
+[2025-12-21 16:42:11.258]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.258]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.258] [COMPACT] Result: True
+[2025-12-21 16:42:11.314] [COMPACT] IsCompressed output for HandBrake:
+[2025-12-21 16:42:11.314]   Listing C:\Program Files\
+[2025-12-21 16:42:11.314]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.314]   0 :         0 = 1.0 to 1   HandBrake
+[2025-12-21 16:42:11.314]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.314]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.314] [COMPACT] Result: True
+[2025-12-21 16:42:11.388] [COMPACT] IsCompressed output for Hasleo:
+[2025-12-21 16:42:11.388]   Listing C:\Program Files\
+[2025-12-21 16:42:11.388]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.388]   0 :         0 = 1.0 to 1   Hasleo
+[2025-12-21 16:42:11.388]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.388]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.388] [COMPACT] Result: True
+[2025-12-21 16:42:11.466] [COMPACT] IsCompressed output for Hayase:
+[2025-12-21 16:42:11.466]   Listing C:\Program Files\
+[2025-12-21 16:42:11.466]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.466]   0 :         0 = 1.0 to 1   Hayase
+[2025-12-21 16:42:11.466]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.466]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.466] [COMPACT] Result: True
+[2025-12-21 16:42:11.537] [COMPACT] IsCompressed output for Java:
+[2025-12-21 16:42:11.538]   Listing C:\Program Files\
+[2025-12-21 16:42:11.538]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.538]   0 :         0 = 1.0 to 1   Java
+[2025-12-21 16:42:11.538]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.538]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.538] [COMPACT] Result: True
+[2025-12-21 16:42:11.614] [COMPACT] IsCompressed output for Macrium:
+[2025-12-21 16:42:11.614]   Listing C:\Program Files\
+[2025-12-21 16:42:11.614]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.614]   0 :         0 = 1.0 to 1   Macrium
+[2025-12-21 16:42:11.614]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.614]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.614] [COMPACT] Result: True
+[2025-12-21 16:42:11.672] [COMPACT] IsCompressed output for MiniTool Partition Wizard 13:
+[2025-12-21 16:42:11.672]   Listing C:\Program Files\
+[2025-12-21 16:42:11.672]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.672]   0 :         0 = 1.0 to 1   MiniTool Partition Wizard 13
+[2025-12-21 16:42:11.672]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.672]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.672] [COMPACT] Result: True
+[2025-12-21 16:42:11.742] [COMPACT] IsCompressed output for Mozilla Firefox:
+[2025-12-21 16:42:11.742]   Listing C:\Program Files\
+[2025-12-21 16:42:11.742]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.742]   0 :         0 = 1.0 to 1   Mozilla Firefox
+[2025-12-21 16:42:11.742]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.742]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.742] [COMPACT] Result: True
+[2025-12-21 16:42:11.806] Found 2 drives:
+[2025-12-21 16:42:11.808]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:11.808]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:11.819] [COMPACT] IsCompressed output for NAPS2:
+[2025-12-21 16:42:11.819]   Listing C:\Program Files\
+[2025-12-21 16:42:11.819]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.819]   0 :         0 = 1.0 to 1   NAPS2
+[2025-12-21 16:42:11.819]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.819]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.819] [COMPACT] Result: True
+[2025-12-21 16:42:11.883] [COMPACT] IsCompressed output for NitroSense:
+[2025-12-21 16:42:11.883]   Listing C:\Program Files\
+[2025-12-21 16:42:11.883]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.883]   0 :         0 = 1.0 to 1   NitroSense
+[2025-12-21 16:42:11.883]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.883]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.883] [COMPACT] Result: True
+[2025-12-21 16:42:11.952] [COMPACT] IsCompressed output for NVIDIA Corporation:
+[2025-12-21 16:42:11.952]   Listing C:\Program Files\
+[2025-12-21 16:42:11.952]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:11.952]   0 :         0 = 1.0 to 1   NVIDIA Corporation
+[2025-12-21 16:42:11.952]   Of 1 files within 1 directories
+[2025-12-21 16:42:11.952]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:11.952] [COMPACT] Result: True
+[2025-12-21 16:42:12.017] [COMPACT] IsCompressed output for obs-studio:
+[2025-12-21 16:42:12.017]   Listing C:\Program Files\
+[2025-12-21 16:42:12.017]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.017]   0 :         0 = 1.0 to 1   obs-studio
+[2025-12-21 16:42:12.017]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.017]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.017] [COMPACT] Result: True
+[2025-12-21 16:42:12.082] [COMPACT] IsCompressed output for Oculus:
+[2025-12-21 16:42:12.083]   Listing C:\Program Files\
+[2025-12-21 16:42:12.083]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.083]   0 :         0 = 1.0 to 1   Oculus
+[2025-12-21 16:42:12.083]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.083]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.083] [COMPACT] Result: True
+[2025-12-21 16:42:12.154] [COMPACT] IsCompressed output for PowerShell:
+[2025-12-21 16:42:12.154]   Listing C:\Program Files\
+[2025-12-21 16:42:12.154]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.154]   0 :         0 = 1.0 to 1   PowerShell
+[2025-12-21 16:42:12.154]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.154]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.154] [COMPACT] Result: True
+[2025-12-21 16:42:12.224] [COMPACT] IsCompressed output for qBittorrent:
+[2025-12-21 16:42:12.224]   Listing C:\Program Files\
+[2025-12-21 16:42:12.224]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.224]   0 :         0 = 1.0 to 1   qBittorrent
+[2025-12-21 16:42:12.224]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.224]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.225] [COMPACT] Result: True
+[2025-12-21 16:42:12.305] [COMPACT] IsCompressed output for Session:
+[2025-12-21 16:42:12.305]   Listing C:\Program Files\
+[2025-12-21 16:42:12.305]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.305]   0 :         0 = 1.0 to 1   Session
+[2025-12-21 16:42:12.305]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.305]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.305] [COMPACT] Result: True
+[2025-12-21 16:42:12.394] [COMPACT] IsCompressed output for ShareX:
+[2025-12-21 16:42:12.395]   Listing C:\Program Files\
+[2025-12-21 16:42:12.395]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.395]   0 :         0 = 1.0 to 1   ShareX
+[2025-12-21 16:42:12.395]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.395]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.395] [COMPACT] Result: True
+[2025-12-21 16:42:12.463] [COMPACT] IsCompressed output for Spacedrive:
+[2025-12-21 16:42:12.463]   Listing C:\Program Files\
+[2025-12-21 16:42:12.463]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.463]   0 :         0 = 1.0 to 1   Spacedrive
+[2025-12-21 16:42:12.463]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.463]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.463] [COMPACT] Result: True
+[2025-12-21 16:42:12.527] [COMPACT] IsCompressed output for SteelSeries:
+[2025-12-21 16:42:12.527]   Listing C:\Program Files\
+[2025-12-21 16:42:12.527]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.527]   0 :         0 = 1.0 to 1   SteelSeries
+[2025-12-21 16:42:12.527]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.527]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.527] [COMPACT] Result: True
+[2025-12-21 16:42:12.590] [COMPACT] IsCompressed output for UniGetUI:
+[2025-12-21 16:42:12.590]   Listing C:\Program Files\
+[2025-12-21 16:42:12.590]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.590]   0 :         0 = 1.0 to 1   UniGetUI
+[2025-12-21 16:42:12.590]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.590]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.590] [COMPACT] Result: True
+[2025-12-21 16:42:12.671] [COMPACT] IsCompressed output for VideoLAN:
+[2025-12-21 16:42:12.671]   Listing C:\Program Files\
+[2025-12-21 16:42:12.671]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.671]   0 :         0 = 1.0 to 1   VideoLAN
+[2025-12-21 16:42:12.671]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.671]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.671] [COMPACT] Result: True
+[2025-12-21 16:42:12.739] [COMPACT] IsCompressed output for WindowsApps:
+[2025-12-21 16:42:12.739]   Listing C:\Program Files\
+[2025-12-21 16:42:12.740]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.740]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.740]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.740]   0 total bytes of data are stored in 0 bytes.
+[2025-12-21 16:42:12.740] [COMPACT] Result: True
+[2025-12-21 16:42:12.800] [COMPACT] IsCompressed output for WSL:
+[2025-12-21 16:42:12.800]   Listing C:\Program Files\
+[2025-12-21 16:42:12.800]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.800]   0 :         0 = 1.0 to 1   WSL
+[2025-12-21 16:42:12.800]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.800]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.800] [COMPACT] Result: True
+[2025-12-21 16:42:12.873] [COMPACT] IsCompressed output for ASUS:
+[2025-12-21 16:42:12.873]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:12.873]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.873]   0 :         0 = 1.0 to 1   ASUS
+[2025-12-21 16:42:12.873]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.873]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.873] [COMPACT] Result: True
+[2025-12-21 16:42:12.938] [COMPACT] IsCompressed output for Battle.net:
+[2025-12-21 16:42:12.938]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:12.938]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:12.938]   0 :         0 = 1.0 to 1   Battle.net
+[2025-12-21 16:42:12.938]   Of 1 files within 1 directories
+[2025-12-21 16:42:12.938]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:12.938] [COMPACT] Result: True
+[2025-12-21 16:42:13.003] [COMPACT] IsCompressed output for BraveSoftware:
+[2025-12-21 16:42:13.003]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.003]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.003]   0 :         0 = 1.0 to 1   BraveSoftware
+[2025-12-21 16:42:13.003]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.003]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.003] [COMPACT] Result: True
+[2025-12-21 16:42:13.067] [COMPACT] IsCompressed output for Canon:
+[2025-12-21 16:42:13.067]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.067]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.067]   0 :         0 = 1.0 to 1   Canon
+[2025-12-21 16:42:13.067]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.067]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.067] [COMPACT] Result: True
+[2025-12-21 16:42:13.142] [COMPACT] IsCompressed output for Digiarty:
+[2025-12-21 16:42:13.142]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.142]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.142]   0 :         0 = 1.0 to 1   Digiarty
+[2025-12-21 16:42:13.142]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.142]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.142] [COMPACT] Result: True
+[2025-12-21 16:42:13.204] [COMPACT] IsCompressed output for Epic Games:
+[2025-12-21 16:42:13.204]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.204]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.204]   0 :         0 = 1.0 to 1   Epic Games
+[2025-12-21 16:42:13.204]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.204]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.204] [COMPACT] Result: True
+[2025-12-21 16:42:13.272] [COMPACT] IsCompressed output for GOG Galaxy:
+[2025-12-21 16:42:13.272]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.272]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.272]   0 :         0 = 1.0 to 1   GOG Galaxy
+[2025-12-21 16:42:13.272]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.272]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.272] [COMPACT] Result: True
+[2025-12-21 16:42:13.352] [COMPACT] IsCompressed output for InstallShield Installation Information:
+[2025-12-21 16:42:13.352]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.352]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.352]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.352]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.352]   0 total bytes of data are stored in 0 bytes.
+[2025-12-21 16:42:13.352] [COMPACT] Result: True
+[2025-12-21 16:42:13.427] [COMPACT] IsCompressed output for Microsoft:
+[2025-12-21 16:42:13.427]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.427]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.427]   0 :         0 = 1.0 to 1   Microsoft
+[2025-12-21 16:42:13.427]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.427]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.428] [COMPACT] Result: True
+[2025-12-21 16:42:13.486] [COMPACT] IsCompressed output for MSI Afterburner:
+[2025-12-21 16:42:13.486]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.486]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.486]   0 :         0 = 1.0 to 1   MSI Afterburner
+[2025-12-21 16:42:13.486]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.486]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.486] [COMPACT] Result: True
+[2025-12-21 16:42:13.553] [COMPACT] IsCompressed output for NetRatingsNetSight:
+[2025-12-21 16:42:13.553]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.553]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.553]   0 :         0 = 1.0 to 1   NetRatingsNetSight
+[2025-12-21 16:42:13.553]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.553]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.553] [COMPACT] Result: True
+[2025-12-21 16:42:13.620] [COMPACT] IsCompressed output for NVIDIA Corporation:
+[2025-12-21 16:42:13.620]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.620]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.620]   0 :         0 = 1.0 to 1   NVIDIA Corporation
+[2025-12-21 16:42:13.620]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.620]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.620] [COMPACT] Result: True
+[2025-12-21 16:42:13.724] [COMPACT] IsCompressed output for R-Studio Technician:
+[2025-12-21 16:42:13.724]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.724]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.724]   0 :         0 = 1.0 to 1   R-Studio Technician
+[2025-12-21 16:42:13.724]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.724]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.724] [COMPACT] Result: True
+[2025-12-21 16:42:13.779] [COMPACT] IsCompressed output for Radmin VPN:
+[2025-12-21 16:42:13.779]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.779]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.779]   0 :         0 = 1.0 to 1   Radmin VPN
+[2025-12-21 16:42:13.779]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.779]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.779] [COMPACT] Result: True
+[2025-12-21 16:42:13.825] Found 2 drives:
+[2025-12-21 16:42:13.826]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:13.826]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:13.837] [COMPACT] IsCompressed output for REAL Video Enhancer:
+[2025-12-21 16:42:13.837]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.837]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.837]   0 :         0 = 1.0 to 1   REAL Video Enhancer
+[2025-12-21 16:42:13.837]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.837]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.837] [COMPACT] Result: True
+[2025-12-21 16:42:13.903] [COMPACT] IsCompressed output for RivaTuner Statistics Server:
+[2025-12-21 16:42:13.903]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.903]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.903]   0 :         0 = 1.0 to 1   RivaTuner Statistics Server
+[2025-12-21 16:42:13.903]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.903]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.903] [COMPACT] Result: True
+[2025-12-21 16:42:13.967] [COMPACT] IsCompressed output for Samsung:
+[2025-12-21 16:42:13.967]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:13.967]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:13.967]   0 :         0 = 1.0 to 1   Samsung
+[2025-12-21 16:42:13.967]   Of 1 files within 1 directories
+[2025-12-21 16:42:13.967]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:13.967] [COMPACT] Result: True
+[2025-12-21 16:42:14.033] [COMPACT] IsCompressed output for Steam:
+[2025-12-21 16:42:14.033]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:14.033]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.033]   0 :         0 = 1.0 to 1   Steam
+[2025-12-21 16:42:14.033]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.033]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.033] [COMPACT] Result: True
+[2025-12-21 16:42:14.094] [COMPACT] IsCompressed output for Ubisoft:
+[2025-12-21 16:42:14.094]   Listing C:\Program Files (x86)\
+[2025-12-21 16:42:14.094]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.094]   0 :         0 = 1.0 to 1   Ubisoft
+[2025-12-21 16:42:14.094]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.094]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.094] [COMPACT] Result: True
+[2025-12-21 16:42:14.165] [COMPACT] IsCompressed output for 100 Radioactive Cats:
+[2025-12-21 16:42:14.165]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.165]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.165]   0 :         0 = 1.0 to 1   100 Radioactive Cats
+[2025-12-21 16:42:14.165]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.165]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.165] [COMPACT] Result: True
+[2025-12-21 16:42:14.247] [COMPACT] IsCompressed output for ASimpleJob:
+[2025-12-21 16:42:14.259]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.260]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.260]   0 :         0 = 1.0 to 1   ASimpleJob
+[2025-12-21 16:42:14.260]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.260]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.260] [COMPACT] Result: True
+[2025-12-21 16:42:14.343] [COMPACT] IsCompressed output for Cash Cleaner Simulator:
+[2025-12-21 16:42:14.343]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.343]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.343]   0 :         0 = 1.0 to 1   Cash Cleaner Simulator
+[2025-12-21 16:42:14.343]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.343]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.344] [COMPACT] Result: True
+[2025-12-21 16:42:14.415] [COMPACT] IsCompressed output for Clockwork Cleanup:
+[2025-12-21 16:42:14.415]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.415]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.415]   0 :         0 = 1.0 to 1   Clockwork Cleanup
+[2025-12-21 16:42:14.415]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.415]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.415] [COMPACT] Result: True
+[2025-12-21 16:42:14.484] [COMPACT] IsCompressed output for CloverPit:
+[2025-12-21 16:42:14.484]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.484]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.484]   0 :         0 = 1.0 to 1   CloverPit
+[2025-12-21 16:42:14.484]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.484]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.484] [COMPACT] Result: True
+[2025-12-21 16:42:14.560] [COMPACT] IsCompressed output for Cult of the Lamb:
+[2025-12-21 16:42:14.560]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.560]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.560]   0 :         0 = 1.0 to 1   Cult of the Lamb
+[2025-12-21 16:42:14.560]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.560]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.560] [COMPACT] Result: True
+[2025-12-21 16:42:14.641] [COMPACT] IsCompressed output for Deadzone Rogue:
+[2025-12-21 16:42:14.641]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.641]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.641]   0 :         0 = 1.0 to 1   Deadzone Rogue
+[2025-12-21 16:42:14.641]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.641]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.641] [COMPACT] Result: True
+[2025-12-21 16:42:14.719] [COMPACT] IsCompressed output for Digseum:
+[2025-12-21 16:42:14.719]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.719]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.719]   0 :         0 = 1.0 to 1   Digseum
+[2025-12-21 16:42:14.719]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.719]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.719] [COMPACT] Result: True
+[2025-12-21 16:42:14.792] [COMPACT] IsCompressed output for Distance:
+[2025-12-21 16:42:14.792]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.792]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.792]   0 :         0 = 1.0 to 1   Distance
+[2025-12-21 16:42:14.792]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.792]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.792] [COMPACT] Result: True
+[2025-12-21 16:42:14.884] [COMPACT] IsCompressed output for Dreamscaper:
+[2025-12-21 16:42:14.884]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.884]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.884]   0 :         0 = 1.0 to 1   Dreamscaper
+[2025-12-21 16:42:14.884]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.884]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.884] [COMPACT] Result: True
+[2025-12-21 16:42:14.944] [COMPACT] IsCompressed output for Drums Rock:
+[2025-12-21 16:42:14.944]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:14.944]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:14.944]   0 :         0 = 1.0 to 1   Drums Rock
+[2025-12-21 16:42:14.944]   Of 1 files within 1 directories
+[2025-12-21 16:42:14.944]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:14.944] [COMPACT] Result: True
+[2025-12-21 16:42:15.027] [COMPACT] IsCompressed output for Dude, Stop:
+[2025-12-21 16:42:15.027]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.027]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.027]   0 :         0 = 1.0 to 1   Dude, Stop
+[2025-12-21 16:42:15.027]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.027]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.027] [COMPACT] Result: True
+[2025-12-21 16:42:15.095] [COMPACT] IsCompressed output for Dying Light 2:
+[2025-12-21 16:42:15.095]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.095]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.095]   0 :         0 = 1.0 to 1   Dying Light 2
+[2025-12-21 16:42:15.095]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.095]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.095] [COMPACT] Result: True
+[2025-12-21 16:42:15.165] [COMPACT] IsCompressed output for ECHO:
+[2025-12-21 16:42:15.165]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.165]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.165]   0 :         0 = 1.0 to 1   ECHO
+[2025-12-21 16:42:15.165]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.165]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.166] [COMPACT] Result: True
+[2025-12-21 16:42:15.240] [COMPACT] IsCompressed output for FACEMINER:
+[2025-12-21 16:42:15.240]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.240]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.240]   0 :         0 = 1.0 to 1   FACEMINER
+[2025-12-21 16:42:15.240]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.240]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.240] [COMPACT] Result: True
+[2025-12-21 16:42:15.305] [COMPACT] IsCompressed output for Fill Up The Hole:
+[2025-12-21 16:42:15.305]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.305]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.305]   0 :         0 = 1.0 to 1   Fill Up The Hole
+[2025-12-21 16:42:15.305]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.305]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.305] [COMPACT] Result: True
+[2025-12-21 16:42:15.402] [COMPACT] IsCompressed output for Golf It!:
+[2025-12-21 16:42:15.402]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.402]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.402]   0 :         0 = 1.0 to 1   Golf It!
+[2025-12-21 16:42:15.402]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.402]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.402] [COMPACT] Result: True
+[2025-12-21 16:42:15.483] [COMPACT] IsCompressed output for Golf With Your Friends:
+[2025-12-21 16:42:15.484]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.484]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.484]   0 :         0 = 1.0 to 1   Golf With Your Friends
+[2025-12-21 16:42:15.484]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.484]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.484] [COMPACT] Result: True
+[2025-12-21 16:42:15.563] [COMPACT] IsCompressed output for How 2 Escape:
+[2025-12-21 16:42:15.563]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.563]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.563]   0 :         0 = 1.0 to 1   How 2 Escape
+[2025-12-21 16:42:15.563]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.563]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.563] [COMPACT] Result: True
+[2025-12-21 16:42:15.628] [COMPACT] IsCompressed output for How 2 Escape Lost Submarine:
+[2025-12-21 16:42:15.628]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.628]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.628]   0 :         0 = 1.0 to 1   How 2 Escape Lost Submarine
+[2025-12-21 16:42:15.628]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.628]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.628] [COMPACT] Result: True
+[2025-12-21 16:42:15.694] [COMPACT] IsCompressed output for Idle Slayer:
+[2025-12-21 16:42:15.694]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.694]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.694]   0 :         0 = 1.0 to 1   Idle Slayer
+[2025-12-21 16:42:15.694]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.694]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.694] [COMPACT] Result: True
+[2025-12-21 16:42:15.779] [COMPACT] IsCompressed output for Idle Sphere:
+[2025-12-21 16:42:15.779]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.779]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.779]   0 :         0 = 1.0 to 1   Idle Sphere
+[2025-12-21 16:42:15.779]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.779]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.779] [COMPACT] Result: True
+[2025-12-21 16:42:15.838] Found 2 drives:
+[2025-12-21 16:42:15.839]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:15.839]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:15.851] [COMPACT] IsCompressed output for Idle Spiral:
+[2025-12-21 16:42:15.851]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.851]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.851]   0 :         0 = 1.0 to 1   Idle Spiral
+[2025-12-21 16:42:15.851]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.851]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.851] [COMPACT] Result: True
+[2025-12-21 16:42:15.922] [COMPACT] IsCompressed output for Infiniclick:
+[2025-12-21 16:42:15.922]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:15.922]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:15.922]   0 :         0 = 1.0 to 1   Infiniclick
+[2025-12-21 16:42:15.922]   Of 1 files within 1 directories
+[2025-12-21 16:42:15.922]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:15.922] [COMPACT] Result: True
+[2025-12-21 16:42:16.003] [COMPACT] IsCompressed output for Keep on Mining!:
+[2025-12-21 16:42:16.003]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.003]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.003]   0 :         0 = 1.0 to 1   Keep on Mining!
+[2025-12-21 16:42:16.003]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.003]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.003] [COMPACT] Result: True
+[2025-12-21 16:42:16.095] [COMPACT] IsCompressed output for Orwell:
+[2025-12-21 16:42:16.095]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.095]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.095]   0 :         0 = 1.0 to 1   Orwell
+[2025-12-21 16:42:16.095]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.095]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.095] [COMPACT] Result: True
+[2025-12-21 16:42:16.166] [COMPACT] IsCompressed output for Outer Wilds:
+[2025-12-21 16:42:16.166]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.166]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.166]   0 :         0 = 1.0 to 1   Outer Wilds
+[2025-12-21 16:42:16.166]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.166]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.166] [COMPACT] Result: True
+[2025-12-21 16:42:16.237] [COMPACT] IsCompressed output for PegIdle:
+[2025-12-21 16:42:16.237]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.237]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.237]   0 :         0 = 1.0 to 1   PegIdle
+[2025-12-21 16:42:16.237]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.237]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.237] [COMPACT] Result: True
+[2025-12-21 16:42:16.307] [COMPACT] IsCompressed output for Pocket Pusher:
+[2025-12-21 16:42:16.307]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.307]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.307]   0 :         0 = 1.0 to 1   Pocket Pusher
+[2025-12-21 16:42:16.307]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.307]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.307] [COMPACT] Result: True
+[2025-12-21 16:42:16.376] [COMPACT] IsCompressed output for RoboQuest:
+[2025-12-21 16:42:16.376]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.376]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.376]   0 :         0 = 1.0 to 1   RoboQuest
+[2025-12-21 16:42:16.376]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.376]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.376] [COMPACT] Result: True
+[2025-12-21 16:42:16.443] [COMPACT] IsCompressed output for Sixty Four:
+[2025-12-21 16:42:16.443]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.443]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.443]   0 :         0 = 1.0 to 1   Sixty Four
+[2025-12-21 16:42:16.443]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.443]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.443] [COMPACT] Result: True
+[2025-12-21 16:42:16.514] [COMPACT] IsCompressed output for SonicFrontiers:
+[2025-12-21 16:42:16.514]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.514]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.514]   0 :         0 = 1.0 to 1   SonicFrontiers
+[2025-12-21 16:42:16.514]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.514]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.514] [COMPACT] Result: True
+[2025-12-21 16:42:16.598] [COMPACT] IsCompressed output for Split Fiction:
+[2025-12-21 16:42:16.598]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.598]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.598]   0 :         0 = 1.0 to 1   Split Fiction
+[2025-12-21 16:42:16.598]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.598]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.598] [COMPACT] Result: True
+[2025-12-21 16:42:16.657] [COMPACT] IsCompressed output for SpongeBob SquarePants Titans of the Tide:
+[2025-12-21 16:42:16.657]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.657]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.657]   0 :         0 = 1.0 to 1   SpongeBob SquarePants Titans of the Tide
+[2025-12-21 16:42:16.657]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.657]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.657] [COMPACT] Result: True
+[2025-12-21 16:42:16.731] [COMPACT] IsCompressed output for Starfield:
+[2025-12-21 16:42:16.731]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.731]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.731]   0 :         0 = 1.0 to 1   Starfield
+[2025-12-21 16:42:16.731]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.731]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.731] [COMPACT] Result: True
+[2025-12-21 16:42:16.803] [COMPACT] IsCompressed output for SteamVR:
+[2025-12-21 16:42:16.803]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.803]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.803]   0 :         0 = 1.0 to 1   SteamVR
+[2025-12-21 16:42:16.803]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.804]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.804] [COMPACT] Result: True
+[2025-12-21 16:42:16.870] [COMPACT] IsCompressed output for SynthRiders:
+[2025-12-21 16:42:16.870]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.870]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.870]   0 :         0 = 1.0 to 1   SynthRiders
+[2025-12-21 16:42:16.870]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.870]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.870] [COMPACT] Result: True
+[2025-12-21 16:42:16.927] [COMPACT] IsCompressed output for The Maze VR:
+[2025-12-21 16:42:16.927]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:16.927]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:16.927]   0 :         0 = 1.0 to 1   The Maze VR
+[2025-12-21 16:42:16.927]   Of 1 files within 1 directories
+[2025-12-21 16:42:16.927]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:16.927] [COMPACT] Result: True
+[2025-12-21 16:42:17.000] [COMPACT] IsCompressed output for The Perfect Tower II:
+[2025-12-21 16:42:17.000]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.000]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.000]   0 :         0 = 1.0 to 1   The Perfect Tower II
+[2025-12-21 16:42:17.000]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.000]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.000] [COMPACT] Result: True
+[2025-12-21 16:42:17.081] [COMPACT] IsCompressed output for TheOuterWorlds2:
+[2025-12-21 16:42:17.081]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.081]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.081]   0 :         0 = 1.0 to 1   TheOuterWorlds2
+[2025-12-21 16:42:17.081]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.081]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.081] [COMPACT] Result: True
+[2025-12-21 16:42:17.145] [COMPACT] IsCompressed output for THOSE GAMES:
+[2025-12-21 16:42:17.145]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.145]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.145]   0 :         0 = 1.0 to 1   THOSE GAMES
+[2025-12-21 16:42:17.145]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.145]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.145] [COMPACT] Result: True
+[2025-12-21 16:42:17.227] [COMPACT] IsCompressed output for THOSE GAMES 2:
+[2025-12-21 16:42:17.227]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.227]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.227]   0 :         0 = 1.0 to 1   THOSE GAMES 2
+[2025-12-21 16:42:17.227]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.227]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.227] [COMPACT] Result: True
+[2025-12-21 16:42:17.289] [COMPACT] IsCompressed output for Tower Wizard:
+[2025-12-21 16:42:17.289]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.289]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.289]   0 :         0 = 1.0 to 1   Tower Wizard
+[2025-12-21 16:42:17.289]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.289]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.289] [COMPACT] Result: True
+[2025-12-21 16:42:17.376] [COMPACT] IsCompressed output for Unboxathon:
+[2025-12-21 16:42:17.376]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.376]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.376]   0 :         0 = 1.0 to 1   Unboxathon
+[2025-12-21 16:42:17.376]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.376]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.376] [COMPACT] Result: True
+[2025-12-21 16:42:17.451] [COMPACT] IsCompressed output for Upload Labs:
+[2025-12-21 16:42:17.451]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.451]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.451]   0 :         0 = 1.0 to 1   Upload Labs
+[2025-12-21 16:42:17.451]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.452]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.452] [COMPACT] Result: True
+[2025-12-21 16:42:17.532] [COMPACT] IsCompressed output for wallpaper_engine:
+[2025-12-21 16:42:17.532]   Listing C:\Program Files (x86)\Steam\steamapps\common\
+[2025-12-21 16:42:17.532]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.532]   0 :         0 = 1.0 to 1   wallpaper_engine
+[2025-12-21 16:42:17.532]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.532]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.532] [COMPACT] Result: True
+[2025-12-21 16:42:17.631] [COMPACT] IsCompressed output for Abyssus:
+[2025-12-21 16:42:17.631]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:17.631]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.631]   0 :         0 = 1.0 to 1   Abyssus
+[2025-12-21 16:42:17.631]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.631]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.631] [COMPACT] Result: True
+[2025-12-21 16:42:17.707] [COMPACT] IsCompressed output for Adventure Escape Mysteries:
+[2025-12-21 16:42:17.707]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:17.707]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.707]   0 :         0 = 1.0 to 1   Adventure Escape Mysteries
+[2025-12-21 16:42:17.707]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.707]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.707] [COMPACT] Result: True
+[2025-12-21 16:42:17.765] [COMPACT] IsCompressed output for Agents of Mayhem:
+[2025-12-21 16:42:17.765]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:17.765]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.765]   0 :         0 = 1.0 to 1   Agents of Mayhem
+[2025-12-21 16:42:17.765]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.765]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.765] [COMPACT] Result: True
+[2025-12-21 16:42:17.830] [COMPACT] IsCompressed output for Beat Saber:
+[2025-12-21 16:42:17.830]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:17.830]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.830]   0 :         0 = 1.0 to 1   Beat Saber
+[2025-12-21 16:42:17.830]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.830]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.830] [COMPACT] Result: True
+[2025-12-21 16:42:17.844] Found 2 drives:
+[2025-12-21 16:42:17.845]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:17.845]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:17.900] [COMPACT] IsCompressed output for BOKURA:
+[2025-12-21 16:42:17.900]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:17.900]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.900]   0 :         0 = 1.0 to 1   BOKURA
+[2025-12-21 16:42:17.900]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.900]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.900] [COMPACT] Result: True
+[2025-12-21 16:42:17.988] [COMPACT] IsCompressed output for BOKURA planet:
+[2025-12-21 16:42:17.988]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:17.989]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:17.989]   0 :         0 = 1.0 to 1   BOKURA planet
+[2025-12-21 16:42:17.989]   Of 1 files within 1 directories
+[2025-12-21 16:42:17.989]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:17.989] [COMPACT] Result: True
+[2025-12-21 16:42:18.074] [COMPACT] IsCompressed output for BONEWORKS:
+[2025-12-21 16:42:18.074]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.074]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.074]   0 :         0 = 1.0 to 1   BONEWORKS
+[2025-12-21 16:42:18.074]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.074]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.074] [COMPACT] Result: True
+[2025-12-21 16:42:18.163] [COMPACT] IsCompressed output for Buckshot Roulette:
+[2025-12-21 16:42:18.163]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.163]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.163]   0 :         0 = 1.0 to 1   Buckshot Roulette
+[2025-12-21 16:42:18.163]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.163]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.163] [COMPACT] Result: True
+[2025-12-21 16:42:18.235] [COMPACT] IsCompressed output for Bugsnax:
+[2025-12-21 16:42:18.236]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.236]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.236]   0 :         0 = 1.0 to 1   Bugsnax
+[2025-12-21 16:42:18.236]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.236]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.236] [COMPACT] Result: True
+[2025-12-21 16:42:18.305] [COMPACT] IsCompressed output for Cell to Singularity:
+[2025-12-21 16:42:18.305]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.305]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.305]   0 :         0 = 1.0 to 1   Cell to Singularity
+[2025-12-21 16:42:18.305]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.305]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.305] [COMPACT] Result: True
+[2025-12-21 16:42:18.386] [COMPACT] IsCompressed output for Click To Continue:
+[2025-12-21 16:42:18.386]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.386]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.386]   0 :         0 = 1.0 to 1   Click To Continue
+[2025-12-21 16:42:18.386]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.386]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.386] [COMPACT] Result: True
+[2025-12-21 16:42:18.455] [COMPACT] IsCompressed output for Coming Out on Top:
+[2025-12-21 16:42:18.455]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.455]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.455]   0 :         0 = 1.0 to 1   Coming Out on Top
+[2025-12-21 16:42:18.455]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.455]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.455] [COMPACT] Result: True
+[2025-12-21 16:42:18.525] [COMPACT] IsCompressed output for Death Squared:
+[2025-12-21 16:42:18.525]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.525]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.525]   0 :         0 = 1.0 to 1   Death Squared
+[2025-12-21 16:42:18.525]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.525]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.525] [COMPACT] Result: True
+[2025-12-21 16:42:18.590] [COMPACT] IsCompressed output for Dishonored:
+[2025-12-21 16:42:18.590]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.590]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.590]   0 :         0 = 1.0 to 1   Dishonored
+[2025-12-21 16:42:18.590]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.590]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.590] [COMPACT] Result: True
+[2025-12-21 16:42:18.675] [COMPACT] IsCompressed output for Distance:
+[2025-12-21 16:42:18.675]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.675]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.675]   0 :         0 = 1.0 to 1   Distance
+[2025-12-21 16:42:18.675]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.675]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.675] [COMPACT] Result: True
+[2025-12-21 16:42:18.758] [COMPACT] IsCompressed output for DOOMEternal:
+[2025-12-21 16:42:18.758]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.758]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.758]   0 :         0 = 1.0 to 1   DOOMEternal
+[2025-12-21 16:42:18.758]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.758]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.758] [COMPACT] Result: True
+[2025-12-21 16:42:18.831] [COMPACT] IsCompressed output for Dying Light The Beast:
+[2025-12-21 16:42:18.832]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.832]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.832]   0 :         0 = 1.0 to 1   Dying Light The Beast
+[2025-12-21 16:42:18.832]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.832]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.832] [COMPACT] Result: True
+[2025-12-21 16:42:18.913] [COMPACT] IsCompressed output for Dyson Sphere Program:
+[2025-12-21 16:42:18.913]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.913]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.913]   0 :         0 = 1.0 to 1   Dyson Sphere Program
+[2025-12-21 16:42:18.913]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.913]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.913] [COMPACT] Result: True
+[2025-12-21 16:42:18.987] [COMPACT] IsCompressed output for Egression:
+[2025-12-21 16:42:18.987]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:18.987]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:18.987]   0 :         0 = 1.0 to 1   Egression
+[2025-12-21 16:42:18.987]   Of 1 files within 1 directories
+[2025-12-21 16:42:18.987]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:18.987] [COMPACT] Result: True
+[2025-12-21 16:42:19.057] [COMPACT] IsCompressed output for Escape Simulator:
+[2025-12-21 16:42:19.057]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.057]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.057]   0 :         0 = 1.0 to 1   Escape Simulator
+[2025-12-21 16:42:19.057]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.057]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.057] [COMPACT] Result: True
+[2025-12-21 16:42:19.134] [COMPACT] IsCompressed output for Escape Simulator 2:
+[2025-12-21 16:42:19.134]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.134]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.134]   0 :         0 = 1.0 to 1   Escape Simulator 2
+[2025-12-21 16:42:19.134]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.134]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.134] [COMPACT] Result: True
+[2025-12-21 16:42:19.209] [COMPACT] IsCompressed output for Euro Truck Simulator 2:
+[2025-12-21 16:42:19.209]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.209]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.209]   0 :         0 = 1.0 to 1   Euro Truck Simulator 2
+[2025-12-21 16:42:19.209]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.209]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.209] [COMPACT] Result: True
+[2025-12-21 16:42:19.291] [COMPACT] IsCompressed output for Fever Meme:
+[2025-12-21 16:42:19.291]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.291]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.291]   0 :         0 = 1.0 to 1   Fever Meme
+[2025-12-21 16:42:19.291]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.291]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.291] [COMPACT] Result: True
+[2025-12-21 16:42:19.360] [COMPACT] IsCompressed output for FINAL SPIN:
+[2025-12-21 16:42:19.360]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.360]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.360]   0 :         0 = 1.0 to 1   FINAL SPIN
+[2025-12-21 16:42:19.360]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.360]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.360] [COMPACT] Result: True
+[2025-12-21 16:42:19.435] [COMPACT] IsCompressed output for Hacknet:
+[2025-12-21 16:42:19.435]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.435]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.435]   0 :         0 = 1.0 to 1   Hacknet
+[2025-12-21 16:42:19.435]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.435]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.435] [COMPACT] Result: True
+[2025-12-21 16:42:19.502] [COMPACT] IsCompressed output for Hogwarts Legacy:
+[2025-12-21 16:42:19.502]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.502]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.502]   0 :         0 = 1.0 to 1   Hogwarts Legacy
+[2025-12-21 16:42:19.502]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.502]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.502] [COMPACT] Result: True
+[2025-12-21 16:42:19.557] [COMPACT] IsCompressed output for Lossless Scaling:
+[2025-12-21 16:42:19.557]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.557]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.557]   0 :         0 = 1.0 to 1   Lossless Scaling
+[2025-12-21 16:42:19.557]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.557]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.557] [COMPACT] Result: True
+[2025-12-21 16:42:19.621] [COMPACT] IsCompressed output for Magicka 2:
+[2025-12-21 16:42:19.621]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.621]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.621]   0 :         0 = 1.0 to 1   Magicka 2
+[2025-12-21 16:42:19.621]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.621]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.621] [COMPACT] Result: True
+[2025-12-21 16:42:19.688] [COMPACT] IsCompressed output for Magicka 2 beta:
+[2025-12-21 16:42:19.689]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.689]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.689]   0 :         0 = 1.0 to 1   Magicka 2 beta
+[2025-12-21 16:42:19.689]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.689]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.689] [COMPACT] Result: True
+[2025-12-21 16:42:19.763] [COMPACT] IsCompressed output for Magrunner:
+[2025-12-21 16:42:19.763]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.763]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.763]   0 :         0 = 1.0 to 1   Magrunner
+[2025-12-21 16:42:19.763]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.763]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.763] [COMPACT] Result: True
+[2025-12-21 16:42:19.828] [COMPACT] IsCompressed output for Make Good Choices:
+[2025-12-21 16:42:19.828]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.828]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.828]   0 :         0 = 1.0 to 1   Make Good Choices
+[2025-12-21 16:42:19.828]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.828]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.828] [COMPACT] Result: True
+[2025-12-21 16:42:19.854] Found 2 drives:
+[2025-12-21 16:42:19.856]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:19.856]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:19.910] [COMPACT] IsCompressed output for Maskmaker:
+[2025-12-21 16:42:19.910]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.910]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.910]   0 :         0 = 1.0 to 1   Maskmaker
+[2025-12-21 16:42:19.910]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.910]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.910] [COMPACT] Result: True
+[2025-12-21 16:42:19.967] [COMPACT] IsCompressed output for Path of Exile:
+[2025-12-21 16:42:19.967]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:19.967]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:19.967]   0 :         0 = 1.0 to 1   Path of Exile
+[2025-12-21 16:42:19.967]   Of 1 files within 1 directories
+[2025-12-21 16:42:19.967]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:19.967] [COMPACT] Result: True
+[2025-12-21 16:42:20.027] [COMPACT] IsCompressed output for PAYDAY 2:
+[2025-12-21 16:42:20.027]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.027]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.027]   0 :         0 = 1.0 to 1   PAYDAY 2
+[2025-12-21 16:42:20.027]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.027]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.027] [COMPACT] Result: True
+[2025-12-21 16:42:20.124] [COMPACT] IsCompressed output for PCMark 10:
+[2025-12-21 16:42:20.124]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.124]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.124]   0 :         0 = 1.0 to 1   PCMark 10
+[2025-12-21 16:42:20.124]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.124]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.124] [COMPACT] Result: True
+[2025-12-21 16:42:20.220] [COMPACT] IsCompressed output for POSTAL Brain Damaged:
+[2025-12-21 16:42:20.220]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.220]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.220]   0 :         0 = 1.0 to 1   POSTAL Brain Damaged
+[2025-12-21 16:42:20.220]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.220]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.220] [COMPACT] Result: True
+[2025-12-21 16:42:20.285] [COMPACT] IsCompressed output for PowerWash Simulator:
+[2025-12-21 16:42:20.285]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.285]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.285]   0 :         0 = 1.0 to 1   PowerWash Simulator
+[2025-12-21 16:42:20.285]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.285]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.285] [COMPACT] Result: True
+[2025-12-21 16:42:20.353] [COMPACT] IsCompressed output for Prodeus:
+[2025-12-21 16:42:20.353]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.353]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.353]   0 :         0 = 1.0 to 1   Prodeus
+[2025-12-21 16:42:20.353]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.353]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.353] [COMPACT] Result: True
+[2025-12-21 16:42:20.428] [COMPACT] IsCompressed output for Psychonauts in the Rhombus of Ruin:
+[2025-12-21 16:42:20.428]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.429]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.429]   0 :         0 = 1.0 to 1   Psychonauts in the Rhombus of Ruin
+[2025-12-21 16:42:20.429]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.429]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.429] [COMPACT] Result: True
+[2025-12-21 16:42:20.512] [COMPACT] IsCompressed output for Ragnarock:
+[2025-12-21 16:42:20.512]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.512]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.512]   0 :         0 = 1.0 to 1   Ragnarock
+[2025-12-21 16:42:20.512]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.512]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.512] [COMPACT] Result: True
+[2025-12-21 16:42:20.592] [COMPACT] IsCompressed output for RERUNNER:
+[2025-12-21 16:42:20.592]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.592]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.592]   0 :         0 = 1.0 to 1   RERUNNER
+[2025-12-21 16:42:20.592]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.592]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.592] [COMPACT] Result: True
+[2025-12-21 16:42:20.649] [COMPACT] IsCompressed output for Rusty's Retirement:
+[2025-12-21 16:42:20.649]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.649]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.649]   0 :         0 = 1.0 to 1   Rusty's Retirement
+[2025-12-21 16:42:20.649]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.649]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.649] [COMPACT] Result: True
+[2025-12-21 16:42:20.719] [COMPACT] IsCompressed output for Satisfactory:
+[2025-12-21 16:42:20.719]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.719]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.719]   0 :         0 = 1.0 to 1   Satisfactory
+[2025-12-21 16:42:20.719]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.719]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.719] [COMPACT] Result: True
+[2025-12-21 16:42:20.805] [COMPACT] IsCompressed output for Schrodinger's Cat Burglar Demo:
+[2025-12-21 16:42:20.805]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.805]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.805]   0 :         0 = 1.0 to 1   Schrodinger's Cat Burglar Demo
+[2025-12-21 16:42:20.805]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.805]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.805] [COMPACT] Result: True
+[2025-12-21 16:42:20.880] [COMPACT] IsCompressed output for Scribblenauts:
+[2025-12-21 16:42:20.880]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.880]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.880]   0 :         0 = 1.0 to 1   Scribblenauts
+[2025-12-21 16:42:20.880]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.880]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.880] [COMPACT] Result: True
+[2025-12-21 16:42:20.933] [COMPACT] IsCompressed output for Sky Children of the Light:
+[2025-12-21 16:42:20.933]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.933]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.933]   0 :         0 = 1.0 to 1   Sky Children of the Light
+[2025-12-21 16:42:20.933]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.933]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.933] [COMPACT] Result: True
+[2025-12-21 16:42:20.997] [COMPACT] IsCompressed output for smbbm:
+[2025-12-21 16:42:20.997]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:20.997]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:20.997]   0 :         0 = 1.0 to 1   smbbm
+[2025-12-21 16:42:20.997]   Of 1 files within 1 directories
+[2025-12-21 16:42:20.997]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:20.997] [COMPACT] Result: True
+[2025-12-21 16:42:21.075] [COMPACT] IsCompressed output for SpaceEngineers:
+[2025-12-21 16:42:21.075]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.075]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.075]   0 :         0 = 1.0 to 1   SpaceEngineers
+[2025-12-21 16:42:21.075]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.075]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.075] [COMPACT] Result: True
+[2025-12-21 16:42:21.180] [COMPACT] IsCompressed output for SpeedRunners:
+[2025-12-21 16:42:21.180]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.180]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.180]   0 :         0 = 1.0 to 1   SpeedRunners
+[2025-12-21 16:42:21.180]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.180]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.180] [COMPACT] Result: True
+[2025-12-21 16:42:21.275] [COMPACT] IsCompressed output for Spirit City Lofi Sessions:
+[2025-12-21 16:42:21.275]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.275]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.275]   0 :         0 = 1.0 to 1   Spirit City Lofi Sessions
+[2025-12-21 16:42:21.275]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.275]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.275] [COMPACT] Result: True
+[2025-12-21 16:42:21.345] [COMPACT] IsCompressed output for SS2:
+[2025-12-21 16:42:21.345]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.345]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.345]   0 :         0 = 1.0 to 1   SS2
+[2025-12-21 16:42:21.345]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.345]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.345] [COMPACT] Result: True
+[2025-12-21 16:42:21.399] [COMPACT] IsCompressed output for State of Mind:
+[2025-12-21 16:42:21.400]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.400]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.400]   0 :         0 = 1.0 to 1   State of Mind
+[2025-12-21 16:42:21.400]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.400]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.400] [COMPACT] Result: True
+[2025-12-21 16:42:21.493] [COMPACT] IsCompressed output for SteamVRPerformanceTest:
+[2025-12-21 16:42:21.493]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.493]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.493]   0 :         0 = 1.0 to 1   SteamVRPerformanceTest
+[2025-12-21 16:42:21.493]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.493]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.493] [COMPACT] Result: True
+[2025-12-21 16:42:21.575] [COMPACT] IsCompressed output for SunsetOverdrive:
+[2025-12-21 16:42:21.575]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.575]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.575]   0 :         0 = 1.0 to 1   SunsetOverdrive
+[2025-12-21 16:42:21.575]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.575]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.575] [COMPACT] Result: True
+[2025-12-21 16:42:21.630] [COMPACT] IsCompressed output for Supraworld:
+[2025-12-21 16:42:21.630]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.630]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.630]   0 :         0 = 1.0 to 1   Supraworld
+[2025-12-21 16:42:21.630]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.630]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.630] [COMPACT] Result: True
+[2025-12-21 16:42:21.696] [COMPACT] IsCompressed output for Tabletop Simulator:
+[2025-12-21 16:42:21.696]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.696]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.696]   0 :         0 = 1.0 to 1   Tabletop Simulator
+[2025-12-21 16:42:21.696]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.696]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.696] [COMPACT] Result: True
+[2025-12-21 16:42:21.760] [COMPACT] IsCompressed output for Test Expected Behaviour:
+[2025-12-21 16:42:21.760]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.760]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.760]   0 :         0 = 1.0 to 1   Test Expected Behaviour
+[2025-12-21 16:42:21.760]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.760]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.760] [COMPACT] Result: True
+[2025-12-21 16:42:21.850] [COMPACT] IsCompressed output for That One Otter Game:
+[2025-12-21 16:42:21.850]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.850]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.850]   0 :         0 = 1.0 to 1   That One Otter Game
+[2025-12-21 16:42:21.850]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.850]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.850] [COMPACT] Result: True
+[2025-12-21 16:42:21.872] Found 2 drives:
+[2025-12-21 16:42:21.873]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:21.873]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:21.918] [COMPACT] IsCompressed output for The Binding of Isaac Rebirth:
+[2025-12-21 16:42:21.918]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.918]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.918]   0 :         0 = 1.0 to 1   The Binding of Isaac Rebirth
+[2025-12-21 16:42:21.918]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.918]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.918] [COMPACT] Result: True
+[2025-12-21 16:42:21.979] [COMPACT] IsCompressed output for The Infinite Inside:
+[2025-12-21 16:42:21.979]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:21.979]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:21.979]   0 :         0 = 1.0 to 1   The Infinite Inside
+[2025-12-21 16:42:21.979]   Of 1 files within 1 directories
+[2025-12-21 16:42:21.979]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:21.979] [COMPACT] Result: True
+[2025-12-21 16:42:22.038] [COMPACT] IsCompressed output for The Maze VR:
+[2025-12-21 16:42:22.038]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.038]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.038]   0 :         0 = 1.0 to 1   The Maze VR
+[2025-12-21 16:42:22.038]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.039]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.039] [COMPACT] Result: True
+[2025-12-21 16:42:22.118] [COMPACT] IsCompressed output for TheLastClockwinder:
+[2025-12-21 16:42:22.118]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.118]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.118]   0 :         0 = 1.0 to 1   TheLastClockwinder
+[2025-12-21 16:42:22.118]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.118]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.118] [COMPACT] Result: True
+[2025-12-21 16:42:22.201] [COMPACT] IsCompressed output for Tower Unite:
+[2025-12-21 16:42:22.201]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.201]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.201]   0 :         0 = 1.0 to 1   Tower Unite
+[2025-12-21 16:42:22.201]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.201]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.201] [COMPACT] Result: True
+[2025-12-21 16:42:22.273] [COMPACT] IsCompressed output for Underground Blossom:
+[2025-12-21 16:42:22.273]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.273]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.273]   0 :         0 = 1.0 to 1   Underground Blossom
+[2025-12-21 16:42:22.273]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.273]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.273] [COMPACT] Result: True
+[2025-12-21 16:42:22.342] [COMPACT] IsCompressed output for Voidtrain:
+[2025-12-21 16:42:22.342]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.342]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.342]   0 :         0 = 1.0 to 1   Voidtrain
+[2025-12-21 16:42:22.342]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.342]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.342] [COMPACT] Result: True
+[2025-12-21 16:42:22.413] [COMPACT] IsCompressed output for Voyage:
+[2025-12-21 16:42:22.413]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.413]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.413]   0 :         0 = 1.0 to 1   Voyage
+[2025-12-21 16:42:22.413]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.413]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.413] [COMPACT] Result: True
+[2025-12-21 16:42:22.487] [COMPACT] IsCompressed output for VRChat:
+[2025-12-21 16:42:22.487]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.487]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.487]   0 :         0 = 1.0 to 1   VRChat
+[2025-12-21 16:42:22.488]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.488]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.488] [COMPACT] Result: True
+[2025-12-21 16:42:22.580] [COMPACT] IsCompressed output for We Were Here Expeditions - The FriendShip:
+[2025-12-21 16:42:22.580]   Listing D:\SteamLibrary\steamapps\common\
+[2025-12-21 16:42:22.580]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.580]   0 :         0 = 1.0 to 1   We Were Here Expeditions - The FriendShip
+[2025-12-21 16:42:22.580]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.580]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.580] [COMPACT] Result: True
+[2025-12-21 16:42:22.652] [COMPACT] IsCompressed output for Launcher:
+[2025-12-21 16:42:22.653]   Listing C:\Program Files\Epic Games\
+[2025-12-21 16:42:22.653]   New files added to this directory will not be compressed.
+[2025-12-21 16:42:22.653]   0 :         0 = 1.0 to 1   Launcher
+[2025-12-21 16:42:22.653]   Of 1 files within 1 directories
+[2025-12-21 16:42:22.653]   0 are compressed and 1 are not compressed.
+[2025-12-21 16:42:22.653] [COMPACT] Result: True
+[2025-12-21 16:42:22.657] ✓ Found 168 programs
+[2025-12-21 16:42:22.662] ✓ Added 50 programs to list
+[2025-12-21 16:42:22.662] === Program scan complete ===
+[2025-12-21 16:42:23.891] Found 2 drives:
+[2025-12-21 16:42:23.893]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:23.893]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:25.854] Switching mode to: File
+[2025-12-21 16:42:25.854] ✓ Mode switched successfully
+[2025-12-21 16:42:25.902] Found 2 drives:
+[2025-12-21 16:42:25.903]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:25.904]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:27.921] Found 2 drives:
+[2025-12-21 16:42:27.922]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:27.922]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:29.939] Found 2 drives:
+[2025-12-21 16:42:29.940]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:29.941]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:31.950] Found 2 drives:
+[2025-12-21 16:42:31.951]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:31.951]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:33.965] Found 2 drives:
+[2025-12-21 16:42:33.966]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:33.966]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:34.248] === SelectFolder_Click triggered ===
+[2025-12-21 16:42:34.248] Opening folder dialog...
+[2025-12-21 16:42:35.980] Found 2 drives:
+[2025-12-21 16:42:35.981]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:35.981]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:37.996] Found 2 drives:
+[2025-12-21 16:42:37.998]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:37.998]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:40.013] Found 2 drives:
+[2025-12-21 16:42:40.014]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:40.014]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:41.581] ✓ Folder selected: C:\Users\Jarrod\Desktop\FUKU Authy
+[2025-12-21 16:42:41.581] Calculating folder size...
+[2025-12-21 16:42:41.585] ✓ Folder size: 38.05 KB
+[2025-12-21 16:42:42.028] Found 2 drives:
+[2025-12-21 16:42:42.030]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:42.030]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:43.240] === Compress_Click triggered ===
+[2025-12-21 16:42:43.240] Compressing: C:\Users\Jarrod\Desktop\FUKU Authy
+[2025-12-21 16:42:43.243] Using algorithm: LZX
+[2025-12-21 16:42:43.244] Starting compression...
+[2025-12-21 16:42:43.247] [COMPACT] Target path: C:\Users\Jarrod\Desktop\FUKU Authy
+[2025-12-21 16:42:43.247] [COMPACT] Escaped path: C:\Users\Jarrod\Desktop\FUKU Authy
+[2025-12-21 16:42:43.248] [COMPACT] Algorithm: LZX
+[2025-12-21 16:42:43.248] [COMPACT] Full arguments: compact.exe /C /EXE:LZX /S "C:\Users\Jarrod\Desktop\FUKU Authy"
+[2025-12-21 16:42:44.045] Found 2 drives:
+[2025-12-21 16:42:44.046]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:44.046]   D:\ (Games) - 1.31 TB free of 3.27 TB
+[2025-12-21 16:42:44.451] [COMPACT] Exit code: 0
+[2025-12-21 16:42:44.451] [COMPACT] Duration: 1.20s
+[2025-12-21 16:42:44.451] [COMPACT] STDOUT (291547 chars):
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\Documents\
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\Documents\Acer Ram upgrade Info\
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\Documents\Amazon\
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\Documents\AOE\
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\Documents\AOE\Win 14-6-23\
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]   
+[2025-12-21 16:42:44.455]    Compressing files in C:\Users\Jarrod\Desktop\Documents\Centerlink\
+[2025-12-21 16:42:44.457] [COMPACT] Parsing output (last 50 lines of 6821 total)
+[2025-12-21 16:42:44.462] [COMPACT] Found: 0 files compressed
+[2025-12-21 16:42:44.462] [COMPACT] Found sizes: 0 -> 0
+[2025-12-21 16:42:44.462] Compression result - Success: True
+[2025-12-21 16:42:44.462] ✓ Compressed 0 files
+[2025-12-21 16:42:44.462] ✓ Original: 0 B
+[2025-12-21 16:42:44.462] ✓ Compressed: 0 B
+[2025-12-21 16:42:44.462] ✓ Saved: 0 B (NaN)
+[2025-12-21 16:42:44.463] === Compression complete ===
+[2025-12-21 16:42:46.058] Found 2 drives:
+[2025-12-21 16:42:46.059]   C:\ (Acer) - 1.61 TB free of 2.93 TB
+[2025-12-21 16:42:46.059]   D:\ (Games) - 1.31 TB free of 3.27 TB
