@@ -41,7 +41,7 @@ public class ErrorHandlingAndLoggingService : IErrorHandlingAndLoggingService, I
     // Event handlers
     public event EventHandler<ErrorOccurredEventArgs>? ErrorOccurred;
     public event EventHandler<WarningOccurredEventArgs>? WarningOccurred;
-    public eventEventHandler<InfoLoggedEventArgs>? InfoLogged;
+    public event EventHandler<InfoLoggedEventArgs>? InfoLogged;
     public event EventHandler<LogClearedEventArgs>? LogCleared;
     public event EventHandler<LogRotatedEventArgs>? LogRotated;
 
