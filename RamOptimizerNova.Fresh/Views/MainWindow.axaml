@@ -261,6 +261,7 @@
         
         <!-- PLACEHOLDER TABS -->
         <TabItem Header="💾 RAM Optimizer" IsEnabled="False"/>
+        <TabItem Header="⚡ Power Profiles" IsEnabled="False"/>
         <TabItem Header="🌐 Network" IsEnabled="False"/>
         <TabItem Header="⚙️ Settings" IsEnabled="False"/>
         
