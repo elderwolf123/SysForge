@@ -470,12 +470,24 @@ public partial class MainWindow : Window
             var drivesPanel = this.FindControl<ItemsControl>("DrivesPanel");
             if (drivesPanel == null) return;
             
-            // For now, just log the drives - we'll implement UI in next iteration
             var drives = DriveInfo.GetDrives()
                 .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
                 .ToList();
             
             _logger.Log($"Found {drives.Count} drives:");
+            
+            // Create drive data objects for binding
+            var driveData = drives.Select(d => new
+            {
+                Name = $"{d.Name.TrimEnd('\\')} ({d.VolumeLabel})",
+                FreeGB = (d.AvailableFreeSpace / (1024.0 * 1024.0 * 1024.0)).ToString("F0"),
+                TotalText = $"of {FormatBytes(d.TotalSize)} total",
+                PercentUsed = $"{(1 - (double)d.AvailableFreeSpace / d.TotalSize) * 100:F0}% used"
+            }).ToList();
+            
+            // Populate UI
+            drivesPanel.Items = driveData;
+            
             foreach (var d in drives)
             {
                 _logger.Log($"  {d.Name} ({d.VolumeLabel}) - {FormatBytes(d.AvailableFreeSpace)} free of {FormatBytes(d.TotalSize)}");
@@ -483,7 +495,7 @@ public partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            _logger.Log($"❌ Error updating drives: {ex.Message}");
+            _logger.LogError("Error updating drives", ex);
         }
     }
 
