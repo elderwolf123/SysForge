@@ -220,110 +220,110 @@
                                   Foreground="{DynamicResource StarDim}"/>
                     </StackPanel>
                 </StackPanel>
-                </Border>
+            </Border>
+            
+            <!-- Compression Section -->
+            <Border Background="#99000000" 
+                    BorderBrush="#19FFFFFF"
+                    BorderThickness="1"
+                    CornerRadius="16"
+                    Padding="24"
+                    Margin="0,16,0,0">
                 
-                <!-- Compression Section -->
-                <Border Background="#99000000" 
-                        BorderBrush="#19FFFFFF"
-                        BorderThickness="1"
-                        CornerRadius="16"
-                        Padding="24"
-                        Margin="0,16,0,0">
+                <StackPanel Spacing="16">
+                    <!-- Header -->
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <TextBlock Text="🗜️" FontSize="24"/>
+                        <TextBlock Text="TRANSPARENT COMPRESSION"
+                                  FontSize="18"
+                                  FontWeight="Bold"
+                                  Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
                     
-                    <StackPanel Spacing="16">
-                        <!-- Header -->
+                    <!-- Mode Selection -->
+                    <StackPanel Orientation="Horizontal" Spacing="16">
+                        <RadioButton x:Name="FileModeRadio" 
+                                    Content="Files/Folders" 
+                                    IsChecked="True"
+                                    Foreground="{DynamicResource StarWhite}"/>
+                        <RadioButton x:Name="ProgramModeRadio" 
+                                    Content="Programs/Games"
+                                    Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- File Mode Controls -->
+                    <StackPanel x:Name="FileModePanel" Spacing="12">
                         <StackPanel Orientation="Horizontal" Spacing="12">
-                            <TextBlock Text="🗜️" FontSize="24"/>
-                            <TextBlock Text="TRANSPARENT COMPRESSION"
-                                      FontSize="18"
-                                      FontWeight="Bold"
-                                      Foreground="{DynamicResource StarWhite}"/>
-                        </StackPanel>
-                        
-                        <!-- Mode Selection -->
-                        <StackPanel Orientation="Horizontal" Spacing="16">
-                            <RadioButton x:Name="FileModeRadio" 
-                                        Content="Files/Folders" 
-                                        IsChecked="True"
-                                        Foreground="{DynamicResource StarWhite}"/>
-                            <RadioButton x:Name="ProgramModeRadio" 
-                                        Content="Programs/Games"
-                                        Foreground="{DynamicResource StarWhite}"/>
-                        </StackPanel>
-                        
-                        <!-- File Mode Controls -->
-                        <StackPanel x:Name="FileModePanel" Spacing="12">
-                            <StackPanel Orientation="Horizontal" Spacing="12">
-                                <Button x:Name="SelectFolderButton" 
-                                       Content="📁 Select Folder..." 
-                                       Padding="12,8"
-                                       Background="#33FFFFFF"
-                                       Foreground="{DynamicResource StarWhite}"/>
-                                <ComboBox x:Name="AlgorithmComboBox" 
-                                         Width="180"
-                                         SelectedIndex="3"
-                                         Foreground="{DynamicResource StarWhite}">
-                                    <ComboBoxItem>XPRESS4K (Fast)</ComboBoxItem>
-                                    <ComboBoxItem>XPRESS8K (Balanced)</ComboBoxItem>
-                                    <ComboBoxItem>XPRESS16K (Better)</ComboBoxItem>
-                                    <ComboBoxItem>LZX (Best)</ComboBoxItem>
-                                </ComboBox>
-                            </StackPanel>
-                            
-                            <TextBlock x:Name="SelectedPathText"
-                                      Text="No folder selected"
-                                      FontSize="12"
-                                      Foreground="{DynamicResource StarDim}"/>
-                        </StackPanel>
-                        
-                        <!-- Program Mode Controls -->
-                        <StackPanel x:Name="ProgramModePanel" IsVisible="False" Spacing="12">
-                            <Button x:Name="ScanProgramsButton" 
-                                   Content="🔍 Scan for Programs/Games" 
+                            <Button x:Name="SelectFolderButton" 
+                                   Content="📁 Select Folder..." 
                                    Padding="12,8"
                                    Background="#33FFFFFF"
                                    Foreground="{DynamicResource StarWhite}"/>
-                                   
-                            <ListBox x:Name="ProgramListBox"
-                                    Height="200"
-                                    Background="#19FFFFFF"
-                                    Foreground="{DynamicResource StarWhite}"/>
+                            <ComboBox x:Name="AlgorithmComboBox" 
+                                     Width="180"
+                                     SelectedIndex="3"
+                                     Foreground="{DynamicResource StarWhite}">
+                                <ComboBoxItem>XPRESS4K (Fast)</ComboBoxItem>
+                                <ComboBoxItem>XPRESS8K (Balanced)</ComboBoxItem>
+                                <ComboBoxItem>XPRESS16K (Better)</ComboBoxItem>
+                                <ComboBoxItem>LZX (Best)</ComboBoxItem>
+                            </ComboBox>
                         </StackPanel>
                         
-                        <!-- Action Buttons -->
-                        <StackPanel Orientation="Horizontal" Spacing="12">
-                            <Button x:Name="CompressButton" 
-                                   Content="🗜️ Compress" 
-                                   Padding="16,10"
-                                   Background="{DynamicResource PurpleGradient}"
-                                   Foreground="{DynamicResource StarWhite}"/>
-                            <Button x:Name="DecompressButton" 
-                                   Content="📦 Decompress" 
-                                   Padding="16,10"
-                                   Background="#33FFFFFF"
-                                   Foreground="{DynamicResource StarWhite}"/>
-                        </StackPanel>
-                        
-                        <!-- Status -->
-                        <StackPanel Spacing="8">
-                            <TextBlock x:Name="StatusText"
-                                      Text="Ready"
-                                      FontSize="14"
-                                      Foreground="{DynamicResource StarWhite}"/>
-                            <ProgressBar x:Name="CompressionProgress"
-                                        Height="8"
-                                        Maximum="100"
-                                        Value="0"
-                                        Background="#19FFFFFF"
-                                        Foreground="{DynamicResource PurpleGradient}"/>
-                            <TextBlock x:Name="ResultsText"
-                                      FontSize="12"
-                                      Foreground="{DynamicResource NebulaCyan}"/>
-                        </StackPanel>
+                        <TextBlock x:Name="SelectedPathText"
+                                  Text="No folder selected"
+                                  FontSize="12"
+                                  Foreground="{DynamicResource StarDim}"/>
                     </StackPanel>
-                </Border>
+                    
+                    <!-- Program Mode Controls -->
+                    <StackPanel x:Name="ProgramModePanel" IsVisible="False" Spacing="12">
+                        <Button x:Name="ScanProgramsButton" 
+                               Content="🔍 Scan for Programs/Games" 
+                               Padding="12,8"
+                               Background="#33FFFFFF"
+                               Foreground="{DynamicResource StarWhite}"/>
+                               
+                        <ListBox x:Name="ProgramListBox"
+                                Height="200"
+                                Background="#19FFFFFF"
+                                Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- Action Buttons -->
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button x:Name="CompressButton" 
+                               Content="🗜️ Compress" 
+                               Padding="16,10"
+                               Background="{DynamicResource PurpleGradient}"
+                               Foreground="{DynamicResource StarWhite}"/>
+                        <Button x:Name="DecompressButton" 
+                               Content="📦 Decompress" 
+                               Padding="16,10"
+                               Background="#33FFFFFF"
+                               Foreground="{DynamicResource StarWhite}"/>
+                    </StackPanel>
+                    
+                    <!-- Status -->
+                    <StackPanel Spacing="8">
+                        <TextBlock x:Name="StatusText"
+                                  Text="Ready"
+                                  FontSize="14"
+                                  Foreground="{DynamicResource StarWhite}"/>
+                        <ProgressBar x:Name="CompressionProgress"
+                                    Height="8"
+                                    Maximum="100"
+                                    Value="0"
+                                    Background="#19FFFFFF"
+                                    Foreground="{DynamicResource PurpleGradient}"/>
+                        <TextBlock x:Name="ResultsText"
+                                  FontSize="12"
+                                  Foreground="{DynamicResource NebulaCyan}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            
+        </StackPanel>
+    </ScrollViewer>
 
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
 </Window>
