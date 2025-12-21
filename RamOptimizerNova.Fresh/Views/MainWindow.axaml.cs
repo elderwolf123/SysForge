@@ -468,7 +468,7 @@ public partial class MainWindow : Window
         try
         {
             var drivesPanel = this.FindControl<ItemsControl>("DrivesPanel");
-            if (drivesPanel == null) return;
+            if (drivesPanel == null || drivesPanel.Items == null) return;
             
             var drives = DriveInfo.GetDrives()
                 .Where(d => d.IsReady && d.DriveType == DriveType.Fixed)
@@ -485,8 +485,12 @@ public partial class MainWindow : Window
                 PercentUsed = $"{(1 - (double)d.AvailableFreeSpace / d.TotalSize) * 100:F0}% used"
             }).ToList();
             
-            // Populate UI
-            drivesPanel.Items = driveData;
+            // Populate UI - Clear and add items
+            drivesPanel.Items.Clear();
+            foreach (var drive in driveData)
+            {
+                drivesPanel.Items.Add(drive);
+            }
             
             foreach (var d in drives)
             {
