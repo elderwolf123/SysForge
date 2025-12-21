@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="900"
         x:Class="RamOptimizerNova.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="vm:DashboardViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="RAM Optimizer Nova"
         Width="1400" Height="900"
@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:DashboardViewModel/>
     </Design.DataContext>
 
     <ScrollViewer>
@@ -54,7 +54,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="42" 
+                            <TextBlock Text="{Binding CpuUsage, StringFormat='{}{0:F0}'}" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -96,7 +96,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="67" 
+                            <TextBlock Text="{Binding GpuUsage, StringFormat='{}{0:F0}'}" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -138,7 +138,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="8.2" 
+                            <TextBlock Text="{Binding MemoryUsedGB, StringFormat='{}{0:F1}'}" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -180,7 +180,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="234" 
+                            <TextBlock Text="{Binding StorageFreeGB, StringFormat='{}{0:F0}'}" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
