@@ -222,89 +222,107 @@ namespace RamOptimizerNova.Services;
         }
 
         /// <summary>
-        /// Query compression status of a file or directory
-        /// </summary>
-        public async Task<bool> IsCompressedAsync(string path)
+/// Query compression status of a file or directory
+/// </summary>
+public async Task<bool> IsCompressedAsync(string path)
+{
+    try
+    {
+        var processInfo = new ProcessStartInfo
         {
-            try
-            {
-                var processInfo = new ProcessStartInfo
-                {
-                    FileName = "compact.exe",
-                    Arguments = $"\"{path}\"",
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                };
+            FileName = "compact.exe",
+            Arguments = $"\"{path}\"",
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            CreateNoWindow = true
+        };
 
-                using var process = Process.Start(processInfo);
-                if (process == null) return false;
+        using var process = Process.Start(processInfo);
+        if (process == null) return false;
 
-                string output = await process.StandardOutput.ReadToEndAsync();
-                await process.WaitForExitAsync();
+        string output = await process.StandardOutput.ReadToEndAsync();
+        await process.WaitForExitAsync();
 
-                // Check if output contains compression indicators
-                // Look for "C" attribute in compact.exe output (proper format: "C" flag)
-                bool isCompressed = System.Text.RegularExpressions.Regex.IsMatch(
-                    output, 
-                    @"^\s*C\s+",  // Line starting with C (compressed attribute)
-                    System.Text.RegularExpressions.RegexOptions.Multiline
-                ) || output.Contains("are compressed");
-                
-                _fileLogger.Log($"[COMPACT] IsCompressed check for {path}: {isCompressed}");
-                return isCompressed;
-            }
-            catch
-            {
-                return false;
-            }
+        // Log first few lines for debugging
+        var lines = output.Split('\n').Where(l => !string.IsNullOrWhiteSpace(l)).Take(5).ToList();
+        _fileLogger.Log($"[COMPACT] IsCompressed output for {Path.GetFileName(path)}:");
+        foreach (var line in lines)
+        {
+            _fileLogger.Log($"  {line.Trim()}");
         }
+
+        // Check if output contains "are compressed" (definitive indicator)
+        // OR check for file listing with "C" attribute
+        bool isCompressed = output.Contains("are compressed") ||
+                           output.Contains("Of the files listed");
+        
+        _fileLogger.Log($"[COMPACT] Result: {isCompressed}");
+        return isCompressed;
+    }
+    catch (Exception ex)
+    {
+        _fileLogger.Log($"[COMPACT] Error checking {path}: {ex.Message}");
+        return false;
+    }
+}
 
         #region Output Parsing
 
         private CompactResult ParseCompactOutput(string output, TimeSpan duration)
+{
+    var result = new CompactResult { Duration = duration };
+
+    try
+    {
+        // Parse compact.exe output - look at the END for summary
+        // Example summary (at END of output):
+        // "123 files within 456 directories were compressed.
+        //  789,012 total bytes of data are stored in 345,678 bytes.
+        //  The compression ratio is 2.3 to 1."
+
+        // Get last 50 lines where summary usually appears
+        var lines = output.Split('\n');
+        var lastLines = string.Join("\n", lines.Skip(Math.Max(0, lines.Length - 50)));
+
+        _fileLogger.Log($"[COMPACT] Parsing output (last 50 lines of {lines.Length} total)");
+
+        // Extract file counts from summary
+        var filesMatch = Regex.Match(lastLines, @"(\d+(?:,\d+)*)\s+files?\s+within\s+\d+\s+directories\s+were\s+compressed");
+        if (filesMatch.Success)
         {
-            var result = new CompactResult { Duration = duration };
-
-            try
-            {
-                // Parse compact.exe output
-                // Example output:
-                // "Compressing files in C:\Games\Skyrim
-                //  123 files within 456 directories were compressed.
-                //  789,012 total bytes of data are stored in 345,678 bytes.
-                //  The compression ratio is 2.3 to 1."
-
-                // Extract file counts
-                var filesMatch = Regex.Match(output, @"(\d+)\s+files?\s+(?:within|were)");
-                if (filesMatch.Success)
-                {
-                    result.TotalFiles = long.Parse(filesMatch.Groups[1].Value.Replace(",", ""));
-                    result.CompressedFiles = result.TotalFiles;
-                }
-
-                // Extract sizes
-                var sizesMatch = Regex.Match(output, @"(\d+(?:,\d+)*)\s+total bytes.*?stored in\s+(\d+(?:,\d+)*)\s+bytes");
-                if (sizesMatch.Success)
-                {
-                    result.OriginalSize = long.Parse(sizesMatch.Groups[1].Value.Replace(",", ""));
-                    result.CompressedSize = long.Parse(sizesMatch.Groups[2].Value.Replace(",", ""));
-                }
-
-                // Calculate skipped files
-                var skippedMatch = Regex.Match(output, @"(\d+)\s+files?\s+are skipped");
-                if (skippedMatch.Success)
-                {
-                    result.SkippedFiles = long.Parse(skippedMatch.Groups[1].Value.Replace(",", ""));
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger?.LogWarning($"Failed to parse compact.exe output: {ex.Message}");
-            }
-
-            return result;
+            var filesStr = filesMatch.Groups[1].Value.Replace(",", "");
+            result.TotalFiles = long.Parse(filesStr);
+            result.CompressedFiles = result.TotalFiles;
+            _fileLogger.Log($"[COMPACT] Found: {result.TotalFiles} files compressed");
         }
+        else
+        {
+            _fileLogger.Log($"[COMPACT] No 'files were compressed' summary found");
+        }
+
+        // Extract sizes
+        var sizesMatch = Regex.Match(lastLines, @"(\d+(?:,\d+)*)\s+total bytes.*?stored in\s+(\d+(?:,\d+)*)\s+bytes");
+        if (sizesMatch.Success)
+        {
+            result.OriginalSize = long.Parse(sizesMatch.Groups[1].Value.Replace(",", ""));
+            result.CompressedSize = long.Parse(sizesMatch.Groups[2].Value.Replace(",", ""));
+            _fileLogger.Log($"[COMPACT] Found sizes: {result.OriginalSize} -> {result.CompressedSize}");
+        }
+
+        // Calculate skipped files
+        var skippedMatch = Regex.Match(lastLines, @"(\d+(?:,\d+)*)\s+files?\s+(?:are|were)\s+skipped");
+        if (skippedMatch.Success)
+        {
+            result.SkippedFiles = long.Parse(skippedMatch.Groups[1].Value.Replace(",", ""));
+        }
+    }
+    catch (Exception ex)
+    {
+        _fileLogger.LogError("Failed to parse compact.exe output", ex);
+    }
+
+    return result;
+}
 
         #endregion
 
