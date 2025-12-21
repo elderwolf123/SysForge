@@ -7,15 +7,6 @@ namespace RamOptimizerNova.Services;
 
 public class CompressionService : IDisposable
 {
-    private readonly Compressor _compressor;
-    private readonly Decompressor _decompressor;
-
-    public CompressionService()
-    {
-        _compressor = new Compressor(22); // Compression level 22 (max)
-        _decompressor = new Decompressor();
-    }
-
     public async Task<CompressionResult> CompressFileAsync(string inputPath, string outputPath)
     {
         try
@@ -23,8 +14,12 @@ public class CompressionService : IDisposable
             var inputBytes = await File.ReadAllBytesAsync(inputPath);
             var originalSize = inputBytes.Length;
 
-            var compressedBytes = _compressor.Wrap(inputBytes);
-            var compressedSize = compressedBytes.Length;
+            // Use ZstdSharp static methods
+            var compressedBytes = new byte[Compressor.GetCompressBoundLong((ulong)inputBytes.Length)];
+            var compressedSize = Compressor.Compress(compressedBytes, inputBytes, 22); // Level 22
+
+            // Trim to actual size
+            Array.Resize(ref compressedBytes, (int)compressedSize);
 
             await File.WriteAllBytesAsync(outputPath, compressedBytes);
 
@@ -53,7 +48,13 @@ public class CompressionService : IDisposable
         try
         {
             var compressedBytes = await File.ReadAllBytesAsync(inputPath);
-            var decompressedBytes = _decompressor.Unwrap(compressedBytes);
+            
+            // Get decompressed size
+            var decompressedSize = Decompressor.GetDecompressedSize(compressedBytes);
+            var decompressedBytes = new byte[decompressedSize];
+            
+            // Decompress
+            Decompressor.Decompress(decompressedBytes, compressedBytes);
 
             await File.WriteAllBytesAsync(outputPath, decompressedBytes);
 
@@ -61,7 +62,7 @@ public class CompressionService : IDisposable
             {
                 Success = true,
                 OriginalSize = compressedBytes.Length,
-                DecompressedSize = decompressedBytes.Length,
+                DecompressedSize = decompressedSize,
                 OutputPath = outputPath
             };
         }
@@ -75,20 +76,25 @@ public class CompressionService : IDisposable
         }
     }
 
-    public byte[] CompressBytes(byte[] data)
+    public byte[] CompressBytes(byte[] data, int level = 22)
     {
-        return _compressor.Wrap(data);
+        var compressedBytes = new byte[Compressor.GetCompressBoundLong((ulong)data.Length)];
+        var size = Compressor.Compress(compressedBytes, data, level);
+        Array.Resize(ref compressedBytes, (int)size);
+        return compressedBytes;
     }
 
     public byte[] DecompressBytes(byte[] data)
     {
-        return _decompressor.Unwrap(data);
+        var size = Decompressor.GetDecompressedSize(data);
+        var decompressedBytes = new byte[size];
+        Decompressor.Decompress(decompressedBytes, data);
+        return decompressedBytes;
     }
 
     public void Dispose()
     {
-        _compressor?.Dispose();
-        _decompressor?.Dispose();
+        // No resources to dispose with static methods
     }
 }
 
@@ -100,7 +106,7 @@ public class CompressionResult
     public double CompressionRatio { get; set; }
     public long Savings { get; set; }
     public string OutputPath { get; set; } = string.Empty;
-    public string? ErrorMessage { get; set; }
+    public string? ErrorMessage {get; set; }
 }
 
 public class DecompressionResult
