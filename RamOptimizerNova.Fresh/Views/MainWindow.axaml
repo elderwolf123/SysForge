@@ -96,7 +96,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding GpuUsage, StringFormat='{}{0:F0}'}" 
+                            <TextBlock x:Name="GpuText" Text="--" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -111,7 +111,7 @@
                                    Background="{DynamicResource CyanGradient}"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="{Binding GpuUsage, StringFormat='{}{0:F0}% utilized'}" 
+                        <TextBlock x:Name="GpuPercentText" Text="--% utilized" 
                                   FontSize="11" 
                                   Foreground="{DynamicResource NebulaCyan}"/>
                     </StackPanel>
@@ -138,7 +138,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding MemoryUsedGB, StringFormat='{}{0:F1}'}" 
+                            <TextBlock x:Name="MemoryText" Text="--" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -153,7 +153,7 @@
                                    Background="{DynamicResource PinkGradient}"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="{Binding MemoryPercentage, StringFormat='{}{0:F0}% utilized'}" 
+                        <TextBlock x:Name="MemoryPercentText" Text="--% utilized" 
                                   FontSize="11" 
                                   Foreground="{DynamicResource NebulaPink}"/>
                     </StackPanel>
@@ -180,7 +180,7 @@
                                   FontSize="12"
                                   FontWeight="Medium"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding StorageFreeGB, StringFormat='{}{0:F0}'}" 
+                            <TextBlock x:Name="StorageText" Text="--" 
                                       Foreground="{DynamicResource StarWhite}"
                                       FontSize="32" 
                                       FontWeight="Bold"/>
@@ -195,7 +195,7 @@
                                    Background="LimeGreen"
                                    CornerRadius="3"/>
                         </Border>
-                        <TextBlock Text="{Binding StoragePercentage, StringFormat='{}{0:F0}% utilized'}" 
+                        <TextBlock x:Name="StoragePercentText" Text="--% utilized" 
                                   FontSize="11" 
                                   Foreground="LimeGreen"/>
                     </StackPanel>
