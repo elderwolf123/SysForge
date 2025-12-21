@@ -14,6 +14,7 @@ public partial class MainWindow : Window
     private readonly SystemMetricsService _metricsService;
     private readonly WindowsCompactCompression _compressor;
     private readonly ProgramScanner _scanner;
+    private readonly CompressionAnalysisService _analysisService;
     private readonly DispatcherTimer _timer;
     private readonly FileLogger _logger = FileLogger.Instance;
     
@@ -39,6 +40,7 @@ public partial class MainWindow : Window
             _metricsService = new SystemMetricsService();
             _compressor = new WindowsCompactCompression();
             _scanner = new ProgramScanner();
+            _analysisService = new CompressionAnalysisService();
             
             _logger.Log("Finding UI elements...");
             FindUIElements();
@@ -93,6 +95,7 @@ public partial class MainWindow : Window
             var programModeRadio = this.FindControl<RadioButton>("ProgramModeRadio");
             var selectFolderButton = this.FindControl<Button>("SelectFolderButton");
             var scanProgramsButton = this.FindControl<Button>("ScanProgramsButton");
+            var estimateButton = this.FindControl<Button>("EstimateButton");
             var compressButton = this.FindControl<Button>("CompressButton");
             var decompressButton = this.FindControl<Button>("DecompressButton");
             
@@ -118,6 +121,12 @@ public partial class MainWindow : Window
             {
                 scanProgramsButton.Click += ScanPrograms_Click;
                 _logger.Log("✓ ScanProgramsButton wired");
+            }
+            
+            if (estimateButton != null)
+            {
+                estimateButton.Click += Estimate_Click;
+                _logger.Log("✓ EstimateButton wired");
             }
             
             if (compressButton != null)
@@ -529,5 +538,166 @@ public partial class MainWindow : Window
             len /= 1024;
         }
         return $"{len:0.##} {sizes[order]}";
+    }
+
+    private async void Estimate_Click(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            _logger.Log("=== Estimate_Click triggered ===");
+            
+            // Get the path to analyze
+            string? pathToAnalyze = _selectedPath ?? _selectedProgram?.InstallPath;
+            
+            if (string.IsNullOrEmpty(pathToAnalyze))
+            {
+                _logger.LogWarning("No path selected for analysis");
+                UpdateStatusText("❌ Please select a folder or program first");
+                return;
+            }
+
+            _logger.Log($"Analyzing: {pathToAnalyze}");
+            
+            // Hide previous results
+            var analysisResults = this.FindControl<Border>("AnalysisResults");
+            if (analysisResults != null)
+            {
+                analysisResults.IsVisible = false;
+            }
+            
+            // Reset progress
+            UpdateProgress(0, "Starting analysis...");
+            
+            // Create progress reporter
+            var progress = new Progress<AnalysisProgress>(p =>
+            {
+                if (p.FilesProcessed > 0)
+                {
+                    int percent = Math.Min(100, (int)(p.FilesProcessed / 10)); // Rough estimate
+                    UpdateProgress(percent, $"Analyzing: {p.FilesProcessed} files... ({FormatBytes(p.EstimatedSavingsBytes)} estimated savings)");
+                }
+            });
+            
+            // Run analysis
+            var result = await _analysisService.AnalyzeAsync(pathToAnalyze, progress);
+            
+            // Update progress to complete
+            UpdateProgress(100, "Analysis complete!");
+            
+            // Display results
+            DisplayAnalysisResults(result);
+            
+            _logger.Log($"✓ Analysis complete - {result.TotalFiles} files, {FormatBytes(result.EstimatedSavingsBytes)} estimated savings");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Estimate_Click failed", ex);
+            UpdateStatusText($"❌ Analysis failed: {ex.Message}");
+        }
+        finally
+        {
+            // Reset progress after a delay
+            await Task.Delay(2000);
+            UpdateProgress(0, "Ready");
+        }
+    }
+
+    private void DisplayAnalysisResults(AnalysisResult result)
+    {
+        try
+        {
+            var analysisResults = this.FindControl<Border>("AnalysisResults");
+            var analysisSummary = this.FindControl<TextBlock>("AnalysisSummary");
+            var analysisDetails = this.FindControl<TextBlock>("AnalysisDetails");
+            
+            if (analysisResults == null || analysisSummary == null || analysisDetails == null)
+            {
+                _logger.LogWarning("Analysis result controls not found");
+                return;
+            }
+            
+            // Calculate percentages
+            double compressiblePercent = result.TotalBytes > 0 
+                ? (double)result.CompressibleBytes / result.TotalBytes * 100 
+                : 0;
+            double savingsPercent = result.CompressibleBytes > 0 
+                ? (double)result.EstimatedSavingsBytes / result.CompressibleBytes * 100 
+                : 0;
+            
+            // Build summary
+            analysisSummary.Text = $"Estimated Savings: {FormatBytes(result.EstimatedSavingsBytes)} ({savingsPercent:0.#}% of compressible files)";
+            
+            // Build details
+            var detailsText = $"📁 Total: {result.TotalFiles:N0} files ({FormatBytes(result.TotalBytes)})\n";
+            detailsText += $"✅ Compressible: {result.CompressibleFiles:N0} files ({FormatBytes(result.CompressibleBytes)}) - {compressiblePercent:0.#}%\n";
+            detailsText += $"❌ Already Compressed: {result.TotalFiles - result.CompressibleFiles:N0} files\n";
+            
+            // Add top file types
+            if (result.FileTypeBreakdown.Any())
+            {
+                var topTypes = result.FileTypeBreakdown.Values
+                    .OrderByDescending(ft => ft.EstimatedSavingsBytes)
+                    .Take(5)
+                    .ToList();
+                
+                if (topTypes.Any())
+                {
+                    detailsText += $"\n📊 Top Compressible Types:\n";
+                    foreach (var ft in topTypes)
+                    {
+                        if (ft.EstimatedSavingsBytes > 0)
+                        {
+                            detailsText += $"  • {ft.Extension}: {ft.FileCount:N0} files, est. {FormatBytes(ft.EstimatedSavingsBytes)} saved\n";
+                        }
+                    }
+                }
+            }
+            
+            analysisDetails.Text = detailsText;
+            analysisResults.IsVisible = true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Error displaying analysis results", ex);
+        }
+    }
+
+    private void UpdateProgress(int percent, string message)
+    {
+        try
+        {
+            var progressBar = this.FindControl<ProgressBar>("ProgressBar");
+            var progressText = this.FindControl<TextBlock>("ProgressText");
+            
+            if (progressBar != null)
+            {
+                progressBar.Value = percent;
+            }
+            
+            if (progressText != null)
+            {
+                progressText.Text = message;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning($"Error updating progress: {ex.Message}");
+        }
+    }
+
+    private void UpdateStatusText(string text)
+    {
+        try
+        {
+            var statusText = this.FindControl<TextBlock>("StatusText");
+            if (statusText != null)
+            {
+                statusText.Text = text;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning($"Error updating status: {ex.Message}");
+        }
     }
 }
