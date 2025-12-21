@@ -84,12 +84,11 @@ namespace RamOptimizerNova.Services;
                 string recursiveArg = recursive ? "/S" : "";
             // Escape paths properly - escape quotes in path
             string escapedPath = path.Replace("\"", "\"\"");
-            // Use /C /EXE:algorithm /I /S approach
-            // /EXE:algorithm = Use specified compression algorithm (works on ALL files!)
-            // /I = Continue on errors (don't stop if one file fails)
-            // /S = Recursive (compress subdirectories)
-            // NOTE: Removed /Q because it suppresses the summary we need to parse!
-            string arguments = $"/C /EXE:{algorithmArg} {recursiveArg} /I \"{escapedPath}\"";
+            // CRITICAL BUG FIX: /S makes compact.exe start from PARENT directory!
+            // Adding \*.* fixes this to compress files IN the target folder
+            // Example: /S "C:\Games" would compress C:\ - BAD!
+            //          /S "C:\Games\*.*" compresses C:\Games\ - GOOD!
+            string arguments = $"/C /EXE:{algorithmArg} {recursiveArg} /I \"{escapedPath}\\*.*\"";
             
             _fileLogger.Log($"[COMPACT] Target path: {path}");
             _fileLogger.Log($"[COMPACT] Escaped path: {escapedPath}");
