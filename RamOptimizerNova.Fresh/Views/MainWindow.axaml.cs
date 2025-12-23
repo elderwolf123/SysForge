@@ -21,6 +21,8 @@ public partial class MainWindow : Window
     
     private string? _selectedPath;
     private InstalledProgram? _selectedProgram;
+    private List<InstalledProgram> _allPrograms = new();
+    private string _currentFilter = "all";
     
     // UI element references
     private TextBlock? _cpuText;
@@ -142,6 +144,29 @@ public partial class MainWindow : Window
                 _logger.Log("✓ DecompressButton wired");
             }
             
+            // Wire folder-style tabs
+            var allProgramsTab = this.FindControl<Border>("AllProgramsTab");
+            var compressedTab = this.FindControl<Border>("CompressedTab");
+            var uncompressedTab = this.FindControl<Border>("UncompressedTab");
+            
+            if (allProgramsTab != null)
+            {
+                allProgramsTab.PointerPressed += (s, e) => SwitchProgramFilter("all");
+                _logger.Log("✓ AllProgramsTab wired");
+            }
+            
+            if (compressedTab != null)
+            {
+                compressedTab.PointerPressed += (s, e) => SwitchProgramFilter("compressed");
+                _logger.Log("✓ CompressedTab wired");
+            }
+            
+            if (uncompressedTab != null)
+            {
+                uncompressedTab.PointerPressed += (s, e) => SwitchProgramFilter("uncompressed");
+                _logger.Log("✓ UncompressedTab wired");
+            }
+            
             _logger.Log("=== All compression handlers wired successfully ===");
         }
         catch (Exception ex)
@@ -233,21 +258,34 @@ public partial class MainWindow : Window
             var programs = await _scanner.ScanInstalledProgramsAsync();
             _logger.Log($"✓ Found {programs.Count} programs");
             
+            // Store all programs for filtering
+            _allPrograms = programs;
+            
             if (programListBox != null)
             {
                 programListBox.Items.Clear();
-                var count = 0;
-                foreach (var program in programs.Take(50))
+                
+                // Apply current filter
+                var filteredPrograms = _currentFilter switch
                 {
+                    "compressed" => _allPrograms.Where(p => p.IsCompressed).ToList(),
+                    "uncompressed" => _allPrograms.Where(p => !p.IsCompressed).ToList(),
+                    _ => _allPrograms
+                };
+                
+                var count = 0;
+                foreach (var program in filteredPrograms.Take(50))
+                {
+                    string status = program.IsCompressed ? "🗜️" : "📦";
                     var item = new ListBoxItem
                     {
-                        Content = $"{program.Name} - {program.SizeFormatted} ({program.Type}) {(program.IsCompressed ? "✓ Compressed" : "")}"
+                        Content = $"{status} {program.Name} - {program.SizeFormatted} ({program.Type})"
                     };
                     item.Tag = program;
                     programListBox.Items.Add(item);
                     count++;
                 }
-                _logger.Log($"✓ Added {count} programs to list");
+                _logger.Log($"✓ Added {count} programs to list (filtered: {_currentFilter})");
                 
                 programListBox.SelectionChanged += (s, e) =>
                 {
@@ -550,6 +588,100 @@ public partial class MainWindow : Window
             len /= 1024;
         }
         return $"{len:0.##} {sizes[order]}";
+    }
+
+    private void SwitchProgramFilter(string filter)
+    {
+        try
+        {
+            _logger.Log($"Switching program filter to: {filter}");
+            _currentFilter = filter;
+            
+            // Update tab styling
+            var allTab = this.FindControl<Border>("AllProgramsTab");
+            var compressedTab = this.FindControl<Border>("CompressedTab");
+            var uncompressedTab = this.FindControl<Border>("UncompressedTab");
+            
+            // Reset all tabs to inactive state
+            if (allTab != null)
+            {
+                allTab.Background = Avalonia.Media.Brush.Parse("#19FFFFFF");
+                var text = allTab.Child as TextBlock;
+                if (text != null)
+                {
+                    text.Foreground = Avalonia.Media.Brush.Parse("#99FFFFFF");
+                    text.FontWeight = Avalonia.Media.FontWeight.Normal;
+                }
+            }
+            
+            if (compressedTab != null)
+            {
+                compressedTab.Background = Avalonia.Media.Brush.Parse("#19FFFFFF");
+                var text = compressedTab.Child as TextBlock;
+                if (text != null)
+                {
+                    text.Foreground = Avalonia.Media.Brush.Parse("#99FFFFFF");
+                    text.FontWeight = Avalonia.Media.FontWeight.Normal;
+                }
+            }
+            
+            if (uncompressedTab != null)
+            {
+                uncompressedTab.Background = Avalonia.Media.Brush.Parse("#19FFFFFF");
+                var text = uncompressedTab.Child as TextBlock;
+                if (text != null)
+                {
+                    text.Foreground = Avalonia.Media.Brush.Parse("#99FFFFFF");
+                    text.FontWeight = Avalonia.Media.FontWeight.Normal;
+                }
+            }
+            
+            // Activate selected tab
+            Border? activeTab = filter switch
+            {
+                "all" => allTab,
+                "compressed" => compressedTab,
+                "uncompressed" => uncompressedTab,
+                _ => allTab
+            };
+            
+            if (activeTab != null)
+            {
+                activeTab.Background = Avalonia.Media.Brush.Parse("#336699FF");
+                var text = activeTab.Child as TextBlock;
+                if (text != null)
+                {
+                    text.Foreground = Avalonia.Media.Brush.Parse("#FFFFFF");
+                    text.FontWeight = Avalonia.Media.FontWeight.SemiBold;
+                }
+            }
+            
+            // Filter and update program list
+            var programListBox = this.FindControl<ListBox>("ProgramListBox");
+            if (programListBox != null && _allPrograms.Any())
+            {
+                programListBox.Items.Clear();
+                
+                var filteredPrograms = filter switch
+                {
+                    "compressed" => _allPrograms.Where(p => p.IsCompressed).ToList(),
+                    "uncompressed" => _allPrograms.Where(p => !p.IsCompressed).ToList(),
+                    _ => _allPrograms
+                };
+                
+                foreach (var program in filteredPrograms)
+                {
+                    string status = program.IsCompressed ? "🗜️" : "📦";
+                    programListBox.Items.Add($"{status} {program.Name}");
+                }
+                
+                _logger.Log($"✓ Filtered to {filteredPrograms.Count()} programs");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Error switching program filter: {ex.Message}", ex);
+        }
     }
 
     private async void Estimate_Click(object? sender, RoutedEventArgs e)

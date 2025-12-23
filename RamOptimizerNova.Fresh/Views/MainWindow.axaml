@@ -252,6 +252,45 @@
                                        Background="#33FFFFFF"
                                        Foreground="{DynamicResource StarWhite}"/>
                                        
+                                <!-- Program Filter Tabs (Folder Style) -->
+                                <Border Background="#0DFFFFFF" 
+                                       CornerRadius="8" 
+                                       Padding="8,8,8,2"
+                                       Margin="0,8,0,0">
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <Border x:Name="AllProgramsTab"
+                                               Background="#336699FF"
+                                               CornerRadius="6,6,0,0"
+                                               Padding="16,8,16,8"
+                                               Cursor="Hand">
+                                            <TextBlock Text="📁 All Programs"
+                                                      Foreground="{DynamicResource StarWhite}"
+                                                      FontSize="13"
+                                                      FontWeight="SemiBold"/>
+                                        </Border>
+                                        
+                                        <Border x:Name="CompressedTab"
+                                               Background="#19FFFFFF"
+                                               CornerRadius="6,6,0,0"
+                                               Padding="16,8,16,8"
+                                               Cursor="Hand">
+                                            <TextBlock Text="🗜️ Compressed"
+                                                      Foreground="{DynamicResource StarDim}"
+                                                      FontSize="13"/>
+                                        </Border>
+                                        
+                                        <Border x:Name="UncompressedTab"
+                                               Background="#19FFFFFF"
+                                               CornerRadius="6,6,0,0"
+                                               Padding="16,8,16,8"
+                                               Cursor="Hand">
+                                            <TextBlock Text="📦 Uncompressed"
+                                                      Foreground="{DynamicResource StarDim}"
+                                                      FontSize="13"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                                       
                                 <ListBox x:Name="ProgramListBox"
                                         Height="200"
                                         Background="#19FFFFFF"

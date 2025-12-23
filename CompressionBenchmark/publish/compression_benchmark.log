@@ -3576,3 +3576,72 @@ Stack:    at System.IO.FileSystem.CopyFile(String sourceFullPath, String destFul
 [2025-12-17 22:28:42.323] [FILE_SAFETY] Action: TEMP_DELETED, File: C:\Users\Jarrod\AppData\Local\Temp\benchmark_temp_6d97117d-79d9-47c4-956d-86466dc3c479.csv
 [2025-12-17 22:28:42.379] [FILE_SAFETY] Action: COPY_CREATED, File: C:\Users\Jarrod\AppData\Local\Temp\benchmark_temp_a206b922-7b70-41f2-bc46-9f7929fd6a49.csv
 [2025-12-17 22:31:10.384] [FILE_SAFETY] Action: TEMP_DELETED, File: C:\Users\Jarrod\AppData\Local\Temp\benchmark_temp_a206b922-7b70-41f2-bc46-9f7929fd6a49.csv
+[2025-12-21 23:50:33.149] [INFO] Saved original AutoRestartShell value: 0
+[2025-12-21 23:50:33.168] [INFO] AutoRestartShell registry setting disabled
+[2025-12-21 23:50:33.175] [INFO] Shell registry modified to prevent restart
+[2025-12-21 23:50:33.182] [INFO] Saved original UserInit: C:\Windows\system32\userinit.exe,
+[2025-12-21 23:50:33.436] [INFO] UserInit modified to prevent restart
+[2025-12-21 23:50:33.443] [INFO] Explorer restart prevention applied using multiple methods
+[2025-12-21 23:50:33.453] [INFO] Disabled auto-restart for service: spooler
+[2025-12-21 23:50:33.460] [INFO] Disabled auto-restart for service: BITS
+[2025-12-21 23:50:33.468] [INFO] Disabled auto-restart for service: wuauserv
+[2025-12-21 23:50:33.474] [INFO] Disabled auto-restart for service: UsoSvc
+[2025-12-21 23:50:33.481] [INFO] Disabled auto-restart for service: SysMain
+[2025-12-21 23:50:33.488] [INFO] Disabled auto-restart for service: defragsvc
+[2025-12-21 23:50:33.499] [INFO] Disabled auto-restart for service: Winmgmt
+[2025-12-21 23:50:33.515] [INFO] Disabled auto-restart for service: Dhcp
+[2025-12-21 23:50:33.539] [INFO] Disabled auto-restart for service: Dnscache
+[2025-12-21 23:51:25.095] [INFO] Saved original AutoRestartShell value: 0
+[2025-12-21 23:51:25.116] [INFO] AutoRestartShell registry setting disabled
+[2025-12-21 23:51:25.124] [WARN] Failed to modify shell registry: Attempted to perform an unauthorized operation.
+[2025-12-21 23:51:25.132] [INFO] Saved original UserInit: C:\Windows\system32\userinit.exe,
+[2025-12-21 23:51:25.144] [WARN] Failed to modify UserInit: Attempted to perform an unauthorized operation.
+[2025-12-21 23:51:25.154] [INFO] Explorer restart prevention applied using multiple methods
+[2025-12-21 23:51:25.166] [INFO] Disabled auto-restart for service: spooler
+[2025-12-21 23:51:25.181] [INFO] Disabled auto-restart for service: BITS
+[2025-12-21 23:51:25.191] [INFO] Disabled auto-restart for service: wuauserv
+[2025-12-21 23:51:25.200] [INFO] Disabled auto-restart for service: UsoSvc
+[2025-12-21 23:51:25.211] [INFO] Disabled auto-restart for service: SysMain
+[2025-12-21 23:51:25.221] [INFO] Disabled auto-restart for service: defragsvc
+[2025-12-21 23:51:25.232] [INFO] Disabled auto-restart for service: Winmgmt
+[2025-12-21 23:51:25.246] [INFO] Disabled auto-restart for service: Dhcp
+[2025-12-21 23:51:25.254] [INFO] Disabled auto-restart for service: Dnscache
+[2025-12-21 23:51:25.262] [INFO] Disabled auto-restart for service: NlaSvc
+[2025-12-21 23:51:25.269] [INFO] Disabled auto-restart for service: EapHost
+[2025-12-21 23:51:25.277] [INFO] Disabled auto-restart for service: EventLog
+[2025-12-21 23:51:25.290] [INFO] Disabled auto-restart for service: FontCache
+[2025-12-21 23:51:25.300] [INFO] Disabled auto-restart for service: Schedule
+[2025-12-21 23:51:25.308] [INFO] Disabled auto-restart for service: Themes
+[2025-12-21 23:51:25.323] [ERROR] Failed to disable service TrustedInstaller: Requested registry access is not allowed.
+[2025-12-21 23:51:25.391] [INFO] ABOUT TO KILL: bztransmit64 (PID: 63400, RAM: 2.05 GB)
+[2025-12-21 23:51:25.571] [INFO] SUCCESS: Killed bztransmit64
+[2025-12-21 23:51:25.593] [INFO] ABOUT TO KILL: steamwebhelper (PID: 28424, RAM: 812.75 MB)
+                                                                                       [2025-12-22 18:39:57.749] [INFO] Saved original AutoRestartShell value: 0
+[2025-12-22 18:39:57.833] [INFO] AutoRestartShell registry setting disabled
+[2025-12-22 18:39:57.844] [INFO] Shell registry modified to prevent restart
+[2025-12-22 18:39:57.854] [INFO] Saved original UserInit: C:\Windows\system32\userinit.exe,
+[2025-12-22 18:39:57.865] [INFO] UserInit modified to prevent restart
+[2025-12-22 18:39:57.871] [INFO] Explorer restart prevention applied using multiple methods
+[2025-12-22 18:39:57.880] [INFO] Disabled auto-restart for service: spooler
+[2025-12-22 18:39:57.887] [INFO] Disabled auto-restart for service: BITS
+[2025-12-22 18:39:57.894] [INFO] Disabled auto-restart for service: wuauserv
+[2025-12-22 18:39:57.904] [INFO] Disabled auto-restart for service: UsoSvc
+[2025-12-22 18:39:57.912] [INFO] Disabled auto-restart for service: SysMain
+[2025-12-22 18:39:57.924] [INFO] Disabled auto-restart for service: defragsvc
+[2025-12-22 18:39:57.935] [INFO] Disabled auto-restart for service: Winmgmt
+[2025-12-22 18:39:57.942] [INFO] Disabled auto-restart for service: Dhcp
+[2025-12-22 18:39:57.952] [INFO] Disabled auto-restart for service: Dnscache
+[2025-12-22 18:39:57.959] [INFO] Disabled auto-restart for service: NlaSvc
+[2025-12-22 18:39:57.966] [INFO] Disabled auto-restart for service: EapHost
+[2025-12-22 18:39:57.974] [INFO] Disabled auto-restart for service: EventLog
+[2025-12-22 18:39:57.981] [INFO] Disabled auto-restart for service: FontCache
+[2025-12-22 18:39:57.989] [INFO] Disabled auto-restart for service: Schedule
+[2025-12-22 18:39:57.999] [INFO] Disabled auto-restart for service: Themes
+[2025-12-22 18:39:58.021] [ERROR] Failed to disable service TrustedInstaller: Requested registry access is not allowed.
+[2025-12-22 18:39:58.092] [INFO] ABOUT TO KILL: explorer (PID: 20464, RAM: 470.59 MB)
+[2025-12-22 18:39:58.428] [INFO] SUCCESS: Killed explorer
+[2025-12-22 18:39:58.439] [INFO] ABOUT TO KILL: steamwebhelper (PID: 18000, RAM: 381.31 MB)
+[2025-12-22 18:39:58.602] [INFO] SUCCESS: Killed steamwebhelper
+[2025-12-22 18:39:58.611] [INFO] ABOUT TO KILL: SteelSeriesSonar (PID: 26288, RAM: 261.76 MB)
+[2025-12-22 18:39:58.856] [INFO] SUCCESS: Killed SteelSeriesSonar
+[2025-12-22 18:39:58.868] [INFO] ABOUT TO KILL: NVIDIA Overlay (PID: 6312, RAM: 246 MB)
