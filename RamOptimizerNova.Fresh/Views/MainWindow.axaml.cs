@@ -16,6 +16,7 @@ public partial class MainWindow : Window
     private readonly WindowsCompactCompression _compressor;
     private readonly ProgramScanner _scanner;
     private readonly CompressionAnalysisService _analysisService;
+    private readonly ProgramCache _programCache;
     private readonly DispatcherTimer _timer;
     private readonly FileLogger _logger = FileLogger.Instance;
     
@@ -44,6 +45,7 @@ public partial class MainWindow : Window
             _compressor = new WindowsCompactCompression();
             _scanner = new ProgramScanner();
             _analysisService = new CompressionAnalysisService();
+            _programCache = new ProgramCache();
             
             _logger.Log("Finding UI elements...");
             FindUIElements();
@@ -59,6 +61,10 @@ public partial class MainWindow : Window
             
             _logger.Log("Wiring compression UI...");
             WireCompressionUI();
+            
+            // Load cached programs on startup
+            _logger.Log("Loading cached programs...");
+            _ = LoadCachedProgramsAsync(); // Fire and forget
             
             _logger.Log("=== MainWindow Initialized Successfully ===");
         }
@@ -842,6 +848,58 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             _logger.LogWarning($"Error updating status: {ex.Message}");
+        }
+    }
+
+    private async Task LoadCachedProgramsAsync()
+    {
+        try
+        {
+            var cachedPrograms = await _programCache.LoadAsync();
+            
+            if (cachedPrograms != null && cachedPrograms.Any())
+            {
+                _allPrograms = cachedPrograms;
+                _logger.Log($"✓ Loaded {cachedPrograms.Count} programs from cache");
+                
+                // Populate UI on the UI thread
+                await Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    var programListBox = this.FindControl<ListBox>("ProgramListBox");
+                    if (programListBox != null)
+                    {
+                        programListBox.Items.Clear();
+                        
+                        var filteredPrograms = _currentFilter switch
+                        {
+                            "compressed" => _allPrograms.Where(p => p.IsCompressed).ToList(),
+                            "uncompressed" => _allPrograms.Where(p => !p.IsCompressed).ToList(),
+                            _ => _allPrograms
+                        };
+                        
+                        foreach (var program in filteredPrograms.Take(50))
+                        {
+                            string status = program.IsCompressed ? "🗜️" : "📦";
+                            var item = new ListBoxItem
+                            {
+                                Content = $"{status} {program.Name} - {program.SizeFormatted} ({program.Type})"
+                            };
+                            item.Tag = program;
+                            programListBox.Items.Add(item);
+                        }
+                        
+                        _logger.Log($"✓ Displayed {Math.Min(50, filteredPrograms.Count)} programs from cache");
+                    }
+                });
+            }
+            else
+            {
+                _logger.Log("No cached programs found or cache invalid");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Failed to load cached programs", ex);
         }
     }
 }
