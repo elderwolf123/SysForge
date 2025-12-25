@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "xtXQ8C97inw=",
+  "dgSpecHash": "f6uyH/FghcQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizerNova.Fresh\\RamOptimizerNova.csproj",
   "expectedPackageFiles": [
@@ -48,7 +48,10 @@
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.cryptography.protecteddata\\10.0.1\\system.security.cryptography.protecteddata.10.0.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\system.threading.accesscontrol\\10.0.1\\system.threading.accesscontrol.10.0.1.nupkg.sha512",
     "C:\\Users\\Jarrod\\.nuget\\packages\\tmds.dbus.protocol\\0.21.2\\tmds.dbus.protocol.0.21.2.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp\\0.7.2\\zstdsharp.0.7.2.nupkg.sha512"
+    "C:\\Users\\Jarrod\\.nuget\\packages\\zstdsharp\\0.7.2\\zstdsharp.0.7.2.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.22\\microsoft.netcore.app.runtime.win-x64.8.0.22.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.22\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.22.nupkg.sha512",
+    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.22\\microsoft.aspnetcore.app.runtime.win-x64.8.0.22.nupkg.sha512"
   ],
   "logs": []
 }
