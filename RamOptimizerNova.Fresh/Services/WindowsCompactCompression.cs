@@ -43,6 +43,9 @@ namespace RamOptimizerNova.Services;
     public class CompactProgress
     {
         public long FilesProcessed { get; set; }
+        public long TotalFiles { get; set; }           // NEW: Total file count
+        public double PercentComplete { get; set; }    // NEW: Calculated percentage
+        public double EstimatedSecondsRemaining { get; set; } // NEW: Calculated ETA
         public string CurrentFile { get; set; } = "";
         public double ElapsedSeconds { get; set; }
     }
@@ -423,6 +426,46 @@ public async Task<bool> IsCompressedAsync(string path)
             }
             
             return $"{len:0.##} {sizes[order]}";
+        }
+
+        /// <summary>
+        /// Count total files in a directory for accurate progress tracking
+        /// </summary>
+        private async Task<long> CountFilesAsync(string path)
+        {
+            try
+            {
+                _fileLogger.Log($"[COUNT] Counting files in: {path}");
+                
+                return await Task.Run(() =>
+                {
+                    try
+                    {
+                        if (File.Exists(path))
+                            return 1;
+                            
+                        if (Directory.Exists(path))
+                        {
+                            var dirInfo = new DirectoryInfo(path);
+                            var count = dirInfo.EnumerateFiles("*", SearchOption.AllDirectories).LongCount();
+                            _fileLogger.Log($"[COUNT] Found {count} files");
+                            return count;
+                        }
+                        
+                        return 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        _fileLogger.Log($"[COUNT] Error counting files: {ex.Message}");
+                        return 0;
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                _fileLogger.LogError($"Failed to count files: {ex.Message}", ex);
+                return 0;
+            }
         }
 
         #endregion

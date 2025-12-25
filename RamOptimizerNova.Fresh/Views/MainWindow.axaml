@@ -227,6 +227,12 @@
                                            Padding="12,8"
                                            Background="#33FFFFFF"
                                            Foreground="{DynamicResource StarWhite}"/>
+                                    <Button x:Name="DeepScanButton" 
+                                           Content="🔍 Deep Scan Drive" 
+                                           Padding="12,8"
+                                           Background="#336699FF"
+                                           Foreground="{DynamicResource StarWhite}"
+                                           ToolTip="Scan entire drive for compressible folders"/>
                                     <ComboBox x:Name="AlgorithmComboBox" 
                                              Width="180"
                                              SelectedIndex="3"
@@ -258,17 +264,42 @@
                                        Padding="8,8,8,2"
                                        Margin="0,8,0,0">
                                     <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <!-- Type Filters -->
                                         <Border x:Name="AllProgramsTab"
                                                Background="#336699FF"
                                                CornerRadius="6,6,0,0"
                                                Padding="16,8,16,8"
                                                Cursor="Hand">
-                                            <TextBlock Text="📁 All Programs"
+                                            <TextBlock Text="📁 All"
                                                       Foreground="{DynamicResource StarWhite}"
                                                       FontSize="13"
                                                       FontWeight="SemiBold"/>
                                         </Border>
                                         
+                                        <Border x:Name="ProgramsOnlyTab"
+                                               Background="#19FFFFFF"
+                                               CornerRadius="6,6,0,0"
+                                               Padding="16,8,16,8"
+                                               Cursor="Hand">
+                                            <TextBlock Text="💼 Programs"
+                                                      Foreground="{DynamicResource StarDim}"
+                                                      FontSize="13"/>
+                                        </Border>
+                                        
+                                        <Border x:Name="GamesOnlyTab"
+                                               Background="#19FFFFFF"
+                                               CornerRadius="6,6,0,0"
+                                               Padding="16,8,16,8"
+                                               Cursor="Hand">
+                                            <TextBlock Text="🎮 Games"
+                                                      Foreground="{DynamicResource StarDim}"
+                                                      FontSize="13"/>
+                                        </Border>
+                                        
+                                        <!-- Separator -->
+                                        <Border Width="2" Background="#33FFFFFF" Margin="4,0"/>
+                                        
+                                        <!-- Compression Status Filters -->
                                         <Border x:Name="CompressedTab"
                                                Background="#19FFFFFF"
                                                CornerRadius="6,6,0,0"

@@ -1,0 +1,96 @@
+// Temporary file with filter methods to add
+private void SwitchTypeFilter(string filter)
+{
+    _currentTypeFilter = filter;
+    _logger.Log($"Type filter changed to: {filter}");
+    ApplyCombinedFilters();
+}
+
+private void SwitchCompressionFilter(string filter)
+{
+    _currentCompressionFilter = filter;
+    _logger.Log($"Compression filter changed to: {filter}");
+    ApplyCombinedFilters();
+}
+
+private void ApplyCombinedFilters()
+{
+    try
+    {
+        _logger.Log($"Applying filters - Type: {_currentTypeFilter}, Compression: {_currentCompressionFilter}");
+        
+        // Update tab styling for type tabs
+        UpdateTabStyle("AllProgramsTab", _currentTypeFilter == "all");
+        UpdateTabStyle("ProgramsOnlyTab", _currentTypeFilter == "programs");
+        UpdateTabStyle("GamesOnlyTab", _currentTypeFilter == "games");
+        
+        // Update compression tabs (only highlight if not "all")
+        if (_currentCompressionFilter == "all")
+        {
+            UpdateTabStyle("CompressedTab", false);
+            UpdateTabStyle("UncompressedTab", false);
+        }
+        else
+        {
+            UpdateTabStyle("CompressedTab", _currentCompressionFilter == "compressed");
+            UpdateTabStyle("UncompressedTab", _currentCompressionFilter == "uncompressed");
+        }
+        
+        // Filter and display programs
+        var programListBox = this.FindControl<ListBox>("ProgramListBox");
+        if (programListBox != null && _allPrograms.Any())
+        {
+            programListBox.Items.Clear();
+            
+            var filteredPrograms = _allPrograms.AsEnumerable();
+            
+            // Apply type filter
+            if (_currentTypeFilter == "programs")
+                filteredPrograms = filteredPrograms.Where(p => p.Type == "Program");
+            else if (_currentTypeFilter == "games")
+                filteredPrograms = filteredPrograms.Where(p => p.Type == "Game");
+            
+            // Apply compression filter
+            if (_currentCompressionFilter == "compressed")
+                filteredPrograms = filteredPrograms.Where(p => p.IsCompressed);
+            else if (_currentCompressionFilter == "uncompressed")
+                filteredPrograms = filteredPrograms.Where(p => !p.IsCompressed);
+            
+            var finalList = filteredPrograms.ToList();
+            
+            foreach (var program in finalList)
+            {
+                string status = program.IsCompressed ? "🗜️" : "📦";
+                string typeIcon = program.Type == "Game" ? "🎮" : "💼";
+                string drive = System.IO.Path.GetPathRoot(program.InstallPath)?.TrimEnd('\\') ?? "?";
+                
+                var item = new ListBoxItem
+                {
+                    Content = $"{status} {typeIcon} [{drive}] {program.Name} - {program.SizeFormatted}"
+                };
+                item.Tag = program;
+                programListBox.Items.Add(item);
+            }
+            
+            _logger.Log($"✓ Showing {finalList.Count} of {_allPrograms.Count} programs");
+        }
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError($"Error in ApplyCombinedFilters: {ex.Message}", ex);
+    }
+}
+
+private void UpdateTabStyle(string tabName, bool isActive)
+{
+    var tab = this.FindControl<Border>(tabName);
+    if (tab != null)
+    {
+        tab.Background = Avalonia.Media.Brush.Parse(isActive ? "#336699FF" : "#19FFFFFF");
+        if (tab.Child is TextBlock text)
+        {
+            text.Foreground = Avalonia.Media.Brush.Parse(isActive ? "#FFFFFF" : "#99FFFFFF");
+            text.FontWeight = isActive ? Avalonia.Media.FontWeight.SemiBold : Avalonia.Media.FontWeight.Normal;
+        }
+    }
+}
