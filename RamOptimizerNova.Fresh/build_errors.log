@@ -1,0 +1,1797 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "4.14.0.0",
+        "fileVersion": "4.14.0-3.25465.8 (b0a9adbf)",
+        "semanticVersion": "4.14.0",
+        "language": "en-GB"
+      },
+      "results": [
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_metricsService' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 43,
+                  "endLine": 15,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_compressor' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 48,
+                  "endLine": 16,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_scanner' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 37,
+                  "endLine": 17,
+                  "endColumn": 45
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_analysisService' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 49,
+                  "endLine": 18,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_programCache' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 35,
+                  "endLine": 19,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_deepScanner' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 34,
+                  "endLine": 20,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "Non-nullable field '_timer' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the field as nullable.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 12,
+                  "endLine": 38,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 38,
+                  "endLine": 21,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS0618",
+          "level": "warning",
+          "message": "'ToggleButton.Checked' is obsolete: 'Use IsCheckedChanged instead.'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 116,
+                  "startColumn": 17,
+                  "endLine": 116,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 2
+          }
+        },
+        {
+          "ruleId": "CS0618",
+          "level": "warning",
+          "message": "'ToggleButton.Checked' is obsolete: 'Use IsCheckedChanged instead.'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 122,
+                  "startColumn": 17,
+                  "endLine": 122,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 2
+          }
+        },
+        {
+          "ruleId": "CS0618",
+          "level": "warning",
+          "message": "'OpenFolderDialog' is obsolete: 'Use Window.StorageProvider API or TopLevel.StorageProvider API'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 241,
+                  "startColumn": 30,
+                  "endLine": 241,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 2
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 43,
+                  "endLine": 41,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS0067",
+          "level": "warning",
+          "message": "The event 'DashboardViewModel.PropertyChanged' is never used",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/ViewModels/DashboardViewModel.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 47,
+                  "endLine": 24,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS0649",
+          "level": "warning",
+          "message": "Field 'MainWindow._selectedProgram' is never assigned to, and will always have its default value null",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 31,
+                  "endLine": 25,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 4
+          }
+        },
+        {
+          "ruleId": "CA1835",
+          "level": "note",
+          "message": "Change the 'WriteAsync' method call to use the 'Stream.WriteAsync(ReadOnlyMemory<byte>, CancellationToken)' overload",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionService.cs",
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 19,
+                  "endLine": 82,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1816",
+          "level": "note",
+          "message": "Change CompressionService.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionService.cs",
+                "region": {
+                  "startLine": 99,
+                  "startColumn": 17,
+                  "endLine": 99,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1869",
+          "level": "note",
+          "message": "Avoid creating a new 'JsonSerializerOptions' instance for every serialization operation. Cache and reuse instances instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/ProgramCache.cs",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 31,
+                  "endLine": 42,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1869",
+          "level": "note",
+          "message": "Avoid creating a new 'JsonSerializerOptions' instance for every serialization operation. Cache and reuse instances instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/ProgramCache.cs",
+                "region": {
+                  "startLine": 71,
+                  "startColumn": 31,
+                  "endLine": 74,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'PerformanceCounter.NextValue()' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 13,
+                  "endLine": 35,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'PerformanceCounter.NextValue()' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 13,
+                  "endLine": 36,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'PerformanceCounter' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 27,
+                  "endLine": 31,
+                  "endColumn": 98
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'PerformanceCounter' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 27,
+                  "endLine": 32,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'CompressBytesAsync' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionService.cs",
+                "region": {
+                  "startLine": 76,
+                  "startColumn": 32,
+                  "endLine": 76,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'DecompressBytesAsync' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionService.cs",
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 32,
+                  "endLine": 87,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'DisableAvaloniaDataAnnotationValidation' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/App.axaml.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 18,
+                  "endLine": 35,
+                  "endColumn": 57
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'PerformanceCounter.NextValue()' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 29,
+                  "endLine": 56,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'ShouldExclude' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/DeepScanner.cs",
+                "region": {
+                  "startLine": 160,
+                  "startColumn": 22,
+                  "endLine": 160,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'FormatSize' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/DeepScanner.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 24,
+                  "endLine": 177,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1866",
+          "level": "note",
+          "message": "Use 'string.StartsWith(char)' instead of 'string.StartsWith(string)' when you have a string with a single char",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 136,
+                  "startColumn": 102,
+                  "endLine": 136,
+                  "endColumn": 107
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'GetGpuUsage' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 157,
+                  "startColumn": 18,
+                  "endLine": 157,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 233,
+                  "startColumn": 37,
+                  "endLine": 233,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogError(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 274,
+                  "startColumn": 35,
+                  "endLine": 274,
+                  "endColumn": 72
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1816",
+          "level": "note",
+          "message": "Change SystemMetricsService.Dispose() to call GC.SuppressFinalize(object). This will prevent derived types that introduce a finalizer from needing to re-implement 'IDisposable' to call it.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 164,
+                  "startColumn": 17,
+                  "endLine": 164,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 37,
+                  "endLine": 82,
+                  "endColumn": 84
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 83,
+                  "startColumn": 37,
+                  "endLine": 83,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogError(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 199,
+                  "startColumn": 39,
+                  "endLine": 199,
+                  "endColumn": 51
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 204,
+                  "startColumn": 45,
+                  "endLine": 204,
+                  "endColumn": 190
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogError(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 212,
+                  "startColumn": 35,
+                  "endLine": 212,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'ManagementObjectSearcher.Get()' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 64,
+                  "endLine": 109,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'ManagementBaseObject.this[string]' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 111,
+                  "startColumn": 53,
+                  "endLine": 111,
+                  "endColumn": 82
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'ManagementObjectSearcher' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 28,
+                  "endLine": 108,
+                  "endColumn": 113
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'ManagementBaseObject.this[string]' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 112,
+                  "startColumn": 53,
+                  "endLine": 112,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1416",
+          "level": "warning",
+          "message": "This call site is reachable on all platforms. 'PerformanceCounter.NextValue()' is only supported on: 'windows'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 35,
+                  "endLine": 96,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'GetStorageInfo' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SystemMetricsService.cs",
+                "region": {
+                  "startLine": 131,
+                  "startColumn": 60,
+                  "endLine": 131,
+                  "endColumn": 74
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 18,
+                  "endLine": 54,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'GetDirectorySize' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/ProgramScanner.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 18,
+                  "endLine": 178,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 947,
+                  "startColumn": 43,
+                  "endLine": 947,
+                  "endColumn": 63
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 873,
+                  "startColumn": 17,
+                  "endLine": 873,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 287,
+                  "startColumn": 18,
+                  "endLine": 287,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 725,
+                  "startColumn": 43,
+                  "endLine": 725,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Prefer comparing 'Count' to 0 rather than using 'Any()', both for clarity and for performance",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 880,
+                  "startColumn": 21,
+                  "endLine": 880,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 37,
+                  "endLine": 60,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 45,
+                  "endLine": 78,
+                  "endColumn": 70
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 45,
+                  "endLine": 82,
+                  "endColumn": 148
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 41,
+                  "endLine": 107,
+                  "endColumn": 109
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 41,
+                  "endLine": 108,
+                  "endColumn": 92
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "The logging message template should not vary between calls to 'LoggerExtensions.LogInformation(ILogger, string?, params object?[])'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 41,
+                  "endLine": 109,
+                  "endColumn": 99
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'GetSampleFiles' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/SmartAlgorithmSelector.cs",
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 30,
+                  "endLine": 173,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'FormatBytes' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Views/MainWindow.axaml.cs",
+                "region": {
+                  "startLine": 675,
+                  "startColumn": 20,
+                  "endLine": 675,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "SYSLIB1045",
+          "level": "note",
+          "message": "Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 318,
+                  "startColumn": 31,
+                  "endLine": 318,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "SYSLIB1045",
+          "level": "note",
+          "message": "Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 362,
+                  "startColumn": 26,
+                  "endLine": 362,
+                  "endColumn": 147
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "SYSLIB1045",
+          "level": "note",
+          "message": "Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 373,
+                  "startColumn": 28,
+                  "endLine": 373,
+                  "endColumn": 120
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "SYSLIB1045",
+          "level": "note",
+          "message": "Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 388,
+                  "startColumn": 26,
+                  "endLine": 388,
+                  "endColumn": 140
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "SYSLIB1045",
+          "level": "note",
+          "message": "Use 'GeneratedRegexAttribute' to generate the regular expression implementation at compile-time.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 397,
+                  "startColumn": 28,
+                  "endLine": 397,
+                  "endColumn": 125
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'FormatSize' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/WindowsCompactCompression.cs",
+                "region": {
+                  "startLine": 416,
+                  "startColumn": 24,
+                  "endLine": 416,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1854",
+          "level": "note",
+          "message": "Prefer a 'TryGetValue' call over a Dictionary indexer access guarded by a 'ContainsKey' check to avoid double lookup",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 30,
+                  "endLine": 85,
+                  "endColumn": 66
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 94,
+                  "startColumn": 25,
+                  "endLine": 94,
+                  "endColumn": 62
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 29,
+                  "endLine": 91,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'CalculateEstimatedSavings' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 146,
+                  "startColumn": 22,
+                  "endLine": 146,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'FormatBytes' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 159,
+                  "startColumn": 24,
+                  "endLine": 159,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'GetCompressionCategory' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Jarrod/Desktop/VS%20Code%20Projects/Ram%20optimiser/RamOptimizerNova.Fresh/Services/CompressionAnalysisService.cs",
+                "region": {
+                  "startLine": 131,
+                  "startColumn": 37,
+                  "endLine": 131,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1416": {
+          "id": "CA1416",
+          "shortDescription": "Validate platform compatibility",
+          "fullDescription": "Using platform dependent API on a component makes the code no longer work across all platforms.",
+          "defaultLevel": "warning",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1416",
+          "properties": {
+            "category": "Interoperability",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1816": {
+          "id": "CA1816",
+          "shortDescription": "Dispose methods should call SuppressFinalize",
+          "fullDescription": "A method that is an implementation of Dispose does not call GC.SuppressFinalize; or a method that is not an implementation of Dispose calls GC.SuppressFinalize; or a method calls GC.SuppressFinalize and passes something other than this (Me in Visual Basic).",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1816",
+          "properties": {
+            "category": "Usage",
+            "isEnabledByDefault": true,
+            "tags": [
+              "PortedFromFxCop",
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1822": {
+          "id": "CA1822",
+          "shortDescription": "Mark members as static",
+          "fullDescription": "Members that do not access instance data or call instance methods can be marked as static. After you mark the methods as static, the compiler will emit nonvirtual call sites to these members. This can give you a measurable performance gain for performance-sensitive code.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1822",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "PortedFromFxCop",
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1835": {
+          "id": "CA1835",
+          "shortDescription": "Prefer the 'Memory'-based overloads for 'ReadAsync' and 'WriteAsync'",
+          "fullDescription": "'Stream' has a 'ReadAsync' overload that takes a 'Memory<Byte>' as the first argument, and a 'WriteAsync' overload that takes a 'ReadOnlyMemory<Byte>' as the first argument. Prefer calling the memory based overloads, which are more efficient.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1835",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1854": {
+          "id": "CA1854",
+          "shortDescription": "Prefer the 'IDictionary.TryGetValue(TKey, out TValue)' method",
+          "fullDescription": "Prefer a 'TryGetValue' call over a Dictionary indexer access guarded by a 'ContainsKey' check. 'ContainsKey' and the indexer both would lookup the key under the hood, so using 'TryGetValue' removes the extra lookup.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1854",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1860": {
+          "id": "CA1860",
+          "shortDescription": "Avoid using 'Enumerable.Any()' extension method",
+          "fullDescription": "Prefer using 'IsEmpty', 'Count' or 'Length' properties whichever available, rather than calling 'Enumerable.Any()'. The intent is clearer and it is more performant than using 'Enumerable.Any()' extension method.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1860",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1866": {
+          "id": "CA1866",
+          "shortDescription": "Use char overload",
+          "fullDescription": "The char overload is a better performing overload than a string with a single char.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1866",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1869": {
+          "id": "CA1869",
+          "shortDescription": "Cache and reuse 'JsonSerializerOptions' instances",
+          "fullDescription": "Avoid creating a new 'JsonSerializerOptions' instance for every serialization operation. Cache and reuse instances instead. Single use 'JsonSerializerOptions' instances can substantially degrade the performance of your application.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1869",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA2254": {
+          "id": "CA2254",
+          "shortDescription": "Template should be a static expression",
+          "fullDescription": "The logging message template should not vary between calls.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2254",
+          "properties": {
+            "category": "Usage",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS0067": {
+          "id": "CS0067",
+          "shortDescription": "Event is never used",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0067)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS0618": {
+          "id": "CS0618",
+          "shortDescription": "Type or member is obsolete",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS0649": {
+          "id": "CS0649",
+          "shortDescription": "Field is never assigned to, and will always have its default value",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0649)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS1998": {
+          "id": "CS1998",
+          "shortDescription": "Async method lacks 'await' operators and will run synchronously",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1998)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8618": {
+          "id": "CS8618",
+          "shortDescription": "Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "SYSLIB1045": {
+          "id": "SYSLIB1045",
+          "shortDescription": "Convert to 'GeneratedRegexAttribute'.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/syslib-diagnostics/syslib1045",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true
+          }
+        }
+      }
+    }
+  ]
+}
