@@ -78,7 +78,20 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                Process.Start(executablePath);
+                if (string.IsNullOrWhiteSpace(executablePath) || !Path.IsPathRooted(executablePath) || !File.Exists(executablePath))
+                {
+                    LogAction($"Unauthorized or invalid process restoration attempt: {executablePath}");
+                    return false;
+                }
+
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = executablePath,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                Process.Start(startInfo);
                 LogAction($"Restored process: {executablePath}");
                 ProcessRestored?.Invoke(this, new ProcessEventArgs(Path.GetFileNameWithoutExtension(executablePath), 0));
                 return true;

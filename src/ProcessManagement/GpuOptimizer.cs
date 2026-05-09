@@ -197,8 +197,20 @@ namespace RamOptimizer.ProcessManagement
                 {
                     try
                     {
+                        if (!SecurityConfig.AllowedProcesses.Contains(processName))
+                        {
+                            Console.WriteLine($"Skipping recovery of unauthorized process: {processName}");
+                            continue;
+                        }
+
                         // Attempt to restart the process
-                        Process.Start(processName);
+                        var startInfo = new ProcessStartInfo
+                        {
+                            FileName = processName,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        };
+                        Process.Start(startInfo);
                         Console.WriteLine($"Recovered process: {processName}");
                     }
                     catch (Exception ex)
