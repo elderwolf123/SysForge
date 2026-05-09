@@ -23,9 +23,14 @@ namespace RamOptimizer.ProcessManagement
 
         public bool IsSystemStable()
         {
+            return IsSystemStableAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<bool> IsSystemStableAsync()
+        {
             try
             {
-                return CheckCpuUsage() && 
+                return await CheckCpuUsageAsync() &&
                        CheckMemoryUsage() && 
                        CheckDiskUsage() && 
                        CheckNetworkUsage() && 
@@ -42,11 +47,6 @@ namespace RamOptimizer.ProcessManagement
             }
         }
 
-        public async Task<bool> IsSystemStableAsync()
-        {
-            return await Task.Run(() => IsSystemStable());
-        }
-
         public void LogTestResults(string results)
         {
             // Log the test results
@@ -54,14 +54,14 @@ namespace RamOptimizer.ProcessManagement
             StabilityTestCompleted?.Invoke(this, results);
         }
 
-        private bool CheckCpuUsage()
+        private async Task<bool> CheckCpuUsageAsync()
         {
             try
             {
                 using (PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total"))
                 {
                     cpuCounter.NextValue(); // First call returns 0, so we call it once to initialize
-                    System.Threading.Thread.Sleep(1000); // Wait for 1 second to get an accurate reading
+                    await Task.Delay(1000); // Wait for 1 second to get an accurate reading
                     float cpuUsage = cpuCounter.NextValue();
                     _logger.LogInformation($"CPU Usage: {cpuUsage}%");
                     return cpuUsage < 80; // Return true if CPU usage is less than 80%
