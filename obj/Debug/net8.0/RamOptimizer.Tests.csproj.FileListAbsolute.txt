@@ -1,0 +1,6 @@
+/app/obj/Debug/net8.0/RamOptimizer.Tests.csproj.AssemblyReference.cache
+/app/obj/Debug/net8.0/RamOptimizer.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/app/obj/Debug/net8.0/RamOptimizer.Tests.AssemblyInfoInputs.cache
+/app/obj/Debug/net8.0/RamOptimizer.Tests.AssemblyInfo.cs
+/app/obj/Debug/net8.0/RamOptimizer.Tests.csproj.CoreCompileInputs.cache
+/app/obj/Debug/net8.0/RamOptimizer.Tests.sourcelink.json

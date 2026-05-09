@@ -1,30 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests.csproj": {}
+    "/app/RamOptimizer.Tests.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests.csproj": {
+    "/app/RamOptimizer.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests.csproj",
+        "projectUniqueName": "/app/RamOptimizer.Tests.csproj",
         "projectName": "RamOptimizer.Tests",
-        "projectPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.Tests.csproj",
-        "packagesPath": "C:\\Users\\Jarrod\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\obj\\",
+        "projectPath": "/app/RamOptimizer.Tests.csproj",
+        "packagesPath": "/home/jules/.nuget/packages/",
+        "outputPath": "/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jarrod\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/jules/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -41,8 +42,8 @@
         "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "MSTest.TestAdapter": {
               "target": "Package",
@@ -55,6 +56,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.5.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.4, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -80,26 +85,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[7.0.20, 7.0.20]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\10.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

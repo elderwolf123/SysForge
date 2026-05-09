@@ -1,3 +1,9 @@
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Release\net8.0\RamOptimizer.csproj.AssemblyReference.cache
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Release\net8.0\RamOptimizer.GeneratedMSBuildEditorConfig.editorconfig
-c:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\obj\Release\net8.0\RamOptimizer.csproj.CoreCompileInputs.cache
+c:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/obj/Release/net8.0/RamOptimizer.csproj.AssemblyReference.cache
+c:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/obj/Release/net8.0/RamOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+c:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/obj/Release/net8.0/RamOptimizer.csproj.CoreCompileInputs.cache
+/app/obj/Release/net8.0/RamOptimizer.csproj.AssemblyReference.cache
+/app/obj/Release/net8.0/RamOptimizer.GeneratedMSBuildEditorConfig.editorconfig
+/app/obj/Release/net8.0/RamOptimizer.AssemblyInfoInputs.cache
+/app/obj/Release/net8.0/RamOptimizer.AssemblyInfo.cs
+/app/obj/Release/net8.0/RamOptimizer.csproj.CoreCompileInputs.cache
+/app/obj/Release/net8.0/RamOptimizer.sourcelink.json
