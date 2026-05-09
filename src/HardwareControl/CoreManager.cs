@@ -95,25 +95,35 @@ public class CoreManager
         return maxP > 0 && maxE > 0;
     }
 
+    private static string? _cachedCpuInfo;
+
     /// <summary>
     /// Get CPU information to determine if it's 13th Gen+ Intel
     /// </summary>
     public static string GetCpuInfo()
     {
+        if (_cachedCpuInfo != null)
+        {
+            return _cachedCpuInfo;
+        }
+
         try
         {
             using var searcher = new System.Management.ManagementObjectSearcher("select Name from Win32_Processor");
             foreach (var obj in searcher.Get())
             {
-                return obj["Name"]?.ToString() ?? "Unknown CPU";
+                _cachedCpuInfo = obj["Name"]?.ToString() ?? "Unknown CPU";
+                return _cachedCpuInfo;
             }
         }
         catch
         {
-            return "Unknown CPU";
+            _cachedCpuInfo = "Unknown CPU";
+            return _cachedCpuInfo;
         }
         
-        return "Unknown CPU";
+        _cachedCpuInfo = "Unknown CPU";
+        return _cachedCpuInfo;
     }
 
     /// <summary>
