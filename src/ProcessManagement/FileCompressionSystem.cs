@@ -57,7 +57,7 @@ namespace ProcessManagement
                     return;
                 }
 
-                CompressionLevel compressionLevel = GetDynamicCompressionLevel();
+                CompressionLevel compressionLevel = await GetDynamicCompressionLevelAsync();
                 string compressedFilePath = Path.Combine(_compressionDirectory, Path.GetFileName(filePath) + ".gz");
 
                 try
@@ -85,9 +85,9 @@ namespace ProcessManagement
             });
         }
 
-        private CompressionLevel GetDynamicCompressionLevel()
+        private async Task<CompressionLevel> GetDynamicCompressionLevelAsync()
         {
-            double systemLoad = GetSystemLoad();
+            double systemLoad = await GetSystemLoadAsync();
             if (systemLoad < 30)
             {
                 return CompressionLevel.Optimal;
@@ -102,14 +102,14 @@ namespace ProcessManagement
             }
         }
 
-        private double GetSystemLoad()
+        private async Task<double> GetSystemLoadAsync()
         {
             try
             {
                 // Use PerformanceCounter for CPU load monitoring (Windows-compatible)
                 using var cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
                 cpuCounter.NextValue(); // First call returns 0, initialize
-                System.Threading.Thread.Sleep(100); // Wait for accurate reading
+                await Task.Delay(100); // Wait for accurate reading
                 return cpuCounter.NextValue();
             }
             catch (Exception ex)

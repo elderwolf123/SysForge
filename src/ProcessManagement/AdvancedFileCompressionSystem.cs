@@ -679,7 +679,7 @@ namespace RamOptimizer.ProcessManagement
             {
                 using var cpuCounter = new System.Diagnostics.PerformanceCounter("Processor", "% Processor Time", "_Total");
                 cpuCounter.NextValue(); // First call returns 0, so we call it once to initialize
-                System.Threading.Thread.Sleep(100); // Wait a bit for an accurate reading
+                await Task.Delay(100); // Wait a bit for an accurate reading
                 var cpuUsage = cpuCounter.NextValue();
                 return cpuUsage < 30; // Only compress when CPU usage is below 30%
             }
