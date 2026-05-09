@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RamOptimizer.csproj" />
+    <ProjectReference Include="RamOptimizer.csproj" />
   </ItemGroup>
 
 </Project>

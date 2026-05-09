@@ -117,8 +117,9 @@ namespace RamOptimizer.ProcessManagement
                             process.PriorityClass = ProcessPriorityClass.BelowNormal;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Console.WriteLine($"Could not modify priority for {process.ProcessName}: {ex.Message}");
                         // Skip processes we can't modify
                         continue;
                     }
@@ -142,8 +143,9 @@ namespace RamOptimizer.ProcessManagement
                 // In a real implementation, we would use a library like OpenHardwareMonitor
                 return 45.0 + (new Random().NextDouble() * 20); // Simulate 45-65°C
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Failed to get CPU temperature: {ex.Message}");
                 // If we can't get temperature, return a default value
                 return 0.0;
             }
@@ -157,8 +159,9 @@ namespace RamOptimizer.ProcessManagement
                 // In a real implementation, we would query hardware directly
                 return 2400.0 + (new Random().NextDouble() * 1000); // Simulate 2.4-3.4 GHz
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine($"Failed to get current clock speed: {ex.Message}");
                 // If we can't get clock speed, return a default value
                 return 0.0;
             }
@@ -278,8 +281,9 @@ namespace RamOptimizer.ProcessManagement
                             process.PriorityClass = ProcessPriorityClass.BelowNormal;
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        Console.WriteLine($"Could not modify priority for {process.ProcessName}: {ex.Message}");
                         // Skip processes we can't modify
                         continue;
                     }
