@@ -8,7 +8,7 @@ namespace RamOptimizer.ProcessManagement
 {
     public class AdvancedCpuOptimizer
     {
-        private readonly List<string> _exclusionList;
+        private readonly HashSet<string> _exclusionList;
         private readonly CpuUsagePatternAnalyzer _usageAnalyzer;
         private readonly ProcessPriorityManager _priorityManager;
         private readonly CpuAffinityController _affinityController;
@@ -101,7 +101,7 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 var backgroundProcesses = Process.GetProcesses()
-                    .Where(p => !_exclusionList.Contains(p.ProcessName.ToLower()) && 
+                    .Where(p => !_exclusionList.Contains(p.ProcessName) &&
                                p.ProcessName != "Idle" && 
                                p.ProcessName != "System")
                     .Where(p => p.PriorityClass != ProcessPriorityClass.Idle)
@@ -164,9 +164,9 @@ namespace RamOptimizer.ProcessManagement
             }
         }
 
-        private List<string> InitializeExclusionList()
+        private HashSet<string> InitializeExclusionList()
         {
-            return new List<string>
+            var list = new List<string>
             {
                 "kernel32.dll",
                 "ntoskrnl.exe",
@@ -182,7 +182,8 @@ namespace RamOptimizer.ProcessManagement
                 "explorer.exe",
                 "System",
                 "Idle"
-            }.Select(s => s.ToLower()).ToList();
+            };
+            return new HashSet<string>(list, StringComparer.OrdinalIgnoreCase);
         }
     }
 
@@ -246,7 +247,7 @@ namespace RamOptimizer.ProcessManagement
 
     public class ProcessPriorityManager
     {
-        public async Task AdjustProcessPrioritiesAsync(string targetProcessName, List<string> exclusionList)
+        public async Task AdjustProcessPrioritiesAsync(string targetProcessName, HashSet<string> exclusionList)
         {
             try
             {
@@ -257,7 +258,7 @@ namespace RamOptimizer.ProcessManagement
                     try
                     {
                         // Skip excluded processes
-                        if (exclusionList.Contains(process.ProcessName.ToLower()))
+                        if (exclusionList.Contains(process.ProcessName))
                         {
                             continue;
                         }
