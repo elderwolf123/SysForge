@@ -214,7 +214,12 @@ namespace RamOptimizer.ProcessManagement
                     try
                     {
                         // Attempt to restart the process
-                        Process.Start(processName);
+                        var psi = new ProcessStartInfo(processName)
+                        {
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        };
+                        Process.Start(psi);
                         Console.WriteLine($"Recovered process: {processName}");
                     }
                     catch (Exception ex)

@@ -78,7 +78,12 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                Process.Start(executablePath);
+                var psi = new ProcessStartInfo(executablePath)
+                {
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+                Process.Start(psi);
                 LogAction($"Restored process: {executablePath}");
                 ProcessRestored?.Invoke(this, new ProcessEventArgs(Path.GetFileNameWithoutExtension(executablePath), 0));
                 return true;
