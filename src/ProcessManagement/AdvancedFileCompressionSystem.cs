@@ -652,23 +652,30 @@ namespace RamOptimizer.ProcessManagement
                 
                 foreach (var file in inactiveFiles.Take(5)) // Process 5 files per cycle
                 {
-                    try
-                    {
-                        // Only compress during low system usage
-                        if (await IsLowSystemUsageAsync())
-                        {
-                            await system.CompressFileAsync(file.FullName);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Failed to compress {file.Name}: {ex.Message}");
-                    }
+                    await TryCompressSingleFileAsync(file, system);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error in background compression: {ex.Message}");
+            }
+        }
+
+        private async Task TryCompressSingleFileAsync(FileInfo file, AdvancedFileCompressionSystem system)
+        {
+            try
+            {
+                // Only compress during low system usage
+                if (!await IsLowSystemUsageAsync())
+                {
+                    return;
+                }
+
+                await system.CompressFileAsync(file.FullName);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to compress {file.Name}: {ex.Message}");
             }
         }
 
