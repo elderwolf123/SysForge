@@ -1,14 +1,29 @@
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\bin\Debug\net8.0\ProcessManagement.deps.json
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\bin\Debug\net8.0\ProcessManagement.runtimeconfig.json
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\bin\Debug\net8.0\ProcessManagement.dll
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\bin\Debug\net8.0\ProcessManagement.pdb
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.csproj.AssemblyReference.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.AssemblyInfoInputs.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.AssemblyInfo.cs
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.csproj.CoreCompileInputs.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.dll
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\refint\ProcessManagement.dll
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.pdb
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ProcessManagement.genruntimeconfig.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\ProcessManagement\obj\Debug\net8.0\ref\ProcessManagement.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.deps.json
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.runtimeconfig.json
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.pdb
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.csproj.AssemblyReference.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.AssemblyInfoInputs.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.AssemblyInfo.cs
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.csproj.CoreCompileInputs.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/refint/ProcessManagement.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.pdb
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.genruntimeconfig.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/ProcessManagement/obj/Debug/net8.0/ref/ProcessManagement.dll
+/app/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.deps.json
+/app/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.runtimeconfig.json
+/app/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.dll
+/app/src/ProcessManagement/bin/Debug/net8.0/ProcessManagement.pdb
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.csproj.AssemblyReference.cache
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.GeneratedMSBuildEditorConfig.editorconfig
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.AssemblyInfoInputs.cache
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.AssemblyInfo.cs
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.csproj.CoreCompileInputs.cache
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.sourcelink.json
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.dll
+/app/src/ProcessManagement/obj/Debug/net8.0/refint/ProcessManagement.dll
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.pdb
+/app/src/ProcessManagement/obj/Debug/net8.0/ProcessManagement.genruntimeconfig.cache
+/app/src/ProcessManagement/obj/Debug/net8.0/ref/ProcessManagement.dll

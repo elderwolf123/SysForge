@@ -237,59 +237,14 @@ namespace RamOptimizer.Testing
                 _monitor.PerformanceMetricsUpdated += OnMetricsUpdated;
                 
                 var stopwatch = Stopwatch.StartNew();
+                var buffer = new byte[1024 * 1024]; // 1 MB buffer
                 
                 // Write test
-                var writeStopwatch = Stopwatch.StartNew();
-                var buffer = new byte[1024 * 1024]; // 1 MB buffer
-                var random = new Random();
-                var totalBytesWritten = 0L;
-                
-                using (var fileStream = new FileStream(testFile, FileMode.Create, FileAccess.Write, FileShare.None, buffer.Length, FileOptions.SequentialScan))
-                {
-                    while (totalBytesWritten < fileSizeMB * 1024L * 1024L)
-                    {
-                        random.NextBytes(buffer);
-                        await fileStream.WriteAsync(buffer, 0, buffer.Length);
-                        totalBytesWritten += buffer.Length;
-                        
-                        // Report progress
-                        var progress = (int)((totalBytesWritten / (double)(fileSizeMB * 1024L * 1024L)) * 100);
-                        BenchmarkProgressUpdated?.Invoke(this, new BenchmarkProgressEventArgs
-                        {
-                            BenchmarkName = result.BenchmarkName,
-                            ProgressPercentage = progress,
-                            BytesProcessed = totalBytesWritten
-                        });
-                    }
-                    
-                    await fileStream.FlushAsync();
-                }
-                
-                writeStopwatch.Stop();
+                var (totalBytesWritten, writeElapsedSeconds) = await ExecuteDiskWritePhaseAsync(testFile, buffer, fileSizeMB, result.BenchmarkName);
                 
                 // Read test
-                var readStopwatch = Stopwatch.StartNew();
-                var totalBytesRead = 0L;
+                var (totalBytesRead, readElapsedSeconds) = await ExecuteDiskReadPhaseAsync(testFile, buffer, fileSizeMB, result.BenchmarkName);
                 
-                using (var fileStream = new FileStream(testFile, FileMode.Open, FileAccess.Read, FileShare.Read, buffer.Length, FileOptions.SequentialScan))
-                {
-                    int bytesRead;
-                    while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
-                    {
-                        totalBytesRead += bytesRead;
-                        
-                        // Report progress
-                        var progress = 50 + (int)((totalBytesRead / (double)(fileSizeMB * 1024L * 1024L)) * 50);
-                        BenchmarkProgressUpdated?.Invoke(this, new BenchmarkProgressEventArgs
-                        {
-                            BenchmarkName = result.BenchmarkName,
-                            ProgressPercentage = Math.Min(progress, 100),
-                            BytesProcessed = totalBytesRead
-                        });
-                    }
-                }
-                
-                readStopwatch.Stop();
                 stopwatch.Stop();
                 _monitor.PerformanceMetricsUpdated -= OnMetricsUpdated;
                 
@@ -297,8 +252,8 @@ namespace RamOptimizer.Testing
                 result.Duration = stopwatch.Elapsed;
                 
                 // Calculate scores
-                var writeSpeed = (totalBytesWritten / writeStopwatch.Elapsed.TotalSeconds); // Bytes per second
-                var readSpeed = (totalBytesRead / readStopwatch.Elapsed.TotalSeconds); // Bytes per second
+                var writeSpeed = (totalBytesWritten / writeElapsedSeconds); // Bytes per second
+                var readSpeed = (totalBytesRead / readElapsedSeconds); // Bytes per second
                 result.Score = (writeSpeed + readSpeed) / 2; // Average speed
                 
                 result.WriteSpeedMBps = writeSpeed / (1024 * 1024);
@@ -344,6 +299,64 @@ namespace RamOptimizer.Testing
                 
                 return result;
             }
+        }
+
+        private async Task<(long bytesWritten, double elapsedSeconds)> ExecuteDiskWritePhaseAsync(string testFile, byte[] buffer, int fileSizeMB, string benchmarkName)
+        {
+            var writeStopwatch = Stopwatch.StartNew();
+            var random = new Random();
+            var totalBytesWritten = 0L;
+
+            using (var fileStream = new FileStream(testFile, FileMode.Create, FileAccess.Write, FileShare.None, buffer.Length, FileOptions.SequentialScan))
+            {
+                while (totalBytesWritten < fileSizeMB * 1024L * 1024L)
+                {
+                    random.NextBytes(buffer);
+                    await fileStream.WriteAsync(buffer, 0, buffer.Length);
+                    totalBytesWritten += buffer.Length;
+
+                    // Report progress
+                    var progress = (int)((totalBytesWritten / (double)(fileSizeMB * 1024L * 1024L)) * 100);
+                    BenchmarkProgressUpdated?.Invoke(this, new BenchmarkProgressEventArgs
+                    {
+                        BenchmarkName = benchmarkName,
+                        ProgressPercentage = progress,
+                        BytesProcessed = totalBytesWritten
+                    });
+                }
+
+                await fileStream.FlushAsync();
+            }
+
+            writeStopwatch.Stop();
+            return (totalBytesWritten, writeStopwatch.Elapsed.TotalSeconds);
+        }
+
+        private async Task<(long bytesRead, double elapsedSeconds)> ExecuteDiskReadPhaseAsync(string testFile, byte[] buffer, int fileSizeMB, string benchmarkName)
+        {
+            var readStopwatch = Stopwatch.StartNew();
+            var totalBytesRead = 0L;
+
+            using (var fileStream = new FileStream(testFile, FileMode.Open, FileAccess.Read, FileShare.Read, buffer.Length, FileOptions.SequentialScan))
+            {
+                int bytesRead;
+                while ((bytesRead = await fileStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    totalBytesRead += bytesRead;
+
+                    // Report progress
+                    var progress = 50 + (int)((totalBytesRead / (double)(fileSizeMB * 1024L * 1024L)) * 50);
+                    BenchmarkProgressUpdated?.Invoke(this, new BenchmarkProgressEventArgs
+                    {
+                        BenchmarkName = benchmarkName,
+                        ProgressPercentage = Math.Min(progress, 100),
+                        BytesProcessed = totalBytesRead
+                    });
+                }
+            }
+
+            readStopwatch.Stop();
+            return (totalBytesRead, readStopwatch.Elapsed.TotalSeconds);
         }
 
         public async Task<BenchmarkResult> RunCompressionBenchmarkAsync(string testDirectory = null)
