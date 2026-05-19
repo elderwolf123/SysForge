@@ -7,13 +7,13 @@ namespace RamOptimizer.ProcessManagement
 {
     public class CpuOptimizer
     {
-        private List<string> exclusionList;
+        private HashSet<string> exclusionList;
         private IHardwareInfo computer;
 
         public CpuOptimizer()
         {
             LoadState();
-            exclusionList = new List<string>
+            exclusionList = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "kernel32.dll",
                 "ntoskrnl.exe",
