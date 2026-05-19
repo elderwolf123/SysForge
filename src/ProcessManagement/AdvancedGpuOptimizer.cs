@@ -13,7 +13,7 @@ namespace RamOptimizer.ProcessManagement
         private const string StateFilePath = "gpu_optimizer_state.json";
         private int currentAggressionLevel;
         private List<string> terminatedProcesses;
-        private List<string> exclusionList;
+        private HashSet<string> exclusionList;
         private readonly object _lockObject = new object();
         private readonly GpuUsagePatternAnalyzer _usageAnalyzer;
         private readonly VramAllocator _vramAllocator;
@@ -34,7 +34,7 @@ namespace RamOptimizer.ProcessManagement
 
         private void InitializeExclusionList()
         {
-            exclusionList = new List<string>
+            exclusionList = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "kernel32.dll",
                 "ntoskrnl.exe",
@@ -50,7 +50,7 @@ namespace RamOptimizer.ProcessManagement
                 "explorer.exe",
                 "System",
                 "Idle"
-            }.Select(s => s.ToLower()).ToList();
+            };
         }
 
         public async Task OptimizeGpuForTargetProcessAsync(string targetProcessName)
@@ -131,7 +131,7 @@ namespace RamOptimizer.ProcessManagement
                 {
                     foreach (var processName in aggressionLevels[currentAggressionLevel])
                     {
-                        if (!exclusionList.Contains(processName.ToLower()))
+                        if (!exclusionList.Contains(processName))
                         {
                             TerminateProcess(processName);
                         }
@@ -155,7 +155,7 @@ namespace RamOptimizer.ProcessManagement
                 foreach (var process in processes)
                 {
                     // Check if process is in exclusion list
-                    if (exclusionList.Contains(process.ProcessName.ToLower()))
+                    if (exclusionList.Contains(process.ProcessName))
                     {
                         Console.WriteLine($"Skipping termination of protected process: {process.ProcessName}");
                         continue;
