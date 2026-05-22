@@ -112,12 +112,15 @@ namespace RamOptimizer.HardwareControl
 
             try
             {
+                // Security: Use absolute path for sc.exe to prevent path hijacking and LPE
+                string scPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "sc.exe");
+
                 foreach (var serviceName in ConflictingServices)
                 {
                     // Use sc.exe to disable services
                     var psi = new ProcessStartInfo
                     {
-                        FileName = "sc.exe",
+                        FileName = scPath,
                         Arguments = $"config {serviceName} start= disabled",
                         UseShellExecute = false,
                         CreateNoWindow = true,
