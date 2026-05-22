@@ -29,13 +29,13 @@ namespace RamOptimizer.ProcessManagement
 
         public void AddToDynamicExclusionList(string processName)
         {
-            _dynamicExclusionList.Add(processName.ToLower());
+            _dynamicExclusionList.Add(processName);
             SaveDynamicExclusionList();
         }
 
         public void RemoveFromDynamicExclusionList(string processName)
         {
-            _dynamicExclusionList.Remove(processName.ToLower());
+            _dynamicExclusionList.Remove(processName);
             SaveDynamicExclusionList();
         }
 
@@ -46,14 +46,14 @@ namespace RamOptimizer.ProcessManagement
                 try
                 {
                     var json = File.ReadAllText(_exclusionListFilePath);
-                    return JsonConvert.DeserializeObject<HashSet<string>>(json) ?? new HashSet<string>();
+                    return new HashSet<string>(JsonConvert.DeserializeObject<HashSet<string>>(json) ?? Enumerable.Empty<string>(), StringComparer.OrdinalIgnoreCase);
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Failed to load dynamic exclusion list.");
                 }
             }
-            return new HashSet<string>();
+            return new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         }
 
         private void SaveDynamicExclusionList()
@@ -83,7 +83,7 @@ namespace RamOptimizer.ProcessManagement
             
             foreach (var processName in processesToTerminate)
             {
-                if (_dynamicExclusionList.Contains(processName.ToLower()) || _safetyEngine.IsExcluded(processName))
+                if (_dynamicExclusionList.Contains(processName) || _safetyEngine.IsExcluded(processName))
                 {
                     _logger.LogInformation($"Process {processName} is in the exclusion list and will not be terminated.");
                     continue;

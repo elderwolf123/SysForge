@@ -14,7 +14,7 @@ namespace RamOptimizer.ProcessManagement
 
         public SafetyEngine()
         {
-            exclusionList = new HashSet<string>();
+            exclusionList = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             _criticalProcesses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "system", "idle", "csrss.exe", "smss.exe", "wininit.exe",
@@ -31,13 +31,13 @@ namespace RamOptimizer.ProcessManagement
 
         public async Task AddToExclusionListAsync(string processName, CancellationToken cancellationToken)
         {
-            exclusionList.Add(processName.ToLower());
+            exclusionList.Add(processName);
             LogAction($"Added {processName} to exclusion list.");
         }
 
         public async Task RemoveFromExclusionListAsync(string processName, CancellationToken cancellationToken)
         {
-            if (exclusionList.Remove(processName.ToLower()))
+            if (exclusionList.Remove(processName))
             {
                 LogAction($"Removed {processName} from exclusion list.");
             }
@@ -49,19 +49,19 @@ namespace RamOptimizer.ProcessManagement
 
         public bool IsExcluded(string processName)
         {
-            return exclusionList.Contains(processName.ToLower());
+            return exclusionList.Contains(processName);
         }
 
         public List<ProcessInfo> FilterSafeProcesses(List<ProcessInfo> processes)
         {
-            return processes.Where(p => !_criticalProcesses.Contains(p.ProcessName.ToLower()) &&
-                                         !exclusionList.Contains(p.ProcessName.ToLower()))
+            return processes.Where(p => !_criticalProcesses.Contains(p.ProcessName) &&
+                                         !exclusionList.Contains(p.ProcessName))
                            .ToList();
         }
 
         public bool IsCriticalProcess(string processName)
         {
-            return _criticalProcesses.Contains(processName.ToLower());
+            return _criticalProcesses.Contains(processName);
         }
 
         private void LogAction(string message)
