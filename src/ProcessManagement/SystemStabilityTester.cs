@@ -237,9 +237,12 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
+                var systemPath = Environment.GetFolderPath(Environment.SpecialFolder.System);
+                var wmicPath = System.IO.Path.Combine(systemPath, "wbem", "wmic.exe");
+
                 var processInfo = new ProcessStartInfo
                 {
-                    FileName = "wmic",
+                    FileName = wmicPath,
                     Arguments = "diskdrive get status",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
