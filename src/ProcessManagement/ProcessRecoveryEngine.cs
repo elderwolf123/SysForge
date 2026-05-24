@@ -50,7 +50,9 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                Process.Start(new ProcessStartInfo("explorer.exe") { UseShellExecute = false, CreateNoWindow = true });
+                var windowsPath = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+                var explorerPath = System.IO.Path.Combine(windowsPath, "explorer.exe");
+                Process.Start(new ProcessStartInfo(explorerPath) { UseShellExecute = false, CreateNoWindow = true });
                 Console.WriteLine("Process restarted successfully.");
             }
             catch (Exception ex)

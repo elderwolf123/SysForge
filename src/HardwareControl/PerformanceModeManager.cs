@@ -48,11 +48,14 @@ public class PerformanceModeManager
                 _ => "381b4222-f694-41f0-9685-ff5bb260df2e" // Default to Balanced
             };
 
+            var systemPath = Environment.GetFolderPath(Environment.SpecialFolder.System);
+            var powercfgPath = System.IO.Path.Combine(systemPath, "powercfg.exe");
+
             var process = new System.Diagnostics.Process
             {
                 StartInfo = new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = "powercfg",
+                    FileName = powercfgPath,
                     Arguments = $"/setactive {planGuid}",
                     UseShellExecute = false,
                     CreateNoWindow = true
