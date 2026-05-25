@@ -117,7 +117,8 @@ namespace RamOptimizer.HardwareControl
                     // Use sc.exe to disable services
                     var psi = new ProcessStartInfo
                     {
-                        FileName = "sc.exe",
+                        // Sentinel: Prevent Path Hijacking by using absolute path
+                        FileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "sc.exe"),
                         Arguments = $"config {serviceName} start= disabled",
                         UseShellExecute = false,
                         CreateNoWindow = true,

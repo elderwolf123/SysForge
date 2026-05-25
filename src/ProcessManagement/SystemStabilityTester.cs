@@ -239,7 +239,8 @@ namespace RamOptimizer.ProcessManagement
             {
                 var processInfo = new ProcessStartInfo
                 {
-                    FileName = "wmic",
+                    // Sentinel: Prevent Path Hijacking by using absolute path
+                    FileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "wbem", "wmic.exe"),
                     Arguments = "diskdrive get status",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
