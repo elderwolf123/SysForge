@@ -52,7 +52,8 @@ public class PerformanceModeManager
             {
                 StartInfo = new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = "powercfg",
+                    // Sentinel: Prevent Path Hijacking by using absolute path
+                    FileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "powercfg.exe"),
                     Arguments = $"/setactive {planGuid}",
                     UseShellExecute = false,
                     CreateNoWindow = true
