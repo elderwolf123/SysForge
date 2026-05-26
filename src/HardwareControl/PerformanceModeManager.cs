@@ -48,11 +48,12 @@ public class PerformanceModeManager
                 _ => "381b4222-f694-41f0-9685-ff5bb260df2e" // Default to Balanced
             };
 
+            // Use absolute path for powercfg.exe to prevent Path Hijacking / LPE
             var process = new System.Diagnostics.Process
             {
                 StartInfo = new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = "powercfg",
+                    FileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "powercfg.exe"),
                     Arguments = $"/setactive {planGuid}",
                     UseShellExecute = false,
                     CreateNoWindow = true
