@@ -2,3 +2,8 @@
 **Vulnerability:** Found insecure usage of `Process.Start(string)` and `ProcessStartInfo` where processes were launched without explicit restrictions, notably leaving `UseShellExecute` as default or `true`, which creates severe command injection and execution control risks.
 **Learning:** `Process.Start` without enforcing `UseShellExecute = false` allows commands to be interpreted by the operating system shell. In contexts where process names or paths can be manipulated or aren't strictly hardcoded, this poses a risk of executing arbitrary commands.
 **Prevention:** Always use `ProcessStartInfo` to launch processes and explicitly set `UseShellExecute = false` and `CreateNoWindow = true` (unless shell execution or window visibility are absolutely necessary and input is strictly sanitized).
+
+## 2024-05-26 - [CRITICAL] Prevent Path Hijacking / LPE when using Process.Start
+**Vulnerability:** Found insecure usage of `Process.Start` and `ProcessStartInfo` where system utilities (`sc.exe`, `powercfg.exe`, `wmic`, `explorer.exe`) were launched using relative paths. This allows an attacker to drop a malicious executable with the same name in the working directory or a directory higher in the system PATH, leading to Local Privilege Escalation (LPE) if the application runs with elevated privileges.
+**Learning:** Even when `UseShellExecute = false` is used, resolving system utility executables through relative paths is vulnerable to Path Hijacking.
+**Prevention:** Always use absolute, fully-qualified paths when starting system utilities via `Process.Start`. Use `Environment.GetFolderPath(Environment.SpecialFolder.System)` or `Environment.GetFolderPath(Environment.SpecialFolder.Windows)` and combine them with the correct sub-folders and executable names.

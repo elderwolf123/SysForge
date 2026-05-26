@@ -237,9 +237,10 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
+                // Use absolute path for wmic.exe to prevent Path Hijacking / LPE
                 var processInfo = new ProcessStartInfo
                 {
-                    FileName = "wmic",
+                    FileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "wbem", "wmic.exe"),
                     Arguments = "diskdrive get status",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
