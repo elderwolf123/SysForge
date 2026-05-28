@@ -237,9 +237,11 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
+                // Security: Use absolute path for wmic to prevent path hijacking
+                var wmicPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "wbem", "wmic.exe");
                 var processInfo = new ProcessStartInfo
                 {
-                    FileName = "wmic",
+                    FileName = wmicPath,
                     Arguments = "diskdrive get status",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
