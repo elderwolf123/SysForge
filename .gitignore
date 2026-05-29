@@ -2,3 +2,6 @@ benchmark/ThreadSleepBenchmark/bin/
 benchmark/ThreadSleepBenchmark/obj/
 obj/
 bin/
+
+**/obj/
+**/bin/
