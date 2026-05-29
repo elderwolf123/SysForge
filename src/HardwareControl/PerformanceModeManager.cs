@@ -52,7 +52,8 @@ public class PerformanceModeManager
             {
                 StartInfo = new System.Diagnostics.ProcessStartInfo
                 {
-                    FileName = "powercfg",
+                    // Security: Use absolute path to prevent Path Hijacking and Local Privilege Escalation
+                    FileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "powercfg.exe"),
                     Arguments = $"/setactive {planGuid}",
                     UseShellExecute = false,
                     CreateNoWindow = true
