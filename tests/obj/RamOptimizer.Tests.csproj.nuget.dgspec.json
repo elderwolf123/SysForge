@@ -1,25 +1,118 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\tests\\RamOptimizer.Tests.csproj": {}
+    "/app/tests/RamOptimizer.Tests.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.csproj": {
+    "/app/RamOptimizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.csproj",
+        "projectUniqueName": "/app/RamOptimizer.csproj",
         "projectName": "RamOptimizer",
-        "projectPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.csproj",
-        "packagesPath": "C:\\Users\\Jarrod\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\obj\\",
+        "projectPath": "/app/RamOptimizer.csproj",
+        "packagesPath": "/home/jules/.nuget/packages/",
+        "outputPath": "/app/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jarrod\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/jules/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/app/src/ProcessManagement/ProcessManagement.csproj": {
+                "projectPath": "/app/src/ProcessManagement/ProcessManagement.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.100"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "OpenHardwareMonitor": {
+              "target": "Package",
+              "version": "[0.9.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.24, 8.0.24]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.24, 8.0.24]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/app/src/ProcessManagement/ProcessManagement.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/app/src/ProcessManagement/ProcessManagement.csproj",
+        "projectName": "ProcessManagement",
+        "projectPath": "/app/src/ProcessManagement/ProcessManagement.csproj",
+        "packagesPath": "/home/jules/.nuget/packages/",
+        "outputPath": "/app/src/ProcessManagement/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/jules/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -44,21 +137,41 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.Management.Infrastructure": {
+            "Hardware.Info": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[101.1.0.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[13.0.1, )"
+              "version": "[13.0.3, )"
+            },
+            "OpenHardwareMonitorLib": {
+              "target": "Package",
+              "version": "[1.0.9450, )"
             },
             "System.Diagnostics.PerformanceCounter": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[10.0.0, )"
             },
             "System.ServiceProcess.ServiceController": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.3, )"
             }
           },
           "imports": [
@@ -74,20 +187,8 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.24, 8.0.24]"
             }
           ],
           "frameworkReferences": {
@@ -95,34 +196,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\tests\\RamOptimizer.Tests.csproj": {
+    "/app/tests/RamOptimizer.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\tests\\RamOptimizer.Tests.csproj",
+        "projectUniqueName": "/app/tests/RamOptimizer.Tests.csproj",
         "projectName": "RamOptimizer.Tests",
-        "projectPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\tests\\RamOptimizer.Tests.csproj",
-        "packagesPath": "C:\\Users\\Jarrod\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\tests\\obj\\",
+        "projectPath": "/app/tests/RamOptimizer.Tests.csproj",
+        "packagesPath": "/home/jules/.nuget/packages/",
+        "outputPath": "/app/tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jarrod\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/jules/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.csproj": {
-                "projectPath": "c:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\RamOptimizer.csproj"
+              "/app/RamOptimizer.csproj": {
+                "projectPath": "/app/RamOptimizer.csproj"
               }
             }
           }
@@ -169,20 +271,12 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.22, 8.0.22]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "name": "Microsoft.NETCore.App.Host.linux-x64",
+              "version": "[8.0.24, 8.0.24]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.22, 8.0.22]"
+              "version": "[8.0.24, 8.0.24]"
             }
           ],
           "frameworkReferences": {
@@ -190,7 +284,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
