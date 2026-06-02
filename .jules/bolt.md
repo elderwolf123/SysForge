@@ -1,3 +1,6 @@
 ## 2024-05-09 - [Identifying Process Collection Bottleneck]
 **Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
 **Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+## 2024-05-17 - [Optimized GPU Process Monitor Collection]
+**Learning:** Found an O(N) bottleneck in `AdvancedGpuOptimizer.cs` where `List<string>.Contains()` with `.ToLower()` was being called repeatedly inside process monitoring loops (`ApplyAggressionLevel` and `TerminateProcess`). This allocates unnecessary strings and requires scanning for every process check.
+**Action:** Always use `HashSet<string>(StringComparer.OrdinalIgnoreCase)` instead of `List<string>` for process exclusion lists to ensure O(1) lookups and eliminate the need for `.ToLower()` in hot paths.
