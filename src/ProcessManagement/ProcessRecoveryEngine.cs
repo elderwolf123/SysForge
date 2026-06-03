@@ -50,7 +50,9 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                Process.Start(new ProcessStartInfo("explorer.exe") { UseShellExecute = false, CreateNoWindow = true });
+                // SECURITY: Use absolute path for explorer to prevent Path Hijacking vulnerabilities
+                string explorerPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "explorer.exe");
+                Process.Start(new ProcessStartInfo(explorerPath) { UseShellExecute = false, CreateNoWindow = true });
                 Console.WriteLine("Process restarted successfully.");
             }
             catch (Exception ex)
