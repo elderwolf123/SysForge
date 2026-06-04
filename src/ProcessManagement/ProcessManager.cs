@@ -15,8 +15,8 @@ namespace RamOptimizer.ProcessManagement
 
         public ProcessManager(IEnumerable<string> criticalProcesses, IEnumerable<string> dynamicExclusionList)
         {
-            _criticalProcesses = new HashSet<string>(criticalProcesses.Select(p => p.ToLower()));
-            _dynamicExclusionList = new HashSet<string>(dynamicExclusionList.Select(p => p.ToLower()));
+            _criticalProcesses = new HashSet<string>(criticalProcesses, StringComparer.OrdinalIgnoreCase);
+            _dynamicExclusionList = new HashSet<string>(dynamicExclusionList, StringComparer.OrdinalIgnoreCase);
         }
 
         public event EventHandler<ProcessEventArgs> ProcessTerminated;
@@ -55,7 +55,7 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 Process process = Process.GetProcessById(processId);
-                if (_criticalProcesses.Contains(process.ProcessName.ToLower()) || _dynamicExclusionList.Contains(process.ProcessName.ToLower()))
+                if (_criticalProcesses.Contains(process.ProcessName) || _dynamicExclusionList.Contains(process.ProcessName))
                 {
                     Console.WriteLine($"Process {process.ProcessName} (ID: {processId}) is in the exclusion list and will not be terminated.");
                     return false;

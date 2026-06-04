@@ -20,7 +20,7 @@ namespace RamOptimizer.ProcessManagement
                 try
                 {
                     File.Create(_stateFilePath).Close();
-                    SaveDynamicExclusionList(new HashSet<string>());
+                    SaveDynamicExclusionList(new HashSet<string>(StringComparer.OrdinalIgnoreCase));
                 }
                 catch (Exception ex)
                 {
@@ -34,12 +34,12 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 var json = File.ReadAllText(_stateFilePath);
-                return JsonConvert.DeserializeObject<HashSet<string>>(json) ?? new HashSet<string>();
+                return new HashSet<string>(JsonConvert.DeserializeObject<HashSet<string>>(json) ?? System.Linq.Enumerable.Empty<string>(), StringComparer.OrdinalIgnoreCase);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to read dynamic exclusion list.");
-                return new HashSet<string>();
+                return new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             }
         }
 
