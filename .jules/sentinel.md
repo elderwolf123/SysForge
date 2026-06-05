@@ -6,3 +6,13 @@
 **Vulnerability:** Found insecure usage of relative paths / bare executable names (e.g., `sc.exe`, `wmic`, `powercfg`, `explorer.exe`) in `ProcessStartInfo` to launch system utilities.
 **Learning:** Using relative paths allows malicious actors to place a rogue executable with the same name in a directory that occurs earlier in the system's `PATH` environment variable, leading to Local Privilege Escalation (LPE) or unintended code execution, especially when the process is executed with elevated privileges.
 **Prevention:** Always use absolute, fully-qualified paths constructed securely using `Environment.GetFolderPath(Environment.SpecialFolder.System)` (or `.Windows`) combined with `Path.Combine` when starting system utilities via `Process.Start`.
+
+## 2026-06-05 - Prevent Process Recovery Path Hijacking
+**Vulnerability:** GpuOptimizer stored raw process names when killing them, passing them to Process.Start() for recovery, leading to Untrusted Search Path vulnerabilities.
+**Learning:** In C#, tracking processes by name allows subsequent environment or path manipulation to execute malicious binaries on restart.
+**Prevention:** Capture absolute executable path () gracefully catching  for permission failures before terminating, and store that path instead.
+
+## $(date +%Y-%m-%d) - Prevent Process Recovery Path Hijacking
+**Vulnerability:** GpuOptimizer stored raw process names when killing them, passing them to Process.Start() for recovery, leading to Untrusted Search Path vulnerabilities.
+**Learning:** In C#, tracking processes by name allows subsequent environment or path manipulation to execute malicious binaries on restart.
+**Prevention:** Capture absolute executable path (`process.MainModule.FileName`) gracefully catching `Win32Exception` for permission failures before terminating, and store that path instead.
