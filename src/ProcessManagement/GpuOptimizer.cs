@@ -133,8 +133,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    // SECURITY: Capture absolute executable path before termination to prevent untrusted search path vulnerabilities during recovery
+                    string executablePath = processName;
+                    try
+                    {
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception)
+                    {
+                        // Access denied, fallback to processName
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(executablePath);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
