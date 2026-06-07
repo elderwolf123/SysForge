@@ -149,9 +149,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string pathToStore = processName;
+                    try
+                    {
+                        pathToStore = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception)
+                    {
+                        // Access denied, fallback to processName
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(pathToStore);
+                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated. Stored path: {pathToStore}");
                 }
             }
             catch (Exception ex)
@@ -209,22 +219,22 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                foreach (var processName in terminatedProcesses)
+                foreach (var processPath in terminatedProcesses)
                 {
                     try
                     {
                         // Attempt to restart the process
-                        var psi = new ProcessStartInfo(processName)
+                        var psi = new ProcessStartInfo(processPath)
                         {
                             UseShellExecute = false,
                             CreateNoWindow = true
                         };
                         Process.Start(psi);
-                        Console.WriteLine($"Recovered process: {processName}");
+                        Console.WriteLine($"Recovered process: {processPath}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Failed to recover process {processName}: {ex.Message}");
+                        Console.WriteLine($"Failed to recover process {processPath}: {ex.Message}");
                     }
                 }
                 
