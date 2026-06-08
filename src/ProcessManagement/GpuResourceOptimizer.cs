@@ -149,8 +149,23 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string pathToRestore = processName;
+                    try
+                    {
+                        pathToRestore = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Could not get executable path for {processName}: {ex.Message}");
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+
+                    if (!terminatedProcesses.Contains(pathToRestore))
+                    {
+                        terminatedProcesses.Add(pathToRestore);
+                    }
+
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
