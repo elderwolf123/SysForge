@@ -161,9 +161,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = processName;
+                    try
+                    {
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception)
+                    {
+                        // Ignore Access Denied exceptions and fallback to processName
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(executablePath);
+                    Console.WriteLine($"Process {executablePath} (ID: {process.Id}) terminated.");
                 }
             }
             catch (Exception ex)
