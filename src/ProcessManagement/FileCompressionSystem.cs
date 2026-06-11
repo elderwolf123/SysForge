@@ -15,7 +15,9 @@ namespace ProcessManagement
         public FileCompressionSystem(string compressionDirectory)
         {
             _compressionDirectory = compressionDirectory;
-            _fileTypeCompressionLevels = new Dictionary<string, CompressionLevel>
+            // PERFORMANCE: Initialize dictionary with OrdinalIgnoreCase to avoid allocations
+            // and ensure lookup correctness for differently cased extensions.
+            _fileTypeCompressionLevels = new Dictionary<string, CompressionLevel>(StringComparer.OrdinalIgnoreCase)
             {
                 { ".txt", CompressionLevel.Optimal },
                 { ".log", CompressionLevel.Optimal },
