@@ -13,7 +13,9 @@ namespace RamOptimizer.ProcessManagement
 
         public ProcessRecoveryEngine()
         {
-            recoveryStrategies = new Dictionary<string, List<RecoveryStrategy>>
+            // PERFORMANCE: Initialize dictionary with OrdinalIgnoreCase to avoid allocations
+            // during process name lookups.
+            recoveryStrategies = new Dictionary<string, List<RecoveryStrategy>>(StringComparer.OrdinalIgnoreCase)
             {
                 { "explorer.exe", new List<RecoveryStrategy> { new RestartProcessStrategy() } },
                 { "svchost.exe", new List<RecoveryStrategy> { new RestartServiceStrategy("Spooler") } },
@@ -25,7 +27,8 @@ namespace RamOptimizer.ProcessManagement
 
         public async Task RecoverProcessAsync(string processName, CancellationToken cancellationToken)
         {
-            if (recoveryStrategies.TryGetValue(processName.ToLower(), out var strategies))
+            // PERFORMANCE: Remove .ToLower() to avoid string allocations. The dictionary handles it.
+            if (recoveryStrategies.TryGetValue(processName, out var strategies))
             {
                 foreach (var strategy in strategies)
                 {
