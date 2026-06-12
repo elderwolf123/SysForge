@@ -1,3 +1,3 @@
-## 2024-05-09 - [Identifying Process Collection Bottleneck]
-**Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
-**Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+## 2024-06-12 - File Enumeration Optimization
+**Learning:** `Directory.GetFiles` causes massive upfront string array allocations which can lead to huge memory spikes when exploring entire drives or deep directory structures in file scanners/compressors.
+**Action:** Prefer `Directory.EnumerateFiles` when working with LINQ extensions like `.Where` or simple `foreach` iterations, as it lazily evaluates the file tree and significantly reduces memory footprint.
