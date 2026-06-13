@@ -6,3 +6,8 @@
 **Vulnerability:** Found insecure usage of relative paths / bare executable names (e.g., `sc.exe`, `wmic`, `powercfg`, `explorer.exe`) in `ProcessStartInfo` to launch system utilities.
 **Learning:** Using relative paths allows malicious actors to place a rogue executable with the same name in a directory that occurs earlier in the system's `PATH` environment variable, leading to Local Privilege Escalation (LPE) or unintended code execution, especially when the process is executed with elevated privileges.
 **Prevention:** Always use absolute, fully-qualified paths constructed securely using `Environment.GetFolderPath(Environment.SpecialFolder.System)` (or `.Windows`) combined with `Path.Combine` when starting system utilities via `Process.Start`.
+
+## 2024-05-15 - Prevent Path Hijacking on Process Recovery
+**Vulnerability:** Application was storing only the `processName` upon termination and using it later with `Process.Start` to recover/restart the process. This creates an Untrusted Search Path / Path Hijacking vulnerability, as an attacker could place a malicious executable with the same name higher in the system PATH or the current working directory.
+**Learning:** Recovering processes using just their name relies on the system's PATH resolution at recovery time, which might differ from the original execution context or be manipulated by an attacker.
+**Prevention:** Before terminating a process, capture and store its absolute executable path using `process.MainModule?.FileName`. Use this absolute path when restarting the process. Wrap the path capture in a `try-catch` for `Win32Exception` and `InvalidOperationException` as some protected system processes might deny access to `MainModule`.
