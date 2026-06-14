@@ -186,7 +186,10 @@ namespace RamOptimizer.ProcessManagement
                 throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
             }
 
-            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+            // PERFORMANCE OPTIMIZATION: Use EnumerateFiles instead of GetFiles to prevent large array allocation
+            // GetFiles allocates an entire array containing all files before yielding, which uses lots of RAM.
+            // EnumerateFiles yields them lazily.
+            var files = Directory.EnumerateFiles(directoryPath, "*", SearchOption.AllDirectories);
             
             foreach (var file in files)
             {
@@ -718,7 +721,9 @@ namespace RamOptimizer.ProcessManagement
                         Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)
                     };
                     
-                    var files = Directory.GetFiles(drive.Name, "*", SearchOption.AllDirectories)
+                    // PERFORMANCE OPTIMIZATION: Use EnumerateFiles instead of GetFiles to prevent large array allocation
+                    // When traversing entire drives, GetFiles will allocate massive amounts of memory up front.
+                    var files = Directory.EnumerateFiles(drive.Name, "*", SearchOption.AllDirectories)
                         .Where(f => !systemDirs.Any(sd => f.StartsWith(sd, StringComparison.OrdinalIgnoreCase)));
                     
                     foreach (var filePath in files)
