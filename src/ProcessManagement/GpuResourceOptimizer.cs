@@ -148,9 +148,17 @@ namespace RamOptimizer.ProcessManagement
                         Console.WriteLine($"Skipping termination of protected process: {process.ProcessName}");
                         continue;
                     }
+
+                    string processPath = processName;
+                    try
+                    {
+                        processPath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { /* Access Denied */ }
+                    catch (InvalidOperationException) { /* Process Exited */ }
                     
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(processPath);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
