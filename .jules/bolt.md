@@ -1,3 +1,6 @@
 ## 2024-05-09 - [Identifying Process Collection Bottleneck]
 **Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
 **Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+## 2024-06-15 - [Dictionary Key Lookup Allocation Bottleneck]
+**Learning:** Found string allocation bottleneck in `ProcessRecoveryEngine.cs` where `processName.ToLower()` was called on every lookup against the `recoveryStrategies` dictionary. This creates unnecessary short-lived objects on the heap, increasing Garbage Collection (GC) pressure.
+**Action:** Initialize `Dictionary<string, T>` using `StringComparer.OrdinalIgnoreCase` to allow direct O(1) case-insensitive lookups without allocating a new string object via `.ToLower()`.
