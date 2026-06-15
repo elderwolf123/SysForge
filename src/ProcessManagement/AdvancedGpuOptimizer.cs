@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -161,8 +162,16 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string pathToRecover = processName;
+                    try
+                    {
+                        pathToRecover = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (Win32Exception) { /* Access Denied, fallback to name */ }
+                    catch (InvalidOperationException) { /* Process Exited, fallback to name */ }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(pathToRecover);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
