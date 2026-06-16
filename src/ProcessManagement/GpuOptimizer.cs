@@ -133,9 +133,17 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = processName;
+                    try
+                    {
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(executablePath);
+                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated. Stored path: {executablePath}");
                 }
             }
             catch (Exception ex)
@@ -193,22 +201,22 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                foreach (var processName in terminatedProcesses)
+                foreach (var executablePath in terminatedProcesses)
                 {
                     try
                     {
                         // Attempt to restart the process
-                        var psi = new ProcessStartInfo(processName)
+                        var psi = new ProcessStartInfo(executablePath)
                         {
                             UseShellExecute = false,
                             CreateNoWindow = true
                         };
                         Process.Start(psi);
-                        Console.WriteLine($"Recovered process: {processName}");
+                        Console.WriteLine($"Recovered process: {executablePath}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Failed to recover process {processName}: {ex.Message}");
+                        Console.WriteLine($"Failed to recover process {executablePath}: {ex.Message}");
                     }
                 }
                 
