@@ -161,8 +161,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = processName;
+                    try
+                    {
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    if (!terminatedProcesses.Contains(executablePath))
+                    {
+                        terminatedProcesses.Add(executablePath);
+                    }
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
