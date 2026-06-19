@@ -186,7 +186,9 @@ namespace RamOptimizer.ProcessManagement
                 throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
             }
 
-            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+            // BOLT OPTIMIZATION: Use EnumerateFiles instead of GetFiles to prevent massive array allocations.
+            // This reduces peak memory usage and GC pressure, allowing processing to start immediately.
+            var files = Directory.EnumerateFiles(directoryPath, "*", SearchOption.AllDirectories);
             
             foreach (var file in files)
             {
@@ -718,7 +720,9 @@ namespace RamOptimizer.ProcessManagement
                         Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)
                     };
                     
-                    var files = Directory.GetFiles(drive.Name, "*", SearchOption.AllDirectories)
+                    // BOLT OPTIMIZATION: Use EnumerateFiles instead of GetFiles to prevent massive array allocations.
+                    // This reduces peak memory usage and GC pressure, especially when scanning entire drives.
+                    var files = Directory.EnumerateFiles(drive.Name, "*", SearchOption.AllDirectories)
                         .Where(f => !systemDirs.Any(sd => f.StartsWith(sd, StringComparison.OrdinalIgnoreCase)));
                     
                     foreach (var filePath in files)
