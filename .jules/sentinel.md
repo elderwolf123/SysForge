@@ -6,3 +6,7 @@
 **Vulnerability:** Found insecure usage of relative paths / bare executable names (e.g., `sc.exe`, `wmic`, `powercfg`, `explorer.exe`) in `ProcessStartInfo` to launch system utilities.
 **Learning:** Using relative paths allows malicious actors to place a rogue executable with the same name in a directory that occurs earlier in the system's `PATH` environment variable, leading to Local Privilege Escalation (LPE) or unintended code execution, especially when the process is executed with elevated privileges.
 **Prevention:** Always use absolute, fully-qualified paths constructed securely using `Environment.GetFolderPath(Environment.SpecialFolder.System)` (or `.Windows`) combined with `Path.Combine` when starting system utilities via `Process.Start`.
+## 2024-05-24 - Race Condition in Path Hijacking Prevention
+**Vulnerability:** A race condition where a Path Hijacking prevention fix failed silently because it accessed `process.MainModule` after calling `process.Kill()`.
+**Learning:** `process.Kill()` immediately schedules termination. Accessing properties like `MainModule` on a terminating or exited process can throw an `InvalidOperationException` or `Win32Exception`, causing the security fallback to trigger and rendering the fix ineffective.
+**Prevention:** Always capture process information (like absolute paths or executable metadata) *before* issuing any termination commands like `process.Kill()`.
