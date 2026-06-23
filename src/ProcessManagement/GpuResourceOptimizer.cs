@@ -149,8 +149,21 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string processPathToRecover = processName;
+                    try
+                    {
+                        // Capture absolute path before termination to prevent Path Hijacking on recovery
+                        var mainModulePath = process.MainModule?.FileName;
+                        if (!string.IsNullOrEmpty(mainModulePath))
+                        {
+                            processPathToRecover = mainModulePath;
+                        }
+                    }
+                    catch (System.ComponentModel.Win32Exception) { /* Access denied, fallback to name */ }
+                    catch (InvalidOperationException) { /* Process already exited, fallback to name */ }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(processPathToRecover);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
