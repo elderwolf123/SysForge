@@ -1,3 +1,3 @@
-## 2024-05-09 - [Identifying Process Collection Bottleneck]
-**Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
-**Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+## 2025-02-27 - [Avoid Directory.GetFiles for whole-drive traversal]
+**Learning:** [Using `Directory.GetFiles` for traversing an entire drive eagerly loads all paths into memory before returning, causing enormous memory consumption and massive garbage collection overhead in compression utilities.]
+**Action:** [Always use `Directory.EnumerateFiles` when working with potentially large directories or scanning full drives. This allows the system to yield file paths lazily, avoiding array allocations for millions of files.]
