@@ -149,8 +149,26 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = null;
+                    try
+                    {
+                        // SECURITY: Capture absolute path before termination to prevent Path Hijacking on recovery
+                        executablePath = process.MainModule?.FileName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { /* Handle access denied */ }
+                    catch (InvalidOperationException) { /* Handle already exited */ }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+
+                    if (!string.IsNullOrEmpty(executablePath))
+                    {
+                        terminatedProcesses.Add(executablePath);
+                    }
+                    else
+                    {
+                        // Fallback to process name if path could not be resolved
+                        terminatedProcesses.Add(processName);
+                    }
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
@@ -209,22 +227,23 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                foreach (var processName in terminatedProcesses)
+                foreach (var executablePath in terminatedProcesses)
                 {
                     try
                     {
                         // Attempt to restart the process
-                        var psi = new ProcessStartInfo(processName)
+                        // SECURITY: Uses absolute path stored during termination to prevent Untrusted Search Path vulnerabilities
+                        var psi = new ProcessStartInfo(executablePath)
                         {
                             UseShellExecute = false,
                             CreateNoWindow = true
                         };
                         Process.Start(psi);
-                        Console.WriteLine($"Recovered process: {processName}");
+                        Console.WriteLine($"Recovered process: {executablePath}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Failed to recover process {processName}: {ex.Message}");
+                        Console.WriteLine($"Failed to recover process {executablePath}: {ex.Message}");
                     }
                 }
                 
