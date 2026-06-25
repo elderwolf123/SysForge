@@ -151,7 +151,15 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 Console.WriteLine($"Terminating process: {processName}");
-                var processes = Process.GetProcessesByName(processName);
+
+                // Fix: GetProcessesByName expects name without .exe
+                string searchName = processName;
+                if (searchName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    searchName = searchName.Substring(0, searchName.Length - 4);
+                }
+
+                var processes = Process.GetProcessesByName(searchName);
                 foreach (var process in processes)
                 {
                     // Check if process is in exclusion list
@@ -161,8 +169,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = processName;
+                    try
+                    {
+                        // SECURITY: Fetch absolute path before termination to prevent Path Hijacking during recovery
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (Exception)
+                    {
+                        // Fallback to processName if path access is denied
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(executablePath);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
