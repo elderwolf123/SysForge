@@ -13,7 +13,11 @@ namespace RamOptimizer.ProcessManagement
 
         public ProcessRecoveryEngine()
         {
-            recoveryStrategies = new Dictionary<string, List<RecoveryStrategy>>
+            // ⚡ BOLT OPTIMIZATION:
+            // What: Initialize dictionary with StringComparer.OrdinalIgnoreCase.
+            // Why: Avoids unnecessary string allocations and GC pressure from calling .ToLower() during lookups.
+            // Impact: O(1) lookups without heap allocations.
+            recoveryStrategies = new Dictionary<string, List<RecoveryStrategy>>(StringComparer.OrdinalIgnoreCase)
             {
                 { "explorer.exe", new List<RecoveryStrategy> { new RestartProcessStrategy() } },
                 { "svchost.exe", new List<RecoveryStrategy> { new RestartServiceStrategy("Spooler") } },
@@ -25,7 +29,7 @@ namespace RamOptimizer.ProcessManagement
 
         public async Task RecoverProcessAsync(string processName, CancellationToken cancellationToken)
         {
-            if (recoveryStrategies.TryGetValue(processName.ToLower(), out var strategies))
+            if (recoveryStrategies.TryGetValue(processName, out var strategies))
             {
                 foreach (var strategy in strategies)
                 {
