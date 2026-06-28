@@ -161,8 +161,23 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string processPathToRecover = processName;
+                    try
+                    {
+                        // SECURITY: Capture absolute path before termination to prevent Path Hijacking on recovery
+                        string absolutePath = process.MainModule?.FileName;
+                        if (!string.IsNullOrEmpty(absolutePath))
+                        {
+                            processPathToRecover = absolutePath;
+                        }
+                    }
+                    catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException)
+                    {
+                        Console.WriteLine($"Could not get absolute path for {processName}: {ex.Message}. Falling back to bare name.");
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(processPathToRecover);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
