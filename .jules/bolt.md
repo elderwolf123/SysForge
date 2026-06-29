@@ -1,3 +1,6 @@
 ## 2024-05-09 - [Identifying Process Collection Bottleneck]
 **Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
 **Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+## 2026-06-29 - [EnumerateFiles instead of GetFiles for Large Directories]
+**Learning:** Found a performance bottleneck when traversing whole drives or large directories. The codebase used `Directory.GetFiles(..., SearchOption.AllDirectories)` which allocates a massive array upfront and can throw `UnauthorizedAccessException` halting the enumeration.
+**Action:** Replaced `Directory.GetFiles` with `Directory.EnumerateFiles(..., new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true })` to enable lazy evaluation of large file trees and avoid large heap allocations and exceptions.
