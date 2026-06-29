@@ -186,7 +186,7 @@ namespace RamOptimizer.ProcessManagement
                 throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
             }
 
-            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+            var files = Directory.EnumerateFiles(directoryPath, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true });
             
             foreach (var file in files)
             {
@@ -718,7 +718,7 @@ namespace RamOptimizer.ProcessManagement
                         Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)
                     };
                     
-                    var files = Directory.GetFiles(drive.Name, "*", SearchOption.AllDirectories)
+                    var files = Directory.EnumerateFiles(drive.Name, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true })
                         .Where(f => !systemDirs.Any(sd => f.StartsWith(sd, StringComparison.OrdinalIgnoreCase)));
                     
                     foreach (var filePath in files)
