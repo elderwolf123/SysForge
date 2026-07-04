@@ -186,7 +186,12 @@ namespace RamOptimizer.ProcessManagement
                 throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
             }
 
-            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+            // ⚡ Bolt Performance Optimization:
+            // What: Replaced Directory.GetFiles with Directory.EnumerateFiles
+            // Why: Prevent massive upfront array allocations on large directories
+            // Impact: Significant reduction in memory overhead, enables lazy evaluation
+            // Measurement: Check heap allocation during directory compression operations
+            var files = Directory.EnumerateFiles(directoryPath, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true });
             
             foreach (var file in files)
             {
@@ -718,7 +723,12 @@ namespace RamOptimizer.ProcessManagement
                         Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)
                     };
                     
-                    var files = Directory.GetFiles(drive.Name, "*", SearchOption.AllDirectories)
+                    // ⚡ Bolt Performance Optimization:
+                    // What: Replaced Directory.GetFiles with Directory.EnumerateFiles
+                    // Why: Prevent massive upfront array allocations on whole-drive scans and handle protected folders gracefully
+                    // Impact: Significant reduction in memory overhead, enables lazy evaluation
+                    // Measurement: Check heap allocation and UnauthorizedAccessException handling during drive scan operations
+                    var files = Directory.EnumerateFiles(drive.Name, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true })
                         .Where(f => !systemDirs.Any(sd => f.StartsWith(sd, StringComparison.OrdinalIgnoreCase)));
                     
                     foreach (var filePath in files)
