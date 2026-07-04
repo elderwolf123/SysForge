@@ -148,10 +148,19 @@ namespace RamOptimizer.ProcessManagement
                         Console.WriteLine($"Skipping termination of protected process: {process.ProcessName}");
                         continue;
                     }
+
+                    // SECURITY: Capture absolute path before termination to prevent Path Hijacking
+                    string executablePath = processName;
+                    try
+                    {
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
                     
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(executablePath);
+                    Console.WriteLine($"Process {executablePath} (ID: {process.Id}) terminated.");
                 }
             }
             catch (Exception ex)
