@@ -133,9 +133,18 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    // SECURITY: Capture absolute path BEFORE killing to prevent race condition and path hijacking
+                    string safePath = processName;
+                    try
+                    {
+                        safePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(safePath);
+                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated. Stored path: {safePath}");
                 }
             }
             catch (Exception ex)
@@ -193,22 +202,22 @@ namespace RamOptimizer.ProcessManagement
         {
             try
             {
-                foreach (var processName in terminatedProcesses)
+                foreach (var safePath in terminatedProcesses)
                 {
                     try
                     {
-                        // Attempt to restart the process
-                        var psi = new ProcessStartInfo(processName)
+                        // Attempt to restart the process using safe absolute path
+                        var psi = new ProcessStartInfo(safePath)
                         {
                             UseShellExecute = false,
                             CreateNoWindow = true
                         };
                         Process.Start(psi);
-                        Console.WriteLine($"Recovered process: {processName}");
+                        Console.WriteLine($"Recovered process: {safePath}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Failed to recover process {processName}: {ex.Message}");
+                        Console.WriteLine($"Failed to recover process {safePath}: {ex.Message}");
                     }
                 }
                 
