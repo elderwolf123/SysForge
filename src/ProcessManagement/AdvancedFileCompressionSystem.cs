@@ -186,7 +186,12 @@ namespace RamOptimizer.ProcessManagement
                 throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
             }
 
-            var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
+            // ⚡ Bolt: [performance improvement] Use EnumerateFiles with EnumerationOptions instead of GetFiles with SearchOption.AllDirectories
+            // What: Replaced GetFiles with EnumerateFiles using new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true }
+            // Why: GetFiles eagerly evaluates and returns an array of all files, causing massive memory allocation overhead and crashing on inaccessible system folders.
+            // Impact: Significantly reduced memory allocation during traversal of large directories or whole drives, enabling lazy evaluation.
+            // Measurement: Observe memory footprint of the background compression task and check logs to ensure no UnauthorizedAccessException are thrown.
+            var files = Directory.EnumerateFiles(directoryPath, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true });
             
             foreach (var file in files)
             {
@@ -718,7 +723,12 @@ namespace RamOptimizer.ProcessManagement
                         Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86)
                     };
                     
-                    var files = Directory.GetFiles(drive.Name, "*", SearchOption.AllDirectories)
+                    // ⚡ Bolt: [performance improvement] Use EnumerateFiles with EnumerationOptions instead of GetFiles with SearchOption.AllDirectories
+                    // What: Replaced GetFiles with EnumerateFiles using new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true }
+                    // Why: GetFiles eagerly evaluates and returns an array of all files, causing massive memory allocation overhead and crashing on inaccessible system folders.
+                    // Impact: Significantly reduced memory allocation during traversal of large directories or whole drives, enabling lazy evaluation.
+                    // Measurement: Observe memory footprint of the background compression task and check logs to ensure no UnauthorizedAccessException are thrown.
+                    var files = Directory.EnumerateFiles(drive.Name, "*", new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true })
                         .Where(f => !systemDirs.Any(sd => f.StartsWith(sd, StringComparison.OrdinalIgnoreCase)));
                     
                     foreach (var filePath in files)
