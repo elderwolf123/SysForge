@@ -1,3 +1,7 @@
 ## 2024-05-09 - [Identifying Process Collection Bottleneck]
 **Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
 **Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+
+## 2024-05-15 - [Optimize Directory Traversal]
+**Learning:** Found a memory and performance bottleneck in `AdvancedFileCompressionSystem.CompressDirectoryAsync` and `IdentifyInactiveFiles`. Using `Directory.GetFiles` with `SearchOption.AllDirectories` allocates an array for all files upfront, which uses massive memory for whole drives, and throws `UnauthorizedAccessException` if access is denied to any single file, stopping the entire enumeration. `Directory.EnumerateFiles` with `new EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true }` enables lazy evaluation and safely skips inaccessible files.
+**Action:** Replace `Directory.GetFiles` with `Directory.EnumerateFiles` and `SearchOption.AllDirectories` with `EnumerationOptions { IgnoreInaccessible = true, RecurseSubdirectories = true }` for traversing large directories.
