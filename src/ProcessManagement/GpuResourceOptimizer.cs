@@ -149,9 +149,13 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string exePath = processName;
+                    try { exePath = process.MainModule?.FileName ?? processName; }
+                    catch (Exception) { /* Handle access denied exceptions gracefully */ }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(exePath);
+                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated. Path: {exePath}");
                 }
             }
             catch (Exception ex)
