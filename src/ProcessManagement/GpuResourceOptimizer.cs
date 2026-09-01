@@ -149,8 +149,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = processName;
+                    try
+                    {
+                        // SECURITY: Capture absolute path BEFORE process is killed to prevent Path Hijacking on recovery
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException)
+                    {
+                        Console.WriteLine($"Could not get executable path for {process.ProcessName}: {ex.Message}");
+                    }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(executablePath);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
