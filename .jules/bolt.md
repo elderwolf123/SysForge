@@ -1,3 +1,6 @@
 ## 2024-05-09 - [Identifying Process Collection Bottleneck]
 **Learning:** Found an O(N^2) or O(N * M) bottleneck in `ProcessPriorityManager.AdjustProcessPrioritiesAsync`. It gets all processes via `Process.GetProcesses()`, then for each process, it calls `exclusionList.Contains(process.ProcessName.ToLower())`. Since `exclusionList` is a `List<string>`, `Contains` does a linear scan for each process. Using a `HashSet<string>` with case-insensitive comparer makes this an O(1) lookup instead.
 **Action:** Change `List<string> exclusionList` to `HashSet<string>` using `StringComparer.OrdinalIgnoreCase` in `ProcessPriorityManager` and `InitializeExclusionList()`.
+## 2024-05-10 - [Avoiding O(N*M) Process Collection in Loops]
+**Learning:** Found an O(N*M) bottleneck in `SystemStabilityTester.CheckCriticalProcesses()`. Calling `Process.GetProcessesByName()` inside a loop iterates through all running system processes multiple times. Additionally, the process names included `.exe` extensions, which `GetProcessesByName` and `ProcessName` do not use, causing false negatives on Windows.
+**Action:** Remove `.exe` extensions from process lists and fetch processes exactly once using `Process.GetProcesses()` before the loop. Store their names in a `HashSet<string>(StringComparer.OrdinalIgnoreCase)` to enable O(1) existence checks.
