@@ -139,7 +139,8 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 Console.WriteLine($"Terminating process: {processName}");
-                var processes = Process.GetProcessesByName(processName);
+                string targetName = processName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) ? processName.Substring(0, processName.Length - 4) : processName;
+                var processes = Process.GetProcessesByName(targetName);
                 foreach (var process in processes)
                 {
                     // Check if process is in exclusion list
@@ -149,8 +150,13 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string exePath = processName;
+                    try { exePath = process.MainModule?.FileName ?? processName; }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(exePath);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
