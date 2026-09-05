@@ -6,3 +6,7 @@
 **Vulnerability:** Found insecure usage of relative paths / bare executable names (e.g., `sc.exe`, `wmic`, `powercfg`, `explorer.exe`) in `ProcessStartInfo` to launch system utilities.
 **Learning:** Using relative paths allows malicious actors to place a rogue executable with the same name in a directory that occurs earlier in the system's `PATH` environment variable, leading to Local Privilege Escalation (LPE) or unintended code execution, especially when the process is executed with elevated privileges.
 **Prevention:** Always use absolute, fully-qualified paths constructed securely using `Environment.GetFolderPath(Environment.SpecialFolder.System)` (or `.Windows`) combined with `Path.Combine` when starting system utilities via `Process.Start`.
+## 2024-10-24 - [CRITICAL] Prevent Path Hijacking via Serialized Process State
+**Vulnerability:** GpuOptimizer classes stored bare executable names (e.g., "nvidia-smi.exe") in state files and used them later in `ProcessStartInfo` to recover processes, allowing Path Hijacking if a malicious executable with the same name exists earlier in the PATH.
+**Learning:** When terminating processes with the intent to restart them later, always capture the absolute path (`MainModule.FileName`) *before* calling `Kill()`, as the path might become inaccessible after the process exits.
+**Prevention:** Resolve process names to absolute paths using `process.MainModule?.FileName` while the process is still running, and store the absolute path in state files instead of the bare executable name.

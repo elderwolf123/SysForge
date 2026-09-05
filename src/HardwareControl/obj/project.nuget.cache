@@ -1,19 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "ocwyG/aEpbI=",
+  "dgSpecHash": "P67hqStKuhM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\HardwareControl\\HardwareControl.csproj",
+  "projectFilePath": "/app/src/HardwareControl/HardwareControl.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.diagnostics.eventlog\\8.0.0\\system.diagnostics.eventlog.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.management\\8.0.0\\system.management.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\system.serviceprocess.servicecontroller\\8.0.0\\system.serviceprocess.servicecontroller.8.0.0.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.22\\microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.22\\microsoft.windowsdesktop.app.ref.8.0.22.nupkg.sha512",
-    "C:\\Users\\Jarrod\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.22\\microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+    "/home/jules/.nuget/packages/system.codedom/8.0.0/system.codedom.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/system.configuration.configurationmanager/8.0.0/system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/system.diagnostics.eventlog/8.0.0/system.diagnostics.eventlog.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/system.diagnostics.performancecounter/8.0.0/system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/system.management/8.0.0/system.management.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/system.security.cryptography.protecteddata/8.0.0/system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/system.serviceprocess.servicecontroller/8.0.0/system.serviceprocess.servicecontroller.8.0.0.nupkg.sha512",
+    "/home/jules/.nuget/packages/microsoft.windowsdesktop.app.ref/8.0.24/microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512"
   ],
   "logs": []
 }

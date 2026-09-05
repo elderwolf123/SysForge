@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HardwareControl")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06567183853bad01e4a1ea9908d036fa267c5176")]
 [assembly: System.Reflection.AssemblyProductAttribute("HardwareControl")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HardwareControl")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

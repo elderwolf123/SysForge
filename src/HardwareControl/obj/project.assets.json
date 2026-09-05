@@ -406,24 +406,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jarrod\\.nuget\\packages\\": {}
+    "/home/jules/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\HardwareControl\\HardwareControl.csproj",
+      "projectUniqueName": "/app/src/HardwareControl/HardwareControl.csproj",
       "projectName": "HardwareControl",
-      "projectPath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\HardwareControl\\HardwareControl.csproj",
-      "packagesPath": "C:\\Users\\Jarrod\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jarrod\\Desktop\\VS Code Projects\\Ram optimiser\\src\\HardwareControl\\obj\\",
+      "projectPath": "/app/src/HardwareControl/HardwareControl.csproj",
+      "packagesPath": "/home/jules/.nuget/packages/",
+      "outputPath": "/app/src/HardwareControl/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Jarrod\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/jules/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -474,16 +475,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
-          },
-          {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.22, 8.0.22]"
+            "version": "[8.0.24, 8.0.24]"
           }
         ],
         "frameworkReferences": {
@@ -494,7 +487,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

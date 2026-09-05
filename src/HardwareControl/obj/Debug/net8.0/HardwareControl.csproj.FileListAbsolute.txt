@@ -1,12 +1,25 @@
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.csproj.AssemblyReference.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.AssemblyInfoInputs.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.AssemblyInfo.cs
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.csproj.CoreCompileInputs.cache
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\bin\Debug\net8.0\HardwareControl.deps.json
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\bin\Debug\net8.0\HardwareControl.dll
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\bin\Debug\net8.0\HardwareControl.pdb
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.dll
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\refint\HardwareControl.dll
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\HardwareControl.pdb
-C:\Users\Jarrod\Desktop\VS Code Projects\Ram optimiser\src\HardwareControl\obj\Debug\net8.0\ref\HardwareControl.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.csproj.AssemblyReference.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.AssemblyInfoInputs.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.AssemblyInfo.cs
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.csproj.CoreCompileInputs.cache
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/bin/Debug/net8.0/HardwareControl.deps.json
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/bin/Debug/net8.0/HardwareControl.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/bin/Debug/net8.0/HardwareControl.pdb
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/refint/HardwareControl.dll
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/HardwareControl.pdb
+C:/Users/Jarrod/Desktop/VS Code Projects/Ram optimiser/src/HardwareControl/obj/Debug/net8.0/ref/HardwareControl.dll
+/app/src/HardwareControl/bin/Debug/net8.0/HardwareControl.deps.json
+/app/src/HardwareControl/bin/Debug/net8.0/HardwareControl.dll
+/app/src/HardwareControl/bin/Debug/net8.0/HardwareControl.pdb
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.csproj.AssemblyReference.cache
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.GeneratedMSBuildEditorConfig.editorconfig
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.AssemblyInfoInputs.cache
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.AssemblyInfo.cs
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.csproj.CoreCompileInputs.cache
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.sourcelink.json
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.dll
+/app/src/HardwareControl/obj/Debug/net8.0/refint/HardwareControl.dll
+/app/src/HardwareControl/obj/Debug/net8.0/HardwareControl.pdb
+/app/src/HardwareControl/obj/Debug/net8.0/ref/HardwareControl.dll
