@@ -123,7 +123,8 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 Console.WriteLine($"Terminating process: {processName}");
-                var processes = Process.GetProcessesByName(processName);
+                string searchName = processName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase) ? processName.Substring(0, processName.Length - 4) : processName;
+                var processes = Process.GetProcessesByName(searchName);
                 foreach (var process in processes)
                 {
                     // Check if process is in exclusion list
@@ -133,9 +134,13 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string exePath = processName;
+                    try { exePath = process.MainModule?.FileName ?? processName; }
+                    catch (Exception ex) when (ex is System.ComponentModel.Win32Exception || ex is InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(exePath);
+                    Console.WriteLine($"Process {process.ProcessName} (ID: {process.Id}) terminated.");
                 }
             }
             catch (Exception ex)
@@ -195,6 +200,12 @@ namespace RamOptimizer.ProcessManagement
             {
                 foreach (var processName in terminatedProcesses)
                 {
+                    if (!Path.IsPathRooted(processName))
+                    {
+                        Console.WriteLine($"Skipping recovery of relative path to prevent Path Hijacking: {processName}");
+                        continue;
+                    }
+
                     try
                     {
                         // Attempt to restart the process
