@@ -133,9 +133,17 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    string executablePath = processName;
+                    try
+                    {
+                        executablePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(executablePath);
+                    Console.WriteLine($"Process {executablePath} (ID: {process.Id}) terminated.");
                 }
             }
             catch (Exception ex)
@@ -197,6 +205,12 @@ namespace RamOptimizer.ProcessManagement
                 {
                     try
                     {
+                        if (!System.IO.Path.IsPathRooted(processName))
+                        {
+                            Console.WriteLine($"Skipping recovery of unrooted path to prevent path hijacking: {processName}");
+                            continue;
+                        }
+
                         // Attempt to restart the process
                         var psi = new ProcessStartInfo(processName)
                         {
