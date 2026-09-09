@@ -192,10 +192,22 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 // Check if critical processes are running
-                string[] criticalProcesses = { "explorer.exe", "svchost.exe", "System", "smss.exe", "csrss.exe", "wininit.exe", "winlogon.exe", "services.exe", "lsass.exe", "lsm.exe", "svchost.exe", "cisvc.exe", "LogonUI.exe", "dwm.exe", "explorer.exe", "taskhostw.exe", "ctfmon.exe", "SearchIndexer.exe" };
+                string[] criticalProcesses = { "explorer", "svchost", "System", "smss", "csrss", "wininit", "winlogon", "services", "lsass", "lsm", "cisvc", "LogonUI", "dwm", "taskhostw", "ctfmon", "SearchIndexer" };
+
+                // PERFORMANCE OPTIMIZATION: Avoid calling Process.GetProcessesByName inside the loop
+                // to prevent O(M*N) complexity. Fetch all processes once and use a HashSet.
+                var allProcesses = Process.GetProcesses();
+                var runningProcessNames = new HashSet<string>(allProcesses.Select(p => p.ProcessName), StringComparer.OrdinalIgnoreCase);
+
+                // Dispose process objects to prevent handle exhaustion
+                foreach (var process in allProcesses)
+                {
+                    process.Dispose();
+                }
+
                 foreach (string processName in criticalProcesses)
                 {
-                    if (!Process.GetProcessesByName(processName).Any())
+                    if (!runningProcessNames.Contains(processName))
                     {
                         _logger.LogWarning($"Critical process {processName} is not running");
                         return false;
