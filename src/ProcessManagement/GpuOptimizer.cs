@@ -123,7 +123,13 @@ namespace RamOptimizer.ProcessManagement
             try
             {
                 Console.WriteLine($"Terminating process: {processName}");
-                var processes = Process.GetProcessesByName(processName);
+
+                // Fix: Process.GetProcessesByName requires the name without the .exe extension
+                string processNameWithoutExt = processName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase)
+                    ? processName.Substring(0, processName.Length - 4)
+                    : processName;
+
+                var processes = Process.GetProcessesByName(processNameWithoutExt);
                 foreach (var process in processes)
                 {
                     // Check if process is in exclusion list
@@ -133,8 +139,17 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
+                    // SECURITY: Capture the absolute executable path before killing to prevent Path Hijacking on recovery
+                    string exePath = processName;
+                    try
+                    {
+                        exePath = process.MainModule?.FileName ?? processName;
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
+
                     process.Kill();
-                    terminatedProcesses.Add(processName);
+                    terminatedProcesses.Add(exePath);
                     Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
                 }
             }
@@ -197,6 +212,13 @@ namespace RamOptimizer.ProcessManagement
                 {
                     try
                     {
+                        // SECURITY: Validate that the path is absolute to prevent untrusted execution via Path Hijacking
+                        if (string.IsNullOrWhiteSpace(processName) || !Path.IsPathRooted(processName))
+                        {
+                            Console.WriteLine($"Security Check Failed: Refusing to recover process with relative path '{processName}'.");
+                            continue;
+                        }
+
                         // Attempt to restart the process
                         var psi = new ProcessStartInfo(processName)
                         {
