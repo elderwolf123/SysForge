@@ -148,10 +148,22 @@ namespace RamOptimizer.ProcessManagement
                         Console.WriteLine($"Skipping termination of protected process: {process.ProcessName}");
                         continue;
                     }
+
+                    string pathToRestore = processName;
+                    try
+                    {
+                        var path = process.MainModule?.FileName;
+                        if (!string.IsNullOrEmpty(path))
+                        {
+                            pathToRestore = path;
+                        }
+                    }
+                    catch (System.ComponentModel.Win32Exception) { }
+                    catch (InvalidOperationException) { }
                     
                     process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    terminatedProcesses.Add(pathToRestore);
+                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated. Stored path: {pathToRestore}");
                 }
             }
             catch (Exception ex)
@@ -213,6 +225,12 @@ namespace RamOptimizer.ProcessManagement
                 {
                     try
                     {
+                        if (!Path.IsPathRooted(processName))
+                        {
+                            Console.WriteLine($"Security warning: Blocked attempt to restart process from unrooted path '{processName}'. Potential Path Hijacking attempt.");
+                            continue;
+                        }
+
                         // Attempt to restart the process
                         var psi = new ProcessStartInfo(processName)
                         {
