@@ -80,40 +80,54 @@ namespace RamOptimizer.ProcessManagement
                 MemoryFreed = 0,
                 TerminationTime = DateTime.UtcNow
             };
+
+            var targetSet = new HashSet<string>(processesToTerminate, StringComparer.OrdinalIgnoreCase);
             
-            foreach (var processName in processesToTerminate)
+            var allProcesses = Process.GetProcesses();
+            try
             {
-                if (_dynamicExclusionList.Contains(processName) || _safetyEngine.IsExcluded(processName))
+                foreach (var process in allProcesses)
                 {
-                    _logger.LogInformation($"Process {processName} is in the exclusion list and will not be terminated.");
-                    continue;
-                }
-                
-                var processes = Process.GetProcessesByName(processName);
-                foreach (var process in processes)
-                {
-                    try
+                    var processName = process.ProcessName;
+
+                    if (targetSet.Contains(processName))
                     {
-                        var processInfo = new ProcessInfo
+                        if (_dynamicExclusionList.Contains(processName) || _safetyEngine.IsExcluded(processName))
                         {
-                            ProcessId = process.Id,
-                            ProcessName = process.ProcessName,
-                            MemoryUsage = process.WorkingSet64,
-                            Priority = process.PriorityClass,
-                            ExecutablePath = process.MainModule?.FileName ?? string.Empty
-                        };
-                        
-                        if (await _processManager.TerminateProcessAsync(process.Id, process.ProcessName))
+                            _logger.LogInformation($"Process {processName} is in the exclusion list and will not be terminated.");
+                            continue;
+                        }
+
+                        try
                         {
-                            result.TerminatedProcesses.Add(processInfo);
-                            result.MemoryFreed += processInfo.MemoryUsage;
-                            _logger.LogInformation($"Process {processName} (ID: {process.Id}) terminated.");
+                            var processInfo = new ProcessInfo
+                            {
+                                ProcessId = process.Id,
+                                ProcessName = process.ProcessName,
+                                MemoryUsage = process.WorkingSet64,
+                                Priority = process.PriorityClass,
+                                ExecutablePath = process.MainModule?.FileName ?? string.Empty
+                            };
+
+                            if (await _processManager.TerminateProcessAsync(process.Id, process.ProcessName))
+                            {
+                                result.TerminatedProcesses.Add(processInfo);
+                                result.MemoryFreed += processInfo.MemoryUsage;
+                                _logger.LogInformation($"Process {processName} (ID: {process.Id}) terminated.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, $"Failed to terminate process {processName}.");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, $"Failed to terminate process {processName}.");
-                    }
+                }
+            }
+            finally
+            {
+                foreach (var process in allProcesses)
+                {
+                    process.Dispose();
                 }
             }
             
