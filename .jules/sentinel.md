@@ -6,3 +6,11 @@
 **Vulnerability:** Found insecure usage of relative paths / bare executable names (e.g., `sc.exe`, `wmic`, `powercfg`, `explorer.exe`) in `ProcessStartInfo` to launch system utilities.
 **Learning:** Using relative paths allows malicious actors to place a rogue executable with the same name in a directory that occurs earlier in the system's `PATH` environment variable, leading to Local Privilege Escalation (LPE) or unintended code execution, especially when the process is executed with elevated privileges.
 **Prevention:** Always use absolute, fully-qualified paths constructed securely using `Environment.GetFolderPath(Environment.SpecialFolder.System)` (or `.Windows`) combined with `Path.Combine` when starting system utilities via `Process.Start`.
+## 2026-09-12 - [CRITICAL] Prevent Path Hijacking from Serialized State
+**Vulnerability:** GpuOptimizer stored relative process names during termination and blindly restarted them from JSON state, allowing local attackers to poison the JSON with rogue executables or rely on PATH traversal.
+**Learning:** Recovering processes from saved state files using relative paths introduces a dangerous path hijacking vector. Capturing the absolute path prior to termination prevents this.
+**Prevention:** Always capture MainModule.FileName before terminating processes, and enforce Path.IsPathRooted checks upon recovery to prevent executing unintended or maliciously placed files.
+## 2026-09-12 - [CRITICAL] Prevent Path Hijacking from Serialized State
+**Vulnerability:** GpuOptimizer stored relative process names during termination and blindly restarted them from JSON state, allowing local attackers to poison the JSON with rogue executables or rely on PATH traversal.
+**Learning:** Recovering processes from saved state files using relative paths introduces a dangerous path hijacking vector. Capturing the absolute path prior to termination prevents this. Furthermore, to prevent JSON poisoning with absolute paths to malware, the recovered paths must be validated against trusted system directories.
+**Prevention:** Always capture MainModule.FileName before terminating processes (skipping if inaccessible), and enforce Path.IsPathRooted along with trusted directory checks upon recovery.

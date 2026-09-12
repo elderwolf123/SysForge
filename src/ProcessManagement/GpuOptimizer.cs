@@ -133,9 +133,19 @@ namespace RamOptimizer.ProcessManagement
                         continue;
                     }
                     
-                    process.Kill();
-                    terminatedProcesses.Add(processName);
-                    Console.WriteLine($"Process {processName} (ID: {process.Id}) terminated.");
+                    try
+                    {
+                        string processPath = process.MainModule?.FileName;
+                        if (string.IsNullOrEmpty(processPath)) continue;
+
+                        process.Kill();
+                        terminatedProcesses.Add(processPath);
+                        Console.WriteLine($"Process {processPath} (ID: {process.Id}) terminated.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to access or kill process {processName}: {ex.Message}");
+                    }
                 }
             }
             catch (Exception ex)
@@ -197,6 +207,16 @@ namespace RamOptimizer.ProcessManagement
                 {
                     try
                     {
+                        bool isTrusted = processName.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.Windows), StringComparison.OrdinalIgnoreCase) ||
+                                         processName.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), StringComparison.OrdinalIgnoreCase) ||
+                                         processName.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), StringComparison.OrdinalIgnoreCase);
+
+                        if (!Path.IsPathRooted(processName) || !isTrusted)
+                        {
+                            Console.WriteLine($"Skipping recovery of invalid or untrusted path: {processName}");
+                            continue;
+                        }
+
                         // Attempt to restart the process
                         var psi = new ProcessStartInfo(processName)
                         {
